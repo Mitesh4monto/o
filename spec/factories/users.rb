@@ -2,7 +2,11 @@
 
 FactoryGirl.define do
   factory :user do
-    id 1
     name "MyString"
   end
+  
+  factory :reguser, class: User do
+    name "other"
+  end
+  
 end

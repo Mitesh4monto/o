@@ -1,6 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :orderable_thi, :class => 'OrderableThis' do
+  factory :comment do
+    body "MyText"
+    commentable_id 1
+    commentable_type "Hal"
+    hal
   end
 end

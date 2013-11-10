@@ -6,6 +6,13 @@ class Chapter < ActiveRecord::Base
     enable
     prepend :title => "Copy of "
   end
+
+  def add_activity(activity)
+    self.activities << activity
+  end
   
+  def delete_activity(activity)
+    self.activities.destroy(activity)
+  end
   
 end

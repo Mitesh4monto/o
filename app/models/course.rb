@@ -3,9 +3,11 @@ class Course < ActiveRecord::Base
   belongs_to :user
   
   def self.create_from_strategy(strategy)
-    c = Course.new
+    c = Course.create
     c.user = strategy.user
-    c.strategy = strategy.amoeba_dup
+    strat = strategy.amoeba_dup
+    strat.save
+    c.strategy = strat
     c.save
     c
   end

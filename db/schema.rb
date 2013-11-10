@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103022004) do
+ActiveRecord::Schema.define(:version => 20131109224550) do
 
   create_table "activities", :force => true do |t|
     t.integer  "chapter_id"
@@ -19,17 +19,27 @@ ActiveRecord::Schema.define(:version => 20131103022004) do
     t.text     "description"
     t.integer  "goal_id"
     t.integer  "from_template_activity_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "element_order",             :default => 0, :null => false
   end
 
   create_table "chapters", :force => true do |t|
     t.integer  "strategy_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "element_order", :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "element_order"
+    t.string   "type"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.text     "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "contacts", :force => true do |t|
@@ -51,13 +61,18 @@ ActiveRecord::Schema.define(:version => 20131103022004) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
-  create_table "orderable_this", :force => true do |t|
-    t.text     "description"
-    t.integer  "element_order", :default => 0, :null => false
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+  create_table "hals", :force => true do |t|
+    t.integer  "halable_id"
+    t.string   "halable_type"
+    t.text     "entry"
+    t.boolean  "help"
+    t.text     "insights"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "strategies", :force => true do |t|
@@ -66,9 +81,9 @@ ActiveRecord::Schema.define(:version => 20131103022004) do
     t.integer  "course_id"
     t.integer  "user_id"
     t.boolean  "is_template"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "current_chapter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "current_chapter_id"
   end
 
   create_table "timings", :force => true do |t|

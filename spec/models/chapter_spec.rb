@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Chapter do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "can remove activities from itself" do    
+  end
+
+  it "can add activities to itself" do    
+  end
+
 end

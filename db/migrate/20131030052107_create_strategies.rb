@@ -6,6 +6,7 @@ class CreateStrategies < ActiveRecord::Migration
       t.integer :course_id
       t.integer :user_id, null: false
       t.boolean :is_template, default: false
+      t.integer :current_chapter_id
 
       t.timestamps
     end

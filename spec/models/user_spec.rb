@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  it "can replace its strategy with another" do
+  it "has a valid factory" do 
+    FactoryGirl.create(:user).should be_valid 
   end
 end

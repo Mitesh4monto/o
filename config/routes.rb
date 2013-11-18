@@ -1,10 +1,20 @@
 Opp::Application.routes.draw do
+
+  devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
+  devise_scope :user do
+    get "sign_in", :to => "devise/sessions#new"
+    get "sign_out", :to => "destroy_user_session"
+  end  # devise_for :users
+
   resources :contacts
 
   resources :courses
 
   resources :users
 
+  match 'co',  :controller => "courses", :action => "index"
+  root :to => "courses#index"
+ 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

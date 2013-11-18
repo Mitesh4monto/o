@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+
+
 <p>
   <b>Name:</b>
   <%= @course.name %>
@@ -9,6 +11,22 @@
   <b>User:</b>
   <%= @course.user_id %>
 </p>
+
+<p>
+  <b>Description:</b>
+  <%= @course.description %>
+</p>
+
+<p>
+  <b>author:</b>
+  <%= @course.user.name %>
+</p>
+
+<p>
+  <b> about the author:</b>
+  <%= @course.about_the_author %>
+</p>
+
 
 
 <%= link_to 'Edit', edit_course_path(@course) %> |

@@ -4,6 +4,7 @@ class Strategy < ActiveRecord::Base
   has_many :ordered_chapters, :dependent => :destroy 
   has_one :main_chapter
   belongs_to :user
+  has_one :current_chapter, class_name: OrderedChapter
   
   after_create :create_main_chapter
 
@@ -32,6 +33,7 @@ class Strategy < ActiveRecord::Base
   def delete_activity(activity)    
     self.main_chapter.activities.destroy(activity)
   end
+  
   
   def self.c
     s = Strategy.create(:title => "foo")

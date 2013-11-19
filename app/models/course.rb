@@ -8,25 +8,28 @@ class Course < ActiveRecord::Base
                   :description,
                   :about_the_author
                   
+
   
   # create a course based on a strategy
-  def self.create_from_strategy(strategy)
+  def self.create_course_from_strategy(strategy)
     c = Course.create
     strat = strategy.amoeba_dup
-    strat.type = "CourseStrategy"
+    strat.becomes!(CourseStrategy)
+    puts strat.type
     strat.save
+    puts strat.type
     c.course_strategy = strat
     c.user = strategy.user
     c.save
     c
   end
   
-  def create_user_strategy(user)
-    strat = self.strategy.amoeba_dup
-    user.strategy.destroy    
-    user.strategy = strat
-    strat.save
+  # TODO checks and whatnot
+  def add_user_to_course(user)
+    user.replace_strategy_with_template(self.strategy)
+    user.following_course = self
   end
+
   
   
 end

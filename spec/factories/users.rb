@@ -3,6 +3,8 @@
 FactoryGirl.define do
   factory :user do
     name "MyString"
+    email "my@email.com"
+    password "password"
   end
   
   factory :reguser, class: User do

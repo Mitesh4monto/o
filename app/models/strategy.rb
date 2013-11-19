@@ -1,10 +1,11 @@
 class Strategy < ActiveRecord::Base
   has_many :hals, :as => :halable #, :dependent => :destroy
-  belongs_to :course
+  # belongs_to :course
   has_many :ordered_chapters, :dependent => :destroy 
   has_one :main_chapter
   belongs_to :user
   has_one :current_chapter, class_name: OrderedChapter
+  # has_one :from_course, class_name: Course
   
   after_create :create_main_chapter
 

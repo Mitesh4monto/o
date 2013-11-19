@@ -20,11 +20,14 @@ class CoursesController < ApplicationController
       format.json { render json: @course }
     end
   end
+<<<<<<< HEAD
   
   def join
     @course = Course.find(params[:id])
     @course.
   end
+=======
+>>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
 
   # GET /courses/new
   # GET /courses/new.json

@@ -12,6 +12,11 @@ Opp::Application.routes.draw do
 
   resources :users
 
+<<<<<<< HEAD
+  match 'join_course',  :controller => "courses", :action => "join"
+
+=======
+>>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
   match 'co',  :controller => "courses", :action => "index"
   root :to => "courses#index"
  

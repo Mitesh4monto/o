@@ -1,0 +1,3 @@
+class UserStrategy < Strategy  
+  
+end

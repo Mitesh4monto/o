@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20131118014256) do
+=======
 ActiveRecord::Schema.define(:version => 20131117205110) do
+>>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
 
   create_table "activities", :force => true do |t|
     t.integer  "chapter_id"
@@ -111,6 +115,10 @@ ActiveRecord::Schema.define(:version => 20131117205110) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+<<<<<<< HEAD
+    t.integer  "following_course_id"
+=======
+>>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

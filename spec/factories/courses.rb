@@ -3,6 +3,8 @@
 FactoryGirl.define do
   factory :course do
     name "MyString"
-    user_id 1
+    user
+    description "some description"
+    about_the_author "about the um.. author"
   end
 end

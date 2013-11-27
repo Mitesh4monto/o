@@ -18,11 +18,7 @@ describe Strategy do
   it "can be turned into a course strategy" do
     s = FactoryGirl.create(:strategy)     
     s.should be_valid
-<<<<<<< HEAD
     c = Course.create_course_from_strategy(s)
-=======
-    c = Course.create_from_strategy(s)
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
     c.should be_valid    
   end
   

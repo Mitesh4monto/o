@@ -1,18 +1,10 @@
 class Strategy < ActiveRecord::Base
   has_many :hals, :as => :halable #, :dependent => :destroy
-<<<<<<< HEAD
-  # belongs_to :course
-=======
-  belongs_to :course
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
   has_many :ordered_chapters, :dependent => :destroy 
   has_one :main_chapter
   belongs_to :user
   has_one :current_chapter, class_name: OrderedChapter
-<<<<<<< HEAD
-  # has_one :from_course, class_name: Course
-=======
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
+  belongs_to :from_course, class_name: Course, :foreign_key => 'course_id'
   
   after_create :create_main_chapter
 
@@ -43,10 +35,10 @@ class Strategy < ActiveRecord::Base
   end
   
   
-  def self.c
+  def self.c    
     s = Strategy.create(:title => "foo")
     a1 = Activity.create(:title => "main chap act")
-    s.main_chapter.activities << a1
+    s.main_chapter.activities << a1    
     
     g = Goal.create(:title => "important")
     g2 = Goal.create(:title => "not very")

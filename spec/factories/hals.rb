@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :activity_hal, class: Hal do
-    id 1
-    halable_id 1
-    halable_type "Activity"
+    association :halable, factory: :activity
+    # halable_type "Activity"
     entry "MyText"
     help false
     insights "MyText"
@@ -12,9 +11,7 @@ FactoryGirl.define do
   end
 
   factory :chapter_hal, class: Hal do
-    id 1
-    halable_id 1
-    halable_type "Chapter"
+    association :halable, factory: :main_chapter
     entry "MyText"
     help false
     insights "MyText"
@@ -22,9 +19,6 @@ FactoryGirl.define do
   end
   
   factory :hal do
-    id 1
-    halable_id 2
-    halable_type "Activity"
     entry "MyText"
     help false
     insights "MyText"

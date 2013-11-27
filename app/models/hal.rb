@@ -22,6 +22,15 @@ class Hal < ActiveRecord::Base
     h
   end
   
+  def self.get_related_hals(halable)
+    if (halable.from_id)
+      # self.where(:halable_type => halable.class.name, :) halable.from.
+    else  
+      # halable.hals
+    end    
+    
+  end
+  
   def print
     com = ', comments: '
     self.comments.each {|comment| com+="id:#{comment.id}, body: #{comment.body}"}

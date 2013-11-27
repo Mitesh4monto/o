@@ -1,17 +1,20 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :user do
-    name "MyString"
-<<<<<<< HEAD
-    email "my@email.com"
-    password "password"
-=======
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
+  sequence :email do
+    "email#{rand(1000).to_s}@factory.com"
   end
   
-  factory :reguser, class: User do
+  factory :user do
+    name "MyString"
+    email
+    password "password"
+  end
+  
+  factory :user2, class: User do
     name "other"
+    email
+    password "password"
   end
   
 end

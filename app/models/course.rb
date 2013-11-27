@@ -1,54 +1,45 @@
 class Course < ActiveRecord::Base
-  has_one :course_strategy
+  belongs_to :course_strategy, class_name: CourseStrategy, :foreign_key => 'course_strategy_id'
   belongs_to :user
+  
+  has_many :users, :foreign_key => 'following_course_id'
+
+  has_many :user_strategies, class_name: Strategy, :foreign_key => 'course_id'
 
   attr_accessible :name,
                   :user_id,
-                  :strategy,
+                  :course_strategy_id,
                   :description,
                   :about_the_author
                   
-<<<<<<< HEAD
+    after_create :create_strategy
+
+
+  # create strategy object for course after create
+  def create_strategy
+    self.course_strategy = CourseStrategy.create(:title => "strategy of course #{self.name}")
+    self.save
+  end
 
   
-  # create a course based on a strategy
-  def self.create_course_from_strategy(strategy)
-    c = Course.create
-    strat = strategy.amoeba_dup
-    strat.becomes!(CourseStrategy)
-    puts strat.type
-    strat.save
-    puts strat.type
-=======
-  
-  # create a course based on a strategy
+  # create a course based on a user strategy
   def self.create_from_strategy(strategy)
     c = Course.create
+    #hack
     strat = strategy.amoeba_dup
     strat.type = "CourseStrategy"
     strat.save
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
-    c.course_strategy = strat
+    c.course_strategy = CourseStrategy.find(strat.id)
     c.user = strategy.user
     c.save
     c
   end
   
-<<<<<<< HEAD
-  # TODO checks and whatnot
+  # TODO checks and whatnot  !!!!  spec
   def add_user_to_course(user)
-    user.replace_strategy_with_template(self.strategy)
-    user.following_course = self
+    user.replace_strategy_with_template(self.course_strategy)
+    self.users << user
+    user.save
   end
 
-=======
-  def create_user_strategy(user)
-    strat = self.strategy.amoeba_dup
-    user.strategy.destroy    
-    user.strategy = strat
-    strat.save
-  end
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
-  
-  
 end

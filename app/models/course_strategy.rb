@@ -1,4 +1,4 @@
 class CourseStrategy < Strategy  
-  belongs_to :course
+  has_one :course
   
 end

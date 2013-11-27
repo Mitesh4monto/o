@@ -20,14 +20,14 @@ class CoursesController < ApplicationController
       format.json { render json: @course }
     end
   end
-<<<<<<< HEAD
   
   def join
     @course = Course.find(params[:id])
-    @course.
+    @course.add_user_to_course(current_user)
+    
+    redirect_to @course, notice: 'Course was successfully joined.'
+    
   end
-=======
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
 
   # GET /courses/new
   # GET /courses/new.json

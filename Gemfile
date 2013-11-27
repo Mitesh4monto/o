@@ -34,7 +34,8 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
+gem 'factory_girl_rails' 
+gem 'activerecord-postgresql-adapter'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 group :development, :test do 

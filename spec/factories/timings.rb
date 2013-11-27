@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :timing do
-    activity_id 1
+    activity factory: :activity
     kind_of_timing "MyString"
     info "MyString"
   end

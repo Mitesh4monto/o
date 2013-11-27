@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20131118014256) do
-=======
-ActiveRecord::Schema.define(:version => 20131117205110) do
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
+ActiveRecord::Schema.define(:version => 20131123155201) do
 
   create_table "activities", :force => true do |t|
     t.integer  "chapter_id"
@@ -23,19 +19,25 @@ ActiveRecord::Schema.define(:version => 20131117205110) do
     t.text     "description"
     t.integer  "goal_id"
     t.integer  "from_template_activity_id"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "element_order",             :default => 0, :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "element_order",             :default => 0,    :null => false
+    t.integer  "user_id"
+    t.integer  "from_id"
+    t.boolean  "active",                    :default => true
   end
 
   create_table "chapters", :force => true do |t|
     t.integer  "strategy_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "element_order"
+    t.integer  "element_order", :default => 0,    :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "type"
+    t.integer  "user_id"
+    t.integer  "from_id"
+    t.boolean  "active",        :default => true
   end
 
   create_table "comments", :force => true do |t|
@@ -56,18 +58,21 @@ ActiveRecord::Schema.define(:version => 20131117205110) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "description"
     t.text     "about_the_author"
+    t.integer  "course_strategy_id"
   end
 
   create_table "goals", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
+    t.integer  "from_id"
+    t.boolean  "active",      :default => true
   end
 
   create_table "hals", :force => true do |t|
@@ -85,12 +90,14 @@ ActiveRecord::Schema.define(:version => 20131117205110) do
     t.string   "title"
     t.text     "description"
     t.integer  "course_id"
-    t.integer  "user_id"
-    t.boolean  "is_template"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "user_id",                               :null => false
+    t.boolean  "is_template",        :default => false
     t.integer  "current_chapter_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "type"
+    t.integer  "from_id"
+    t.boolean  "active",             :default => true
   end
 
   create_table "timings", :force => true do |t|
@@ -115,10 +122,7 @@ ActiveRecord::Schema.define(:version => 20131117205110) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-<<<<<<< HEAD
     t.integer  "following_course_id"
-=======
->>>>>>> dcc05d65dd23d3e8b8d3ce2b4b9cd344c9073a39
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,6 +1,8 @@
 class Chapter < ActiveRecord::Base
+  acts_as_orderable
   belongs_to :strategy
-  has_many :activities, :dependent => :destroy 
+  has_many :activities, :as => :activityable, :dependent => :destroy 
+  has_many :goals, :as => :goalable, :dependent => :destroy 
   has_many :hals, :as => :halable
   
   amoeba do
@@ -47,7 +49,18 @@ class Chapter < ActiveRecord::Base
   def delete_activity(activity)
     self.activities.destroy(activity)
   end
+
+  def get_goals
+    self.goals
+  end
+
+  def add_goal(goal)
+    self.goals << goal
+  end
   
+  def delete_goal(goal)
+    self.goals.destroy(goal)
+  end  
   
   def make_copy
     c = self.amoeba_dup

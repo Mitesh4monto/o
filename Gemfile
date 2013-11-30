@@ -36,8 +36,10 @@ gem 'jquery-rails'
 # gem 'capistrano'
 gem 'factory_girl_rails' 
 gem 'activerecord-postgresql-adapter'
+gem 'ruby-debug-ide'
+gem 'debugger'
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug19'  # , :require => 'ruby-debug'
 group :development, :test do 
   gem 'rspec-rails' 
   gem 'factory_girl_rails' 

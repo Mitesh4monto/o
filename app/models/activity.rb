@@ -2,8 +2,7 @@ class Activity < ActiveRecord::Base
   acts_as_orderable
   has_many :hals, :as => :halable #, :dependent => :destroy
   has_many :comments, :as => :commentable #, :dependent => :destroy
-  belongs_to :goal
-  belongs_to :chapter
+  belongs_to :activityable, :polymorphic => true  
   belongs_to :user
   
   has_one :timing

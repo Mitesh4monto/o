@@ -51,13 +51,19 @@ describe Chapter do
     mc2.from_id.should eq mc.id
   end
   
-  it "can find all blog entries about others using same template" do
-  end  
+  # it "can find all blog entries about others using same template" do
+  # end  
 
   it "has no from template if was created from scratch" do
+    mc = FactoryGirl.create(:main_chapter_template)    
+    mc.from_id.should be_nil
   end
 
   it "can have activities" do
+    mc = FactoryGirl.create(:main_chapter_template)    
+    activity= FactoryGirl.create(:chapterless_activity)    
+    mc.add_activity(activity)
+    mc.get_activities.size.should be >= 1
   end
 
   it "can have goals" do

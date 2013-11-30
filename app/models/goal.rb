@@ -1,7 +1,8 @@
 class Goal < ActiveRecord::Base
   has_many :hals, :as => :halable #, :dependent => :destroy
-  has_many :activities
+  has_many :activities, :as => :activityable, :dependent => :destroy 
   has_one :user
+  belongs_to :goalable, :polymorphic => true
   
   amoeba do
     enable

@@ -2,33 +2,27 @@ require 'spec_helper'
 
 describe Chapter do
   it "has a valid factory" do
-    FactoryGirl.create(:main_chapter).should be_valid 
     FactoryGirl.create(:chapter).should be_valid 
   end
 
   it "can remove activities from itself" do
-    mc = FactoryGirl.create(:main_chapter)
-    puts mc.get_activities.size
+    mc = FactoryGirl.create(:chapter)
     activity = FactoryGirl.create(:chapterless_activity)
     mc.add_activity(activity)
-    activity.print
-    puts mc.get_activities.size
     mc.get_activities.include?(activity).should  be_true
     mc.delete_activity(activity)
     mc.get_activities.include?(activity).should  be_false
   end
 
   it "can add activities to itself" do    
-    mc = FactoryGirl.create(:main_chapter)
+    mc = FactoryGirl.create(:chapter)
     activity = FactoryGirl.create(:chapterless_activity)
-    activity.print
-    puts mc.get_activities.size
     mc.add_activity(activity)
     mc.get_activities.include?(activity).should  be_true
   end
   
   it "can be blogged about" do
-    mc = FactoryGirl.create(:main_chapter)
+    mc = FactoryGirl.create(:chapter)
     user = FactoryGirl.create(:user)    
     h = Hal.create(:user => user, :entry => "entry", :insights => "insights", :help => false)
     mc.hal_about(h)
@@ -36,7 +30,7 @@ describe Chapter do
   end
   
   it "can find all blog entries about itself" do    
-    mc = FactoryGirl.create(:main_chapter)
+    mc = FactoryGirl.create(:chapter)
     halsize = mc.hals.size
     chapter_hal = FactoryGirl.create(:chapter_hal)
     mc.hal_about(chapter_hal)
@@ -46,7 +40,7 @@ describe Chapter do
   end
   
   it "can have a teamplate it was crated from" do
-    mc = FactoryGirl.create(:main_chapter_template)    
+    mc = FactoryGirl.create(:chapter_template)    
     mc2 = mc.make_copy
     mc2.from_id.should eq mc.id
   end
@@ -55,27 +49,34 @@ describe Chapter do
   # end  
 
   it "has no from template if was created from scratch" do
-    mc = FactoryGirl.create(:main_chapter_template)    
+    mc = FactoryGirl.create(:chapter_template)    
     mc.from_id.should be_nil
   end
 
   it "can have activities" do
-    mc = FactoryGirl.create(:main_chapter_template)    
+    mc = FactoryGirl.create(:chapter_template)    
     activity= FactoryGirl.create(:chapterless_activity)    
     mc.add_activity(activity)
     mc.get_activities.size.should be >= 1
   end
 
   it "can have goals" do
+    c = FactoryGirl.create(:chapter)    
+    goalsize = c.goals.size    
+    g = FactoryGirl.create(:goal)    
+    c.goals << g
+    c.goals.size.should eq goalsize + 1
   end
   
-  it "is part of a user strategy if it isn't a template" do
-  end
-
   it "can duplicate a chapter that's a template and ref that chapter" do
+      c = FactoryGirl.create(:chapter_template)    
+      b = c.make_copy
+      b.from_id.should eq c.id
   end
 
   it "has a strategy it's part of" do
+    c = FactoryGirl.create(:chapter_template)    
+    c.strategy.should be_valid
   end
 
   # it "can reorder activities" do 

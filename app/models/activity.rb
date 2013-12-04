@@ -1,6 +1,9 @@
 class Activity < ActiveRecord::Base
+  require "StrategyElementMethods"
+  
   acts_as_orderable
   has_many :hals, :as => :halable #, :dependent => :destroy
+  has_many :fromhals, :as => :halable #, :dependent => :destroy
   has_many :comments, :as => :commentable #, :dependent => :destroy
   belongs_to :activityable, :polymorphic => true  
   belongs_to :user
@@ -33,6 +36,28 @@ class Activity < ActiveRecord::Base
     })
   end
 
+  # get strategy this activity is part of
+  def strategy
+    self.activityable.strategy
+  end
+
+  # add a hal to list of hals for activity
+  def hal_about(hal)
+    hal.fromable = self.get_hierarchical_from
+    self.hals << hal
+  end
+
+  # get "from" template for chapter if exists or parent
+  def get_hierarchical_from
+    if (self.from_id) then
+      self.from
+    else 
+      if (self.activityable) then
+        self.activityable.get_hierarchical_from
+      end
+    end
+  end
+
   
   # returns all hals that have the same from template
   def get_related_hals
@@ -43,10 +68,6 @@ class Activity < ActiveRecord::Base
     end    
   end
   
-  
-  def hal_about(hal)
-    self.hals << hal
-  end
   
   
   # After creation of activity add timing
@@ -63,8 +84,8 @@ class Activity < ActiveRecord::Base
 
   def print    
     puts "Activity  id: #{id}. title:" + self.title
-    if (self.goal)
-      puts "Goal: #{self.goal.title}"
+    if (self.activityable_id)
+      puts "#{self.activityable_type}: #{self.activityable.title}"
     end    
     puts "from_id: #{self.from_id}, timing: #{self.timing.print}"
     puts "Hals:"

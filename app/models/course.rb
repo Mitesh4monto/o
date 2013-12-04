@@ -10,14 +10,15 @@ class Course < ActiveRecord::Base
                   :user_id,
                   :course_strategy_id,
                   :description,
+                  :overview,
                   :about_the_author
                   
-    after_create :create_strategy
+    after_create :create_strategy   
 
 
   # create strategy object for course after create
   def create_strategy
-    self.course_strategy = CourseStrategy.create(:title => "strategy of course #{self.name}")
+    self.course_strategy = CourseStrategy.create(:title => "strategy of course #{self.name}", :user_id => self.user_id)
     self.save
   end
 

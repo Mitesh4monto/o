@@ -4,13 +4,15 @@ FactoryGirl.define do
   sequence(:random_string) {|n| LoremIpsum.generate }
 
   factory :chapter do
-    strategy
+    association :strategy, factory: :user_strategy
+    
     title "MyString"
     description "MyText"
     element_order 1
   end
 
   factory :chapter_template, class: Chapter do
+    association :strategy, factory: :course_strategy
     title "MyString"
     description "MyText"
   end
@@ -18,7 +20,7 @@ FactoryGirl.define do
   factory :chapter_from_template, class: Chapter do
     title "MyString"
     description "MyText"
-    association :from, factory: :main_chapter_template
+    association :from, factory: :chapter_template
   end
 
 end

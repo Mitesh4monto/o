@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     actionmailer (3.2.0)
       actionpack (= 3.2.0)
       mail (~> 2.4.0)
@@ -43,6 +44,12 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    ckeditor_rails (4.2.2)
+      railties (>= 3.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -111,6 +118,11 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -193,10 +205,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   activerecord-postgresql-adapter
   acts_as_orderable
   amoeba
   capybara
+  ckeditor_rails
   coffee-rails (~> 3.2.1)
   debugger
   devise
@@ -206,6 +220,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
+  paperclip (~> 3.0)
   rails (= 3.2.0)
   rspec-rails
   ruby-debug-ide

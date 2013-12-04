@@ -3,7 +3,22 @@
 FactoryGirl.define do
   factory :activity_hal, class: Hal do
     association :halable, factory: :activity
-    # halable_type "Activity"
+    entry "MyText"
+    help false
+    insights "MyText"
+    user
+  end
+
+  factory :goal_hal, class: Hal do
+    association :halable, factory: :goal
+    entry "MyText"
+    help false
+    insights "MyText"
+    user
+  end
+
+  factory :strategy_hal, class: Hal do
+    association :halable, factory: :strategy
     entry "MyText"
     help false
     insights "MyText"
@@ -11,7 +26,7 @@ FactoryGirl.define do
   end
 
   factory :chapter_hal, class: Hal do
-    association :halable, factory: :main_chapter
+    association :halable, factory: :chapter
     entry "MyText"
     help false
     insights "MyText"

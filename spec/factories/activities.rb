@@ -12,12 +12,22 @@ FactoryGirl.define do
     # from_template_activity_id 1
   end
 
+  factory :activity_in_goal, class: Activity do
+    association :activityable, factory: :goal    
+    title "MyString"
+    description "MyText"
+    element_order 1
+    user
+    # from template_activity
+    # goal_id 1
+    # from_template_activity_id 1
+  end
+
   factory :template_activity, class: Activity do
     association :activityable, factory: :chapter    
     title "MyString3"
     description "MyText2"
     element_order 2
-    user
   end  
 
   factory :chapterless_activity, class: Activity do

@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :goal do
+    association :goalable, factory: :chapter
     title "MyString"
     description "MyText"
   end

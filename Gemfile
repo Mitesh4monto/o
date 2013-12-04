@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
 
+gem 'ckeditor_rails'
+gem "paperclip", "~> 3.0"
+
+gem "RedCloth"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'formtastic'

@@ -1,0 +1,9 @@
+class CreateUserProfiles < ActiveRecord::Migration
+  def change
+    create_table :user_profiles do |t|
+      t.text :about
+      t.timestamps
+    end
+    add_attachment :user_profiles, :avatar
+  end
+end

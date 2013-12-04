@@ -11,7 +11,14 @@
     </div>
   <% end %>
 
-  <%= f.inputs %>
+
+  <%= f.inputs :user, :name, :overview, :about_the_author %>
+
+  <div class="field">
+	<%= f.label :description  %>
+    <%= f.text_area :description, :class => 'ckeditor' %>
+</div>
+
   <%= f.actions %>
 
   </div>

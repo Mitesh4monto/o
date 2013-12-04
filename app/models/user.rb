@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :following_course_id
-  has_one :strategy
+  has_one :user_strategy
   after_create :create_strategy
   has_many :courses
   has_many :goals
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   # following_course, class_name: Course
   
   def create_strategy
-    Strategy.create(:user_id => self.id, :title => "You strat")
+    UserStrategy.create(:user_id => self.id, :title => "Strating strategy")
   end
   
   #  todo add if strategy is template?

@@ -1,10 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :course_strategy do
-    title "MyString"
-    description "MyText"
-    course
+  factory :user_profile do
+    about "MyText"
   end
-
 end

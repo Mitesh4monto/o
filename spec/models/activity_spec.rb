@@ -64,9 +64,10 @@ describe Activity do
   it "can have a goal" do
     a = FactoryGirl.create(:activity)
     g = FactoryGirl.create(:goal)
-    a.goal = g
+    a.activityable = g
     a.save
-    a.goal.should be_valid
+    a.activityable_type.should eq "Goal"
+    a.activityable.should be_valid
   end
   
   it "is part of a user strategy if it isn't a template" do
@@ -84,7 +85,7 @@ describe Activity do
   
   it "has a strategy it's part of" do
     a = FactoryGirl.create(:activity)
-    a.chapter.strategy.should be_valid
+    a.strategy.should be_valid
   end
   
   

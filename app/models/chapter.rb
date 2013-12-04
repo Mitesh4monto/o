@@ -1,9 +1,12 @@
 class Chapter < ActiveRecord::Base
+  include StrategyElementMethods
   acts_as_orderable
   belongs_to :strategy
   has_many :activities, :as => :activityable, :dependent => :destroy 
   has_many :goals, :as => :goalable, :dependent => :destroy 
   has_many :hals, :as => :halable
+  has_many :fromhals, :as => :halable #, :dependent => :destroy
+  belongs_to :from, class_name: Chapter, :foreign_key => 'from_id'
   
   amoeba do
     enable
@@ -33,7 +36,22 @@ class Chapter < ActiveRecord::Base
     end    
   end
   
+  # get "from" template for chapter if exists or parent
+  def get_hierarchical_from
+    if (self.from_id) then
+      self.from
+    else 
+      self.strategy.from
+    end
+  end
+
+  # get strategy this chapter is part of
+  # def strategy
+  #   self.strategy
+  # end
+  
   def hal_about(hal)
+    hal.fromable = self.get_hierarchical_from
     self.hals << hal
   end
 
@@ -67,5 +85,6 @@ class Chapter < ActiveRecord::Base
     c.save
     c
   end
+
   
 end

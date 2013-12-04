@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127035856) do
+ActiveRecord::Schema.define(:version => 20131202080616) do
 
   create_table "activities", :force => true do |t|
     t.string   "title"
@@ -57,11 +57,11 @@ ActiveRecord::Schema.define(:version => 20131127035856) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.text     "description"
     t.text     "about_the_author"
-    t.integer  "course_strategy_id"
+    t.text     "overview"
   end
 
   create_table "goals", :force => true do |t|
@@ -83,15 +83,18 @@ ActiveRecord::Schema.define(:version => 20131127035856) do
     t.boolean  "help"
     t.text     "insights"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "fromable_id"
+    t.string   "fromable_type"
+    t.integer  "course_id"
   end
 
   create_table "strategies", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "course_id"
-    t.integer  "user_id",                               :null => false
+    t.integer  "user_id"
     t.boolean  "is_template",        :default => false
     t.integer  "current_chapter_id"
     t.datetime "created_at",                            :null => false

@@ -1,0 +1,2 @@
+module HalsHelper
+end

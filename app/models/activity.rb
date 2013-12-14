@@ -3,14 +3,17 @@ class Activity < ActiveRecord::Base
   
   acts_as_orderable
   has_many :hals, :as => :halable #, :dependent => :destroy
-  has_many :fromhals, :as => :halable #, :dependent => :destroy
+  has_many :from_template_hals, :as => :halable #, :dependent => :destroy
   has_many :comments, :as => :commentable #, :dependent => :destroy
-  belongs_to :activityable, :polymorphic => true  
+  # belongs_to :activityable, :polymorphic => true  
   belongs_to :user
   
-  has_one :timing
+  has_one :timing, :dependent => :destroy
 
-  
+
+  belongs_to :activity_sequence
+  acts_as_list scope: :activity_sequence
+
   attr_accessible :from_id, :user_id, :title, :description
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'

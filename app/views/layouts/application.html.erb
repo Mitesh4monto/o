@@ -1,20 +1,38 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-  <title>Opp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-			<div id="loginBar">
-			<%= render :partial => "shared/user_bar" %>
-			</div>
-	
- <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+<title>Your Sitename</title>
 
+</head>
+
+
+<body>
+
+<a href="index.html"><span>Home</span></a> |
+
+<%= link_to 'My Plan', myp_path %> | <%= link_to 'My Blog', 'strategies/mine' %></li> <%= link_to 'create course', "/create" %></li>
+
+<%= render :partial => "shared/user_bar" %>
+
+<div id="maincontent">
 <%= yield %>
+
+</div>
+
+<div class="hr"><hr /></div>
+
+<div id="footer">
+
+link1 | link2
+</div>
+<BR>
+<!-- debug -->
+<% if Rails.env == "development" %>
+  <div id="footnotes_holder">
+  </div>
+  <%= render :partial => 'shared/debug' %>
+<% end %>
 
 </body>
 </html>

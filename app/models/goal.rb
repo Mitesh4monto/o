@@ -3,7 +3,7 @@ class Goal < ActiveRecord::Base
 
   belongs_to :from, class_name: Goal, :foreign_key => 'from_id'
   has_many :hals, :as => :halable #, :dependent => :destroy
-  has_many :fromhals, :as => :halable #, :dependent => :destroy
+  has_many :from_template_hals, :as => :halable #, :dependent => :destroy
   has_many :activities, :as => :activityable, :dependent => :destroy 
   has_one :user
   belongs_to :goalable, :polymorphic => true

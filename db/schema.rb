@@ -11,32 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202080616) do
+ActiveRecord::Schema.define(:version => 20131205042055) do
 
   create_table "activities", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.integer  "element_order",     :default => 0,    :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "element_order",        :default => 0,    :null => false
     t.integer  "user_id"
     t.integer  "from_id"
-    t.boolean  "active",            :default => true
+    t.boolean  "active",               :default => true
     t.string   "activityable_type"
     t.integer  "activityable_id"
+    t.integer  "next_activity"
+    t.integer  "activity_sequence_id"
+    t.integer  "sequence_order"
+    t.integer  "position"
   end
 
-  create_table "chapters", :force => true do |t|
+  create_table "activity_sequences", :force => true do |t|
+    t.integer  "goal_id"
+    t.integer  "current_activity_id"
     t.integer  "strategy_id"
-    t.string   "title"
-    t.text     "description"
-    t.integer  "element_order", :default => 0,    :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.string   "type"
-    t.integer  "user_id"
-    t.integer  "from_id"
-    t.boolean  "active",        :default => true
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "element_order",       :default => 0, :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -67,13 +67,11 @@ ActiveRecord::Schema.define(:version => 20131202080616) do
   create_table "goals", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
     t.integer  "from_id"
-    t.boolean  "active",        :default => true
-    t.string   "goalable_type"
-    t.integer  "goalable_id"
+    t.boolean  "active",      :default => true
   end
 
   create_table "hals", :force => true do |t|
@@ -95,13 +93,12 @@ ActiveRecord::Schema.define(:version => 20131202080616) do
     t.text     "description"
     t.integer  "course_id"
     t.integer  "user_id"
-    t.boolean  "is_template",        :default => false
-    t.integer  "current_chapter_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.boolean  "is_template", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "type"
     t.integer  "from_id"
-    t.boolean  "active",             :default => true
+    t.boolean  "active",      :default => true
   end
 
   create_table "timings", :force => true do |t|

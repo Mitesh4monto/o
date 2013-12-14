@@ -36,6 +36,14 @@ class Hal < ActiveRecord::Base
     
   end
   
+  # TODO 
+  def self.get_hals_related_to_strategy(strategy)
+    [Hal.last]
+    # get all from_ids of activities in strategy
+    # get set of hals about that list
+  end
+  
+  
   def print
     com = ', comments: '
     self.comments.each {|comment| com+="id:#{comment.id}, body: #{comment.body}"}

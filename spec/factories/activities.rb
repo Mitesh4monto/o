@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :activity do
-    association :activityable, factory: :chapter    
+    association :activityable, factory: :strategy    
     title "MyString"
     description "MyText"
     element_order 1
@@ -24,21 +24,14 @@ FactoryGirl.define do
   end
 
   factory :template_activity, class: Activity do
-    association :activityable, factory: :chapter    
+    association :activityable, factory: :strategy    
     title "MyString3"
     description "MyText2"
     element_order 2
-  end  
-
-  factory :chapterless_activity, class: Activity do
-    title "MyString3"
-    description "MyText2"
-    element_order 2
-    user
   end  
 
   factory :from_template_activity, class: Activity do
-    association :activityable, factory: :chapter    
+    association :activityable, factory: :strategy    
     title "MyString"
     description "MyText"
     element_order 1

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :following_course_id
-  has_one :user_strategy
+  has_one :strategy, :class_name => "UserStrategy" 
   after_create :create_strategy
   has_many :courses
   has_many :goals

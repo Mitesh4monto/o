@@ -1,0 +1,6 @@
+<%= semantic_form_for @hal do |f| %>
+	<%= f.inputs :entry, :insights, :help %>
+	
+	<%= hidden_field_tag 'activity_id', @activity_id %>
+   <%= f.actions :submit, :cancel %>
+<% end %>

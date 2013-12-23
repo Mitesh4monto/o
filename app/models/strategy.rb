@@ -1,5 +1,5 @@
 class Strategy < ActiveRecord::Base
-  has_many :activities, :as => :activityable, :dependent => :destroy 
+  has_many :activities, :dependent => :destroy  #, :as => :activityable, :dependent => :destroy 
   # has_many :activity_sequences, :dependent => :destroy 
   has_many :goals, :as => :goalable, :dependent => :destroy 
   belongs_to :from, class_name: Strategy, :foreign_key => 'from_id'
@@ -14,9 +14,27 @@ class Strategy < ActiveRecord::Base
     exclude_field :hals
   end
   
-  
   def strategy
     self
+  end
+  
+  # if a strategy contains a specific activity as defined by same object or same origin of object (course or user)
+  def contains_activity(activity)
+    self.activities.each do |strat_activity|
+      if (strat_activity.id == activity.id || strat_activity.from_id == activity.id || (strat_activity.from_id == activity.from_id && activity.from_id != nil))
+        return true
+      end
+    end
+    return false
+  end
+  
+  def contains_customizations
+    self.activities.any? {|activity| !activity.customization.blank?}
+  end
+  
+  def copy_activity_to_strategy(activity)
+    strat_activity = activity.dup
+    self.activities << strat_activity
   end
   
   def add_activity(activity)

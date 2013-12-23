@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+title:<%= @activity.title %>
+<BR>
+description: <%= @activity.description %>
+<BR>
+	from: <%= @activity.from_id %>
+	<BR>
+Timing: <%= @activity.kind_of_timing %><BR>
+<BR>timing expression: <%= @activity.timing_expression %><BR>
+duration: <%= @activity.timing_duration %>
+<BR>
+
+
+Related hals:
+<% @hals.each do |hal| %>
+
+<%= hal.created_at.strftime("%m/%d/%Y") %>
+	entry: <%= hal.entry %>
+	<BR>
+	Insights: <%= hal.insights %>
+	<BR>
+	Help: <%= hal.help %>
+	<BR>
+	By:<%= link_to hal.user.name, hal.user %> 
+
+	<BR>
+	from:<%= hal.fromable_type %> id:<%= hal.fromable_id %>
+	<BR><BR>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>

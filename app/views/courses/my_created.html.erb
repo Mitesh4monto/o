@@ -1,0 +1,10 @@
+<BR>
+<% @courses.each do |course| %>
+course id <%= course.id %>
+name	<%= link_to course.name, course %>
+<BR>
+description: <%= course.description %>
+
+<BR>--------------<BR>
+
+<% end %>

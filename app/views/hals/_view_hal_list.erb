@@ -1,0 +1,37 @@
+<BR>
+<% hals.each do |hal| %>
+<%= hal.created_at.strftime("%m/%d/%Y") %>
+	entry: <%= hal.entry %>
+	<BR>
+	Insights: <%= hal.insights %>
+	<BR>
+	Help: <%= hal.help %>
+	<BR>
+<% if show_user %>
+	User:<% if (hal.user) then %>
+	<%=  link_to hal.user.name, hal.user %>
+	<% else  %> 
+	Anonymous
+	<% end  %> 
+<% end  %> 
+
+	<BR>
+	from:<%= hal.fromable_type %> id:<%= hal.fromable_id %>
+	
+	<BR><BR>
+		
+		<% hal.comments.each do |comment| %>
+	    comment: <%= comment.body %> <BR>
+	made by <%= link_to comment.user.name, comment.user %><BR>
+	    <% end %>
+				
+		<h2>Add a comment:</h2>
+		<%= semantic_form_for Comment.new do |f| %>
+		      <%= f.text_area :body %>
+			<%= hidden_field_tag 'hal_id', hal.id %>
+			<%= hidden_field_tag 'red', request.original_url %>
+		 <%= f.actions %>
+	    <% end %>
+	
+	
+<% end %>

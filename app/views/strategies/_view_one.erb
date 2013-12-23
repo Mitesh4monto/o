@@ -1,8 +1,12 @@
+<BR>
 title: <%= strategy.title %>
 <BR>
-Insights: <%= strategy.description %>
+description: <%= strategy.description %>
 <BR>
+	Activities:<BR>
 <% strategy.activities.each do |activity| %>
 Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
+
+<%= link_to "add entry about", hal_about_activity_path(activity.id)  %>
 <BR>
 <% end %>

@@ -5,6 +5,25 @@
   <%= @user.name %>
 </p>
 
+<%= image_tag @user.avatar.url(:thumb) if (@user.avatar.url(:thumb)) %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+plan:<BR>
+	<BR>
+	title: <%= @user.strategy.title %>
+	<BR>
+	description: <%= @user.strategy.description %>
+	<BR>
+		Activities:<BR>
+	<% @user.strategy.activities.each do |activity| %>
+	Activity:	<%= activity.id %>, <%= activity.title %> -- <%= link_to "take this" , copy_activity_path(activity.id) %>
+<% end %>
+
+
+
+<BR>
+User hals: 
+<%= render :partial => 'hals/view_hal_list', locals: {hals: @user.hals, show_user: false} %>
+
+<BR><BR>
+

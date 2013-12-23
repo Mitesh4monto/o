@@ -1,8 +1,12 @@
 class CoursesController < ApplicationController
+  before_filter :authenticate_user!, :except =>[:index, :hals, :show]
+
+
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.where(:published => true)
+    @followers = Course.get_number_people_following_published_courses
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +14,22 @@ class CoursesController < ApplicationController
     end
   end
 
+  # all hals for a course
+  def hals
+    @course = Course.find(params[:id])
+    # don't show any private hals
+    @hals = @course.hals.where("privacy != 0")
+  end
+
+  def my_created
+    @courses = current_user.courses
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
+    @hals = @course.hals.where("privacy != 0")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +41,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.add_user_to_course(current_user)
     
-    redirect_to @course, notice: 'Course was successfully joined.'
+    redirect_to root_path, notice: 'Course was successfully joined.'
     
   end
 
@@ -49,6 +65,7 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(params[:course])
+    @course.user = current_user
 
     respond_to do |format|
       if @course.save

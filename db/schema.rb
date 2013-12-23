@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205042055) do
+ActiveRecord::Schema.define(:version => 20131223002226) do
 
   create_table "activities", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
     t.integer  "activity_sequence_id"
     t.integer  "sequence_order"
     t.integer  "position"
+    t.string   "kind_of_timing"
+    t.string   "timing_expression"
+    t.string   "timing_duration"
+    t.integer  "strategy_id"
+    t.integer  "course_id"
+    t.string   "customization"
   end
 
   create_table "activity_sequences", :force => true do |t|
@@ -37,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.integer  "element_order",       :default => 0, :null => false
+    t.integer  "user_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -45,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
     t.string   "commentable_type"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "user_id"
   end
 
   create_table "contacts", :force => true do |t|
@@ -57,11 +65,12 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.text     "description"
     t.text     "about_the_author"
     t.text     "overview"
+    t.boolean  "published",        :default => false
   end
 
   create_table "goals", :force => true do |t|
@@ -86,6 +95,16 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
     t.integer  "fromable_id"
     t.string   "fromable_type"
     t.integer  "course_id"
+    t.integer  "privacy"
+  end
+
+  create_table "mercury_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "strategies", :force => true do |t|
@@ -101,12 +120,9 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
     t.boolean  "active",      :default => true
   end
 
-  create_table "timings", :force => true do |t|
-    t.integer  "activity_id"
-    t.string   "kind_of_timing"
-    t.string   "info"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+  create_table "user_followings", :id => false, :force => true do |t|
+    t.integer "user_a_id", :null => false
+    t.integer "user_b_id", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -124,6 +140,10 @@ ActiveRecord::Schema.define(:version => 20131205042055) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "following_course_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

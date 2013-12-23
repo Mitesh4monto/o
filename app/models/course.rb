@@ -1,8 +1,9 @@
 class Course < ActiveRecord::Base
-  belongs_to :course_strategy, class_name: CourseStrategy, :foreign_key => 'course_strategy_id'
+  has_one :strategy, class_name: CourseStrategy #, :foreign_key => 'course_id'
   belongs_to :user
   
   has_many :users, :foreign_key => 'following_course_id'
+  has_many :hals, :foreign_key => 'course_id'
 
   has_many :user_strategies, class_name: Strategy, :foreign_key => 'course_id'
 
@@ -11,15 +12,15 @@ class Course < ActiveRecord::Base
                   :course_strategy_id,
                   :description,
                   :overview,
-                  :about_the_author
+                  :about_the_author,
+                  :published
                   
     after_create :create_strategy   
 
 
   # create strategy object for course after create
   def create_strategy
-    self.course_strategy = CourseStrategy.create(:title => "strategy of course #{self.name}", :user_id => self.user_id)
-    self.save
+    CourseStrategy.create(:title => "strategy of course #{self.name}", :user_id => self.user_id, :course_id => self.id)
   end
 
   
@@ -38,9 +39,26 @@ class Course < ActiveRecord::Base
   
   # TODO checks and whatnot  !!!!  spec
   def add_user_to_course(user)
-    user.replace_strategy_with_template(self.course_strategy)
+    user.add_to_my_strategy(self.strategy)
     self.users << user
     user.save
+  end
+  
+  # true for now
+  def get_number_people_following
+     Activity.where(:course_id => self.course_id).select("distinct(user_id)").size
+  end
+
+  # true for now
+  def self.get_number_people_following_published_courses
+    # results = ActiveRecord::Base.connection.execute("select count(distinct(a.user_id)), 
+    #       c.id as course from activities a, courses c where c.published=true and c.id = a.course_id group by c.id").to_set
+              results = ActiveRecord::Base.connection.execute("select count(distinct(user_id)), course_id  from activities where course_id is not null group by course_id").to_set
+    return_set = {}
+    results.each do |result|      
+      return_set[result["course_id"]] = result["count"]
+    end
+    return return_set
   end
 
 end

@@ -1,0 +1,13 @@
+<%= semantic_form_for @hal do |f| %>
+	<%= f.inputs :entry, :insights, :help %>
+	
+	<% if (@from_course) then selection = {"public" => "1", "course" => "2", "private" =>  "0"} else selection = {"public" => "1", "private" =>  "0" } end %>
+	
+	<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
+	
+	
+	<%= hidden_field_tag 'halable_id', @halable_id %>
+	<%= hidden_field_tag 'halable_type', @halable_type %>
+	
+   <%= f.actions :submit, :cancel %>
+<% end %>

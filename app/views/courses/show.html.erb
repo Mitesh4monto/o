@@ -2,19 +2,12 @@
 
 <%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %>
 
+
+<%= link_to "entries", :controller => "courses", :action => "hals", :id => @course.id %>
+
 <p>
   <b>Name:</b>
   <%= @course.name %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @course.user_id %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @course.description %>
 </p>
 
 <p>
@@ -23,20 +16,52 @@
 </p>
 
 <p>
+  <b>Description:</b>
+  <%= @course.description %>
+</p>
+
+<p>
   <b> about the author:</b>
   <%= @course.about_the_author %>
+</p>
+<p>
+  <b> published:</b>
+  <%= @course.published %>
 </p>
 
 <p>
   <b>Strategy:</b>
-  <%= @course.course_strategy.title %>
+  <%= @course.strategy.title %>
 </p>
 
-<% @course.course_strategy.activities.each do |activity| %>		
+ <% @course.strategy.activities.each do |activity| %>		
+Activity:  <%= link_to activity.title, activity %>
+<BR>
+<% end %>
+<BR>
+	
+	<% if (current_user && current_user.id == @course.user.id) %>
+<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
+<% end  %>
+
+<BR><BR>
+
+
+<% if current_user && current_user.id == @course.user.id %>
+<%= link_to 'Edit', edit_course_path(@course) %> |
 <% end %>
 
+<BR><BR>
+
+
+------------------
+
+HALS
+<%= render :partial => 'hals/view_hal_list', locals: {hals: @hals, show_user: true} %>
 
 
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<BR><BR>
+
+
+

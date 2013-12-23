@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
-
-gem 'ckeditor_rails'
-gem "paperclip", "~> 3.0"
+gem 'deep_cloneable'
+gem 'mercury-rails'
+gem 'paperclip'
+  # gem "paperclip", "~> 3.0"
 gem 'acts_as_list'
 gem "RedCloth"
 # Bundle edge Rails instead:
@@ -38,7 +39,6 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-gem 'factory_girl_rails' 
 gem 'activerecord-postgresql-adapter'
 gem 'ruby-debug-ide'
 gem 'debugger'
@@ -59,4 +59,3 @@ group :test do
   gem 'guard-rspec' 
   gem 'launchy' 
 end
-  

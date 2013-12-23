@@ -4,6 +4,8 @@ class Hal < ActiveRecord::Base
   belongs_to :halable, :polymorphic => true
   belongs_to :fromable, :polymorphic => true
   has_many :comments, :as => :commentable, :dependent => :destroy
+  attr_accessible :entry, :privacy, :halable, :help, :insights, :user_id, :fromable, :course_id
+  
 
   def add_comment(comment)
     self.comments << comment
@@ -13,17 +15,19 @@ class Hal < ActiveRecord::Base
     self.comments.destroy(comment)
   end
   
+  def self.help_wanted
+     Hal.where(:help => true).order("created_at desc")
+  end
+  
   def get_all_comments
     self.comments
   end
-  
-  # todo pass hal?
-  def self.hal_about(item, user, entry, insights = nil, help = false)
-    h = Hal.create(:user => user, :entry => entry, :insights => insights, :help => help, :course_id => user.following_course_id)
-    h.halable = item
-    h.fromable = item.get_hierarchical_from
-    h.save
-    h
+
+  def hal_about(item)
+    self.halable = item
+    puts item.id
+    self.fromable = item.from    
+    self.course_id = item.get_course_id    
   end
   
   def self.get_related_hals(halable)
@@ -31,16 +35,24 @@ class Hal < ActiveRecord::Base
       Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
        # self.where(:halable_type => halable.class.name, :) halable.from.
     else  
+      []
       # halable.hals
     end    
     
   end
   
+  
+  def halable_activity
+    self.halable.id if self.halable.is_a? Activity
+  end  
+  
   # TODO 
   def self.get_hals_related_to_strategy(strategy)
-    [Hal.last]
+    []
+    # [Hal.last]
     # get all from_ids of activities in strategy
-    # get set of hals about that list
+    # get all course_ids of activities in strategy
+    # get set of hals about those list
   end
   
   

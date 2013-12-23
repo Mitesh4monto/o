@@ -1,0 +1,11 @@
+Add activity to course
+
+<%= semantic_form_for @activity do |f| %>
+	<%= hidden_field_tag 'course_id', @course_id %>
+	<%= f.inputs :title, :description, :customization %>
+
+<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
+<%= f.inputs :timing_expression, :timing_duration %>
+	
+   <%= f.actions :submit, :cancel %>
+<% end %>

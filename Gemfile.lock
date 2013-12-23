@@ -46,8 +46,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    ckeditor_rails (4.2.2)
-      railties (>= 3.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -79,6 +77,8 @@ GEM
       debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.4)
+    deep_cloneable (1.6.0)
+      activerecord (>= 3.1.0)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -127,6 +127,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mercury-rails (0.9.0)
+      coffee-rails
+      railties (~> 3.2)
     method_source (0.8.2)
     mime-types (1.25)
     mini_portile (0.5.2)
@@ -232,11 +235,11 @@ DEPENDENCIES
   acts_as_orderable
   amoeba
   capybara
-  ckeditor_rails
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
   debugger
+  deep_cloneable
   devise
   factory_girl_rails
   faker
@@ -244,7 +247,8 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
-  paperclip (~> 3.0)
+  mercury-rails
+  paperclip
   rails (= 3.2.0)
   rspec-rails
   ruby-debug-ide

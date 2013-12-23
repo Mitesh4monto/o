@@ -1,2 +1,4 @@
-<h1>Hals#view_mine</h1>
-<p>Find me in app/views/hals/view_mine.html.erb</p>
+<BR>
+	<%= link_to "add an entry", new_hal_path  %>
+	
+	<%= render :partial => 'hals/view_hal_list', locals: {hals: @hals, show_user: false} %>

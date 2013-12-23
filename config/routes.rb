@@ -1,28 +1,52 @@
 Opp::Application.routes.draw do
 
-  get "hals/view_mine"
+    namespace :mercury do
+      resources :images
+    end
+
+  # mount Mercury::Engine => '/'
+
+  resources :activities
+
+  get "hals/hal_about_activity/:id", to: "hals#hal_about_activity", as: 'hal_about_activity'
+
+  get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
+  get "hals/view_mine", to: 'hals#view_mine', as: 'my_hals'
+  get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
+  get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
+  
+  get "activities/new", to: "activities#new",  as: 'add_activity'
+  get "activities/add_activity_to_course/:id", to: "activities#add_activity_to_course",  as: 'add_activity_to_course'
+  get "strategies/copy_activity/:id", to: "strategies#copy_activity",  as: 'copy_activity'
 
   get "strategies/mine", to: 'strategies#mine', as: 'myp'
   get "strategies/mine_details/:id", to: 'strategies#mine_details', as: 'mypd'
+
+  get "courses/new", to: 'courses#new', as: 'create_course'
+  get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
+  
   
   match 'my_plan/:id',  :controller => "strategies", :action => "mine", :activity_id => :id
 
   devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
-    get "sign_out", :to => "destroy_user_session"
+    get "sign_out", :to => "devise/sessions#destroy" #destroy_user_session"
   end  # devise_for :users
+  devise_for :users, :controllers => {:registrations => 'registrations'}
 
   resources :contacts
 
   resources :courses
+  resources :hals
 
   resources :users
+  resources :comments
 
   match 'join_course/:id',  :controller => "courses", :action => "join"
 
   match 'co',  :controller => "courses", :action => "index"
-  root :to => "courses#index"
+  root :to => "home#index"
  
   # The priority is based upon order of creation:
   # first created -> highest priority.

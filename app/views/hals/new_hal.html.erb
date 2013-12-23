@@ -1,0 +1,8 @@
+<%= semantic_form_for @hal do |f| %>
+	<%= f.inputs :entry, :insights, :help %>
+	<%= hidden_field_tag 'halable_id', current_user.strategy.id %>
+	<%= hidden_field_tag 'halable_type', "UserStrategy" %>
+	<%= hidden_field_tag 'from', '/hals/view_mine' %>
+	
+   <%= f.actions :submit, :cancel %>
+<% end %>

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %>
 
 
@@ -17,7 +15,7 @@
 
 <p>
   <b>Description:</b>
-  <%= @course.description %>
+  <%= raw @course.description %>
 </p>
 
 <p>

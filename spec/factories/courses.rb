@@ -6,5 +6,6 @@ FactoryGirl.define do
     user
     description "some description"
     about_the_author "about the um.. author"
+    # course_strategy
   end
 end

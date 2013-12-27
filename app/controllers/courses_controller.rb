@@ -57,8 +57,11 @@ class CoursesController < ApplicationController
   end
 
   # GET /courses/1/edit
-  def edit
+  def edit    
     @course = Course.find(params[:id])
+    if (@course.user != current_user)
+      redirect_to @course, notice: 'Not yours.  Pas touche.'      
+    end
   end
 
   # POST /courses

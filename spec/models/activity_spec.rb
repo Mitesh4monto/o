@@ -51,30 +51,19 @@ describe Activity do
 
   it "can be blogged about" do
     a = FactoryGirl.create(:activity)
-    h = Hal.create(:user => a.user, :entry => "entry", :insights => "insights", :help => false)
+    h = Hal.create(:user_id => a.user_id, :entry => "entry", :insights => "insights", :help => false)
     a.hal_about(h)
     a.hals.include?(h).should be_true
   end
   
-  it "has a timing" do
-    a = FactoryGirl.create(:activity)
-    a.timing.should be_valid
-  end
-
   it "can have a goal" do
     a = FactoryGirl.create(:activity)
     g = FactoryGirl.create(:goal)
-    a.activityable = g
+    a.goal = g
     a.save
-    a.activityable_type.should eq "Goal"
-    a.activityable.should be_valid
+    a.goal.id.should eq g.id
   end
   
-  it "is part of a user strategy if it isn't a template" do
-    a = FactoryGirl.create(:activity)
-    0.should eq 1
-  end
-
   it "can be commitment marked about" do
     0.should eq 1
   end

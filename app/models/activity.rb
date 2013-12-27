@@ -14,7 +14,7 @@ class Activity < ActiveRecord::Base
   # belongs_to :activity_sequence
   acts_as_list scope: :activity_sequence
 
-  attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization  #, :course_id
+  attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id  #, :course_id
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
@@ -78,9 +78,7 @@ class Activity < ActiveRecord::Base
     if (self.from_id) then
       self.from
     else 
-      if (self.activityable) then
-        self.activityable.get_hierarchical_from
-      end
+      self.strategy.get_hierarchical_from
     end
   end
 
@@ -95,8 +93,7 @@ class Activity < ActiveRecord::Base
   end
   
   
-  
-  
+  # duplicate
   def make_copy
     a = self.amoeba_dup
     a.save
@@ -106,6 +103,7 @@ class Activity < ActiveRecord::Base
 
   def print    
     puts "Activity  id: #{id}. title:" + self.title
+    puts "strat: #{self.strategy_id}" 
     if (self.activityable_id)
       puts "#{self.activityable_type}: #{self.activityable.title}"
     end    

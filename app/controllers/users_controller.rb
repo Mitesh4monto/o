@@ -11,6 +11,9 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
+  
+  def myprofile    
+  end
 
   # GET /users/1
   # GET /users/1.json
@@ -22,6 +25,20 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  
+  
+  def follow
+    @user = User.find(params[:id])
+    current_user.following << @user
+    redirect_to params[:red], notice: "Now following #{@user.name}."
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    current_user.following.delete(@user)
+    redirect_to params[:red], notice: "No longer following #{@user.name}."
+  end
+  
 
   # GET /users/new
   # GET /users/new.json

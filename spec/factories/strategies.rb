@@ -7,4 +7,9 @@ FactoryGirl.define do
     user
   end
 
+  factory :strategy do
+    title "MyString"
+    description "MyText"
+  end
+
 end

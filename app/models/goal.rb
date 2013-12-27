@@ -6,7 +6,6 @@ class Goal < ActiveRecord::Base
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
   has_many :activities #, :as => :activityable, :dependent => :destroy 
   has_one :user
-  belongs_to :goalable, :polymorphic => true
   
   amoeba do
     enable
@@ -24,19 +23,9 @@ class Goal < ActiveRecord::Base
 
   
   def strategy
-    self.goalable.strategy
+    self.activities.first.strategy
   end
 
-  # get "from" template for chapter if exists or parent
-  def get_hierarchical_from
-    if (self.from_id) then
-      self.from
-    else 
-      if (self.goalable) then
-        self.goalable.get_hierarchical_from
-      end
-    end
-  end
   
   # add a hal to list of hals for activity
   def hal_about(hal)

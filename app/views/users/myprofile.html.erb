@@ -1,0 +1,28 @@
+<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
+
+
+<%= link_to "edit profile", edit_user_registration_path %>
+
+
+email: <%= current_user.email %><BR>
+name: <%= current_user.name %><BR>
+	
+Following:
+<% current_user.following.each do |user| %>
+<%= link_to user.name, user %> --<%= semantic_form_for user, :url => unfollow_user_path(user, method: :put) do |f| %>
+	<%= hidden_field_tag 'id', user.id %>
+	<%= hidden_field_tag 'red', request.original_url %>
+	<%= f.action :submit, :label => "Unfollow User" %>
+<% end %>
+
+<BR>
+<% end %>
+<BR><BR>
+
+Followed by:
+<% current_user.followers.each do |user| %>
+<%= link_to user.name, user %><BR>
+<% end %>
+<BR>
+
+

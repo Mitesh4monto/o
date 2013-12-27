@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :courses
   has_many :goals
   has_many :hals
+  has_many :comments 
   has_many :activities
   has_many :chapters
   belongs_to :following_course, :class_name => "Course", :foreign_key => 'following_course_id'
@@ -27,6 +28,13 @@ class User < ActiveRecord::Base
   def create_strategy
     UserStrategy.create(:user_id => self.id, :title => "Strating strategy")
   end
+  
+  
+  # get all hals users followed by user
+  def find_following_hals
+      Hal.where("user_id in (?)", self.following.collect(&:id)).order("created_at desc")
+  end
+    
   
   #  todo add if strategy is template?
   # for copying someone's strat?
@@ -59,7 +67,7 @@ class User < ActiveRecord::Base
     # go through each activity and if it's from a course add it to list
     self.strategy.activities.each do |activity|
     course_id = Activity.find(activity.from_id).get_course_id
-      if (course_id && !courses.includes?(course_id))
+      if (course_id && !courses.include?(course_id))
         courses << course_id
       end
     end

@@ -13,6 +13,10 @@ class HalsController < ApplicationController
     @hals = Hal.help_wanted
   end
   
+  def following
+    @hals = current_user.find_following_hals    
+  end
+  
   
   def hal_about_activity
     @hal = Hal.new
@@ -31,11 +35,7 @@ class HalsController < ApplicationController
     @se = eval(params[:halable_type]).find(params[:halable_id])
     @hal.hal_about(@se)
 
-    # fromable_id = @se.from_id
-    #     @hal.course_id = @se.get_course_id
     redirect = params[:from] || root_path
-    puts    redirect 
-
     
     respond_to do |format|
       if @hal.save

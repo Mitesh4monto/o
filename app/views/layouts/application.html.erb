@@ -4,38 +4,33 @@
 <head>
 <title>Your Sitename</title>
 
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+
 </head>
 
 
 <body>
 	<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
-
 	<%= link_to 'Home', root_path %>  |
-
 	<%= link_to 'My Plan', myp_path %> | <%= link_to 'My Blog', '/hals/view_mine' %></li> 
-
-
 <% if (current_user && current_user.courses.size>0) %>
 <%= link_to 'my courses', my_created_courses_path %></li>
 <% end %>
 <%= link_to 'create course', create_course_path %></li>
 <%= link_to 'courses', courses_path %></li>
-
 <%= link_to 'help wanted', help_wanted_path %></li>
-
 <%= link_to 'users', users_path %></li>
-
+<%= link_to 'my follows', following_path %></li>
 <%= render :partial => "shared/user_bar" %>
 
-<div id="maincontent">
-<%= yield %>
 
+<div id="maincontent2">
+	<p id="notice"><%= notice %></p>
+	<%= yield %>
 </div>
 
-<div class="hr"><hr /></div>
-
 <div id="footer">
-
 link1 | link2
 </div>
 <BR>

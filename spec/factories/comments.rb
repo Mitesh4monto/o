@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :comment do
     body "MyText"
     commentable factory: :hal
+    user
   end
 end

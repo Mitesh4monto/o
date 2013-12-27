@@ -2,9 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
 gem 'deep_cloneable'
-gem 'mercury-rails'
 gem 'paperclip'
-  # gem "paperclip", "~> 3.0"
+gem "ckeditor"
 gem 'acts_as_list'
 gem "RedCloth"
 # Bundle edge Rails instead:

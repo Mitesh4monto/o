@@ -1,14 +1,11 @@
 Opp::Application.routes.draw do
 
-    namespace :mercury do
-      resources :images
-    end
-
-  # mount Mercury::Engine => '/'
+  # mount Ckeditor::Engine => '/ckeditor'
 
   resources :activities
 
   get "hals/hal_about_activity/:id", to: "hals#hal_about_activity", as: 'hal_about_activity'
+  get "hals/following", to: 'hals#following', as: 'following'
 
   get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
   get "hals/view_mine", to: 'hals#view_mine', as: 'my_hals'
@@ -40,7 +37,19 @@ Opp::Application.routes.draw do
   resources :courses
   resources :hals
 
-  resources :users
+  match 'users/myprofile',  :controller => "users", :action => "myprofile"
+
+
+  resources :users do
+    member do
+      put :follow
+      put :unfollow
+    end
+  end
+  # match 'followuser/:id',  :controller => "users", :action => "follow"
+  # put "users/follow", to: 'users#follow', as: 'follow_user'
+  
+  
   resources :comments
 
   match 'join_course/:id',  :controller => "courses", :action => "join"

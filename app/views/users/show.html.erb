@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <b>Name:</b>
@@ -19,6 +18,20 @@ plan:<BR>
 	Activity:	<%= activity.id %>, <%= activity.title %> -- <%= link_to "take this" , copy_activity_path(activity.id) %>
 <% end %>
 
+
+<% if (current_user.following.include?(@user)) %>
+	<%= semantic_form_for @user, :url => unfollow_user_path(@user, method: :put) do |f| %>
+		<%= hidden_field_tag 'id', @user.id %>
+		<%= hidden_field_tag 'red', request.original_url %>
+		<%= f.action :submit, :label => "Unfollow User" %>
+	<% end %>
+<% else %>	
+	<%= semantic_form_for @user, :url => follow_user_path(@user, method: :put) do |f| %>
+		<%= hidden_field_tag 'id', @user.id %>
+		<%= hidden_field_tag 'red', request.original_url %>
+		<%= f.action :submit, :label => "Follow User" %>
+	<% end %>
+<% end %>
 
 
 <BR>

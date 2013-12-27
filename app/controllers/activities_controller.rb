@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  before_filter :authenticate_user!, :except =>[:show]
 
 
   # GET /activities/1
@@ -25,16 +26,20 @@ class ActivitiesController < ApplicationController
     end
   end
   
+  # Add a new activity to a course user has created
   def add_activity_to_course
     @activity = Activity.new
     @course_id = params[:id]
+    @course = Course.find(@course_id)
+    if (@course.user != current_user)
+      redirect_to @course, notice: 'Not yours.  Pas touche.'      
+    end
+    
   end
 
   # GET /activities/1/edit
   def edit
     @activity = Activity.find(params[:id])
-    puts @activity.user_id
-    puts current_user.id
     redirect_to root_path, notice: 'No way, not yours.'  if (@activity.user_id != current_user.id)
   end
 

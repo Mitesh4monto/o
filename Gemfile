@@ -6,10 +6,14 @@ gem 'paperclip'
 gem "ckeditor"
 gem 'acts_as_list'
 gem "RedCloth"
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'formtastic'
-gem 'sqlite3'
+# gem 'sqlite3'
 gem 'devise'
 gem "amoeba"
 gem 'acts_as_orderable' 

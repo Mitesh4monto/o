@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+
+gem 'rack-google-analytics'
 gem 'rails', '3.2.0'
 gem 'deep_cloneable'
 gem 'paperclip'

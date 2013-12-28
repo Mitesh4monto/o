@@ -31,6 +31,7 @@ Opp::Application.routes.draw do
     get "sign_out", :to => "devise/sessions#destroy" #destroy_user_session"
   end  # devise_for :users
   devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :contacts
 

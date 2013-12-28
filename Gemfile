@@ -43,8 +43,8 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 gem 'activerecord-postgresql-adapter'
-gem 'ruby-debug-ide'
-gem 'debugger'
+# gem 'ruby-debug-ide'
+# gem 'debugger'
 # To use debugger
 # gem 'ruby-debug19'  # , :require => 'ruby-debug'
 group :development, :test do 

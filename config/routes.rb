@@ -31,8 +31,14 @@ Opp::Application.routes.draw do
     get "sign_out", :to => "devise/sessions#destroy" #destroy_user_session"
   end  # devise_for :users
   devise_for :users, :controllers => {:registrations => 'registrations'}
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
+  
+    
   resources :contacts
 
   resources :courses

@@ -261,7 +261,6 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
-  omniauth
   omniauth-facebook
   paperclip
   rack-google-analytics

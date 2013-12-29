@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  # devise :omniauthable, :omniauth_providers => [:facebook]
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :following_course_id, :provider, :uid, :first_name, :last_name
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :following_course_id, :provider, :uid, :first_name, :last_name, :oauth_expires_at, :oauth_token
   has_one :strategy, :class_name => "UserStrategy" 
   after_create :create_strategy
   has_many :courses
@@ -38,7 +38,27 @@ class User < ActiveRecord::Base
      end
    end
    
+   def self.from_omniauth(auth)
+     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+       logger.info("received from Facebook: #{auth.inspect}")
+       user = User.where(:provider => auth.provider, :uid => auth.uid).first
+       unless user
+         user = User.create(name:auth.info.name,
+                            provider:auth.provider,
+                            oauth_token:auth.credentials.token,
+                            uid:auth.uid,
+                            provider:auth.provider,
+                            email:auth.info.email,
+                            oauth_expires_at:Time.at(auth.credentials.expires_at),
+                            password:Devise.friendly_token[0,20]
+                            )
+      end
+      user
+     end
+   end 
+   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    logger.info("received from Facebook: #{auth.inspect}")
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
       user = User.create(name:auth.extra.raw_info.name,

@@ -4,8 +4,13 @@
 	<%= link_to "profile", "/users/myprofile" %>
     <%= link_to "Sign out", sign_out_path %>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>    -     
+<%= link_to "	with FB:", "/auth/facebook", id: "sign_in" %>
+
   <% end %>
 
 
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+
+<%= 
+# link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) 
+%>

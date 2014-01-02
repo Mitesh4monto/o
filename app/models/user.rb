@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  validates_presence_of :name
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -41,7 +42,13 @@ class User < ActiveRecord::Base
    def self.from_omniauth(auth)
      where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
        logger.info("received from Facebook: #{auth.inspect}")
+       logger.info("received from Facebook: #{auth.info.image}")
        user = User.where(:provider => auth.provider, :uid => auth.uid).first
+       # user.avatar = open(auth.info.image)
+       # logger.info("adding avatar from #{auth.info.image}")
+       # user.name = auth.info.first_name
+       # user.email = auth.info.email
+       # user.save
        unless user
          user = User.create(name:auth.info.name,
                             provider:auth.provider,
@@ -52,6 +59,9 @@ class User < ActiveRecord::Base
                             oauth_expires_at:Time.at(auth.credentials.expires_at),
                             password:Devise.friendly_token[0,20]
                             )
+        user.avatar = open(auth.info.image)
+        logger.info("adding avatar from #{auth.info.image}")
+        user.save
       end
       user
      end

@@ -1,7 +1,5 @@
-<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
 
-
-<%= link_to "edit profile", edit_user_registration_path %>
+<%= link_to "edit profile", '/users/editmyprofile' %>
 
 
 email: <%= current_user.email %><BR>

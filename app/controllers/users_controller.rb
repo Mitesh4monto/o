@@ -12,7 +12,11 @@ class UsersController < ApplicationController
     end
   end
   
-  def myprofile    
+  def myprofile        
+  end
+  
+  def edit_profile
+    @user = current_user    
   end
 
   # GET /users/1

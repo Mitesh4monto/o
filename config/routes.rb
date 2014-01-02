@@ -35,6 +35,9 @@ Opp::Application.routes.draw do
 
 
   match 'auth/:provider/callback', to: 'sessions#create'
+  
+  match 'auth/facebook/callback?error', to: redirect('/')
+  
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
@@ -45,6 +48,7 @@ Opp::Application.routes.draw do
   resources :hals
 
   match 'users/myprofile',  :controller => "users", :action => "myprofile"
+  match 'users/editmyprofile',  :controller => "users", :action => "edit_profile"
 
 
   resources :users do

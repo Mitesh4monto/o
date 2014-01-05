@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   
   
   def create_strategy
-    UserStrategy.create(:user_id => self.id, :title => "Strating strategy")
+    UserStrategy.create(:user_id => self.id)
   end
   
   def self.new_with_session(params, session)

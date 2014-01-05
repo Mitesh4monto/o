@@ -8,7 +8,6 @@ class Strategy < ActiveRecord::Base
   
   amoeba do
     enable
-    prepend :title => "Copy of "
     nullify :user_id
     exclude_field :hals
   end
@@ -33,6 +32,10 @@ class Strategy < ActiveRecord::Base
   
   def copy_activity_to_strategy(activity)
     strat_activity = activity.dup
+    if (activity.from_id.nil?)
+      strat_activity.from_id = activity.id
+      strat_activity.save
+    end
     self.activities << strat_activity
   end
   
@@ -47,7 +50,7 @@ class Strategy < ActiveRecord::Base
   
   
   def self.c    
-    s = Strategy.create(:title => "foo")
+    s = Strategy.create()
 
     g = Goal.create(:title => "important")
     g2 = Goal.create(:title => "not very")
@@ -72,7 +75,6 @@ class Strategy < ActiveRecord::Base
   end
 
 def print
-  puts "title:" + self.title
   puts "user: #{self.user_id}"
   puts "activities: "
   self.activities.each {|activity| activity.print}

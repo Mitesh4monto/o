@@ -20,7 +20,7 @@ class Course < ActiveRecord::Base
 
   # create strategy object for course after create
   def create_strategy
-    CourseStrategy.create(:title => "strategy of course #{self.name}", :user_id => self.user_id, :course_id => self.id)
+    CourseStrategy.create(:user_id => self.user_id, :course_id => self.id)
   end
 
   
@@ -46,8 +46,16 @@ class Course < ActiveRecord::Base
   
   # true for now
   def get_number_people_following
-     Activity.where(:course_id => self.course_id).select("distinct(user_id)").size
+    self.get_course_followers.size
+     # Activity.where(:course_id => self.id).select("distinct(user_id)").size
   end
+
+  # true for now
+  def get_course_followers
+      User.find_by_sql(["select * from users where id in (select distinct(user_id) from activities where course_id = ?)", self.id])
+  end
+
+
 
   # true for now
   def self.get_number_people_following_published_courses

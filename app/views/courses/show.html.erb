@@ -14,6 +14,13 @@
 </p>
 
 <p>
+  <b>Ppl following:</b>
+<% @followers.each do |follower| %>
+  <%= link_to follower.name, follower %><BR>
+<% end %>
+</p>
+
+<p>
   <b>Description:</b>
   <%= raw @course.description %>
 </p>
@@ -29,16 +36,19 @@
 
 <p>
   <b>Strategy:</b>
-  <%= @course.strategy.title %>
 </p>
 
  <% @course.strategy.activities.each do |activity| %>		
 Activity:  <%= link_to activity.title, activity %>
+<% if (current_user && (activity.user_id == current_user.id)) then %>
+    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %>
+<% end %>
+
 <BR>
 <% end %>
 <BR>
 	
-	<% if (current_user && current_user.id == @course.user.id) %>
+<% if (current_user && current_user.id == @course.user.id) %>
 <%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
 <% end  %>
 

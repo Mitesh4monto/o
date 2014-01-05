@@ -30,6 +30,8 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @hals = @course.hals.where("privacy != 0")
+    @followers = @course.get_course_followers
+    puts @followers.inspect
 
     respond_to do |format|
       format.html # show.html.erb

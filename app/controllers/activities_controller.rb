@@ -6,7 +6,8 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
-    @hals = Hal.get_related_hals(@activity)
+    @hals = @activity.hals
+    @related_hals = Hal.get_related_hals(@activity)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -97,7 +98,7 @@ class ActivitiesController < ApplicationController
     @activity.destroy
 
     respond_to do |format|
-      format.html { redirect_to activities_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

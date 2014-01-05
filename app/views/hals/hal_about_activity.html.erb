@@ -6,8 +6,9 @@
 	<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
 	
 	
-	<%= hidden_field_tag 'halable_id', @halable_id %>
-	<%= hidden_field_tag 'halable_type', @halable_type %>
+	<%= f.hidden_field :halable_id, :value => @halable_id %>
+	<%= f.hidden_field :halable_type,:value => @halable_type %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
 	
    <%= f.actions :submit, :cancel %>
 <% end %>

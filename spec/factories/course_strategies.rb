@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :course_strategy do
-    title "MyString"
     description "MyText"
     course
   end

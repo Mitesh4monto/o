@@ -28,11 +28,13 @@ class HalsController < ApplicationController
   
   def create
     @hal = Hal.new(params[:hal])
-    if (current_user)
-      @hal.user_id = current_user.id
+    if (@hal.halable_id == 0) 
+      @se = current_user.strategy
+    else
+      @se = @hal.halable
+      # @se = Activity.find(@hal.halable_id)
     end
-    
-    @se = eval(params[:halable_type]).find(params[:halable_id])
+  	
     @hal.hal_about(@se)
 
     redirect = params[:from] || root_path

@@ -1,7 +1,7 @@
 
 title:<%= @activity.title %>
 <BR>
-description: <%= @activity.description %>
+description: <%= raw @activity.description %>
 <BR>
 	from: <%= @activity.from_id %>
 	<BR>
@@ -11,7 +11,7 @@ duration: <%= @activity.timing_duration %>
 <BR>
 
 
-Related hals:
+hals:
 <% @hals.each do |hal| %>
 
 <%= hal.created_at.strftime("%m/%d/%Y") %>

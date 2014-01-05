@@ -7,6 +7,9 @@
 	<BR>
 	Help: <%= hal.help %>
 	<BR>
+		<% if hal.halable_type == "Activity" %> <%= link_to "about", hal.halable %> 
+		<% end %>
+about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
 <% if show_user %>
 	User:<% if (hal.user) then %>
 	<%=  link_to hal.user.name, hal.user %>
@@ -21,8 +24,11 @@
 	<BR><BR>
 		
 		<% hal.comments.each do |comment| %>
-	    comment: <%= comment.body %> <BR>
-	made by <%= link_to comment.user.name, comment.user %><BR>
+	    	comment: <%= comment.body %> <BR>
+			made by <%= link_to comment.user.name, comment.user %><BR>
+			<% if (current_user && (comment.user_id == current_user.id || hal.user_id == current_user.id)) then %>
+		        <%= link_to 'Delete', comment, method: :delete %>
+			<% end %>
 	    <% end %>
 				
 		<h2>Add a comment:</h2>

@@ -10,7 +10,7 @@ plan:<BR>
 
 current activity:
 title:<%= @activity.title %><BR>
-description: <%= @activity.description %><BR>
+description: <%= raw @activity.description %><BR>
 Timing: <%= @activity.kind_of_timing %><BR>
 <%= link_to 'edit activity', edit_activity_path(@activity) %>
 from:<%= @activity.from_id %><BR>

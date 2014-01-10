@@ -40,16 +40,21 @@ class User < ActiveRecord::Base
    end
    
    def self.from_omniauth(auth)
-     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-       logger.info("received from Facebook: #{auth.inspect}")
-       logger.info("received from Facebook: #{auth.info.image}")
+     # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+     logger.info("received from Facebook: #{auth.to_yaml}")
+     @graph = Koala::Facebook::API.new(auth.credentials.token)
+     friends = @graph.get_connections("me", "friends")
+     logger.info("friends: #{friends.to_yaml}")
+     profile = @graph.get_object("me")
        user = User.where(:provider => auth.provider, :uid => auth.uid).first
-       # user.avatar = open(auth.info.image)
-       # logger.info("adding avatar from #{auth.info.image}")
-       # user.name = auth.info.first_name
-       # user.email = auth.info.email
-       # user.save
        unless user
+         @graph = Koala::Facebook::API.new(auth.credentials.token)
+         profile = @graph.get_object("me")
+         logger.info("me: #{profile.to_yaml}")
+         logger.info("user: #{user.to_yaml}")
+
+         logger.info("received from Facebook: #{auth.to_yaml}")
+         logger.info("received from Facebook: #{auth.info.image}")
          user = User.create(name:auth.info.name,
                             provider:auth.provider,
                             oauth_token:auth.credentials.token,
@@ -64,7 +69,7 @@ class User < ActiveRecord::Base
         user.save
       end
       user
-     end
+     # end
    end 
    
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)

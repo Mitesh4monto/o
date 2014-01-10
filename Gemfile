@@ -7,6 +7,7 @@ gem 'paperclip'
 gem "ckeditor"
 gem 'acts_as_list'
 gem "RedCloth"
+gem 'koala'
 
 # gem 'omniauth'
 gem 'omniauth-facebook'
@@ -53,6 +54,7 @@ group :development, :test do
   gem 'factory_girl_rails' 
   gem "webrat"
   gem 'cucumber-rails', :require => false
+  gem 'capybara'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'  
 end 
@@ -60,6 +62,8 @@ end
 group :test do 
   gem 'faker' 
   gem 'capybara' 
+  gem 'capybara-webkit'
   gem 'guard-rspec' 
   gem 'launchy' 
+  gem 'email_spec'
 end

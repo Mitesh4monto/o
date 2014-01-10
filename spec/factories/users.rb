@@ -8,7 +8,8 @@ FactoryGirl.define do
   factory :user do
     name "MyString"
     email
-    password "password"
+    password 'changeme'
+    password_confirmation 'changeme'
   end
   
   factory :user2, class: User do

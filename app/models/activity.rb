@@ -2,9 +2,10 @@ class Activity < ActiveRecord::Base
   require "StrategyElementMethods"
   
   acts_as_orderable
+  has_many :commitment_marks, :as => :cmable #, :dependent => :destroy
   has_many :hals, :as => :halable #, :dependent => :destroy
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
-  has_many :comments, :as => :commentable #, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
   # belongs_to :activityable, :polymorphic => true  
   belongs_to :user
   belongs_to :goal
@@ -15,6 +16,8 @@ class Activity < ActiveRecord::Base
   acts_as_list scope: :activity_sequence
 
   attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id  #, :course_id
+  
+  validates_presence_of :title
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'

@@ -2,13 +2,14 @@
 Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
-CKEDITOR.editorConfig=function(e){e.filebrowserBrowseUrl="/ckeditor/attachment_files",
+CKEDITOR.editorConfig=function(e){
+// e.filebrowserBrowseUrl="/ckeditor/attachment_files",
 e.filebrowserFlashBrowseUrl="/ckeditor/attachment_files",
 e.filebrowserFlashUploadUrl="/ckeditor/attachment_files",
-e.filebrowserImageBrowseLinkUrl="/ckeditor/pictures",
-e.filebrowserImageBrowseUrl="/ckeditor/pictures",
+// e.filebrowserImageBrowseLinkUrl="/ckeditor/pictures",
+// e.filebrowserImageBrowseUrl="/ckeditor/pictures",
 e.filebrowserImageUploadUrl="/ckeditor/pictures",
-e.filebrowserUploadUrl="/ckeditor/attachment_files",
+// e.filebrowserUploadUrl="/ckeditor/attachment_files",
 e.filebrowserParams=function(){for(var e,r,t,o=document.getElementsByTagName("meta"), a=new Object,i=0;i<o.length;i++)
 switch(t=o[i],
 t.name){case"csrf-token":e=t.content;break;case"csrf-param":r=t.content;break;default:continue}return void 0!==r&&void 0!==e&&(a[r]=e),
@@ -33,6 +34,7 @@ o.filebrowser.params)))})
 
 	    e.toolbar_Easy =
 	        [
+            	['Source'],
             	['Undo','Redo'],
 				[ 'Format', 'Font', 'FontSize' ],
 	            ['Bold','Italic','Strike','Underline'],
@@ -40,10 +42,10 @@ o.filebrowser.params)))})
 	            ['BulletedList','NumberedList','Blockquote','Outdent','Indent','ShowBlocks'],
 	            ['TextColor', 'BGColor'],
 	            '/',
+	            ['Table,HorizontalRule'],
 				['Scayt'],
 	            ['Link','Unlink'],
 	            ['Image', 'Attachment'],
-	            ['Source'],
 				['Maximize']
 	        ];
 

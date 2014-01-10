@@ -1,6 +1,8 @@
 <%= semantic_form_for @hal do |f| %>
 <%=   f.input :halable_id,  :label => "hal about which activity?", :as => :select, :include_blank => false, 
 			:collection => current_user.strategy.activities.map{|a| [a.title, a.id]} + [["General Entry", 0]]  %>
+			<% selection = {"public" => "1", "private" =>  "0"}  %>
+			<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
 	<%= f.inputs :entry, :insights, :help %>
 	<%= hidden_field_tag 'from', '/hals/view_mine' %>
 	<%= f.hidden_field :halable_type, :value => "Activity" %>

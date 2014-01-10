@@ -52,6 +52,7 @@ class ActivitiesController < ApplicationController
     # if adding to a course, point act to course
     if (course_id)
       @course = Course.find(course_id)
+      validate_owner(@course)
       @activity.strategy = @course.strategy      
       @activity.course_id = course_id;
     else
@@ -65,7 +66,7 @@ class ActivitiesController < ApplicationController
         if course_id
           format.html { redirect_to course_path(course_id), notice: 'Activity was successfully created.' }
         else
-          format.html { redirect_to root_path, notice: 'Activity was successfully created.' }
+          format.html { redirect_to myp_path, notice: 'Activity was successfully created.' }
         end
         format.json { render json: @activity, status: :created, location: @activity }
       else
@@ -79,6 +80,7 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
+    validate_owner(@activity)
 
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
@@ -95,11 +97,19 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity = Activity.find(params[:id])
+    validate_owner(@activity)
     @activity.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to :back, notice: "Activity was successfully deleted" }
       format.json { head :no_content }
     end
   end
+  
+  def validate_owner(obj)
+    if (obj.user != current_user)
+      redirect_to :back, notice: 'Not yours.  Pas touche.'      
+    end
+  end
+  
 end

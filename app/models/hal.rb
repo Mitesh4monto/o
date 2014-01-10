@@ -1,4 +1,8 @@
 class Hal < ActiveRecord::Base
+  scope :private, -> { where(privacy: 0) }
+  scope :not_private, -> { where("privacy <> 0") }
+  scope :public, -> { where(privacy: 1) }
+
   belongs_to :user
   belongs_to :course
   belongs_to :halable, :polymorphic => true
@@ -32,7 +36,8 @@ class Hal < ActiveRecord::Base
   
   def self.get_related_hals(halable)
     if (halable.from_id)
-      Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
+      # Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
+      Hal.where("(fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)", halable.from_id, halable.class.name, halable.from_id, halable.class.name)
        # self.where(:halable_type => halable.class.name, :) halable.from.
     else  
       []

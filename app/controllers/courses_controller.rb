@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.where(:published => true)
+    @courses = Course.published
     @followers = Course.get_number_people_following_published_courses
 
     respond_to do |format|
@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   def hals
     @course = Course.find(params[:id])
     # don't show any private hals
-    @hals = @course.hals.where("privacy != 0")
+    @hals = @course.hals.not_private
   end
 
   def my_created
@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
-    @hals = @course.hals.where("privacy != 0")
+    @hals = @course.hals.not_private
     @followers = @course.get_course_followers
     puts @followers.inspect
 
@@ -106,7 +106,7 @@ class CoursesController < ApplicationController
     @course.destroy
 
     respond_to do |format|
-      format.html { redirect_to courses_url }
+      format.html { redirect_to my_created_courses_path }
       format.json { head :no_content }
     end
   end

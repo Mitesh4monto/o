@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  scope :published, -> { where(published: true) }
+  
   has_one :strategy, class_name: CourseStrategy #, :foreign_key => 'course_id'
   belongs_to :user
   

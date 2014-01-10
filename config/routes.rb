@@ -23,6 +23,8 @@ Opp::Application.routes.draw do
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
   
   
+  match "add_commitment_mark_to_activity/:activity_id", :controller => "commitment_marks", :action => "add_commitment_mark_to_activity"
+
   match 'my_plan/:id',  :controller => "strategies", :action => "mine", :activity_id => :id
 
   devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
@@ -37,6 +39,7 @@ Opp::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   
   match 'auth/facebook/callback?error', to: redirect('/')
+  match 'auth/facebook/callback?error_code', to: redirect('/')
   
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'

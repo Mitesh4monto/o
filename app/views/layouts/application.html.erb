@@ -11,7 +11,8 @@
 
 
 <body>
-	<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
+	<!-- <%= image_tag "/images/meltextfinal.png" %> -->
+	<%= image_tag "/images/lobehold.png" %>
 	<%= link_to 'Home', root_path %>  |
 	<%= link_to 'My Plan', myp_path %> | <%= link_to 'My Blog', '/hals/view_mine' %></li> 
 <% if (current_user && current_user.courses.size>0) %>
@@ -23,10 +24,16 @@
 <%= link_to 'users', users_path %></li>
 <%= link_to 'my follows', following_path %></li>
 <%= render :partial => "shared/user_bar" %>
+<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
 
 
 <div id="maincontent2">
+	<% if flash[:partial] %>
+	<%= render :partial => "shared/flashes/#{flash[:partial]}" %>
+	<% else %>
 	<p id="notice"><%= notice %></p>
+	<% end %>
+	<p id="notice"><%= flash[:alert] %></p>
 	<%= yield %>
 </div>
 

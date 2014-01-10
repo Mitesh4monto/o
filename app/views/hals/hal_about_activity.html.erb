@@ -1,7 +1,7 @@
 <%= semantic_form_for @hal do |f| %>
 	<%= f.inputs :entry, :insights, :help %>
 	
-	<% if (@from_course) then selection = {"public" => "1", "course" => "2", "private" =>  "0"} else selection = {"public" => "1", "private" =>  "0" } end %>
+	<%  selection = {"public" => "1", "private" =>  "0" }  %>
 	
 	<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
 	

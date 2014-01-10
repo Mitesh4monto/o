@@ -1,10 +1,16 @@
 <BR>
+	<% if @courses.size == 0 %>
+		You have no courses
+	<% end %>
 <% @courses.each do |course| %>
 course id <%= course.id %>
 name	<%= link_to course.name, course %>
 <BR>
 description: <%= raw course.description %>
+<%= link_to 'Delete', course, confirm: 'Are you sure?', method: :delete %>
 
 <BR>--------------<BR>
 
 <% end %>
+
+<BR><BR><BR>

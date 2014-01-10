@@ -33,9 +33,7 @@ my hals:
 <BR>
 Related Hals:
 <BR>
-<% @related_hals.each do |hal| %>
-<%= render :partial => 'hals/view_one', locals: {hal: hal} %>
-<% end %>
+<%= render :partial => 'hals/view_hal_list', locals: {hals: @related_hals_activity, show_user: true} %>
 
 
 <BR>

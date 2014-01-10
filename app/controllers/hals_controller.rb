@@ -6,7 +6,7 @@ class HalsController < ApplicationController
   end
 
   def new_hal
-    @hal = Hal.new    
+    @hal = Hal.new
   end
   
   def help_wanted
@@ -37,11 +37,11 @@ class HalsController < ApplicationController
   	
     @hal.hal_about(@se)
 
-    redirect = params[:from] || root_path
+    redirect = params[:from] || myp_path
     
     respond_to do |format|
       if @hal.save
-        format.html { redirect_to redirect, notice: 'HAL was successfully created.' }   #TODO CLEANUP
+        format.html { redirect_to redirect, notice: 'HAL was successfully created' }   #TODO CLEANUP
         # format.html { redirect_to @hal, notice: 'Hal was successfully created.' }
         format.json { render json: @hal, status: :created, location: @hal }
       else

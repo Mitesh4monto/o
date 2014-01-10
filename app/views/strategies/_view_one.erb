@@ -3,6 +3,9 @@ description: <%= strategy.description %>
 <BR>
 	Activities:<BR>
 <% strategy.activities.each do |activity| %>
+<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
+<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
+
 Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
 
 <%= link_to "add entry about", hal_about_activity_path(activity.id)  %>

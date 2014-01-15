@@ -1,7 +1,7 @@
 class Activity < ActiveRecord::Base
   require "StrategyElementMethods"
-  
-  acts_as_orderable
+  default_scope order('position')
+   
   has_many :commitment_marks, :as => :cmable #, :dependent => :destroy
   has_many :hals, :as => :halable #, :dependent => :destroy
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
@@ -13,7 +13,7 @@ class Activity < ActiveRecord::Base
 
   belongs_to :strategy
   # belongs_to :activity_sequence
-  acts_as_list scope: :activity_sequence
+  acts_as_list scope: :strategy
 
   attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id  #, :course_id
   
@@ -102,7 +102,6 @@ class Activity < ActiveRecord::Base
     a.save
     a
   end
-
 
   def print    
     puts "Activity  id: #{id}. title:" + self.title

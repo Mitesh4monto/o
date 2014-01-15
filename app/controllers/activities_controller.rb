@@ -15,6 +15,15 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  # sort list of actiities in strategy   => TODO optimize
+  def sort
+    params[:activity].each_with_index do |id, index|
+      activity = Activity.find_by_id(id)
+      Activity.update_all(['position=?', index+1], ['id=?', id]) unless activity.user_id != current_user.id
+    end
+    render :nothing => true
+  end
+  
 
   # GET /activities/new
   # GET /activities/new.json

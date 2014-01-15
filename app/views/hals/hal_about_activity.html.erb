@@ -9,6 +9,12 @@
 	<%= f.hidden_field :halable_id, :value => @halable_id %>
 	<%= f.hidden_field :halable_type,:value => @halable_type %>
 	<%= f.hidden_field :user_id, :value => current_user.id %>
-	
-   <%= f.actions :submit, :cancel %>
+
+   <%= f.action :submit, :as => :button  %>
+   <%= f.action :cancel, :as => :link  %>
+  
+	<% if current_user.provider == "facebook" %>
+		<%= submit_tag 'Share on FB', :name => 'fbshare' %>
+	<% end %>
+
 <% end %>

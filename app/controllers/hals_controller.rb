@@ -36,6 +36,12 @@ class HalsController < ApplicationController
     end
   	
     @hal.hal_about(@se)
+    
+    # if we're also sharing on fb:  post to wall
+    if params[:fbshare] 
+      graph = Koala::Facebook::API.new(current_user.oauth_token)
+      graph.put_wall_post(@hal.post_print)
+    end
 
     redirect = params[:from] || myp_path
     

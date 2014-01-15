@@ -2,7 +2,8 @@ Opp::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :activities
+  resources :activities, :collection => { :sort => :post }
+  get "activities/sort", to: "activities#sort", as: 'sort_activities'
 
   get "hals/hal_about_activity/:id", to: "hals#hal_about_activity", as: 'hal_about_activity'
   get "hals/following", to: 'hals#following', as: 'following'
@@ -21,7 +22,9 @@ Opp::Application.routes.draw do
 
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
-  
+
+  match "share_course_on_fb/:id", to: "courses#share_course_on_fb", as: "share_course_on_fb"
+
   
   match "add_commitment_mark_to_activity/:activity_id", :controller => "commitment_marks", :action => "add_commitment_mark_to_activity"
 

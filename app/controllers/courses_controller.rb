@@ -58,6 +58,18 @@ class CoursesController < ApplicationController
     end
   end
 
+
+  def share_course_on_fb    
+    @course = Course.find(params[:id])
+    
+    graph = Koala::Facebook::API.new(current_user.oauth_token)
+    url = url_for(@course)
+    puts "url: #{url}"
+    graph.put_wall_post(@course.post_print, {:name => "My New course", :link => url})
+    redirect_to @course, notice: 'posted.'      
+  end
+
+
   # GET /courses/1/edit
   def edit    
     @course = Course.find(params[:id])

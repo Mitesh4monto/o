@@ -70,5 +70,10 @@ class Course < ActiveRecord::Base
     end
     return return_set
   end
+  
+  def post_print
+    post = "New course on miaou I wrote. Everyone join!:\n #{name}"
+    post += "\ndescription: #{ ActionController::Base.helpers.strip_tags(description)}" 
+  end
 
 end

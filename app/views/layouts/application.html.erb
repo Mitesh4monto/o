@@ -2,9 +2,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Your Sitename</title>
+<title>me-Learning</title>
 
 <%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag    "application", :media => "all" %>
+<%= stylesheet_link_tag params[:controller] %>
 <%= csrf_meta_tags %>
 
 </head>

@@ -38,13 +38,18 @@
   <b>Strategy:</b>
 </p>
 
+<ul id="activities" data-update-url="<%= sort_activities_url %>">
+
  <% @course.strategy.activities.each do |activity| %>		
-Activity:  <%= link_to activity.title, activity %>
-<% if (current_user && (activity.user_id == current_user.id)) then %>
-    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %>
+
+ <%= content_tag_for :li, activity do %>
+ 	<span class="handle">[drag]</span>
+	Activity:  <%= link_to activity.title, activity %>
+	<% if (current_user && (activity.user_id == current_user.id)) then %>
+	    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %>
+	<% end %>
 <% end %>
 
-<BR>
 <% end %>
 <BR>
 	
@@ -56,6 +61,8 @@ Activity:  <%= link_to activity.title, activity %>
 
 
 <% if current_user && current_user.id == @course.user.id %>
+	<%= link_to 'share on fb', share_course_on_fb_path(@course) %> |
+
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <% end %>
 

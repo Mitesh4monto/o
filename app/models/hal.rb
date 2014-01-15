@@ -61,6 +61,11 @@ class Hal < ActiveRecord::Base
   end
   
   
+  def post_print
+    post = "I just wrote this post on miaou:\n #{entry}"
+    post += insights ? "\ninsights: #{insights}" : ""    
+  end
+  
   def print
     com = ', comments: '
     self.comments.each {|comment| com+="id:#{comment.id}, body: #{comment.body}"}

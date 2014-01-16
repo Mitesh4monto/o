@@ -7,9 +7,11 @@
 	<BR>
 	Help: <%= hal.help %>
 	<BR>
-		<% if hal.halable_type == "Activity" %> <%= link_to "about", hal.halable %> 
-		<% end %>
+		<% if hal.halable_type == "Activity" %> <%= link_to "about", hal.halable %> <% end %>
 about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
+<% if (current_user && (hal.user_id == current_user.id)) then %>
+	<%= link_to "view", hal %>
+<% end %>
 <% if show_user %>
 	User:<% if (hal.user) then %>
 	<%=  link_to hal.user.name, hal.user %>

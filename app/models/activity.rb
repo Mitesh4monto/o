@@ -1,8 +1,9 @@
 class Activity < ActiveRecord::Base
+  acts_as_paranoid
   require "StrategyElementMethods"
   default_scope order('position')
    
-  has_many :commitment_marks, :as => :cmable #, :dependent => :destroy
+  has_many :commitment_marks, :as => :cmable, :dependent => :destroy
   has_many :hals, :as => :halable #, :dependent => :destroy
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
@@ -17,7 +18,7 @@ class Activity < ActiveRecord::Base
 
   attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id  #, :course_id
   
-  validates_presence_of :title
+  validates :title, :presence => {:message => "no blanky"}
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'

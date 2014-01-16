@@ -1,4 +1,6 @@
 class CommitmentMarksController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /commitment_marks
   # GET /commitment_marks.json
   def index
@@ -12,8 +14,13 @@ class CommitmentMarksController < ApplicationController
 
   def add_commitment_mark_to_activity
     # TODO check that one doesn't already exist for today
+    @activity = Activity.find(params[:activity_id])
+    if (@activity.user_id != current_user.id) 
+      redirect_to :myp, :notice => "not yours"
+      return
+    end
     @commitment_mark = CommitmentMark.new
-    @commitment_mark.cmable = Activity.find(params[:activity_id])
+    @commitment_mark.cmable = @activity
     @commitment_mark.done_date = Date.current
     @commitment_mark.user_id = current_user.id
     @commitment_mark.save  #TODO check this that

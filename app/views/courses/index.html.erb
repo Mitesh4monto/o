@@ -6,6 +6,7 @@
   <tr>
     <td>id:<%= course.id %></td>
     <td><%= course.name %></td>
+    <td><%= short_description(course) %></td>
     <td><%= course.user_id %></td>
     <td><%= course.hals.where("privacy != 0").size %> entries about this course</td>
 <% followers = @followers[course.id.to_s] || 0  %>

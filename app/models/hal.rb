@@ -9,6 +9,7 @@ class Hal < ActiveRecord::Base
   belongs_to :fromable, :polymorphic => true
   has_many :comments, :as => :commentable, :dependent => :destroy
   attr_accessible :entry, :privacy, :halable, :help, :insights, :user_id, :fromable, :course_id, :halable_id, :halable_type
+  validates_presence_of :entry
   
 
   def add_comment(comment)

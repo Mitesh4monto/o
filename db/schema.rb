@@ -11,17 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140106220202) do
+ActiveRecord::Schema.define(:version => 20140115032432) do
 
   create_table "activities", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.integer  "element_order",        :default => 0,    :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "element_order",        :default => 0, :null => false
     t.integer  "user_id"
     t.integer  "from_id"
-    t.boolean  "active",               :default => true
     t.string   "activityable_type"
     t.integer  "activityable_id"
     t.integer  "next_activity"
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20140106220202) do
     t.integer  "course_id"
     t.string   "customization"
     t.integer  "goal_id"
+    t.datetime "deleted_at"
   end
 
   create_table "activity_sequences", :force => true do |t|
@@ -97,16 +97,17 @@ ActiveRecord::Schema.define(:version => 20140106220202) do
     t.text     "about_the_author"
     t.text     "overview"
     t.boolean  "published",        :default => false
+    t.datetime "deleted_at"
   end
 
   create_table "goals", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
     t.integer  "from_id"
-    t.boolean  "active",      :default => true
+    t.datetime "deleted_at"
   end
 
   create_table "hals", :force => true do |t|
@@ -142,7 +143,7 @@ ActiveRecord::Schema.define(:version => 20140106220202) do
     t.datetime "updated_at",                     :null => false
     t.string   "type"
     t.integer  "from_id"
-    t.boolean  "active",      :default => true
+    t.datetime "deleted_at"
   end
 
   create_table "user_followings", :id => false, :force => true do |t|

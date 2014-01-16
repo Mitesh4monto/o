@@ -1,4 +1,5 @@
 class Strategy < ActiveRecord::Base
+  acts_as_paranoid
   has_many :activities, :dependent => :destroy  #, :as => :activityable, :dependent => :destroy 
   # has_many :activity_sequences, :dependent => :destroy 
   belongs_to :from, class_name: Strategy, :foreign_key => 'from_id'

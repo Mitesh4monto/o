@@ -1,6 +1,18 @@
-<%= semantic_form_for @hal do |f| %>
-	<%= f.inputs :entry, :insights, :help %>
-	
-	<%= hidden_field_tag 'activity_id', @activity_id %>
-   <%= f.actions :submit, :cancel %>
+<%= @hal.created_at.strftime("%m/%d/%Y") %>
+	entry: <%= @hal.entry %>
+	<BR>
+	Insights: <%= @hal.insights %>
+	<BR>
+	Help: <%= @hal.help %>
+	<BR>
+		<% if @hal.halable_type == "Activity" %> <%= link_to "about", @hal.halable %> <% end %>
+about:	<%=  @hal.halable_type %> of id <%=  @hal.halable_id %>
+<% if (current_user && (@hal.user_id == current_user.id)) then %>
+	<%= link_to "edit", edit_hal_path(@hal) %>
 <% end %>
+	User:<% if (@hal.user) then %>
+	<%=  link_to @hal.user.name, @hal.user %>
+	<% else  %> 
+	Anonymous
+	<% end  %> 
+

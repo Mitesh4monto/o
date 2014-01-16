@@ -1,10 +1,11 @@
 class Course < ActiveRecord::Base
+  acts_as_paranoid
   scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
   
-  has_one :strategy, class_name: CourseStrategy #, :foreign_key => 'course_id'
+  has_one :strategy, class_name: CourseStrategy, :dependent => :destroy
   belongs_to :user
   
-  has_many :users, :foreign_key => 'following_course_id'
   has_many :hals, :foreign_key => 'course_id'
 
   has_many :user_strategies, class_name: Strategy, :foreign_key => 'course_id'
@@ -17,6 +18,8 @@ class Course < ActiveRecord::Base
                   :about_the_author,
                   :published
                   
+    validates_presence_of :name, :overview
+    
     after_create :create_strategy   
 
 
@@ -47,12 +50,14 @@ class Course < ActiveRecord::Base
   end
   
   # true for now
+  # total number of people who have activities from this course
   def get_number_people_following
     self.get_course_followers.size
      # Activity.where(:course_id => self.id).select("distinct(user_id)").size
   end
 
-  # true for now
+  # true for now  -- get all users enrolled in a course
+  #  definiton of enrolled in a course is any user that has an activity in their strategy that's in this course or was
   def get_course_followers
       User.find_by_sql(["select * from users where id in (select distinct(user_id) from activities where course_id = ?)", self.id])
   end

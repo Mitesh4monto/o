@@ -32,7 +32,6 @@ Then /^I should see on page "(.*?)"$/ do |arg1|
 end
 
 Then /^I should be on my plan page$/ do
-  puts page.current_path
   assert page.current_path == myp_path
 end
 

@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_filter :authenticate_user!, :except =>[:show]
+  before_filter :require_owner, :only =>[:edit, :update, :destroy]
 
 
   # GET /activities/1
@@ -40,9 +41,9 @@ class ActivitiesController < ApplicationController
   def add_activity_to_course
     @activity = Activity.new
     @course_id = params[:id]
-    @course = Course.find(@course_id)
-    if (@course.user != current_user)
-      redirect_to @course, notice: 'Not yours.  Pas touche.'      
+    @course = Course.find_by_id(@course_id)
+    if (!@course || @course.user != current_user)
+      redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
     end
     
   end
@@ -50,7 +51,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/1/edit
   def edit
     @activity = Activity.find(params[:id])
-    redirect_to root_path, notice: 'No way, not yours.'  if (@activity.user_id != current_user.id)
+    redirect_to @activity, notice: 'No way, not yours.'  if (@activity.user_id != current_user.id)
   end
 
   # POST /activities
@@ -60,8 +61,11 @@ class ActivitiesController < ApplicationController
     course_id = params[:course_id];
     # if adding to a course, point act to course
     if (course_id)
-      @course = Course.find(course_id)
-      validate_owner(@course)
+      @course = Course.find_by_id(course_id)
+      if (@course.user_id != current_user.id)   # TODO do better?
+        redirect_to :myp, :notice => "not yours"
+        return
+      end
       @activity.strategy = @course.strategy      
       @activity.course_id = course_id;
     else
@@ -89,7 +93,6 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
-    validate_owner(@activity)
 
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
@@ -106,7 +109,6 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity = Activity.find(params[:id])
-    validate_owner(@activity)
     @activity.destroy
 
     respond_to do |format|
@@ -115,10 +117,5 @@ class ActivitiesController < ApplicationController
     end
   end
   
-  def validate_owner(obj)
-    if (obj.user != current_user)
-      redirect_to :back, notice: 'Not yours.  Pas touche.'      
-    end
-  end
   
 end

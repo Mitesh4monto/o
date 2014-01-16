@@ -1,8 +1,17 @@
 class HalsController < ApplicationController
+  before_filter :require_owner, :only =>[:edit, :update, :destroy]
   before_filter :authenticate_user!, :except =>[:show, :help_wanted]
 
   def view_mine
     @hals = current_user.hals
+  end
+
+  def show
+    @hal = Hal.find(params[:id])
+  end
+  
+  def edit
+    @hal = Hal.find(params[:id])    
   end
 
   def new_hal
@@ -51,7 +60,7 @@ class HalsController < ApplicationController
         # format.html { redirect_to @hal, notice: 'Hal was successfully created.' }
         format.json { render json: @hal, status: :created, location: @hal }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to :back, notice: "some probs" }
         format.json { render json: @hal.errors, status: :unprocessable_entity }
       end
     end

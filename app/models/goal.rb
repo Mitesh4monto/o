@@ -1,4 +1,5 @@
 class Goal < ActiveRecord::Base
+  acts_as_paranoid
   include StrategyElementMethods
 
   belongs_to :from, class_name: Goal, :foreign_key => 'from_id'

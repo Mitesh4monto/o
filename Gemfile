@@ -8,6 +8,7 @@ gem "ckeditor"
 gem 'acts_as_list'
 gem "RedCloth"
 gem 'koala'
+gem "acts_as_paranoid"
 
 # gem 'omniauth'
 gem 'omniauth-facebook'
@@ -51,6 +52,8 @@ gem 'activerecord-postgresql-adapter'
 # To use debugger
 # gem 'ruby-debug19'  # , :require => 'ruby-debug'
 group :development, :test do 
+  gem 'hirb'
+  gem 'wirble'
   gem 'rspec-rails' 
   gem 'factory_girl_rails' 
   gem "webrat"

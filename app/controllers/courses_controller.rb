@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_filter :require_owner, :only =>[:edit, :update, :destroy]
   before_filter :authenticate_user!, :except =>[:index, :hals, :show]
 
 
@@ -59,12 +60,14 @@ class CoursesController < ApplicationController
   end
 
 
+  # post course info on user's wall on fb
   def share_course_on_fb    
     @course = Course.find(params[:id])
     
     graph = Koala::Facebook::API.new(current_user.oauth_token)
-    url = url_for(@course)
+    url = "http://www.melearni.ng/courses/33"  #url_for(@course)   TODO change for prod
     puts "url: #{url}"
+    puts @course.post_print
     graph.put_wall_post(@course.post_print, {:name => "My New course", :link => url})
     redirect_to @course, notice: 'posted.'      
   end
@@ -118,8 +121,19 @@ class CoursesController < ApplicationController
     @course.destroy
 
     respond_to do |format|
-      format.html { redirect_to my_created_courses_path }
+      format.html { redirect_to my_created_courses_path, notice: 'Course was successfully deleted.'  }
       format.json { head :no_content }
     end
   end
+  
+  private 
+  # ensure the course is owned by logged in user
+  def require_owner
+    @course = Course.find_by_id(params[:id])
+    if (!@course || @course.user != current_user)
+      redirect_to :root, notice: 'Not yours.  Pas touche.'      
+    end
+  end
+  
+  
 end

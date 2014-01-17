@@ -16,12 +16,35 @@ class Activity < ActiveRecord::Base
   # belongs_to :activity_sequence
   acts_as_list scope: :strategy
 
-  attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id  #, :course_id
+  attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression
+  attr_writer :freak_number, :freak_interval, :reactive_expression
   
   validates :title, :presence => {:message => "no blanky"}
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
+  
+  before_save :create_timing
+  
+  def freak_number
+    expr = timing_expression.blank? ? "" : timing_expression.split.first
+    @freak_number.nil? ? expr : @freak_number
+  end
+  
+  def freak_interval
+    expr = timing_expression.blank? ? "" : timing_expression.split.last
+    @freak_interval.nil? ? expr : @freak_interval
+  end
+  
+  def reactive_expression
+      @reactive_expression.nil? ? timing_expression : @reactive_expression
+  end
+  
+  
+  def create_timing
+    self.timing_expression = @freak_number + " " + @freak_interval if @freak_number.present?
+    self.timing_expression = @reactive_expression if @reactive_expression.present?
+  end
   
   amoeba do
     enable

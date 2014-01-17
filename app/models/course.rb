@@ -45,7 +45,6 @@ class Course < ActiveRecord::Base
   # TODO checks and whatnot  !!!!  spec
   def add_user_to_course(user)
     user.add_to_my_strategy(self.strategy)
-    self.users << user
     user.save
   end
   

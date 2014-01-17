@@ -5,8 +5,18 @@ Add activity to course
 	<%= f.inputs :title,  :customization %>
     <%= f.text_area :description, :class => 'ckeditor' %>
 
-<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
-<%= f.inputs :timing_expression, :timing_duration %>
+	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
+
+	<div id='freak'>
+	<%= f.text_field :freak_number %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
+	</div>
+	<div id='react'>
+	When the following occurs: <%= f.text_field :reactive_expression %>
+	</div>
+
+	<div id='duration_label'>by</div>
+	<%= f.text_field :timing_duration %>
+	<BR>
 	
    <%= f.actions :submit, :cancel %>
 <% end %>

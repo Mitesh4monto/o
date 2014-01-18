@@ -1,3 +1,5 @@
+require 'chronic'
+
 class Activity < ActiveRecord::Base
   acts_as_paranoid
   require "StrategyElementMethods"
@@ -16,10 +18,11 @@ class Activity < ActiveRecord::Base
   # belongs_to :activity_sequence
   acts_as_list scope: :strategy
 
-  attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression
-  attr_writer :freak_number, :freak_interval, :reactive_expression
+  attr_accessible :from_id, :user_id, :title, :description, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio
+  attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio
   
   validates :title, :presence => {:message => "no blanky"}
+  validate :validate_timing
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
@@ -39,11 +42,27 @@ class Activity < ActiveRecord::Base
   def reactive_expression
       @reactive_expression.nil? ? timing_expression : @reactive_expression
   end
-  
+
+  def until_radio  
+    self.timing_duration.blank? ? "nodate" : "date"
+  end
   
   def create_timing
     self.timing_expression = @freak_number + " " + @freak_interval if @freak_number.present?
     self.timing_expression = @reactive_expression if @reactive_expression.present?
+    puts "until_radio = #{@until_radio}"
+    self.timing_duration = "" if @until_radio == "nodate"
+    self.timing_duration = timing_duration if @until_radio == "date"  # necess?
+  end
+  
+  # ensure until date is 
+  def validate_timing
+    if @until_radio == "date" && Chronic.parse(self.timing_duration).nil?
+        errors.add(:timing_duration, "you need a valid date")
+    end
+    if self.kind_of_timing == "Frequency" && @freak_number.blank?
+      errors.add(:freak_number, "how often?")
+    end
   end
   
   amoeba do

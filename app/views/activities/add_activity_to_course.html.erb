@@ -14,9 +14,11 @@ Add activity to course
 	When the following occurs: <%= f.text_field :reactive_expression %>
 	</div>
 
+<%= f.radio_button :until_radio, "date" %>	
 	<div id='duration_label'>by</div>
 	<%= f.text_field :timing_duration %>
 	<BR>
-	
+<%= f.radio_button :until_radio, "nodate" %>	
+	<%= label :until_radio, "No end date" %>
    <%= f.actions :submit, :cancel %>
 <% end %>

@@ -51,6 +51,7 @@ GEM
     capybara-webkit (1.1.1)
       capybara (>= 2.0.2, < 2.2.0)
       json
+    chronic (0.10.2)
     ckeditor (4.0.7)
       mime-types
       orm_adapter
@@ -247,6 +248,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    watu_table_builder (0.3.0)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -267,6 +269,7 @@ DEPENDENCIES
   amoeba
   capybara
   capybara-webkit
+  chronic
   ckeditor
   coffee-rails (~> 3.2.1)
   cucumber-rails
@@ -283,6 +286,7 @@ DEPENDENCIES
   jquery-ui-rails
   koala
   launchy
+  mail
   omniauth-facebook
   paperclip
   rack-google-analytics
@@ -290,5 +294,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
+  watu_table_builder
   webrat
   wirble

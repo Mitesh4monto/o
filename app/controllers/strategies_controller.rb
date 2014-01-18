@@ -15,6 +15,10 @@ class StrategiesController < ApplicationController
 
   
   def mine_details
+    # UserMailer.welcome(current_user).deliver
+    # date for commitment marks
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    
     @activity = Activity.find params[:id]
     if (@activity.from_id) then
       @activity_from = Activity.find_by_id @activity.from_id

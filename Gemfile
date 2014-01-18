@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'mail'
+
 gem 'rack-google-analytics'
 gem 'rails', '3.2.0'
 gem 'deep_cloneable'
@@ -9,6 +11,8 @@ gem 'acts_as_list'
 gem "RedCloth"
 gem 'koala'
 gem "acts_as_paranoid"
+gem 'chronic'
+gem "watu_table_builder", :require => "table_builder"
 
 # gem 'omniauth'
 gem 'omniauth-facebook'
@@ -65,7 +69,6 @@ end
 
 group :test do 
   gem 'faker' 
-  gem 'capybara' 
   gem 'capybara-webkit'
   gem 'guard-rspec' 
   gem 'launchy' 

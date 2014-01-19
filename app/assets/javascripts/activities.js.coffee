@@ -6,7 +6,12 @@ jQuery ->
     axis: 'y'
     handle: '.handle'
     update: ->
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+      $.ajax({
+        type: 'post'
+        data: $(this).sortable('serialize')
+        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
+        url: $(this).data("update-url")
+      })
 
 
 jQuery ->

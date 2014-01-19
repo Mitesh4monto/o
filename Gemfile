@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'mail'
-
+gem 'turbo-sprockets-rails3'
 gem 'rack-google-analytics'
 gem 'rails', '3.2.0'
 gem 'deep_cloneable'

@@ -1,13 +1,14 @@
 require 'chronic'
 
 class Activity < ActiveRecord::Base
+  include ActionLogging
+  has_many :action_logs, :as => :loggable
   acts_as_paranoid
-  require "StrategyElementMethods"
   default_scope order('position')
    
   has_many :commitment_marks, :as => :cmable, :dependent => :destroy
-  has_many :hals, :as => :halable #, :dependent => :destroy
-  has_many :from_template_hals, :as => :halable #, :dependent => :destroy
+  has_many :hals, :as => :halable 
+  has_many :from_template_hals, :as => :halable 
   has_many :comments, :as => :commentable, :dependent => :destroy
   # belongs_to :activityable, :polymorphic => true  
   belongs_to :user

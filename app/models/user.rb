@@ -4,12 +4,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-         # , :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   # devise :omniauthable, :omniauth_providers => [:facebook]
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :following_course_id, :provider, :uid, :first_name, :last_name, :oauth_expires_at, :oauth_token
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :following_course_id, :provider, :uid, :first_name, :last_name, :oauth_expires_at, :oauth_token, :unconfirmed_email
   has_one :strategy, :class_name => "UserStrategy" 
   after_create :create_strategy
   has_many :courses
@@ -20,6 +19,9 @@ class User < ActiveRecord::Base
   has_many :chapters
   belongs_to :following_course, :class_name => "Course", :foreign_key => 'following_course_id'
   # following_course, class_name: Course
+
+  has_many :action_logs
+
 
   has_and_belongs_to_many(:following, :class_name => "User", :join_table => "user_followings", :foreign_key => "user_a_id", :association_foreign_key => "user_b_id")
   has_and_belongs_to_many(:followers, :class_name => "User", :join_table => "user_followings", :foreign_key => "user_b_id", :association_foreign_key => "user_a_id")

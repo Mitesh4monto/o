@@ -1,6 +1,7 @@
 class Goal < ActiveRecord::Base
   acts_as_paranoid
-  include StrategyElementMethods
+  include ActionLogging
+  has_many :action_logs, :as => :loggable
 
   belongs_to :from, class_name: Goal, :foreign_key => 'from_id'
   has_many :hals, :as => :halable #, :dependent => :destroy

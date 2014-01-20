@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115032432) do
+ActiveRecord::Schema.define(:version => 20140120070057) do
+
+  create_table "action_logs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "loggable_type"
+    t.integer  "loggable_id"
+    t.string   "link"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "activities", :force => true do |t|
     t.string   "title"
@@ -125,15 +135,6 @@ ActiveRecord::Schema.define(:version => 20140115032432) do
     t.integer  "privacy"
   end
 
-  create_table "mercury_images", :force => true do |t|
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
   create_table "strategies", :force => true do |t|
     t.text     "description"
     t.integer  "course_id"
@@ -176,8 +177,13 @@ ActiveRecord::Schema.define(:version => 20140115032432) do
     t.string   "last_name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

@@ -1,7 +1,11 @@
 class Course < ActiveRecord::Base
+  include ActionLogging
+  has_many :action_logs, :as => :loggable
+  
   acts_as_paranoid
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
+
   
   has_one :strategy, class_name: CourseStrategy, :dependent => :destroy
   belongs_to :user

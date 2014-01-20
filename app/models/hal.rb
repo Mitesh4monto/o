@@ -1,4 +1,5 @@
 class Hal < ActiveRecord::Base
+  include ActionLogging
   scope :private, -> { where(privacy: 0) }
   scope :not_private, -> { where("privacy <> 0") }
   scope :public, -> { where(privacy: 1) }
@@ -10,8 +11,9 @@ class Hal < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
   attr_accessible :entry, :privacy, :halable, :help, :insights, :user_id, :fromable, :course_id, :halable_id, :halable_type
   validates_presence_of :entry
-  
 
+  has_many :action_logs, :as => :loggable
+  
   def add_comment(comment)
     self.comments << comment
   end
@@ -20,6 +22,8 @@ class Hal < ActiveRecord::Base
     self.comments.destroy(comment)
   end
   
+  # find all hals where help has been requested
+  #  TODO later sort by date and proximity to user
   def self.help_wanted
      Hal.where(:help => true).order("created_at desc")
   end
@@ -28,6 +32,7 @@ class Hal < ActiveRecord::Base
     self.comments
   end
 
+  # make hal about item (set halable, from and course information based on item)
   def hal_about(item)
     self.halable = item
     puts item.id
@@ -35,22 +40,19 @@ class Hal < ActiveRecord::Base
     self.course_id = item.get_course_id    
   end
   
+  # get all hals related to an item (hals about items that have the same "from")
   def self.get_related_hals(halable)
     if (halable.from_id)
       # Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
       Hal.where("(fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)", halable.from_id, halable.class.name, halable.from_id, halable.class.name)
        # self.where(:halable_type => halable.class.name, :) halable.from.
-    else  
+    else#   TODO
       []
       # halable.hals
     end    
     
   end
   
-  
-  def halable_activity
-    self.halable.id if self.halable.is_a? Activity
-  end  
   
   # TODO 
   def self.get_hals_related_to_strategy(strategy)
@@ -61,7 +63,7 @@ class Hal < ActiveRecord::Base
     # get set of hals about those list
   end
   
-  
+  # format post of this hal for FB (for now)
   def post_print
     post = "I just wrote this post on miaou:\n #{entry}"
     post += insights ? "\ninsights: #{insights}" : ""    

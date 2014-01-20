@@ -1,5 +1,5 @@
 Opp::Application.routes.draw do
-
+   
   mount Ckeditor::Engine => '/ckeditor'
 
   resources :activities, :collection => { :sort => :post }

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # devise :omniauthable, :omniauth_providers => [:facebook]
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :following_course_id, :provider, :uid, :first_name, :last_name, :oauth_expires_at, :oauth_token, :unconfirmed_email
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :following_course_id, :provider, :uid, :first_name, :last_name, :oauth_expires_at, :oauth_token, :unconfirmed_email, :confirmed_at
   has_one :strategy, :class_name => "UserStrategy" 
   after_create :create_strategy
   has_many :courses

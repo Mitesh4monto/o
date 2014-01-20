@@ -25,16 +25,29 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to root_path, notice: 'Updated!' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   
   def follow
     @user = User.find(params[:id])
-    current_user.following << @user
+    current_user.follow(@user)
     redirect_to params[:red], notice: "Now following #{@user.name}."
   end
 
   def unfollow
     @user = User.find(params[:id])
-    current_user.following.delete(@user)
+    current_user.unfollow(@user)
     redirect_to params[:red], notice: "No longer following #{@user.name}."
   end
   

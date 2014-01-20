@@ -23,4 +23,20 @@ class ActionLog < ActiveRecord::Base
     al.save
   end
   
+  # get the latest action logs for a particular user
+  def self.latest(user, qty = 10)
+    #  get list of course owners user is following
+    following_courses = user.get_following_courses
+    course_owners_id_list = []
+    following_courses.each {|course| course_owners_id_list << course.user_id }
+    # get latest for following updates plus course owners
+    users_id_list = user.following.pluck(:id)
+    users_id_list.concat(course_owners_id_list)
+    if (users_id_list.size > 0 )
+      ActionLog.where("user_id in (#{users_id_list.join(',')})").order('created_at DESC').limit(qty)
+    else
+       []
+    end
+  end
+  
 end

@@ -9,6 +9,14 @@ FactoryGirl.define do
     user
   end
 
+  factory :activity_hal_user2, class: Hal do
+    association :halable, factory: :activity
+    entry "MyText"
+    help false
+    insights "MyText"
+    association :user, factory: :user2
+  end
+
   factory :activity_from_template_hal, class: Hal do
     association :halable, factory: :from_template_activity
     association :fromable, factory: :template_activity

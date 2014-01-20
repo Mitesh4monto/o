@@ -17,5 +17,19 @@ FactoryGirl.define do
     email
     password "password"
   end
+
+  factory :user3, class: User do
+    name "other"
+    email
+    password "password"
+  end
+
+  factory :user_following_others, class: User do
+    association :following, factory: :user    
+    name "follower"
+    email
+    password "password"
+    following
+  end
   
 end

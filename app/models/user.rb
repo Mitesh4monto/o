@@ -30,6 +30,13 @@ class User < ActiveRecord::Base
     has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   
   
+  def follow(user)
+    self.following << user
+  end
+  def unfollow(user)
+    self.following.delete(user)
+  end
+  
   def create_strategy
     UserStrategy.create(:user_id => self.id)
   end
@@ -120,14 +127,15 @@ class User < ActiveRecord::Base
   end
 
   
+  #  TODO cleanup/optimize if many courses per person
   # get list of courses user has activities from     TODO add rspec for this
-  def get_courses_in_list
+  def get_following_courses
     courses = []
     # go through each activity and if it's from a course add it to list
     self.strategy.activities.each do |activity|
-    course_id = Activity.find(activity.from_id).get_course_id
-      if (course_id && !courses.include?(course_id))
-        courses << course_id
+    course = Activity.find_by_id(activity.from_id)
+      if (course && !courses.include?(course))
+        courses << course
       end
     end
     return courses

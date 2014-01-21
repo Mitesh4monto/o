@@ -14,6 +14,12 @@ class Hal < ActiveRecord::Base
 
   has_many :action_logs, :as => :loggable
   
+  
+  # text used for updates
+  def text
+    self.entry
+  end
+  
   def add_comment(comment)
     self.comments << comment
   end

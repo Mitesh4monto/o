@@ -3,6 +3,7 @@ class StrategiesController < ApplicationController
 
   def mine
     @related_hals = Hal.get_hals_related_to_strategy(current_user.strategy)
+    @udpates = ActionLog.latest(current_user)
   end
 
 
@@ -18,6 +19,7 @@ class StrategiesController < ApplicationController
     # UserMailer.welcome(current_user).deliver
     # date for commitment marks
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @udpates = ActionLog.latest(current_user)
     
     @activity = Activity.find params[:id]
     if (@activity.from_id) then

@@ -30,11 +30,19 @@ class Activity < ActiveRecord::Base
   
   before_save :create_timing
   
+  # text used for updates
+  def text
+    self.title + " -- " + self.description
+  end
+  
+  
+  # first part of the timing expression in the db
   def freak_number
     expr = timing_expression.blank? ? "" : timing_expression.split.first
     @freak_number.nil? ? expr : @freak_number
   end
   
+  # second part of the timing expression in the db
   def freak_interval
     expr = timing_expression.blank? ? "" : timing_expression.split.last
     @freak_interval.nil? ? expr : @freak_interval

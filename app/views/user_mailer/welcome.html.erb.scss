@@ -1,0 +1,5 @@
+<p>Blah blah</p>, 
+<%= @user.name %>
+
+
+<%= link_to 'users', users_url %>

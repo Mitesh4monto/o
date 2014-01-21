@@ -1,0 +1,3 @@
+<% @udpates.each do |update| %>
+<%= link_to update.user.name, update.user %> <%= update.action %>d <%= update.loggable_type %>:  <%= link_to shorten(update.loggable.text, 40) + "...", update.loggable %><BR>
+<% end %>

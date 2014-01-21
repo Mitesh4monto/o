@@ -26,6 +26,10 @@ class Course < ActiveRecord::Base
     
     after_create :create_strategy   
 
+  # text used for updates
+  def text
+    self.name + " -- " + self.overview + " -- " + self.description
+  end
 
   # create strategy object for course after create
   def create_strategy

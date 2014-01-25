@@ -47,10 +47,11 @@
 
  <%= content_tag_for :li, activity do %>
  	<span class="handle">[drag]</span>
-	Activity:  <%= link_to activity.title, activity %>
+	Activity:  <%= link_to activity.title, show_activity_path(activity.id) %>
 	<% if (current_user && (activity.user_id == current_user.id)) then %>
+		<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>	
     	<%= link_to 'Edit', edit_activity_path(activity) %>
-	    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %>
+	    <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => activity.id}, confirm: 'Are you sure?', method: :delete %>
 	<% end %>
 <% end %>
 

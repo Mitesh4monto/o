@@ -1,7 +1,7 @@
 class Strategy < ActiveRecord::Base
   acts_as_paranoid
   has_many :activities, :dependent => :destroy  #, :as => :activityable, :dependent => :destroy 
-  # has_many :activity_sequences, :dependent => :destroy 
+  has_many :activity_sequences, :dependent => :destroy 
   belongs_to :from, class_name: Strategy, :foreign_key => 'from_id'
 
   has_many :hals, :as => :halable #, :dependent => :destroy
@@ -27,11 +27,21 @@ class Strategy < ActiveRecord::Base
     return false
   end
   
+  def contains_activity_sequence(as)
+    self.activity_sequences.each do |strat_as|
+      if (strat_as.id == as.id || strat_as.from_id == as.id || (strat_as.from_id == as.from_id && as.from_id != nil))
+        return true
+      end
+    end
+    return false    
+  end
+  
   def contains_customizations
     self.activities.any? {|activity| !activity.customization.blank?}
   end
   
   def copy_activity_to_strategy(activity)
+    
     strat_activity = activity.dup
     if (activity.from_id.nil?)
       strat_activity.from_id = activity.id

@@ -6,3 +6,35 @@
         - email
         - name
         - sign_in_count
+  Activity:
+    :options:
+      :fields:
+        - id
+        - title
+        - description
+        - user_id
+        - from_id
+        - strategy_id
+        - type
+        - position
+        - act_seq_order        
+        - activity_sequence_id
+        - timing_expression
+  ActivityInSequence:
+    :options:
+      :fields:
+        - id
+        - activity_sequence_id
+        - title
+        - description
+        - user_id
+        - from_id
+        - position
+        - act_seq_order        
+        - strategy_id
+        - type
+        - current_activity_id
+        - next_id
+        - first
+        - timing_expression
+          

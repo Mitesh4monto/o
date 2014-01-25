@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :course do
     name "MyString"
     user
+    overview "ooyeah"
     description "some description"
     about_the_author "about the um.. author"
     # course_strategy

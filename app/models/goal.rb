@@ -1,7 +1,7 @@
 class Goal < ActiveRecord::Base
   acts_as_paranoid
   include ActionLogging
-  has_many :action_logs, :as => :loggable
+  has_many :action_logs, :as => :loggable, :dependent => :destroy
 
   belongs_to :from, class_name: Goal, :foreign_key => 'from_id'
   has_many :hals, :as => :halable #, :dependent => :destroy

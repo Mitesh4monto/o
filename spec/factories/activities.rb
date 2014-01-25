@@ -28,6 +28,15 @@ FactoryGirl.define do
     title "MyString3"
     description "MyText2"
     element_order 2
+    association :course, factory: :course    
+  end  
+
+  factory :template_activity2, class: Activity do
+    association :strategy, factory: :course_strategy    
+    title "another title"
+    description "long description"
+    element_order 4
+    association :course, factory: :course    
   end  
 
   factory :from_template_activity, class: Activity do

@@ -1,0 +1,23 @@
+<ul id="activities" data-update-url="<%= sort_activity_sequences_url %>">
+
+	<%= link_to 'back to course', @activity_sequence.strategy.course  if @activity_sequence.strategy.course %>	
+
+
+ <% @activity_sequence.activities.each do |activity| %>		
+
+ <%= content_tag_for :li, activity do %>
+ 	<span class="handle">[drag]</span>
+<%= activity.id %>
+	Activity:  <%= link_to activity.title, activity.becomes(Activity) %>
+	<% if (current_user && (activity.user_id == current_user.id)) then %>
+    	<%= link_to 'Edit', edit_activity_path(activity.id) %>
+	    <%= link_to 'Delete', activity.becomes(Activity), confirm: 'Are you sure?', method: :delete %>
+	<% end %>
+<% end %>
+
+<% end %>
+<BR>
+	
+<% if (current_user && current_user.id == @activity_sequence.user_id) %>
+	<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(@activity_sequence.activity_in_sequences.first) %>	
+<% end  %>

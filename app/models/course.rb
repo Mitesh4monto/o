@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
+  require 'will_paginate'
   include ActionLogging
-  has_many :action_logs, :as => :loggable
+  has_many :action_logs, :as => :loggable, :dependent => :destroy
   
   acts_as_paranoid
   scope :published, -> { where(published: true) }
@@ -28,7 +29,7 @@ class Course < ActiveRecord::Base
 
   # text used for updates
   def text
-    self.name + " -- " + self.overview + " -- " + self.description
+    self.name + " -- " + self.overview
   end
 
   # create strategy object for course after create

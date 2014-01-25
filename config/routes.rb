@@ -1,9 +1,22 @@
 Opp::Application.routes.draw do
    
+  resources :activity_sequences
+  #   get "activity_sequences/show", as: 'activity_sequence'
+  # 
+  # get "activity_sequences/edit"
+  # 
+  # get "activity_sequences/update"
+  # 
+  # get "activity_sequences/destroy"
+
   mount Ckeditor::Engine => '/ckeditor'
 
   resources :activities, :collection => { :sort => :post }
+  # resources :activity_in_sequences, :collection => { :sort => :post }
+  get "activity_sequences/sort", to: "activity_sequences#sort", as: 'sort_activity_sequences'
+
   get "activities/sort", to: "activities#sort", as: 'sort_activities'
+  get "activities/show/:id", to: "activities#show", as: 'show_activity'
 
   get "hals/hal_about_activity/:id", to: "hals#hal_about_activity", as: 'hal_about_activity'
   get "hals/following", to: 'hals#following', as: 'following'
@@ -14,6 +27,8 @@ Opp::Application.routes.draw do
   get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
   
   get "activities/new", to: "activities#new",  as: 'add_activity'
+  get "activities/add_to_sequence/:id", to: "activities#add_to_sequence",  as: 'add_activity_to_sequence'
+  
   get "activities/add_activity_to_course/:id", to: "activities#add_activity_to_course",  as: 'add_activity_to_course'
   get "strategies/copy_activity/:id", to: "strategies#copy_activity",  as: 'copy_activity'
 

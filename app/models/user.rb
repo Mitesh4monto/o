@@ -102,25 +102,26 @@ class User < ActiveRecord::Base
   end
     
   
-  #  todo add if strategy is template?
-  # for copying someone's strat?
-  def replace_strategy_with_template(strategy)
-    s = self.strategy
-    self.strategy = strategy.amoeba_dup
-    self.strategy.type = "Strategy"
-    self.strategy.save
-    s.destroy
-  end
-
   # TODO add rspec
   # add all the activities from a strategy (user or course) into user's strategy
   def add_to_my_strategy(strategy)
     strategy.activities.each do |activity|
       if (!self.strategy.contains_activity(activity))
-        # not currently in strategy => add it
-        copied_activity = activity.amoeba_dup
-        copied_activity.user_id = self.strategy.user.id        
-        self.strategy.activities << copied_activity
+        if (activity.type == "ActivityInSequence")
+          if (!self.strategy.contains_activity_sequence(activity))
+            as = activity.activity_sequence.amoeba_dup
+            as.from_id = activity.activity_sequence.id
+            as.user_id = self.id
+            self.strategy.activity_sequences << as
+            as.set_to_first
+            as.save
+          end
+        else
+          # not currently in strategy => add it
+          copied_activity = activity.amoeba_dup
+          copied_activity.user_id = self.strategy.user.id        
+          self.strategy.activities << copied_activity
+        end
       end
     end
     self.strategy.save
@@ -133,9 +134,9 @@ class User < ActiveRecord::Base
     courses = []
     # go through each activity and if it's from a course add it to list
     self.strategy.activities.each do |activity|
-    course = Activity.find_by_id(activity.from_id)
-      if (course && !courses.include?(course))
-        courses << course
+    activity = Activity.find_by_id(activity.from_id)
+      if (activity && !activity.course.nil? && !courses.include?(activity.course))
+        courses << activity.course if activity.course.nil?
       end
     end
     return courses

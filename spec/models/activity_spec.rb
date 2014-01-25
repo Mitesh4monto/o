@@ -71,6 +71,10 @@ describe Activity do
   it "can find commitment marks about it" do
     0.should eq 1
   end
+
+  it "can be reordered" do
+    0.should eq 1
+  end
   
   it "has a strategy it's part of" do
     a = FactoryGirl.create(:activity)

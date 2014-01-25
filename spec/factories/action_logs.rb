@@ -6,4 +6,11 @@ FactoryGirl.define do
     action "create"
     association :loggable, factory: :hal
   end
+
+  factory :action_log_about_course_activity do
+    user
+    action "create"
+    association :loggable, factory: :template_activity
+  end
+
 end

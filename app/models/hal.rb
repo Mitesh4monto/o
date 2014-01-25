@@ -12,7 +12,7 @@ class Hal < ActiveRecord::Base
   attr_accessible :entry, :privacy, :halable, :help, :insights, :user_id, :fromable, :course_id, :halable_id, :halable_type
   validates_presence_of :entry
 
-  has_many :action_logs, :as => :loggable
+  has_many :action_logs, :as => :loggable, :dependent => :destroy
   
   
   # text used for updates

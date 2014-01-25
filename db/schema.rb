@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120070057) do
+ActiveRecord::Schema.define(:version => 20140123021514) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -26,14 +26,12 @@ ActiveRecord::Schema.define(:version => 20140120070057) do
   create_table "activities", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.integer  "element_order",        :default => 0, :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "user_id"
     t.integer  "from_id"
     t.string   "activityable_type"
     t.integer  "activityable_id"
-    t.integer  "next_activity"
     t.integer  "activity_sequence_id"
     t.integer  "sequence_order"
     t.integer  "position"
@@ -45,16 +43,18 @@ ActiveRecord::Schema.define(:version => 20140120070057) do
     t.string   "customization"
     t.integer  "goal_id"
     t.datetime "deleted_at"
+    t.string   "type"
+    t.integer  "current_activity_id"
+    t.integer  "act_seq_order"
   end
 
   create_table "activity_sequences", :force => true do |t|
-    t.integer  "goal_id"
     t.integer  "current_activity_id"
     t.integer  "strategy_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.integer  "element_order",       :default => 0, :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "user_id"
+    t.integer  "from_id"
   end
 
   create_table "ckeditor_assets", :force => true do |t|

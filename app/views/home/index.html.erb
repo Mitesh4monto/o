@@ -1,0 +1,18 @@
+<h2>Marketing blurb</h2>
+<hr>
+Courses:<br>
+
+<table>
+
+<% @courses.each do |course| %>
+  <tr>
+    <td>id:<%= course.id %></td>
+    <td>    <td><%= link_to course.name, course %></td></td>
+    <td><%= short_description(course) %></td>
+    <td>creator:<%= course.user_id %></td>
+    <td><%= course.hals.where("privacy != 0").size %> entries about this course</td>
+
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @courses %>

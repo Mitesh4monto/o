@@ -25,6 +25,13 @@ class ActivitiesController < ApplicationController
     render :nothing => true
   end
   
+  def add_to_sequence
+    @seq_activity = Activity.find_by_id(params[:id])
+    @activity = Activity.new
+    if (!@seq_activity || @seq_activity.user != current_user)
+      redirect_to @activity, notice: 'Not yours.  Pas touche.  || dunt exist'      
+    end
+  end
 
   # GET /activities/new
   # GET /activities/new.json
@@ -58,7 +65,7 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = Activity.new(params[:activity])
-    course_id = params[:course_id];
+    course_id = params[:course_id]    
     # if adding to a course, point act to course
     if (course_id)
       @course = Course.find_by_id(course_id)
@@ -68,6 +75,12 @@ class ActivitiesController < ApplicationController
       end
       @activity.strategy = @course.strategy      
       @activity.course_id = course_id;
+    elsif (params[:seq_activity])
+      existing_act = Activity.find_by_id(params[:seq_activity])
+      @activity.course_id = existing_act.course_id
+      ActivitySequence.add_activity_to_sequence_with(@activity, existing_act)
+      # existing_act.save!
+      puts "id: #{@activity.activity_sequence_id}"
     else
       # if activity is for a user add to their strategy
       @activity.strategy = current_user.strategy
@@ -78,6 +91,8 @@ class ActivitiesController < ApplicationController
       if @activity.save
         if course_id
           format.html { redirect_to course_path(course_id), notice: 'Activity was successfully created.' }
+        elsif params[:seq_activity]
+          format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
         else
           format.html { redirect_to myp_path, notice: 'Activity was successfully created.' }
         end

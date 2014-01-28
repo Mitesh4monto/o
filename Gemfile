@@ -14,6 +14,7 @@ gem "acts_as_paranoid"
 gem 'chronic'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate', '~> 3.0'
+gem 'public_activity'
 
 # gem 'omniauth'
 gem 'omniauth-facebook'

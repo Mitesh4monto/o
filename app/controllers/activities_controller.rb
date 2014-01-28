@@ -124,7 +124,11 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity = Activity.find(params[:id])
-    @activity.destroy
+    if @activity.type == "ActivityInSequence"
+      @activity.activity_sequence.destroy
+    else
+      @activity.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to :back, notice: "Activity was successfully deleted" }

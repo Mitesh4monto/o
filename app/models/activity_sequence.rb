@@ -1,5 +1,5 @@
 class ActivitySequence < ActiveRecord::Base
-  has_many :activity_in_sequences,  order: 'act_seq_order'
+  has_many :activity_in_sequences, :dependent => :destroy,  order: 'act_seq_order'
   belongs_to :strategy
   belongs_to :user
   belongs_to :from, class_name: ActivitySequence, :foreign_key => 'from_id'
@@ -13,6 +13,7 @@ class ActivitySequence < ActiveRecord::Base
   end
 
 
+  #  ordered list of activities in sequence
   def activities
     self.activity_in_sequences.reorder(:act_seq_order)
   end
@@ -36,8 +37,18 @@ class ActivitySequence < ActiveRecord::Base
       
 
   # delete activity, remove from sequence and if it was current, set new current
-  def remove_activity(activity)    
-    if (self.current_activity == activity)
+  def destroy_activity(activity)
+    # hacky  -- only one activiy in seq left after delete => destroy sequence and move last activity out
+    if (self.activities.size == 2)
+      strategy_id = self.current_activity.strategy_id
+      remaining_activity = self.activities.first if self.activities.first != activity
+      remaining_activity = self.activities.last if self.activities.last != activity
+      remaining_activity.activity_sequence = nil
+      remaining_activity.strategy_id = strategy_id
+      remaining_activity.type = "Activity"
+      remaining_activity.save
+      self.destroy
+    elsif (self.current_activity == activity)
       if has_next?
         set_next 
       elsif has_previous?
@@ -46,19 +57,24 @@ class ActivitySequence < ActiveRecord::Base
         self.destroy  #last activity got removed, no point in existing alone
       end
     end
-    self.activity_in_sequences << activity
+    activity.destroy      
   end
   
   def get_current()
     self.current_activity
   end
   
+  # has a previous activity in its sequence before current activity
   def has_previous?
     self.current_activity.higher_item != nil
   end
+
+  # has ah activity in its sequence after current activity
   def has_next?    
     self.current_activity.lower_item != nil
   end
+  
+  #  set current activity to next
   def set_next
     if has_next?
       position= self.current_activity.position
@@ -73,6 +89,7 @@ class ActivitySequence < ActiveRecord::Base
     end
   end
   
+  # set current activity to previous
   def set_previous
     if has_previous?
       position= self.current_activity.position
@@ -87,6 +104,7 @@ class ActivitySequence < ActiveRecord::Base
     end
   end
   
+  #  set current activity to first in list
   def set_to_first
     self.set_current(self.activities.first)
   end

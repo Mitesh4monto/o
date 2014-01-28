@@ -1,6 +1,6 @@
 class ActivitySequencesController < ApplicationController
-  def show
-    @activity_sequence = ActivitySequence.find(params[:id])    
+  def show    
+    @activity_sequence = ActivitySequence.find(params[:id])
   end
   
   def make_current
@@ -28,14 +28,5 @@ class ActivitySequencesController < ApplicationController
     @activity_sequence = ActivitySequence.find(params[:id])
     @activity_sequence.set_previous
     redirect_to :myp    
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 end

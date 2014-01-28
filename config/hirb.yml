@@ -34,7 +34,5 @@
         - strategy_id
         - type
         - current_activity_id
-        - next_id
-        - first
         - timing_expression
           

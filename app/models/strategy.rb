@@ -17,6 +17,10 @@ class Strategy < ActiveRecord::Base
     self
   end
   
+  def text
+    
+  end
+  
   # if a strategy contains a specific activity as defined by same object or same origin of object (course or user)
   def contains_activity(activity)
     self.activities.each do |strat_activity|

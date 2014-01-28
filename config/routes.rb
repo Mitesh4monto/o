@@ -1,6 +1,7 @@
 Opp::Application.routes.draw do
    
   resources :activity_sequences
+  resources :activity_in_sequences
   #   get "activity_sequences/show", as: 'activity_sequence'
   # 
   # get "activity_sequences/edit"
@@ -27,11 +28,12 @@ Opp::Application.routes.draw do
   get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
   
   get "activities/new", to: "activities#new",  as: 'add_activity'
-  get "activities/add_to_sequence/:id", to: "activities#add_to_sequence",  as: 'add_activity_to_sequence'
+  get "activity_in_sequences/add_to_sequence/:id", to: "activity_in_sequences#add_to_sequence",  as: 'add_activity_to_sequence'
   
   get "activities/add_activity_to_course/:id", to: "activities#add_activity_to_course",  as: 'add_activity_to_course'
   get "strategies/copy_activity/:id", to: "strategies#copy_activity",  as: 'copy_activity'
 
+  get "activities/mine", to: "strategies#mine",  as: 'user_strategy'
   get "strategies/mine", to: 'strategies#mine', as: 'myp'
   get "strategies/mine_details/:id", to: 'strategies#mine_details', as: 'mypd'
 

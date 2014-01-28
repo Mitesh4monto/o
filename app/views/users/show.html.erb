@@ -17,7 +17,7 @@ plan:<BR>
 <% end %>
 
 
-<% if (current_user.following.include?(@user)) %>
+<% if (current_user and current_user.following.include?(@user)) %>
 	<%= semantic_form_for @user, :url => unfollow_user_path(@user, method: :put) do |f| %>
 		<%= hidden_field_tag 'id', @user.id %>
 		<%= hidden_field_tag 'red', request.original_url %>

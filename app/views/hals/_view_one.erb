@@ -4,7 +4,15 @@ Insights: <%= hal.insights %>
 <BR>
 Help: <%= hal.help %>
 <BR>
-User:<%= hal.user.name %>
+User:<%= link_to hal.user.name, hal.user %>
+<BR>
+	<% if hal.halable %>
+about:<%= link_to shorten(hal.halable.text, 40), hal.halable %>
 
 <BR>
-from:<%= hal.fromable_type %> id:<%= hal.fromable_id %>
+<% end %>
+
+<% if hal.fromable_type %>
+from:<%= hal.fromable_type %> id:<%= hal.fromable_id %> -- <%= link_to shorten(hal.fromable.text, 40), hal.fromable if hal.fromable %>
+<% end %>
+<hr>

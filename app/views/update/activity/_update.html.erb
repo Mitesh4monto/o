@@ -1,0 +1,11 @@
+updated
+<% if update.loggable %>
+	<% activity =  update.loggable %>
+	<% if activity.course_activity? %>
+		 activity in course <%= link_to activity.strategy.course.name, activity.strategy.course %>
+	<% else %>
+		 their activity: <%= link_to activity.title, activity.user %>
+	<% end %>
+<% else %>
+ a <%= update.loggable_type %> which has since been removed 
+<% end %>

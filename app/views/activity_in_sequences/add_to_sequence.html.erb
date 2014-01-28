@@ -1,0 +1,24 @@
+Add activity to sequence with <%= @seq_activity.title %>
+
+<%= semantic_form_for @activity do |f| %>
+	<%= hidden_field_tag 'seq_activity', @seq_activity.id %>
+	<%= f.inputs :title,  :customization %>
+    <%= f.text_area :description, :class => 'ckeditor' %>
+
+	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
+
+	<div id='freak'>
+	<%= f.text_field :freak_number %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
+	</div>
+	<div id='react'>
+	When the following occurs: <%= f.text_field :reactive_expression %>
+	</div>
+
+<%= f.radio_button :until_radio, "date" %>	
+	<div id='duration_label'>by</div>
+	<%= f.text_field :timing_duration %>
+	<BR>
+<%= f.radio_button :until_radio, "nodate" %>	
+	<%= label :until_radio, "No end date" %>
+   <%= f.actions :submit, :cancel %>
+<% end %>

@@ -81,4 +81,9 @@ class Hal < ActiveRecord::Base
     puts "Hal id: #{id} entry: #{entry}, insights: #{insights} help: #{help}#{com}"
   end
   
+  def log_create
+    ActionLog.log_create(self) if self.privacy != 0
+  end
+  
+  
 end

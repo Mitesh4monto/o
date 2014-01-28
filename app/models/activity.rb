@@ -34,6 +34,15 @@ class Activity < ActiveRecord::Base
     self.title + " -- " + self.description
   end
   
+  # is this act in a course?
+  def course_activity?
+    self.strategy.class.name == "CourseStrategy"
+  end
+  
+  # Is act in user plan?
+  def myp_activity?
+    self.strategy.class.name == "UserStrategy"    
+  end
   
   # first part of the timing expression in the db
   def freak_number

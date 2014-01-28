@@ -1,0 +1,9 @@
+added comment to 
+<% if update.loggable %>
+<%= link_to update.loggable.commentable.user.name, update.loggable.commentable.user %>'s 
+<!-- <%= update.loggable.commentable.class %>:  -->
+entry:
+  <%= link_to shorten(update.loggable.commentable.text, 50), update.loggable.commentable %>
+<% else %>
+ a <%= update.loggable_type %> which has since been removed 
+<% end %> 

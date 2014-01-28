@@ -16,3 +16,10 @@ about:	<%=  @hal.halable_type %> of id <%=  @hal.halable_id %>
 	Anonymous
 	<% end  %> 
 
+
+	<% @hal.comments.each do |comment| %>
+	Comment by <%= link_to comment.user.name, comment.user %> at <%= comment.created_at %>:<BR>
+	<%= comment.body %><BR>
+		<hr>
+	<% end %>
+

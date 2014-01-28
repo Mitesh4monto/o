@@ -15,6 +15,9 @@ class UserStrategy < Strategy
   def course
     nil    
   end
-  
+
+  def text
+    self.user.name + "'s Plan"    
+  end
   
 end

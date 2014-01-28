@@ -48,6 +48,9 @@
  <%= content_tag_for :li, activity do %>
  	<span class="handle">[drag]</span>
 	Activity:  <%= link_to activity.title, show_activity_path(activity.id) %>
+	<% if (activity.activity_sequence_id) %>
+	<%= link_to 'view sequence', activity_sequence_path(activity.activity_sequence_id) %>		
+	<% end %>
 	<% if (current_user && (activity.user_id == current_user.id)) then %>
 		<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>	
     	<%= link_to 'Edit', edit_activity_path(activity) %>

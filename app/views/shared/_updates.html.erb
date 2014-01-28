@@ -1,3 +1,9 @@
 <% @udpates.each do |update| %>
+
+<%= update.id %> <%= link_to update.user.name, update.user %> 
+<%= render "update/#{update.loggable_type}/#{update.action}", update: update %><BR>
+
+<!-- 
 <%= link_to update.user.name, update.user %> <%= update.action %>d <%= update.loggable_type %>:  <%= link_to shorten(update.loggable.text, 40) + "...", update.loggable %><BR>
+ -->
 <% end %>

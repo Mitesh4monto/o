@@ -6,7 +6,6 @@ class StrategiesController < ApplicationController
     @udpates = ActionLog.latest(current_user)
   end
 
-
   def copy_activity
     @activity = Activity.find(params[:id])
     current_user.strategy.copy_activity_to_strategy(@activity)

@@ -17,8 +17,11 @@ description: <%= strategy.description %>
 
 		<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
 			<%= link_to "previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
+|
 		<% end %>
-
+		<% if activity.type == "ActivityInSequence" %>
+			<%= link_to 'view sequence', activity_sequence_path(activity.activity_sequence_id) %>		
+		<% end %>
 		Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
 		<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
 		<%= link_to "next", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>

@@ -1,7 +1,15 @@
 <BR>
 <% hals.each do |hal| %>
-<%= hal.created_at.strftime("%m/%d/%Y") %>
-	entry: <%= hal.entry %>
+	<% if show_user %>
+		Entry from User:<% if (hal.user) then %>
+		<%=  link_to hal.user.name, hal.user %>
+		<% else  %> 
+		Anonymous
+		<% end  %> 
+	<% end  %> 
+
+at <%= hal.created_at.strftime("%m/%d/%Y") %>
+<BR>	entry: <%= hal.entry %>
 	<BR>
 	Insights: <%= hal.insights %>
 	<BR>
@@ -12,16 +20,9 @@ about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
 <% if (current_user && (hal.user_id == current_user.id)) then %>
 	<%= link_to "view", hal %>
 <% end %>
-<% if show_user %>
-	User:<% if (hal.user) then %>
-	<%=  link_to hal.user.name, hal.user %>
-	<% else  %> 
-	Anonymous
-	<% end  %> 
-<% end  %> 
 
 	<BR>
-	from:<%= hal.fromable_type %> id:<%= hal.fromable_id %>
+	from:<%= hal.fromable_type %> id:<%= link_to hal.fromable_id, hal.fromable %>
 	
 	<BR><BR>
 		

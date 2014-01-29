@@ -53,7 +53,7 @@ class Hal < ActiveRecord::Base
       Hal.where("(fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)", halable.from_id, halable.class.name, halable.from_id, halable.class.name)
        # self.where(:halable_type => halable.class.name, :) halable.from.
     else#   TODO
-      []
+      Hal.where("(fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)", halable.id, halable.class.name, halable.id, halable.class.name)
       # halable.hals
     end    
     

@@ -9,6 +9,11 @@
 
  <%= content_tag_for :li, activity do %>
 <% if @activity_sequence.strategy.course %> 	<span class="handle">[drag]</span> <% end %>
+
+<% if @activity_sequence.current_activity == activity %> 	current >> <% else %> 
+<%= link_to "make current", :controller => "activity_sequences", :action => 'make_current', :id => activity.id %>	<% end %>
+
+
 <%= activity.id %>
 	Activity:  <%= link_to activity.title, show_activity_path(activity) %>
 	<% if (current_user && (activity.user_id == current_user.id)) then %>

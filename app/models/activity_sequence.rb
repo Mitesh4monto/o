@@ -112,11 +112,14 @@ class ActivitySequence < ActiveRecord::Base
   # TODO ellse?
   def set_current(activity)
     if (self.activity_in_sequences.include?(activity)) then
-      activity.strategy_id = self.strategy_id
-      activity.save
+      position= self.current_activity.position
+      self.current_activity.position = nil
       self.current_activity.strategy_id = nil
-      self.current_activity.save
+      self.current_activity.save      
       self.current_activity = activity
+      self.current_activity.position = position
+      self.current_activity.strategy_id = self.strategy_id    
+      self.current_activity.save
       self.save
     end      
   end

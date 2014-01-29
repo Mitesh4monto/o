@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   require 'will_paginate'
   include ActionLogging
-  has_many :action_logs, :as => :loggable, :dependent => :destroy
+  has_many :action_logs, :as => :loggable
   
   acts_as_paranoid
   scope :published, -> { where(published: true) }

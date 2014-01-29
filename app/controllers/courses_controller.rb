@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @hals = @course.hals.not_private
     @followers = @course.get_course_followers
-    puts @followers.inspect
+    # puts @followers.inspect
 
     respond_to do |format|
       format.html # show.html.erb

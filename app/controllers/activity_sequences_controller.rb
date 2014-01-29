@@ -3,6 +3,7 @@ class ActivitySequencesController < ApplicationController
     @activity_sequence = ActivitySequence.find(params[:id])
   end
   
+  # selected acitivyt in sequence is active
   def make_current
     @activity = Activity.find(params[:id])
     @activity.activity_sequence.set_current(@activity)
@@ -18,12 +19,14 @@ class ActivitySequencesController < ApplicationController
     render :nothing => true
   end
   
+  # next in sequence is active
   def set_next
     @activity_sequence = ActivitySequence.find(params[:id])        
     @activity_sequence.set_next
     redirect_to :myp
   end
   
+  # previous in sequence is active
   def set_previous
     @activity_sequence = ActivitySequence.find(params[:id])
     @activity_sequence.set_previous

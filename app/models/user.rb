@@ -131,15 +131,16 @@ class User < ActiveRecord::Base
   #  TODO cleanup/optimize if many courses per person
   # get list of courses user has activities from     TODO add rspec for this
   def get_following_courses
-    courses = []
-    # go through each activity and if it's from a course add it to list
-    self.strategy.activities.each do |activity|
-    activity = Activity.find_by_id(activity.from_id)
-      if (activity && !activity.course.nil? && !courses.include?(activity.course))
-        courses << activity.course if activity.course.nil?
-      end
-    end
-    return courses
+     Course.find_all_by_id(self.strategy.activities.pluck(:course_id).uniq.compact)
+    # courses = []
+    # # go through each activity and if it's from a course add it to list
+    # self.strategy.activities.each do |activity|
+    # activity = Activity.find_by_id(activity.from_id)
+    #   if (activity && !activity.course.nil? && !courses.include?(activity.course))
+    #     courses << activity.course if activity.course.nil?
+    #   end
+    # end
+    # return courses
   end
   
   

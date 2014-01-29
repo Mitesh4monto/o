@@ -37,7 +37,7 @@ class ActivityInSequencesController < ApplicationController
 # DELETE /activities/1
 # DELETE /activities/1.json
 def destroy
-  @activity = ActivityInSequence.find(params[:id])
+  @activity = ActivityInSequence.find(params[:id])  
   course = @activity.course
   @activity.activity_sequence.destroy_activity(@activity)
 

@@ -20,6 +20,8 @@
         - act_seq_order        
         - activity_sequence_id
         - timing_expression
+        - timing_duration
+        - kind_of_timing
   ActivityInSequence:
     :options:
       :fields:

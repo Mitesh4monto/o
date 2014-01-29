@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140123021514) do
+ActiveRecord::Schema.define(:version => 20140129042306) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20140123021514) do
     t.string   "type"
     t.integer  "current_activity_id"
     t.integer  "act_seq_order"
+    t.string   "goal_text"
   end
 
   create_table "activity_sequences", :force => true do |t|

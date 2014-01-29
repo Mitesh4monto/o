@@ -30,17 +30,18 @@ class ActionLog < ActiveRecord::Base
     puts following_courses.to_yaml
     course_owners_id_list = []
     following_courses.each {|course| course_owners_id_list.push(course.user_id)
-      puts "course: " + course.to_yaml
-      puts "-#{course.user_id}-" }
+      # puts "course: " + course.to_yaml
+      # puts "-#{course.user_id}-" 
+      }
     # get latest for following updates plus course owners
     users_id_list = user.following.pluck(:id)
-    puts "-#{course_owners_id_list}-"    
-    puts "-#{users_id_list}-"
+    # puts "-#{course_owners_id_list}-"    
+    # puts "-#{users_id_list}-"
     users_id_list.concat(course_owners_id_list)
-    puts users_id_list.join(',')
-    puts "size: #{users_id_list.size}"
+    # puts users_id_list.join(',')
+    # puts "size: #{users_id_list.size}"
     if (users_id_list.size > 0 )
-      puts "user_id in (#{users_id_list.join(',')})"
+      # puts "user_id in (#{users_id_list.join(',')})"
       ActionLog.where(user_id: users_id_list).order('created_at DESC').limit(qty)
     else
        []

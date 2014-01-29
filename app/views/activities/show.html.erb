@@ -1,3 +1,6 @@
+<% if @activity.strategy.course %>
+Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
+<% end %>
 
 title:<%= @activity.title %>
 <BR>
@@ -28,6 +31,14 @@ hals:
 	<BR><BR>
 <% end %>
 
+<% if @related_hals.size > 0 %>
+	<BR>
+	<b>Related Hals:</b>
+	<BR>
+	<% @related_hals.each do |hal| %>
+		<%= render :partial => 'hals/view_one', locals: {hal: hal} %>
+	<% end %>
+<% end %>
 
 
 <% if (current_user && (@activity.user_id == current_user.id)) then %>

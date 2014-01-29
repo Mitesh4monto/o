@@ -2,7 +2,7 @@ require 'chronic'
 
 class Activity < ActiveRecord::Base
   include ActionLogging
-  has_many :action_logs, :as => :loggable, :dependent => :destroy
+  has_many :action_logs, :as => :loggable
   acts_as_paranoid
   default_scope order('position')
    
@@ -18,11 +18,11 @@ class Activity < ActiveRecord::Base
   belongs_to :strategy
   acts_as_list scope: :strategy
 
-  attr_accessible :from_id, :user_id, :title, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio
+  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio
   attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio
   
   validates :title, :presence => {:message => "no blanky"}
-  # validate :validate_timing   TODO uncomment -- ONLY FOR TESTING
+  # validate :validate_timing   #TODO uncomment -- ONLY FOR TESTING
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
@@ -53,6 +53,7 @@ class Activity < ActiveRecord::Base
   # second part of the timing expression in the db
   def freak_interval
     expr = timing_expression.blank? ? "" : timing_expression.split.last
+    puts "expr: #{expr}"
     @freak_interval.nil? ? expr : @freak_interval
   end
   
@@ -64,9 +65,13 @@ class Activity < ActiveRecord::Base
     self.timing_duration.blank? ? "nodate" : "date"
   end
   
+  # before_save -- store the timing expression and duration based on different form fields
   def create_timing
-    self.timing_expression = @freak_number + " " + @freak_interval if @freak_number.present?
-    self.timing_expression = @reactive_expression if @reactive_expression.present?
+    if @freak_number.present?
+      self.timing_expression = @freak_number + " " + @freak_interval
+    elsif @reactive_expression.present?
+      self.timing_expression = @reactive_expression
+    end
     self.timing_duration = "" if @until_radio == "nodate"
     self.timing_duration = timing_duration if @until_radio == "date"  # necess?
   end

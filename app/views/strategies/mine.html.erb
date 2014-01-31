@@ -1,52 +1,40 @@
 
-Updates:
-<%= render :partial => 'shared/updates' %>
-
-<table border='1'>
-	<tr>
-		<td valign="top">
-
-
-<% if current_user.strategy.activities.empty? %>
-Strat empty.  You might want to ...<BR>
-<%= link_to 'Add a course from here....', courses_path %><BR>
-<%= link_to 'Add and activity', add_activity_path %><BR>
-Or if you find a <%= link_to 'user', users_path %> with an activity you want... <BR>
+  <div class="row">
+    <div class="span4">
+    	<% if current_user.strategy.activities.empty? %>
+			Strat empty.  You might want to ...<BR>
+			<%= link_to 'Add a course from here....', courses_path %><BR>
+			<%= link_to 'Add and activity', add_activity_path %><BR>
+			Or if you find a <%= link_to 'user', users_path %> with an activity you want... <BR>
 
 
-<% else %>
+		<% else %>
 
-<strong>plan:</strong><BR>
-<%= render :partial => 'view_one', locals: {strategy: current_user.strategy} %>
+			<strong>plan:</strong><BR>
+			<%= render :partial => 'view_one', locals: {strategy: current_user.strategy} %>
 
-<%= link_to 'Add activity', add_activity_path %>
+			<%= link_to 'Add activity', add_activity_path %>
 
-</td>
-<td>
-
-
-<BR>
-<b>my entries: </b>
-<BR>
-<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals[1..3], show_user: false} %>
+		<% end %>
+		
+    </div>
+    <div class="span6">
+		<b>my entries: </b>
+		<BR>
+		<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals[1..3], show_user: false} %>
 
 
 
-<% if @related_hals.size > 0 %>
-	<BR>
-	<b>Related Hals:</b>
-	<BR>
-	<% @related_hals.each do |hal| %>
-		<%= render :partial => 'hals/view_one', locals: {hal: hal} %>
-	<% end %>
-<% end %>
+		<% if @related_hals.size > 0 %>
+			<BR>
+			<b>Related Hals:</b>
+			<BR>
+			<% @related_hals.each do |hal| %>
+				<%= render :partial => 'hals/view_one', locals: {hal: hal} %>
+			<% end %>
+		<% end %>
 
 
-<BR><BR>
-
-
-<% end %>
-
-</td>
-</tr>
-</table>
+		<BR><BR>
+    </div>
+  </div>

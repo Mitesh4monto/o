@@ -111,8 +111,16 @@ class ActivitiesController < ApplicationController
 
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
-        format.html { redirect_to root_path, notice: 'Activity was successfully updated.' }
-        format.json { head :no_content }
+        if @activity.myp_activity?
+          format.html { redirect_to mypd_path(@activity), notice: 'Activity was successfully updated.' }
+          format.json { head :no_content }
+        elsif @activity.course_activity?
+          format.html { redirect_to @activity.strategy.course, notice: 'Activity was successfully updated.' }
+          format.json { head :no_content }          
+        else 
+          format.html { redirect_to root_path, notice: 'Activity was successfully updated.' }
+          format.json { head :no_content }          
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @activity.errors, status: :unprocessable_entity }

@@ -1,4 +1,4 @@
-class ActivityInSequencesController < ApplicationController
+class ActivityInSequencesController < ActivitiesController
   before_filter :authenticate_user!, :except =>[:show]
   before_filter :require_owner, :only =>[:edit, :update, :destroy]
 
@@ -47,5 +47,8 @@ def destroy
     format.json { head :no_content }
   end
 end
+
+
+
 
 end

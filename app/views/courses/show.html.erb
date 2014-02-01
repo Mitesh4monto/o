@@ -1,6 +1,15 @@
 <%= stylesheet_link_tag "activities" %>
 
 
+<% if current_user && current_user.id == @course.user.id %>
+This is your course.  Care to...
+	<%= link_to 'share on fb', share_course_on_fb_path(@course) if current_user.provider == "facebook"%> |
+<%= link_to 'Edit', edit_course_path(@course) %>
+<% end %>
+
+<BR><BR>
+
+
 <%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %>
 
 
@@ -38,7 +47,7 @@
 </p>
 
 <p>
-  <b>Strategy:</b>
+  <b>Plan:</b>
 </p>
 
 <ul id="activities" data-update-url="<%= sort_activities_url %>">
@@ -46,40 +55,21 @@
  <% @course.strategy.activities.each do |activity| %>		
 
  <%= content_tag_for :li, activity do %>
- 	<span class="handle">[drag]</span>
 	Activity:  <%= link_to activity.title, show_activity_path(activity.id) %>
 	<% if (activity.activity_sequence_id) %>
 	<%= link_to 'view sequence', activity_sequence_path(activity.activity_sequence_id) %>		
-	<% end %>
-	<% if (current_user && (activity.user_id == current_user.id)) then %>
-		<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>	
-    	<%= link_to 'Edit', edit_activity_path(activity) %>
-	    <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => activity.id}, confirm: 'Are you sure?', method: :delete %>
 	<% end %>
 <% end %>
 
 <% end %>
 <BR>
 	
-<% if (current_user && current_user.id == @course.user.id) %>
-<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
-<% end  %>
-
-<BR><BR>
 
 
-<% if current_user && current_user.id == @course.user.id %>
-	<%= link_to 'share on fb', share_course_on_fb_path(@course) %> |
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<% end %>
-
-<BR><BR>
 
 
 ------------------
 
-HALS
 <%= render :partial => 'hals/view_hal_list', locals: {hals: @hals, show_user: true} %>
 
 

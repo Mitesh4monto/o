@@ -1,0 +1,18 @@
+Course <%= @course.name %><BR><BR>
+
+status:  you're missing blah blah<BR>
+
+
+ <%= link_to 'Overview', course_overview_path(@course) %> |
+ <%= link_to 'plan', course_plan_path(@course) if @course.id %> |
+ <%= link_to 'supplemental info', course_description_path(@course) if @course.id  %> 
+<BR>
+<%= link_to 'done editing', @course %> 
+
+
+<% if !@course.published %>
+	<%= link_to "publish course", publish_course_path(@course) %>
+<% else %>
+	this course is published.  See it <%= link_to 'here', @course %>.  <BR>
+	<%= link_to 'Share it on fb', share_course_on_fb_path(@course) %>
+<% end %>

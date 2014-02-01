@@ -1,7 +1,8 @@
-<h1>New course</h1>
+<%= render :partial => 'course_edit' %>
+<BR>
 
-First tell us about your course:
-<BR><BR>
+Course overview:  
+<BR>
 
 
 	<%= semantic_form_for(@course) do |f| %>
@@ -20,8 +21,11 @@ First tell us about your course:
 
 	  <%= f.inputs :name, :overview, :about_the_author %>
 
-	<div>course image:<br />
+	<%= image_tag @course.course_image.url(:medium) %>
+	<div>new image:<br />
 	<%= f.file_field :course_image %></div>
+
+
 
 	  <%= f.actions %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140129042306) do
+ActiveRecord::Schema.define(:version => 20140201052006) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -102,13 +102,18 @@ ActiveRecord::Schema.define(:version => 20140129042306) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.text     "description"
     t.text     "about_the_author"
     t.text     "overview"
-    t.boolean  "published",        :default => false
+    t.boolean  "published",                 :default => false
     t.datetime "deleted_at"
+    t.string   "course_image_file_name"
+    t.string   "course_image_content_type"
+    t.integer  "course_image_file_size"
+    t.datetime "course_image_updated_at"
+    t.string   "external_site"
   end
 
   create_table "goals", :force => true do |t|

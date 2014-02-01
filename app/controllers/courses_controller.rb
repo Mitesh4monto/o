@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :require_owner, :only =>[:edit, :update, :destroy]
+  before_filter :require_owner, :only =>[:edit, :update, :destroy, :plan, :details, :publish_course, :update_description]
   before_filter :authenticate_user!, :except =>[:index, :hals, :show]
 
 
@@ -40,6 +40,39 @@ class CoursesController < ApplicationController
     end
   end
   
+  # owner edits plan
+  def plan
+    @course = Course.find(params[:id])    
+    @activity = Activity.find_by_id(params[:activity_id])
+    @activity = @course.strategy.activities.first if !@activity
+  end
+
+  # owner edits plan
+  def details
+    @course = Course.find(params[:id])    
+  end
+
+
+  # owner edits overview
+  def overview
+    @course = Course.find(params[:id])
+  end
+  
+  # owner publishes their course
+  def publish_course
+    @course = Course.find(params[:id])
+    @course.published = true
+    respond_to do |format|
+      if @course.save
+        format.html { redirect_to :back, notice: 'Your course is now published.' }
+      else
+        format.html { redirect_to :back, notice: 'Something went kaboom' }
+      end
+    end
+    
+  end
+  
+  
   def join
     @course = Course.find(params[:id])
     @course.add_user_to_course(current_user)
@@ -73,13 +106,6 @@ class CoursesController < ApplicationController
   end
 
 
-  # GET /courses/1/edit
-  def edit    
-    @course = Course.find(params[:id])
-    if (@course.user != current_user)
-      redirect_to @course, notice: 'Not yours.  Pas touche.'      
-    end
-  end
 
   # POST /courses
   # POST /courses.json
@@ -89,7 +115,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to course_plan_path(@course), notice: 'Course was successfully created.' }
         format.json { render json: @course, status: :created, location: @course }
       else
         format.html { render action: "new" }
@@ -105,10 +131,22 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+          format.html { redirect_to course_overview_path(@course), notice: 'Course was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "edit", notice: 'Course was databasely challenged.'  }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def update_description
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      if @course.update_attributes(params[:course])
+          format.html { redirect_to course_details_path(@course), notice: 'Course Description was successfully updated.' }
+      else
+        format.html { render action: "course_details" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end

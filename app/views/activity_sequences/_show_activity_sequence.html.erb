@@ -1,0 +1,28 @@
+
+	<ul id="activities" data-update-url="<%= sort_activity_sequences_url %>">
+
+
+
+ <% activity_sequence.activities.each do |activity| %>		
+
+	 <%= content_tag_for :li, activity do %>
+	<% if activity_sequence.strategy.course %> 	<span class="handle">[drag]</span> <% end %>
+
+	<% if activity_sequence.current_activity == activity %> 	current >> <% else %> 
+	<%= link_to "make current", :controller => "activity_sequences", :action => 'make_current', :id => activity.id %>	<% end %>
+
+	<%= activity.id %>
+		Activity:  <%= link_to activity.title, show_activity_path(activity) %>
+		<% if (current_user && (activity.user_id == current_user.id)) then %>
+	    	<%= link_to 'Edit', edit_activity_path(activity.id) %>
+		    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %>
+		<% end %>
+	<% end %>
+
+<% end %>
+</ul>
+<BR>
+	
+<% if (current_user && current_user.id == activity_sequence.user_id && activity_sequence.strategy.course) %>
+	<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity_sequence.activity_in_sequences.first) %>	
+<% end  %>

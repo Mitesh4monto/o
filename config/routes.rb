@@ -39,6 +39,12 @@ Opp::Application.routes.draw do
 
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
+  get "courses/plan/:id(/:activity_id)", to: 'courses#plan', as: 'course_plan'
+  get "courses/description/:id", to: 'courses#description', as: 'course_description'
+  get "courses/overview/:id", to: 'courses#overview', as: 'course_overview'
+  get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'
+  get "courses/publish_course/:id", to: 'courses#publish_course', as: 'publish_course'
+  
 
   match "share_course_on_fb/:id", to: "courses#share_course_on_fb", as: "share_course_on_fb"
 

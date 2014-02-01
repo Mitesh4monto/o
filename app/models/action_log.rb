@@ -27,7 +27,7 @@ class ActionLog < ActiveRecord::Base
   def self.latest(user, qty = 10)
     #  get list of course owners user is following
     following_courses = user.get_following_courses
-    puts following_courses.to_yaml
+    # puts following_courses.to_yaml
     course_owners_id_list = []
     following_courses.each {|course| course_owners_id_list.push(course.user_id)
       # puts "course: " + course.to_yaml

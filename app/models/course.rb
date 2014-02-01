@@ -21,11 +21,14 @@ class Course < ActiveRecord::Base
                   :description,
                   :overview,
                   :about_the_author,
-                  :published
+                  :published,
+                  :external_site,
+                  :course_image
+     has_attached_file :course_image, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
                   
-    validates_presence_of :name, :overview
-    
-    after_create :create_strategy   
+  validates_presence_of :name, :overview
+
+  after_create :create_strategy   
 
   # text used for updates
   def text

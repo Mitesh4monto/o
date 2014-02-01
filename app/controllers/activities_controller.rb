@@ -90,7 +90,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.save
         if course_id
-          format.html { redirect_to course_path(course_id), notice: 'Activity was successfully created.' }
+          format.html { redirect_to course_plan_path(course_id), notice: 'Activity was successfully created.' }
         elsif params[:seq_activity]
           format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
         else
@@ -115,7 +115,7 @@ class ActivitiesController < ApplicationController
           format.html { redirect_to mypd_path(@activity), notice: 'Activity was successfully updated.' }
           format.json { head :no_content }
         elsif @activity.course_activity?
-          format.html { redirect_to @activity.strategy.course, notice: 'Activity was successfully updated.' }
+          format.html { redirect_to course_plan_path(@activity.strategy.course), notice: 'Activity was successfully created.' }
           format.json { head :no_content }          
         else 
           format.html { redirect_to root_path, notice: 'Activity was successfully updated.' }

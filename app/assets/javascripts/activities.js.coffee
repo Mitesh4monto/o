@@ -4,6 +4,7 @@
 jQuery ->
   $('#activities').sortable
     axis: 'y'
+    containment: "parent"
     handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))

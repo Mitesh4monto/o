@@ -1,5 +1,9 @@
 Opp::Application.routes.draw do
    
+  get "messages_controller/new"
+
+  get "messages_controller/create"
+
   resources :activity_sequences
   resources :activity_in_sequences
   #   get "activity_sequences/show", as: 'activity_sequence'
@@ -37,6 +41,7 @@ Opp::Application.routes.draw do
   get "strategies/mine", to: 'strategies#mine', as: 'myp'
   get "strategies/mine_details/:id", to: 'strategies#mine_details', as: 'mypd'
 
+  # courses
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
   get "courses/plan/:id(/:activity_id)", to: 'courses#plan', as: 'course_plan'
@@ -47,6 +52,13 @@ Opp::Application.routes.draw do
   
 
   match "share_course_on_fb/:id", to: "courses#share_course_on_fb", as: "share_course_on_fb"
+
+  # static pages
+  get "about_us", to: 'info#about', as: 'about'
+  get "eula", to: 'info#eula', as: 'eula'
+
+  get "contact_us", to: 'messages#new', as: 'contact_us'
+  resources :messages
 
   
   match "add_commitment_mark_to_activity/:activity_id", :controller => "commitment_marks", :action => "add_commitment_mark_to_activity"
@@ -71,8 +83,6 @@ Opp::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
     
-  resources :contacts
-
   resources :courses
   resources :hals
 

@@ -21,7 +21,7 @@
     <div class="span6">
 		<b>my entries: </b>
 		<BR>
-		<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals[1..3], show_user: false} %>
+		<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals.first(3), show_user: false} %>
 
 
 

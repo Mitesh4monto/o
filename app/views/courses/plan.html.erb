@@ -13,8 +13,8 @@
 
 	  <!-- <div class="row"> -->
 	    <div class="span4">
-			<ul id="activities" data-update-url="<%= sort_activities_url %>">
 			<strong>Plan</strong>:<BR>
+				<ul id="activities" data-update-url="<%= sort_activities_url %>">
 				 <% @course.strategy.activities.each do |activity| %>		
 					 <%= content_tag_for :li, activity do %>
 					 	<span class="handle">[drag]</span>

@@ -24,6 +24,7 @@ def create_user
   create_visitor
   delete_user
   @user = FactoryGirl.create(:user, @visitor)
+  @user.confirm!
 end
 
 def delete_user

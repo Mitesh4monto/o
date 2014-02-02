@@ -15,6 +15,9 @@ GEM
       rack-cache (~> 1.1)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.2)
+    active_attr (0.8.2)
+      activemodel (>= 3.0.2, < 4.1)
+      activesupport (>= 3.0.2, < 4.1)
     activemodel (3.2.0)
       activesupport (= 3.2.0)
       builder (~> 3.0.0)
@@ -296,6 +299,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  active_attr
   activerecord-postgresql-adapter
   acts_as_list
   acts_as_orderable

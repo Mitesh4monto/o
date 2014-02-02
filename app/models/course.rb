@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
                   :published,
                   :external_site,
                   :course_image
-     has_attached_file :course_image, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+     has_attached_file :course_image, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/clipboardicon.png"
                   
   validates_presence_of :name, :overview
 

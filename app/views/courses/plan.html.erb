@@ -33,7 +33,7 @@
 	<div class="span4">
 		
 		
-<% if @activity && @activity.activity_sequence %>
+<% if @activity && @activity.activity_sequence_id %>
 	 <% @activity.activity_sequence.activities.each do |activity| %>		
 
 		<%= activity.id %>
@@ -43,7 +43,7 @@
 		<BR>
 	<% end %>
 	<BR>
-	<%= link_to 'Add activity to sequence', 	add_activity_to_sequence_path(@activity.activity_sequence.activity_in_sequences.first) %>	
+	<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(@activity.activity_sequence.activity_in_sequences.first) %>	
 <BR>	<%= link_to 'manage sequence', @activity.activity_sequence %>
 
 	

@@ -10,7 +10,7 @@ status:  you're missing blah blah<BR>
 <%= link_to 'done editing', @course %> 
 
 
-<% if !@course.published %>
+<% if !@course.published? %>
 	<%= link_to "publish course", publish_course_path(@course) %>
 <% else %>
 	this course is published.  See it <%= link_to 'here', @course %>.  <BR>

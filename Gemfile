@@ -61,8 +61,8 @@ gem 'activerecord-postgresql-adapter'
 # To use debugger
 # gem 'ruby-debug19'  # , :require => 'ruby-debug'
 group :development, :test do 
-  # gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'meta_request'
   gem 'hirb'
   gem 'wirble'

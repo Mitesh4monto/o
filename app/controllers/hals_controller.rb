@@ -5,6 +5,10 @@ class HalsController < ApplicationController
   def view_mine
     @hals = current_user.hals
   end
+  
+  def my_insights
+    @hals = current_user.hals.where("insights is not null")
+  end
 
   def show
     @hal = Hal.find(params[:id])

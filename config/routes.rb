@@ -1,36 +1,32 @@
 Opp::Application.routes.draw do
    
+  # messages (contact us)
   get "messages_controller/new"
-
   get "messages_controller/create"
 
   resources :activity_sequences
   resources :activity_in_sequences
-  #   get "activity_sequences/show", as: 'activity_sequence'
-  # 
-  # get "activity_sequences/edit"
-  # 
-  # get "activity_sequences/update"
-  # 
-  # get "activity_sequences/destroy"
 
   mount Ckeditor::Engine => '/ckeditor'
 
+
+  # hals
+  get "hals/hal_about_activity/:id", to: "hals#hal_about_activity", as: 'hal_about_activity'
+  get "following", to: 'hals#following', as: 'following'
+  get "my_insights", to: 'hals#my_insights', as: 'my_insights'
+  get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
+  get "my_blog_entries", to: 'hals#view_mine', as: 'my_hals'
+  get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
+  get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
+  
+  
+  # activities and strategies
   resources :activities, :collection => { :sort => :post }
   # resources :activity_in_sequences, :collection => { :sort => :post }
   get "activity_sequences/sort", to: "activity_sequences#sort", as: 'sort_activity_sequences'
 
   get "activities/sort", to: "activities#sort", as: 'sort_activities'
   get "activities/show/:id", to: "activities#show", as: 'show_activity'
-
-  get "hals/hal_about_activity/:id", to: "hals#hal_about_activity", as: 'hal_about_activity'
-  get "hals/following", to: 'hals#following', as: 'following'
-
-  get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
-  get "hals/view_mine", to: 'hals#view_mine', as: 'my_hals'
-  get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
-  get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
-  
   get "activities/new", to: "activities#new",  as: 'add_activity'
   get "activity_in_sequences/add_to_sequence/:id", to: "activity_in_sequences#add_to_sequence",  as: 'add_activity_to_sequence'
   

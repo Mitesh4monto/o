@@ -6,8 +6,9 @@ Courses:<br>
 
 <% @courses.each do |course| %>
   <tr>
-    <td>id:<%= course.id %></td>
-    <td><%= link_to course.user.name, course.user %></td>
+    <td>id:<%= course.id %>
+	<%= image_tag course.course_image.url(:thumb) if course.course_image.url%></td>
+					    <td><%= link_to course.user.name, course.user %></td>
     <td><%= link_to course.name, course %></td>
     <td><%= short_description(course) %></td>
     <td>creator:<%= course.user_id %></td>

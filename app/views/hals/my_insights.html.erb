@@ -1,0 +1,13 @@
+<%= link_to "following", :following  %> |
+my insights  |
+<%= link_to "add an entry", :new_hal  %> |
+<%= link_to "mine", :my_hals  %>
+<BR><BR>
+
+<% @hals.each do |hal| %>	
+	<%= hal.insights %> -- <%= link_to hal.created_at.strftime("%m/%d/%Y"), hal %>
+	<% if hal.halable_type == "Activity" and hal.halable %>
+		about <%= link_to hal.halable.title, hal.halable %>
+	<% end %>
+	<hr>
+<% end %>

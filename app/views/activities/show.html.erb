@@ -6,7 +6,7 @@ title:<%= @activity.title %>
 <BR>
 description: <%= raw @activity.description %>
 <BR>
-	from: <%= @activity.from_id %>
+<%= link_to "from" + @activity.from.title, @activity.from if @activity.from %>
 	<BR>
 Timing: <%= @activity.kind_of_timing %><BR>
 <BR>timing expression: <%= @activity.timing_expression %><BR>
@@ -26,9 +26,6 @@ hals:
 	<BR>
 	By:<%= link_to hal.user.name, hal.user %> 
 
-	<BR>
-	from:<%= hal.fromable_type %> id:<%= hal.fromable_id %>
-	<BR><BR>
 <% end %>
 
 <% if @related_hals.size > 0 %>

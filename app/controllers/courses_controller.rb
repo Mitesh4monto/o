@@ -30,6 +30,9 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
+    if @course.user != current_user and !@course.published?
+      return redirect_to :root, notice: 'Nothing here'       
+    end
     @hals = @course.hals.not_private
     @followers = @course.get_course_followers
     # puts @followers.inspect
@@ -48,7 +51,7 @@ class CoursesController < ApplicationController
   end
 
   # owner edits plan
-  def details
+  def description
     @course = Course.find(params[:id])    
   end
 
@@ -61,6 +64,9 @@ class CoursesController < ApplicationController
   # owner publishes their course
   def publish_course
     @course = Course.find(params[:id])
+    if !course_ok?(@course)
+      return redirect_to :back
+    end      
     @course.published = true
     respond_to do |format|
       if @course.save
@@ -72,6 +78,14 @@ class CoursesController < ApplicationController
     
   end
   
+  def course_ok?(course)
+    if course.strategy.activities.size > 0
+      true
+    else
+      flash[:errors] = "hey add some activities to your plan"
+      false
+    end
+  end
   
   def join
     @course = Course.find(params[:id])
@@ -144,9 +158,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     respond_to do |format|
       if @course.update_attributes(params[:course])
-          format.html { redirect_to course_details_path(@course), notice: 'Course Description was successfully updated.' }
+          format.html { redirect_to course_description_path(@course), notice: 'Course Description was successfully updated.' }
       else
-        format.html { render action: "course_details" }
+        format.html { render action: "description" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end

@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   # acts_as_paranoid
+  acts_as_paranoid
   include ActionLogging
   has_many :action_logs, :as => :loggable, :dependent => :destroy
   belongs_to :user

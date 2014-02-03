@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140201052006) do
+ActiveRecord::Schema.define(:version => 20140203103553) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20140201052006) do
     t.datetime "updated_at",          :null => false
     t.integer  "user_id"
     t.integer  "from_id"
+    t.datetime "deleted_at"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20140201052006) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "user_id"
+    t.datetime "deleted_at"
   end
 
   create_table "commitment_marks", :force => true do |t|
@@ -139,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20140201052006) do
     t.string   "fromable_type"
     t.integer  "course_id"
     t.integer  "privacy"
+    t.datetime "deleted_at"
   end
 
   create_table "strategies", :force => true do |t|
@@ -187,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20140201052006) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

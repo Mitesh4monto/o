@@ -1,4 +1,5 @@
 class Hal < ActiveRecord::Base
+  acts_as_paranoid
   include ActionLogging
   scope :private, -> { where(privacy: 0) }
   scope :not_private, -> { where("privacy <> 0") }

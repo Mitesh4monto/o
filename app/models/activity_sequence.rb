@@ -1,4 +1,5 @@
 class ActivitySequence < ActiveRecord::Base
+  acts_as_paranoid
   has_many :activity_in_sequences, :dependent => :destroy,  order: 'act_seq_order'
   belongs_to :strategy
   belongs_to :user

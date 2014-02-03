@@ -1,24 +1,4 @@
-<%= render :partial => 'course_edit' %>
+<%= render :partial => 'course_view' %>
 <BR><BR>
-<%= semantic_form_for @course, as: :course, url: :update_description  do |f| %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-      <% @course.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-	<%= f.label :description  %>
-    <%= f.text_area :description, :class => 'ckeditor' %>
-</div>
-
-  <%= f.actions %>
-
-  </div>
-<% end %>
+	<strong>description</strong>: <%= raw @course.description %><BR>

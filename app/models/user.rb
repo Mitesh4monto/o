@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many(:followers, :class_name => "User", :join_table => "user_followings", :foreign_key => "user_b_id", :association_foreign_key => "user_a_id")
 
   attr_accessible :avatar
-    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+    has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "100x100", :thumb => "50x50>" }, :default_url => "/images/:style/missing.png"
   
   
   def follow(user)

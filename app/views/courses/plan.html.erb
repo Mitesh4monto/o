@@ -1,78 +1,49 @@
-<%= stylesheet_link_tag "activities" %>
-<%= render :partial => 'course_edit' %>
+<%= render :partial => 'course_view' %>
 <BR><BR>	
 
 
-<% if @course.strategy.activities.size == 0 %>
-	Here's what you do:  add activities
-<% end %>
-
-<BR><hr>
-
-
-
-	  <!-- <div class="row"> -->
-	    <div class="span4">
-			<strong>Plan</strong>:<BR>
-				<ul id="activities" data-update-url="<%= sort_activities_url %>">
-				 <% @course.strategy.activities.each do |activity| %>		
-					 <%= content_tag_for :li, activity do %>
-					 	<span class="handle">[drag]</span>
-						<% if (activity.activity_sequence_id) %>
-						Sequence starting with Activity: <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
-						<% else %>	
-							Activity:  <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
-						<% end %>
-					<% end %>
-
-				<% end %>
-			</ul>
+ <!-- <div class="row"> -->
+<div class="span4">
+	<strong>Plan</strong>:<BR>
+	 <% @course.strategy.activities.each do |activity| %>		
+		<% if (activity.activity_sequence_id) %>
+			Sequence starting with Activity: <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
+		<% else %>	
+				Activity:  <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
+		<% end %>
+		<% if activity == @activity %>
+			 >>
+		<% end %>
 			<BR>
-			<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
-			</div>
-	<div class="span4">
-		
-		
-<% if @activity && @activity.activity_sequence_id %>
-	 <% @activity.activity_sequence.activities.each do |activity| %>		
+	<% end %>
+	</ul>
+</div>
+<div class="span4">
+	<% if @activity && @activity.activity_sequence_id %>
+	 	<% @activity.activity_sequence.activities.each do |activity| %>		
 
 		<%= activity.id %>
 		Activity:  <%= link_to activity.title, show_activity_path(activity) %>
-	    	<%= link_to 'Edit', edit_activity_path(activity.id) %>
-		    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %> 
 		<BR>
 	<% end %>
 	<BR>
-	<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(@activity.activity_sequence.activity_in_sequences.first) %>	
-<BR>	<%= link_to 'manage sequence', @activity.activity_sequence %>
 
-	
+	<% elsif @activity %>
+		<b>Activity</b><BR>
+		<strong>title</strong>:<%= @activity.title %><BR>
+		<strong>description</strong>: <%= raw @activity.description %><BR>
+		<strong>Timing:</strong><%= render :partial => 'strategies/timing' %>
+		<BR>
 
-<% elsif @activity %>
-	<b>Activity</b><BR>
-	title:<%= @activity.title %><BR>
-	description: <%= raw @activity.description %><BR>
-	<BR>
-	<%= render :partial => 'strategies/timing' %>
-	<BR>
-	<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(@activity) %>	<BR>
-	<%= link_to 'edit', edit_activity_path(@activity) %> |
-    <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => @activity.id}, confirm: 'Are you sure?', method: :delete %>
+		<% if @activity.type == "ActivityInSequence" %>
+		<BR><b>Activities in the sequence:</b><BR>
+			<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
+				<%= activity_in_sequence.title %>
+			<% end %>
 
-
-	<% if @activity.type == "ActivityInSequence" %>
-	<BR><b>Activities in the sequence:</b><BR>
-		<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
-			<%= activity_in_sequence.title %>
 		<% end %>
 
 	<% end %>
-
-<% end %>
-
-
-	    </div>
-	  <!-- </div> -->
-
+</div>
 
 

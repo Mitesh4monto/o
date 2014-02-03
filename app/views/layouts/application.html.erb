@@ -5,7 +5,7 @@
 <title><%= if @title then @title else "me-Learning" end %></title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> -->
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
@@ -20,7 +20,7 @@
 
 
 <body>
-	<%= image_tag "/images/lobehold.png" %><BR>
+	<%= image_tag "/images/lobehold.png", size: "200x10" %><BR>
 	
 	<%= render :partial => "shared/menu_bar" %>
 

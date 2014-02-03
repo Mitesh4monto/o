@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_filter :require_owner, :only =>[:edit, :update, :destroy, :plan, :details, :publish_course, :update_description]
-  before_filter :authenticate_user!, :except =>[:index, :hals, :show]
+  before_filter :require_owner, :only =>[:edit, :update, :destroy, :plan_edit, :overview_edit, :description_edit, :publish_course, :update_description]
+  before_filter :authenticate_user!, :except =>[:index, :hals, :show, :overview, :plan, :description]
 
 
   # GET /courses
@@ -30,36 +30,50 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
+    part = params[:part] || "overview"
     if @course.user != current_user and !@course.published?
       return redirect_to :root, notice: 'Nothing here'       
     end
     @hals = @course.hals.not_private
     @followers = @course.get_course_followers
     # puts @followers.inspect
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @course }
-    end
+    
+    render "overview"
   end
   
   # owner edits plan
-  def plan
+  def plan_edit
     @course = Course.find(params[:id])    
     @activity = Activity.find_by_id(params[:activity_id])
     @activity = @course.strategy.activities.first if !@activity
   end
 
   # owner edits plan
-  def description
+  def description_edit
     @course = Course.find(params[:id])    
   end
 
 
   # owner edits overview
+  def overview_edit
+    @course = Course.find(params[:id])
+  end
+
+  def plan
+    @course = Course.find(params[:id])    
+    @activity = Activity.find_by_id(params[:activity_id])
+    @activity = @course.strategy.activities.first if !@activity
+  end
+
+  def description
+    @course = Course.find(params[:id])    
+  end
+
+
   def overview
     @course = Course.find(params[:id])
   end
+
   
   # owner publishes their course
   def publish_course

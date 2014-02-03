@@ -1,34 +1,23 @@
-<%= render :partial => 'course_edit' %>
-<BR>
-
-Course overview:  
-<BR>
+<%= render :partial => 'course_view' %>
 
 
-	<%= semantic_form_for(@course) do |f| %>
-	  <% if @course.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-	      <ul>
-	      <% @course.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
-
-
-	  <%= f.inputs :name, :overview, :about_the_author %>
-
+<div class="span4">
+	<strong>Course overview</strong>:  <BR>
 	<%= image_tag @course.course_image.url(:medium) %>
-	<div>new image:<br />
-	<%= f.file_field :course_image %></div>
-
-
-
-	  <%= f.actions %>
-
-	  </div>
+	<%= @course.overview %>
+</div>
+<div class="span4">
+	<strong>About the author</strong>
+	<BR>
+	<a href="<%= @course.user.avatar.url(:medium) %>"><%= image_tag @course.user.avatar.url(:small) %></a>
+	<BR>
+	<%= @course.about_the_author %>
+	<BR>
+	<% if @course.external_site %>
+		<strong>External site:</strong> <%= @course.external_site %>
+		<BR>
 	<% end %>
+	
+</div>
 

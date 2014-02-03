@@ -36,9 +36,10 @@
         
 	
   <div id="container-fluid">
+	<section>
     <div class="row">
       <div class="span1">f</div>
-      <div class="span9"><%= yield %></div>
+      <div class="span8"><%= yield %></div>
       <div class="span2">
 		<% if current_user %>
 			Updates:<BR>
@@ -46,6 +47,7 @@
 		<% end %>
       </div>
     </div>
+</section>
   </div>
 
 

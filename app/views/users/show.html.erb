@@ -6,14 +6,11 @@
 
 <%= image_tag @user.avatar.url(:thumb) if (@user.avatar.url(:thumb)) %>
 
-
-plan:<BR>
-	<BR>
-	description: <%= @user.strategy.description %>
-	<BR>
-		Activities:<BR>
+<BR>
+<strong>plan</strong>:<BR>
+		<strong>Activities</strong>:<BR>
 	<% @user.strategy.activities.each do |activity| %>
-	Activity:	<%= activity.id %>, <%= activity.title %> -- <%= link_to "take this" , copy_activity_path(activity.id) %>
+	Activity:	<%= activity.id %>, <%= activity.title %> -- <%= link_to "Add this activity to my plan" , copy_activity_path(activity.id) %><BR>
 <% end %>
 
 

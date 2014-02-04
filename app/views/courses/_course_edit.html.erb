@@ -7,7 +7,7 @@ status:  you're missing blah blah<BR>
  <%= link_to 'plan', course_plan_edit_path(@course) if @course.id %> |
  <%= link_to 'supplemental info', course_description_edit_path(@course) if @course.id  %> 
 <BR>
-<%= link_to 'done editing', @course %> 
+<%= link_to 'Preview', @course %> 
 
 
 <% if !@course.published? %>

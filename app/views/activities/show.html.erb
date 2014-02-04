@@ -1,20 +1,22 @@
 <% if @activity.strategy.course %>
 Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
+<% elsif @activity.user %>
+In <%= link_to @activity.user.name, @activity.user %>'s plan
 <% end %>
 
-title:<%= @activity.title %>
+<strong>title</strong>:<%= @activity.title %>
 <BR>
-description: <%= raw @activity.description %>
+<strong>description</strong>: <%= raw @activity.description %>
 <BR>
 <%= link_to "from" + @activity.from.title, @activity.from if @activity.from %>
 	<BR>
-Timing: <%= @activity.kind_of_timing %><BR>
-<BR>timing expression: <%= @activity.timing_expression %><BR>
-duration: <%= @activity.timing_duration %>
-<BR>
+<strong>Timing</strong>: <%= @activity.kind_of_timing %><BR>
+<BR><strong>timing expression</strong>: <%= @activity.timing_expression %><BR>
+<strong>duration</strong>: <%= @activity.timing_duration %>
+<BR><BR>
 
 
-hals:
+<strong>hals</strong>:<BR>
 <% @hals.each do |hal| %>
 
 <%= hal.created_at.strftime("%m/%d/%Y") %>

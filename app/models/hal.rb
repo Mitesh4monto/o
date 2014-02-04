@@ -51,10 +51,10 @@ class Hal < ActiveRecord::Base
   def self.get_related_hals(halable)
     if (halable.from_id)
       # Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
-      Hal.where("(fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)", halable.from_id, halable.class.name, halable.from_id, halable.class.name)
+      Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)) and user_id <> ?", halable.from_id, halable.class.name, halable.from_id, halable.class.name, halable.user_id)
        # self.where(:halable_type => halable.class.name, :) halable.from.
     else#   TODO
-      Hal.where("(fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)", halable.id, halable.class.name, halable.id, halable.class.name)
+      Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)) and user_id <> ?", halable.id, halable.class.name, halable.id, halable.class.name, halable.user_id)
       # halable.hals
     end    
     

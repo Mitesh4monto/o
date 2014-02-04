@@ -25,7 +25,8 @@ about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
 	from:<%= hal.fromable_type %> id:<%= link_to hal.fromable_id, hal.fromable %>
 	
 	<BR><BR>
-		
+
+	<% if commenting %>		
 		<% hal.comments.each do |comment| %>
 	    	comment: <%= comment.body %> <BR>
 			made by <%= link_to comment.user.name, comment.user %><BR>
@@ -41,6 +42,7 @@ about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
 			<%= hidden_field_tag 'red', request.original_url %>
 		 <%= f.actions %>
 	    <% end %>
+    <% end %>
 	
 	
 <% end %>

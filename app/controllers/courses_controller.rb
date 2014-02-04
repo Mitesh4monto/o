@@ -41,6 +41,11 @@ class CoursesController < ApplicationController
     render "overview"
   end
   
+  def edit    
+    render "plan_edit"
+  end
+  
+  
   # owner edits plan
   def plan_edit
     @course = Course.find(params[:id])    
@@ -58,6 +63,11 @@ class CoursesController < ApplicationController
   def overview_edit
     @course = Course.find(params[:id])
   end
+  
+  def blogs
+    @course = Course.find(params[:id])    
+  end
+  
 
   def plan
     @course = Course.find(params[:id])    
@@ -66,6 +76,10 @@ class CoursesController < ApplicationController
   end
 
   def description
+    @course = Course.find(params[:id])    
+  end
+
+  def people
     @course = Course.find(params[:id])    
   end
 
@@ -143,7 +157,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to course_plan_path(@course), notice: 'Course was successfully created.' }
+        format.html { redirect_to course_plan_edit_path(@course), notice: 'Course was successfully created.' }
         format.json { render json: @course, status: :created, location: @course }
       else
         format.html { render action: "new" }

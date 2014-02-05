@@ -10,7 +10,9 @@ class Hal < ActiveRecord::Base
   belongs_to :halable, :polymorphic => true
   belongs_to :fromable, :polymorphic => true
   has_many :comments, :as => :commentable, :dependent => :destroy
-  attr_accessible :entry, :privacy, :halable, :help, :insights, :user_id, :fromable, :course_id, :halable_id, :halable_type
+  attr_accessible :entry, :privacy, :halable, :help, :insights, :user_id, :fromable, :course_id, :halable_id, :halable_type, :tag_list
+  acts_as_taggable
+  
   validates_presence_of :entry
 
   has_many :action_logs, :as => :loggable, :dependent => :destroy

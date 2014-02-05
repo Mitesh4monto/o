@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   require 'will_paginate'
   include ActionLogging
+  
   has_many :action_logs, :as => :loggable
   
   acts_as_paranoid
@@ -23,8 +24,11 @@ class Course < ActiveRecord::Base
                   :about_the_author,
                   :published,
                   :external_site,
-                  :course_image
+                  :course_image, 
+                  :tag_list
      has_attached_file :course_image, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/clipboardicon.png"
+
+  acts_as_taggable
                   
   validates_presence_of :name, :overview
 

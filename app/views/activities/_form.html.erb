@@ -33,6 +33,7 @@ When the following occurs: <%= f.text_field :reactive_expression %>
 <%= f.radio_button :until_radio, "nodate" %>	
 	<%= label :until_radio, "No end date" %>
 
+	<%= f.input  :tag_list, :label => "enter comma separated tags" %>
 
 <BR>
 <%= f.text_area :description, :class => 'ckeditor' %>

@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.published
+    @courses = Course.published.paginate(:page => params[:page], :per_page => 10).order("created_at desc")
     @followers = Course.get_number_people_following_published_courses
 
     respond_to do |format|

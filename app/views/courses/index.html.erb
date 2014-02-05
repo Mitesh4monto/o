@@ -4,21 +4,22 @@
 
 <% @courses.each do |course| %>
   <tr>
-    <td>id:<%= course.id %></td>
-    <td><%= course.name %></td>
+    <td>id:<%= course.id %>
+	<%= image_tag course.course_image.url(:thumb) if course.course_image.url%></td>
+					    <td><%= link_to course.user.name, course.user if course.user %></td>
+    <td><%= link_to course.name, course %></td>
     <td><%= short_description(course) %></td>
-    <td><%= course.user_id %></td>
+    <td>creator:<%= course.user_id %></td>
     <td><%= course.hals.where("privacy != 0").size %> entries about this course</td>
-<% followers = @followers[course.id.to_s] || 0  %>
-    <td><%= followers  %> followers </td>
+	<% followers = @followers[course.id.to_s] || 0  %>
+	<td><%= link_to followers.to_s + " followers", course_people_path(course)  %> </td>
 
-    <td><%= link_to 'Show', course %></td>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td><%= link_to 'Destroy', course, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
+<%= will_paginate @courses %>
+
 <br />
 
-<%= link_to 'New Course', new_course_path %>
+<%= link_to 'Create a New Course', new_course_path %>

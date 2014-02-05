@@ -10,6 +10,7 @@ FactoryGirl.define do
     email
     password 'changeme'
     password_confirmation 'changeme'
+    
   end
   
   factory :user2, class: User do

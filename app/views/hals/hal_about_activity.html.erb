@@ -1,5 +1,6 @@
 <%= semantic_form_for @hal do |f| %>
 	<%= f.inputs :entry, :insights, :help %>
+	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
 	
 	<%  selection = {"public" => "1", "private" =>  "0" }  %>
 	

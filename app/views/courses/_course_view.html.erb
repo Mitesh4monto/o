@@ -4,13 +4,15 @@
  <%= link_to 'plan', course_plan_path(@course) %> |
  <%= link_to 'supplemental info', course_description_path(@course)  %> 
 <% if @course.hals.size > 0  %>
-| <%= link_to 'blogs', course_blogs_path(@course)  %> 
+	| <%= link_to 'blogs', course_blogs_path(@course)  %> 
 <% end %>
 <% followers = @course.get_course_followers
 if followers.size > 0  %>
-| <%= link_to 'people', course_people_path(@course)  %> 
+	| <%= link_to 'people', course_people_path(@course)  %> 
 <% end %>
 <BR><BR>
+
+ <%= button_to 'Join Course', join_course_path(@course)  %> 
 
 <% if @course.user == current_user %>
 	<% if !@course.published? %>
@@ -18,6 +20,8 @@ if followers.size > 0  %>
 	<% end %>
 	<%= link_to 'share on fb  |', share_course_on_fb_path(@course) if current_user.provider == "facebook"%>
 	<%= link_to 'Edit course', edit_course_path(@course) %><BR><BR>
+	<%= link_to 'Delete course', @course, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<BR><BR>
 <% end %>
 
 

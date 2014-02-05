@@ -5,6 +5,9 @@
 	<BR>
 	Insights: <%= hal.insights %>
 	<BR>
+	<strong>Tags: </strong>
+	<%= render :partial => 'shared/tag_display', locals: {tags: hal.tags} %>
+	<BR>
 	Help: <%= hal.help %>
 	<BR>
 	User:<% if (hal.user) then %>

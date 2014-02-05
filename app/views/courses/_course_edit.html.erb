@@ -16,3 +16,4 @@ status:  you're missing blah blah<BR>
 	this course is published.  See it <%= link_to 'here', @course %>.  <BR>
 	<%= link_to 'Share it on fb', share_course_on_fb_path(@course) %>
 <% end %>
+<%= link_to 'Delete course', @course, method: :delete, data: { confirm: 'Are you sure?' } %>

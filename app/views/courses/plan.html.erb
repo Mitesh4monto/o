@@ -34,6 +34,10 @@
 		<strong>description</strong>: <%= raw @activity.description %><BR>
 		<strong>Timing:</strong><%= render :partial => 'strategies/timing' %>
 		<BR>
+		<strong>Tags: </strong>
+		<%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
+		<BR>
+			
 
 		<% if @activity.type == "ActivityInSequence" %>
 		<BR><b>Activities in the sequence:</b><BR>

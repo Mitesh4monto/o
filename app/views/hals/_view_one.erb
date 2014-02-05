@@ -1,18 +1,40 @@
-entry: <%= hal.entry %>
+<%= hal.created_at.strftime("%m/%d/%Y") %> - 
+<strong>entry</strong>: <%= hal.entry %>
 <BR>
-Insights: <%= hal.insights %>
+<strong>Insights</strong>: <%= hal.insights %>
 <BR>
-Help: <%= hal.help %>
+<strong>Tags: </strong>
+<%= render :partial => 'shared/tag_display', locals: {tags: hal.tags} %>
 <BR>
-User:<%= link_to hal.user.name, hal.user %>
+<strong>Help</strong>: <%= hal.help %>
 <BR>
-	<% if hal.halable %>
-about:<%= link_to shorten(hal.halable.text, 40), hal.halable %>
-
-<BR>
+<% if show_user %>
+	<strong>User</strong>:
+	<% if (hal.user) then %>
+		<%=  link_to hal.user.name, hal.user %>
+	<% else  %> 
+		Anonymous
+	<% end  %>
+	<BR>
+<% end %>
+<% if hal.halable %>
+	<strong>about</strong>:<%= link_to shorten(hal.halable.text, 40), hal.halable %>
+	<BR>
 <% end %>
 
 <% if hal.fromable_type %>
-from:<%= hal.fromable_type %> id:<%= hal.fromable_id %> -- <%= link_to shorten(hal.fromable.text, 40), hal.fromable if hal.fromable %>
+	from:<%= hal.fromable_type %> id:<%= hal.fromable_id %> -- <%= link_to shorten(hal.fromable.text, 40), hal.fromable if hal.fromable %>
 <% end %>
-<hr>
+
+<BR>
+
+<% hal.comments.each do |comment| %>
+	Comment by <%= link_to comment.user.name, comment.user %> at <%= comment.created_at.strftime("%m/%d/%Y")%>
+	<BR>
+	<%= comment.body %> <BR>
+	<BR>
+	<% if (current_user && (comment.user_id == current_user.id || hal.user_id == current_user.id)) then %>
+        <%= link_to 'Delete', comment, method: :delete %>
+	<% end %>
+<% end %>
+

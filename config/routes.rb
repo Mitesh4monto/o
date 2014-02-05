@@ -47,10 +47,11 @@ Opp::Application.routes.draw do
   get "courses/overview/:id", to: 'courses#overview', as: 'course_overview'
   get "courses/blogs/:id", to: 'courses#blogs', as: 'course_blogs'
   get "courses/people/:id", to: 'courses#people', as: 'course_people'
-  get "courses/show/:part/:id", to: 'courses#show', as: 'course_show'  
+  get "courses/show/:part/:id", to: 'courses#show', as: 'course_show'
   get "courses/overview_edit/:id", to: 'courses#overview_edit', as: 'course_overview_edit'
   get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'
   get "courses/publish_course/:id", to: 'courses#publish_course', as: 'publish_course'
+  resources :courses
   
 
   match "share_course_on_fb/:id", to: "courses#share_course_on_fb", as: "share_course_on_fb"
@@ -85,7 +86,6 @@ Opp::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
     
-  resources :courses
   resources :hals
 
   match 'users/myprofile',  :controller => "users", :action => "myprofile"
@@ -104,7 +104,7 @@ Opp::Application.routes.draw do
   
   resources :comments
 
-  match 'join_course/:id',  :controller => "courses", :action => "join"
+  match 'join_course/:id',  :controller => "courses", :action => "join", :as => "join_course"
 
   match 'co',  :controller => "courses", :action => "index"
   root :to => "home#index"

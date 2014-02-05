@@ -12,6 +12,7 @@ gem 'acts_as_list'
 gem "RedCloth"
 gem 'koala'
 gem "acts_as_paranoid"
+gem "acts-as-taggable-on"
 gem 'chronic'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate', '~> 3.0'

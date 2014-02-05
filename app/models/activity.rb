@@ -4,6 +4,7 @@ class Activity < ActiveRecord::Base
   include ActionLogging
   has_many :action_logs, :as => :loggable
   acts_as_paranoid
+  acts_as_taggable
   default_scope order('position')
    
   has_many :commitment_marks, :as => :cmable, :dependent => :destroy
@@ -18,7 +19,8 @@ class Activity < ActiveRecord::Base
   belongs_to :strategy
   acts_as_list scope: :strategy
 
-  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio
+  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio, :tag_list
+  
   attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio
   
   validates :title, :presence => {:message => "no blanky"}

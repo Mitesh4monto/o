@@ -13,21 +13,17 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 <strong>Timing</strong>: <%= @activity.kind_of_timing %><BR>
 <BR><strong>timing expression</strong>: <%= @activity.timing_expression %><BR>
 <strong>duration</strong>: <%= @activity.timing_duration %>
+<BR>
+<strong>Tags: </strong>
+<%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
+
 <BR><BR>
 
 
 <strong>hals</strong>:<BR>
 <% @hals.each do |hal| %>
-
-<%= hal.created_at.strftime("%m/%d/%Y") %>
-	entry: <%= hal.entry %>
-	<BR>
-	Insights: <%= hal.insights %>
-	<BR>
-	Help: <%= hal.help %>
-	<BR>
-	By:<%= link_to hal.user.name, hal.user %> 
-
+	<%= render :partial => 'hals/view_one', locals: {hal: hal, show_user: true} %>
+<hr>
 <% end %>
 
 <% if @related_hals.size > 0 %>
@@ -35,7 +31,8 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 	<b>Related Hals:</b>
 	<BR>
 	<% @related_hals.each do |hal| %>
-		<%= render :partial => 'hals/view_one', locals: {hal: hal} %>
+		<%= render :partial => 'hals/view_one', locals: {hal: hal, show_user: true} %>
+		<hr>
 	<% end %>
 <% end %>
 

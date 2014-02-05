@@ -11,17 +11,23 @@
 <BR><BR>
 
 current activity:
-title:<%= @activity.title %><BR>
-description: <%= raw @activity.description %><BR>
+<strong>title</strong>:<%= @activity.title %><BR>
+<strong>description</strong>: <%= raw @activity.description %><BR>
 <%= link_to 'edit activity', edit_activity_path(@activity) %>
 <BR>
-from:<%= @activity.from_id %><BR>
+<% if @activity.from %>
+See original <%= link_to "activity", @activity.from %><BR>
+<% end %>
+
 <% if @course %>
 from course <%= link_to @course.name, @course %><BR>
 <% elsif @from_user_activity %>
 from user <%= @from_user_activity.name %>
 <% end %>
 <%= render :partial => 'timing' %>
+<BR>
+<strong>Tags: </strong>
+<%= render :partial => 'shared/tag_display' %>
 <BR>
 <%= link_to 'blog about', hal_about_activity_path(@activity.id) %>
 

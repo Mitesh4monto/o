@@ -20,7 +20,9 @@ Course overview:
 
 
 	  <%= f.inputs :name, :overview, :about_the_author %>
-
+	
+	<%= f.input  :tag_list, :label => "enter comma separated tags" %>
+	
 	<%= image_tag @course.course_image.url(:medium) %>
 	<div>new image:<br />
 	<%= f.file_field :course_image %></div>

@@ -14,6 +14,9 @@
 	<BR>
 	<%= @course.about_the_author %>
 	<BR>
+	<strong>Tags: </strong>
+	<%= render :partial => 'shared/tag_display', locals: {tags: @course.tags} %>
+	<BR>
 	<% if @course.external_site %>
 		<strong>External site:</strong> <%= @course.external_site %>
 		<BR>

@@ -1,40 +1,9 @@
 <BR>
 <% hals.each do |hal| %>
-	<% if show_user %>
-		Entry from User:<% if (hal.user) then %>
-		<%=  link_to hal.user.name, hal.user %>
-		<% else  %> 
-		Anonymous
-		<% end  %> 
-	<% end  %> 
+	<%= render :partial => 'hals/view_one', locals: {hal: hal, show_user: true} %>
 
-at <%= hal.created_at.strftime("%m/%d/%Y") %>
-<BR>	entry: <%= hal.entry %>
-	<BR>
-	Insights: <%= hal.insights %>
-	<BR>
-	Help: <%= hal.help %>
-	<BR>
-		<% if hal.halable_type == "Activity" %> <%= link_to "about", hal.halable %> <% end %>
-about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
-<% if (current_user && (hal.user_id == current_user.id)) then %>
-	<%= link_to "view", hal %>
-<% end %>
-
-	<BR>
-	from:<%= hal.fromable_type %> id:<%= link_to hal.fromable_id, hal.fromable %>
-	
-	<BR><BR>
-
+	<% commenting = true if local_assigns[:commenting].nil? %>
 	<% if commenting %>		
-		<% hal.comments.each do |comment| %>
-	    	comment: <%= comment.body %> <BR>
-			made by <%= link_to comment.user.name, comment.user %><BR>
-			<% if (current_user && (comment.user_id == current_user.id || hal.user_id == current_user.id)) then %>
-		        <%= link_to 'Delete', comment, method: :delete %>
-			<% end %>
-	    <% end %>
-				
 		<h2>Add a comment:</h2>
 		<%= semantic_form_for Comment.new do |f| %>
 		      <%= f.text_area :body %>
@@ -43,6 +12,5 @@ about:	<%=  hal.halable_type %> of id <%=  hal.halable_id %>
 		 <%= f.actions %>
 	    <% end %>
     <% end %>
-	
 	
 <% end %>

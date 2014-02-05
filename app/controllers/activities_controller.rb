@@ -90,7 +90,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.save
         if course_id
-          format.html { redirect_to course_plan_path(course_id), notice: 'Activity was successfully created.' }
+          format.html { redirect_to course_plan_edit_path(course_id), notice: 'Activity was successfully created.' }
         elsif params[:seq_activity]
           format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
         else

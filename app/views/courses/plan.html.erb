@@ -16,6 +16,10 @@
 		<% end %>
 			<BR>
 	<% end %>
+	<% if @course.user and @course.user == current_user %>
+	<BR><BR>
+		<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
+	<% end %>
 	</ul>
 </div>
 <div class="span4">

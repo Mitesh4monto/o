@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205073902) do
+ActiveRecord::Schema.define(:version => 20140205220814) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20140205073902) do
   end
 
   create_table "activities", :force => true do |t|
-    t.string   "title"
+    t.text     "title"
     t.text     "description"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(:version => 20140205073902) do
     t.integer  "sequence_order"
     t.integer  "position"
     t.string   "kind_of_timing"
-    t.string   "timing_expression"
+    t.text     "timing_expression"
     t.string   "timing_duration"
     t.integer  "strategy_id"
     t.integer  "course_id"
-    t.string   "customization"
+    t.text     "customization"
     t.integer  "goal_id"
     t.datetime "deleted_at"
     t.string   "type"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20140205073902) do
   end
 
   create_table "courses", :force => true do |t|
-    t.string   "name"
+    t.text     "name"
     t.integer  "user_id"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
@@ -115,11 +115,11 @@ ActiveRecord::Schema.define(:version => 20140205073902) do
     t.string   "course_image_content_type"
     t.integer  "course_image_file_size"
     t.datetime "course_image_updated_at"
-    t.string   "external_site"
+    t.text     "external_site"
   end
 
   create_table "goals", :force => true do |t|
-    t.string   "title"
+    t.text     "title"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

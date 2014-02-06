@@ -27,7 +27,7 @@ from user <%= @from_user_activity.name %>
 <%= render :partial => 'timing' %>
 <BR>
 <strong>Tags: </strong>
-<%= render :partial => 'shared/tag_display' %>
+<%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
 <BR>
 <%= link_to 'blog about', hal_about_activity_path(@activity.id) %>
 
@@ -76,13 +76,11 @@ $(function() {
 <% if @activity.type == "ActivityInSequence" %>
 <BR><b>Activities in the sequence:</b><BR>
 	<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
-		<%= activity_in_sequence.title %>
-		<!-- another link. uses the same overlay -->
-		<div id="fsd" href="http://www.google.com" rel="#overlay" style="text-decoration:none">
-		  <button type="button">Show another page</button>
-		</div>
-		
-		<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id if @activity.activity_sequence.current_activity != activity_in_sequence %><BR>
+		<%= activity_in_sequence.title %>		
+		<% if @activity.activity_sequence.current_activity != activity_in_sequence %>
+		<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
+		<% else %> << Current
+		<% end %><BR>
 	<% end %>
 
 <% end %>

@@ -4,4 +4,8 @@ class InfoController < ApplicationController
 
   def eula
   end
+  
+  def privacy
+  end
+
 end

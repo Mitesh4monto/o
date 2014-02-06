@@ -59,6 +59,7 @@ Opp::Application.routes.draw do
   # static pages
   get "about_us", to: 'info#about', as: 'about'
   get "eula", to: 'info#eula', as: 'eula'
+  get "privacy", to: 'info#privacy', as: 'privacy'
 
   get "contact_us", to: 'messages#new', as: 'contact_us'
   resources :messages

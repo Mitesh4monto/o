@@ -73,8 +73,7 @@ class ActivitiesController < ApplicationController
         redirect_to :myp, :notice => "not yours"
         return
       end
-      @activity.strategy = @course.strategy      
-      @activity.course_id = course_id;
+      @course.add_activity(@activity)
     elsif (params[:seq_activity])
       existing_act = Activity.find_by_id(params[:seq_activity])
       @activity.course_id = existing_act.course_id
@@ -115,7 +114,7 @@ class ActivitiesController < ApplicationController
           format.html { redirect_to mypd_path(@activity), notice: 'Activity was successfully updated.' }
           format.json { head :no_content }
         elsif @activity.course_activity?
-          format.html { redirect_to course_plan_path(@activity.strategy.course), notice: 'Activity was successfully created.' }
+          format.html { redirect_to course_plan_edit_path(@activity.strategy.course), notice: 'Activity was successfully created.' }
           format.json { head :no_content }          
         else 
           format.html { redirect_to root_path, notice: 'Activity was successfully updated.' }

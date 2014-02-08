@@ -8,7 +8,7 @@
 	<%= image_tag course.course_image.url(:thumb) if course.course_image.url%></td>
 					    <td><%= link_to course.user.name, course.user if course.user %></td>
     <td><%= link_to course.name, course %></td>
-    <td><%= short_description(course) %></td>
+    <td><%= raw short_description(course) %></td>
     <td>creator:<%= course.user_id %></td>
     <td><%= course.hals.where("privacy != 0").size %> entries about this course</td>
 	<% followers = @followers[course.id.to_s] || 0  %>

@@ -1,6 +1,6 @@
-<% if @activity.strategy.course %>
+<% if @activity.strategy and @activity.strategy.course %>
 Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
-<% elsif @activity.user %>
+<% elsif @activity.user and !@activity.activity_sequence_id %>
 In <%= link_to @activity.user.name, @activity.user %>'s plan
 <% end %>
 

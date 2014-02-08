@@ -50,8 +50,9 @@
 
 <% elsif @activity %>
 	<b>Activity</b><BR>
-	title:<%= @activity.title %><BR>
-	description: <%= raw @activity.description %><BR>
+	<strong>title</strong>:<%= @activity.title %><BR>
+	<strong>goal</strong>: <%= raw @activity.goal_text %><BR>
+	<strong>description</strong>: <%= raw @activity.description %><BR>
 	<BR>
 	<%= render :partial => 'strategies/timing' %>
 	<BR>

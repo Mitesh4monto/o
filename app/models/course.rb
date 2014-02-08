@@ -38,12 +38,25 @@ class Course < ActiveRecord::Base
   def text
     self.name + " -- " + self.overview
   end
+  
+  # return true if there is at least one customization in the course
+  # currently on activities only
+  def has_customizations?
+    self.strategy.activities.each do |activity|
+      return true if !activity.customization.empty?
+    end
+    return false
+  end
 
   # create strategy object for course after create
   def create_strategy
     CourseStrategy.create(:user_id => self.user_id, :course_id => self.id)
   end
 
+  def add_activity(activity)
+    activity.strategy = self.strategy      
+    activity.course_id = self.id;    
+  end
   
   # create a course based on a user strategy
   def self.create_from_strategy(strategy)

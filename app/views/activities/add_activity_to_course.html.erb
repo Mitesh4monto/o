@@ -1,8 +1,8 @@
 Add activity to course
 
-<%= semantic_form_for @activity do |f| %>
+<%= semantic_form_for @activity.becomes(Activity) do |f| %>
 	<%= hidden_field_tag 'course_id', @course_id %>
-	<%= f.inputs :title,  :customization %>
+	<%= f.inputs :title,  :customization, :goal_text %>
     <%= f.text_area :description, :class => 'ckeditor' %>
 
 	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>

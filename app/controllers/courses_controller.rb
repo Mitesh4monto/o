@@ -68,9 +68,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])    
   end
   
-
   def plan
     @course = Course.find(params[:id])    
+    @by = params[:by]
     @activity = Activity.find_by_id(params[:activity_id])
     @activity = @course.strategy.activities.first if !@activity
   end
@@ -118,8 +118,13 @@ class CoursesController < ApplicationController
   def join
     @course = Course.find(params[:id])
     @course.add_user_to_course(current_user)
+    if @course.has_customizations?
+      notice = 'Course was successfully joined.  We recommend you turn on customizations to tweak it for you'
+    else
+      notice = 'Course was successfully joined'
+    end
     
-    redirect_to root_path, notice: 'Course was successfully joined.'
+    redirect_to root_path, notice: notice
     
   end
 

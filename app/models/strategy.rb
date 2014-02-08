@@ -18,7 +18,7 @@ class Strategy < ActiveRecord::Base
   end
   
   def text
-    
+    "STRAT"
   end
   
   # if a strategy contains a specific activity as defined by same object or same origin of object (course or user)

@@ -5,7 +5,10 @@
  <!-- <div class="row"> -->
 <div class="span4">
 	<strong>Plan</strong>:<BR>
-	 <% @course.strategy.activities.each do |activity| %>		
+		<% activty_map = get_activity_by_map(@course.strategy.activities) %>
+	 <% activty_map.each do |key, activities| %>
+<strong><%= @by || "Goal" %>: <%= key.empty? ? "none" : key %></strong><BR>
+	<% activities.each do |activity| %>
 		<% if (activity.activity_sequence_id) %>
 			Sequence starting with Activity: <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
 		<% else %>	
@@ -15,6 +18,7 @@
 			 >>
 		<% end %>
 			<BR>
+	<% end %>
 	<% end %>
 	<% if @course.user and @course.user == current_user %>
 	<BR><BR>
@@ -36,12 +40,17 @@
 		<b>Activity</b><BR>
 		<strong>title</strong>:<%= @activity.title %><BR>
 		<strong>description</strong>: <%= raw @activity.description %><BR>
+		<strong>goal</strong>: <%= raw @activity.goal_text %><BR>
 		<strong>Timing:</strong><%= render :partial => 'strategies/timing' %>
 		<BR>
 		<strong>Tags: </strong>
 		<%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
 		<BR>
 			
+		<% if @course.user and @course.user == current_user %>
+		<BR><BR>
+	    	<%= link_to 'Edit', edit_activity_path(@activity.id) %>
+		<% end %>
 
 		<% if @activity.type == "ActivityInSequence" %>
 		<BR><b>Activities in the sequence:</b><BR>

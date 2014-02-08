@@ -30,4 +30,7 @@ describe Course do
     user.following_course_id.should eq c.id
   end
 
+  it "can let you know if there are customization" do
+    
+  end
 end

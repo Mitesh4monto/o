@@ -23,6 +23,11 @@ FactoryGirl.define do
     # from_template_activity_id 1
   end
 
+  factory :activity_no_assoc, class: Activity do
+    title "MyString"
+    description "MyText"
+  end
+
   factory :template_activity, class: Activity do
     association :strategy, factory: :course_strategy    
     title "MyString3"

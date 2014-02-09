@@ -50,7 +50,7 @@ class CoursesController < ApplicationController
   def plan_edit
     @course = Course.find(params[:id])    
     @activity = Activity.find_by_id(params[:activity_id])
-    @activity = @course.strategy.activities.first if !@activity
+    @activity = @course.strategy.current_activities.first if !@activity
   end
 
   # owner edits plan
@@ -72,7 +72,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])    
     @by = params[:by]
     @activity = Activity.find_by_id(params[:activity_id])
-    @activity = @course.strategy.activities.first if !@activity
+    @activity = @course.strategy.current_activities.first if !@activity
   end
 
   def description
@@ -107,7 +107,7 @@ class CoursesController < ApplicationController
   end
   
   def course_ok?(course)
-    if course.strategy.activities.size > 0
+    if course.strategy.current_activities.size > 0
       true
     else
       flash[:errors] = "hey add some activities to your plan"

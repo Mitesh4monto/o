@@ -3,7 +3,7 @@
 <BR><BR>	
 
 
-<% if @course.strategy.activities.size == 0 %>
+<% if @course.strategy.current_activities.size == 0 %>
 	Here's what you do:  add activities
 <% end %>
 
@@ -15,7 +15,7 @@
 	    <div class="span4">
 			<strong>Plan</strong>:<BR>
 				<ul id="activities" data-update-url="<%= sort_activities_url %>">
-				 <% @course.strategy.activities.each do |activity| %>		
+				 <% @course.strategy.current_activities.each do |activity| %>		
 					 <%= content_tag_for :li, activity do %>
 					 	<span class="handle">[drag]</span>
 						<% if (activity.activity_sequence_id) %>
@@ -51,7 +51,7 @@
 <% elsif @activity %>
 	<b>Activity</b><BR>
 	<strong>title</strong>:<%= @activity.title %><BR>
-	<strong>goal</strong>: <%= raw @activity.goal_text %><BR>
+	<strong>goal</strong>: <%=  @activity.goal ? @activity.goal.title : "none"  %><BR>
 	<strong>description</strong>: <%= raw @activity.description %><BR>
 	<BR>
 	<%= render :partial => 'strategies/timing' %>

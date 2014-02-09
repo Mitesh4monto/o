@@ -47,19 +47,43 @@ class ActivitiesController < ApplicationController
   # Add a new activity to a course user has created
   def add_activity_to_course
     @activity = Activity.new
-    @course_id = params[:id]
-    @course = Course.find_by_id(@course_id)
+    @course = Course.find_by_id(params[:id])
     if (!@course || @course.user != current_user)
       redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
     end
     
   end
 
+  def create_activity_in_course
+    @activity = Activity.new(params[:activity])
+    @course = Course.find_by_id(params[:course_id])
+    if !@activity.new_goal_text.empty?
+      goal = @course.create_new_goal(@activity.new_goal_text)
+      @activity.goal_id = goal.id
+    end
+    if (@course.user_id != current_user.id)   # TODO do better?
+      redirect_to :myp, :notice => "not yours"
+      return
+    end
+    @course.add_activity(@activity)
+    @activity.user_id = current_user.id
+    respond_to do |format|
+      if @activity.save
+          format.html { redirect_to course_plan_edit_path(@course.id), notice: 'Activity was successfully created.' }
+      else
+          format.html { render action: "add_activity_to_course" }
+          format.json { render json: @activity.errors, status: :unprocessable_entity }
+      end
+    end    
+  end
+
+
   # GET /activities/1/edit
   def edit
     @activity = Activity.find(params[:id])
     redirect_to @activity, notice: 'No way, not yours.'  if (@activity.user_id != current_user.id)
   end
+  
 
   # POST /activities
   # POST /activities.json
@@ -67,14 +91,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(params[:activity])
     course_id = params[:course_id]    
     # if adding to a course, point act to course
-    if (course_id)
-      @course = Course.find_by_id(course_id)
-      if (@course.user_id != current_user.id)   # TODO do better?
-        redirect_to :myp, :notice => "not yours"
-        return
-      end
-      @course.add_activity(@activity)
-    elsif (params[:seq_activity])
+    if (params[:seq_activity])
       existing_act = Activity.find_by_id(params[:seq_activity])
       @activity.course_id = existing_act.course_id
       ActivitySequence.add_activity_to_sequence_with(@activity, existing_act)
@@ -88,9 +105,7 @@ class ActivitiesController < ApplicationController
     
     respond_to do |format|
       if @activity.save
-        if course_id
-          format.html { redirect_to course_plan_edit_path(course_id), notice: 'Activity was successfully created.' }
-        elsif params[:seq_activity]
+        if params[:seq_activity]
           format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
         else
           format.html { redirect_to myp_path, notice: 'Activity was successfully created.' }

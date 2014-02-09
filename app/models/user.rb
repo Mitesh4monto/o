@@ -106,25 +106,34 @@ class User < ActiveRecord::Base
   # TODO add rspec
   # add all the activities from a strategy (user or course) into user's strategy
   def add_to_my_strategy(strategy)
+    # copy all activities
     strategy.activities.each do |activity|
       if (!self.strategy.contains_activity(activity))
-        if (activity.type == "ActivityInSequence")
-          if (!self.strategy.contains_activity_sequence(activity))
-            as = activity.activity_sequence.amoeba_dup
-            as.from_id = activity.activity_sequence.id
-            as.user_id = self.id
-            self.strategy.activity_sequences << as
-            as.set_to_first
-            as.save
-          end
-        else
           # not currently in strategy => add it
           copied_activity = activity.amoeba_dup
-          copied_activity.user_id = self.strategy.user.id        
+          copied_activity.user_id = self.strategy.user.id
+          #  copy goal
+          if activity.goal
+            goal = Goal.where(title: activity.goal.title, strategy_id: self.strategy.id, user_id: self.id, course_id: activity.get_course_id).first
+            goal ||= Goal.create!(title: activity.goal.title, strategy_id: self.strategy.id, user_id: self.id, course_id: activity.get_course_id) 
+            copied_activity.goal = goal
+          end
           self.strategy.activities << copied_activity
-        end
       end
     end
+    
+    # copy all activitysequences
+    strategy.activity_sequences.each do |activity_sequence|
+      if (!self.strategy.contains_activity_sequence(activity_sequence))
+        as = activity_sequence.amoeba_dup
+        as.from_id = activity_sequence.id
+        as.user_id = self.id
+        self.strategy.activity_sequences << as
+        as.set_to_first
+        as.save
+      end
+    end
+    
     self.strategy.save
   end
 

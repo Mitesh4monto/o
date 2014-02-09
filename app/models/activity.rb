@@ -19,8 +19,8 @@ class Activity < ActiveRecord::Base
   belongs_to :strategy
   acts_as_list scope: :strategy
 
-  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio, :tag_list
-  
+  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio, :tag_list, :goal_id, :new_goal_text
+  attr_accessor :new_goal_text
   attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio
   
   validates :title, :presence => {:message => "no blanky"}
@@ -29,7 +29,12 @@ class Activity < ActiveRecord::Base
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
   
-  before_save :create_timing
+  before_save :create_timing #, :create_goal_from_name
+  
+  
+  def create_goal_from_name
+    create_goal(:title => new_goal_text) unless new_goal_text.blank?
+  end
   
   # text used for updates
   def text
@@ -95,6 +100,7 @@ class Activity < ActiveRecord::Base
     exclude_field :hals    
     exclude_field :from_template_hals
     exclude_field :comments
+    exclude_field :action_logs
     exclude_field :copied_activities            
     prepend :title => "Copy of "
     # set from template as original's from, or directly to original

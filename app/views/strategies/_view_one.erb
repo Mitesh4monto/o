@@ -1,15 +1,12 @@
 <%= stylesheet_link_tag "activities" %>
 
-<BR>
-description: <%= strategy.description %>
-<BR>
 	Activities:<BR>
 
 <ul id="activities" data-update-url="<%= sort_activities_url %>">
 <% activty_map = get_activity_by_map(strategy.activities) %>
 <% if activty_map.size > 1 %>
 	<% activty_map.each do |key, activities| %>
-		<strong>Goal: <%= key.empty? ? "none" : key %><%= "-- from course " + activities.first.course.name if activities.first.course and !key.empty?  %></strong><BR>
+		<strong><%= key.nil? ? "" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course   %></strong><BR>
 			<ul id="activities" data-update-url="<%= sort_activities_url %>">
 		<% activities.each do |activity| %>
 
@@ -30,7 +27,7 @@ description: <%= strategy.description %>
 		</ul>
 	<% end %>
 <% else %>
-<% strategy.activities.each do |activity| %>
+<% strategy.current_activities.each do |activity| %>
 
 
 <li class="activity" id="activity_<%= activity.id %>">

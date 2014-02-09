@@ -31,6 +31,7 @@ Opp::Application.routes.draw do
   get "activity_in_sequences/add_to_sequence/:id", to: "activity_in_sequences#add_to_sequence",  as: 'add_activity_to_sequence'
   
   get "activities/add_activity_to_course/:id", to: "activities#add_activity_to_course",  as: 'add_activity_to_course'
+  post "activities/create_activity_in_course/:id", to: "activities#create_activity_in_course",  as: 'create_activity_in_course'
   get "strategies/copy_activity/:id", to: "strategies#copy_activity",  as: 'copy_activity'
 
   get "activities/mine", to: "strategies#mine",  as: 'user_strategy'

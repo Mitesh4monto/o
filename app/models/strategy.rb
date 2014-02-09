@@ -1,6 +1,7 @@
 class Strategy < ActiveRecord::Base
   acts_as_paranoid
   has_many :activities, :dependent => :destroy  #, :as => :activityable, :dependent => :destroy 
+  has_many :goals, :dependent => :destroy
   has_many :activity_sequences, :dependent => :destroy 
   belongs_to :from, class_name: Strategy, :foreign_key => 'from_id'
 
@@ -13,6 +14,10 @@ class Strategy < ActiveRecord::Base
     exclude_field :hals
   end
   
+  def current_activities
+    self.activities + Activity.find( ActivitySequence.where(strategy_id: self.id).pluck(:current_activity_id))
+  end
+  
   def strategy
     self
   end
@@ -21,9 +26,13 @@ class Strategy < ActiveRecord::Base
     "STRAT"
   end
   
+  def create_new_goal(goal_title, params = {})
+    Goal.create(params.merge(:title => goal_title, :user_id => self.user_id, :strategy_id => self.id))
+  end
+  
   # if a strategy contains a specific activity as defined by same object or same origin of object (course or user)
   def contains_activity(activity)
-    self.activities.each do |strat_activity|
+    self.current_activities.each do |strat_activity|
       if (strat_activity.id == activity.id || strat_activity.from_id == activity.id || (strat_activity.from_id == activity.from_id && activity.from_id != nil))
         return true
       end
@@ -41,7 +50,7 @@ class Strategy < ActiveRecord::Base
   end
   
   def contains_customizations
-    self.activities.any? {|activity| !activity.customization.blank?}
+    self.current_activities.any? {|activity| !activity.customization.blank?}
   end
   
   def copy_activity_to_strategy(activity)
@@ -57,12 +66,7 @@ class Strategy < ActiveRecord::Base
   def add_activity(activity)
     self.activities << activity
   end
-  
-  # remove an activity from a strategy
-  def delete_activity(activity)    
-    self.activities.destroy(activity)
-  end
-  
+    
   
   def self.c    
     s = Strategy.create()
@@ -92,7 +96,7 @@ class Strategy < ActiveRecord::Base
 def print
   puts "user: #{self.user_id}"
   puts "activities: "
-  self.activities.each {|activity| activity.print}
+  self.current_activities.each {|activity| activity.print}
 end
   
 end

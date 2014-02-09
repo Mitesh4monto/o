@@ -5,9 +5,9 @@
  <!-- <div class="row"> -->
 <div class="span4">
 	<strong>Plan</strong>:<BR>
-		<% activty_map = get_activity_by_map(@course.strategy.activities) %>
+		<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
 	 <% activty_map.each do |key, activities| %>
-<strong><%= @by || "Goal" %>: <%= key.empty? ? "none" : key %></strong><BR>
+<strong><%= @by || "Goal" %>: <%= key.nil? ? "none" : key.title %></strong><BR>
 	<% activities.each do |activity| %>
 		<% if (activity.activity_sequence_id) %>
 			Sequence starting with Activity: <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
@@ -40,7 +40,7 @@
 		<b>Activity</b><BR>
 		<strong>title</strong>:<%= @activity.title %><BR>
 		<strong>description</strong>: <%= raw @activity.description %><BR>
-		<strong>goal</strong>: <%= raw @activity.goal_text %><BR>
+		<strong>goal</strong>: <%= raw @activity.goal.title if @activity.goal %><BR>
 		<strong>Timing:</strong><%= render :partial => 'strategies/timing' %>
 		<BR>
 		<strong>Tags: </strong>

@@ -79,12 +79,8 @@ class ActivitySequence < ActiveRecord::Base
   def set_next
     if has_next?
       position= self.current_activity.position
-      self.current_activity.position = nil
-      self.current_activity.strategy_id = nil
-      self.current_activity.save      
       self.current_activity = self.current_activity.lower_item
       self.current_activity.position = position
-      self.current_activity.strategy_id = self.strategy_id    
       self.current_activity.save
       self.save
     end
@@ -94,12 +90,9 @@ class ActivitySequence < ActiveRecord::Base
   def set_previous
     if has_previous?
       position= self.current_activity.position
-      self.current_activity.position = nil
-      self.current_activity.strategy_id = nil
       self.current_activity.save      
       self.current_activity = self.current_activity.higher_item
       self.current_activity.position = position
-      self.current_activity.strategy_id = self.strategy_id    
       self.current_activity.save
       self.save
     end
@@ -114,12 +107,8 @@ class ActivitySequence < ActiveRecord::Base
   def set_current(activity)
     if (self.activity_in_sequences.include?(activity)) then
       position= self.current_activity.position
-      self.current_activity.position = nil
-      self.current_activity.strategy_id = nil
-      self.current_activity.save      
       self.current_activity = activity
       self.current_activity.position = position
-      self.current_activity.strategy_id = self.strategy_id    
       self.current_activity.save
       self.save
     end      

@@ -1,7 +1,9 @@
 class Goal < ActiveRecord::Base
   acts_as_paranoid
-  include ActionLogging
-  has_many :action_logs, :as => :loggable, :dependent => :destroy
+  # include ActionLogging
+  # has_many :action_logs, :as => :loggable, :dependent => :destroy
+  belongs_to :strategy
+  belongs_to :course
 
   belongs_to :from, class_name: Goal, :foreign_key => 'from_id'
   has_many :hals, :as => :halable #, :dependent => :destroy
@@ -23,10 +25,6 @@ class Goal < ActiveRecord::Base
     })
   end
 
-  
-  def strategy
-    self.activities.first.strategy
-  end
 
   
   # add a hal to list of hals for activity
@@ -35,5 +33,8 @@ class Goal < ActiveRecord::Base
     self.hals << hal
   end
 
+  def foc(strategy, title)
+    Goal.find_or_create_by!(title: title, strategy: strategy.id, user_id: strategy.user_id)
+  end
 
 end

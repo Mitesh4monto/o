@@ -1,7 +1,7 @@
 
   <div class="row">
     <div class="span4">
-    	<% if current_user.strategy.activities.empty? %>
+    	<% if current_user.strategy.current_activities.empty? %>
 			Strat empty.  You might want to ...<BR>
 			<%= link_to 'Add a course from here....', courses_path %><BR>
 			<%= link_to 'Add and activity', add_activity_path %><BR>
@@ -21,7 +21,7 @@
     <div class="span6">
 		<b>my entries: </b>
 		<BR>
-		<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals.first(3), show_user: false} %>
+		<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals.first(3), show_user: false, commenting: false} %>
 
 
 

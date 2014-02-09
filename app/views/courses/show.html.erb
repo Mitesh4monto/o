@@ -55,7 +55,7 @@ This is your course.  Care to...
 
 <ul id="activities" data-update-url="<%= sort_activities_url %>">
 
- <% @course.strategy.activities.each do |activity| %>		
+ <% @course.strategy.current_activities.each do |activity| %>		
 
  <%= content_tag_for :li, activity do %>
 	Activity:  <%= link_to activity.title, show_activity_path(activity.id) %>

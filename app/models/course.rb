@@ -4,6 +4,9 @@ class Course < ActiveRecord::Base
   
   has_many :action_logs, :as => :loggable
   
+  # everyone's goals copied...?
+  has_many :goals
+  
   acts_as_paranoid
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
@@ -42,7 +45,7 @@ class Course < ActiveRecord::Base
   # return true if there is at least one customization in the course
   # currently on activities only
   def has_customizations?
-    self.strategy.activities.each do |activity|
+    self.strategy.current_activities.each do |activity|
       return true if !activity.customization.empty?
     end
     return false
@@ -52,6 +55,11 @@ class Course < ActiveRecord::Base
   def create_strategy
     CourseStrategy.create(:user_id => self.user_id, :course_id => self.id)
   end
+
+  def create_new_goal(goal_title)
+    g = self.strategy.create_new_goal(goal_title, {:course_id => self.id})
+  end
+
 
   def add_activity(activity)
     activity.strategy = self.strategy      

@@ -31,6 +31,9 @@ describe Course do
   end
 
   it "can let you know if there are customization" do
+    c = FactoryGirl.create(:course)
+    a = FactoryGirl.create(:activity_no_assoc)
+    c.strategy.current_activities
     
   end
 end

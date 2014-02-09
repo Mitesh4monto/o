@@ -17,14 +17,6 @@ describe Strategy do
     s.activities.include?(a).should be_true
   end
 
-  it "can delete an activity from a itself" do
-    s = FactoryGirl.create(:strategy)
-    a = FactoryGirl.create(:activity)
-    s.add_activity(a)
-    s.delete_activity(a)
-    s.activities.include?(a).should be_false
-  end
-  
   it "can copy an activity to itself" do
     s = FactoryGirl.create(:strategy)
     a = FactoryGirl.create(:activity)

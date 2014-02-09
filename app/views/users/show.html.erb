@@ -9,7 +9,7 @@
 <BR>
 <strong>plan</strong>:<BR>
 		<strong>Activities</strong>:<BR>
-	<% @user.strategy.activities.each do |activity| %>
+	<% @user.strategy.current_activities.each do |activity| %>
 	Activity:	<%= activity.id %>, <%= activity.title %> -- <%= link_to "Add this activity to my plan" , copy_activity_path(activity.id) %><BR>
 <% end %>
 

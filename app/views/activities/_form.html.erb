@@ -15,7 +15,10 @@
 
 
 	<%= f.input :title %>
-	<%= f.input :goal_text %>
+
+		<%= f.input :goal,  :collection => current_user.strategy.goals, :prompt => "Select a Goal"  %>
+		Or create new:
+		 <%= f.text_field :new_goal_text %>
 	<BR>
 <%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
 

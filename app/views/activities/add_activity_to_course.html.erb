@@ -1,8 +1,14 @@
 Add activity to course
 
-<%= semantic_form_for @activity.becomes(Activity) do |f| %>
-	<%= hidden_field_tag 'course_id', @course_id %>
-	<%= f.inputs :title,  :customization, :goal_text %>
+<%= semantic_form_for @activity.becomes(Activity), :url => create_activity_in_course_path do |f| %>
+	<%= hidden_field_tag 'course_id', @course.id %>
+	<%= f.inputs :title,  :customization %>
+
+<% select_goal = "Select a goal" %>	
+	<%= f.input :goal,  :as => :select, :collection => @course.strategy.goals, :prompt => "Select a Goal"  %>
+	Or create new:
+	 <%= f.text_field :new_goal_text %>
+	
     <%= f.text_area :description, :class => 'ckeditor' %>
 
 	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>

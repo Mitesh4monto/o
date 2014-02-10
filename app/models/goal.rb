@@ -11,21 +11,6 @@ class Goal < ActiveRecord::Base
   has_many :activities #, :as => :activityable, :dependent => :destroy 
   has_one :user
   
-  amoeba do
-    enable
-    prepend :title => "Copy of "
-    exclude_field :user_id
-    # set from template as original's from, or directly to original
-    customize(lambda { |original_goal,new_goal|
-      if original_goal.from_id
-        new_goal.from_id = original_goal.from_id
-      else 
-        new_goal.from_id = original_goal.id
-      end
-    })
-  end
-
-
   
   # add a hal to list of hals for activity
   def hal_about(hal)
@@ -33,8 +18,13 @@ class Goal < ActiveRecord::Base
     self.hals << hal
   end
 
-  def foc(strategy, title)
+  def self.foc(strategy, title)
     Goal.find_or_create_by!(title: title, strategy: strategy.id, user_id: strategy.user_id)
+  end
+  
+  def copy_to_user(user)
+      goal = Goal.where(title: self.title, strategy_id: user.strategy.id, user_id: user.id, course_id: self.course_id).first
+      goal ||= Goal.create!(title: self.title, strategy_id: user.strategy.id, user_id: user.id, course_id: self.course_id) 
   end
 
 end

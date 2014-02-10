@@ -8,14 +8,15 @@ class Strategy < ActiveRecord::Base
   has_many :hals, :as => :halable #, :dependent => :destroy
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
   
-  amoeba do
-    enable
-    nullify :user_id
-    exclude_field :hals
-  end
   
+  #  get all activities in strategy combined with all current activities in activity sequences
   def current_activities
-    self.activities + Activity.find( ActivitySequence.where(strategy_id: self.id).pluck(:current_activity_id))
+    ids = self.activities.pluck(:id) + ActivitySequence.where(strategy_id: self.id).pluck(:current_activity_id)
+    if (ids.size > 0)
+     Activity.where( "id in (#{ids.join(',')})")
+   else 
+     []
+   end
   end
   
   def strategy

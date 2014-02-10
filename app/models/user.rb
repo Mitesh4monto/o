@@ -109,28 +109,14 @@ class User < ActiveRecord::Base
     # copy all activities
     strategy.activities.each do |activity|
       if (!self.strategy.contains_activity(activity))
-          # not currently in strategy => add it
-          copied_activity = activity.amoeba_dup
-          copied_activity.user_id = self.strategy.user.id
-          #  copy goal
-          if activity.goal
-            goal = Goal.where(title: activity.goal.title, strategy_id: self.strategy.id, user_id: self.id, course_id: activity.get_course_id).first
-            goal ||= Goal.create!(title: activity.goal.title, strategy_id: self.strategy.id, user_id: self.id, course_id: activity.get_course_id) 
-            copied_activity.goal = goal
-          end
-          self.strategy.activities << copied_activity
+          self.strategy.activities << activity.copy_to_user(self)
       end
     end
     
     # copy all activitysequences
     strategy.activity_sequences.each do |activity_sequence|
       if (!self.strategy.contains_activity_sequence(activity_sequence))
-        as = activity_sequence.amoeba_dup
-        as.from_id = activity_sequence.id
-        as.user_id = self.id
-        self.strategy.activity_sequences << as
-        as.set_to_first
-        as.save
+        as = activity_sequence.copy_to_user(self)
       end
     end
     
@@ -142,15 +128,6 @@ class User < ActiveRecord::Base
   # get list of courses user has activities from     TODO add rspec for this
   def get_following_courses
      Course.find_all_by_id(self.strategy.activities.pluck(:course_id).uniq.compact)
-    # courses = []
-    # # go through each activity and if it's from a course add it to list
-    # self.strategy.activities.each do |activity|
-    # activity = Activity.find_by_id(activity.from_id)
-    #   if (activity && !activity.course.nil? && !courses.include?(activity.course))
-    #     courses << activity.course if activity.course.nil?
-    #   end
-    # end
-    # return courses
   end
   
   

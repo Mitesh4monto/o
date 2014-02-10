@@ -5,7 +5,7 @@
 <% @courses.each do |course| %>
   <tr>
     <td>id:<%= course.id %>
-	<%= image_tag course.course_image.url(:thumb) if course.course_image.url%></td>
+	<%= link_to image_tag(course.course_image.url(:thumb)), course if course.course_image.url%></td>
 					    <td><%= link_to course.user.name, course.user if course.user %></td>
     <td><%= link_to course.name, course %></td>
     <td><%= raw short_description(course) %></td>

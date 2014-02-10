@@ -13,7 +13,9 @@ This is your course.  Care to...
 <BR><BR>
 
 
-<%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %>
+<% if @course.published? %>
+	<%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %>
+<% end %>
 
 
 <%= link_to "entries", :controller => "courses", :action => "hals", :id => @course.id %>

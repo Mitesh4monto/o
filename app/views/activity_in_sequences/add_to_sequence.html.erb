@@ -3,6 +3,11 @@ Add activity to sequence with <%= @seq_activity.title %>
 <%= semantic_form_for @activity do |f| %>
 	<%= hidden_field_tag 'seq_activity', @seq_activity.id %>
 	<%= f.inputs :title,  :customization %>
+	<% select_goal = "Select a goal" %>	
+		<%= f.input :goal,  :as => :select, :collection => @seq_activity.activity_sequence.strategy.goals, :prompt => "Select a Goal"  %>
+		Or create new:
+		 <%= f.text_field :new_goal_text %>
+
     <%= f.text_area :description, :class => 'ckeditor' %>
 
 	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>

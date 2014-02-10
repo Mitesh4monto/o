@@ -11,18 +11,18 @@ class ActivityInSequencesController < ActivitiesController
     end
   end
 
-
-
-  # POST /activities
-  # POST /activities.json
+  # create new activity_in_sequence and place it in activity sequence.  create goal if new one specified
   def create
-    @seq_activity_id = params[:seq_activity]
     @activity = ActivityInSequence.new(params[:activity_in_sequence])
     # if adding to a course, point act to course
     existing_act = Activity.find_by_id(params[:seq_activity])
     @activity.course_id = existing_act.course_id
     ActivitySequence.add_activity_to_sequence_with(@activity, existing_act)
     @activity.user_id = current_user.id
+    if !@activity.new_goal_text.empty?
+      goal = existing_act.course.create_new_goal(@activity.new_goal_text)
+      @activity.goal_id = goal.id
+    end
     
     respond_to do |format|
       if @activity.save

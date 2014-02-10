@@ -66,19 +66,6 @@ class Course < ActiveRecord::Base
     activity.course_id = self.id;    
   end
   
-  # create a course based on a user strategy
-  def self.create_from_strategy(strategy)
-    c = Course.create
-    #hack
-    strat = strategy.amoeba_dup
-    strat.type = "CourseStrategy"
-    strat.save
-    c.course_strategy = CourseStrategy.find(strat.id)
-    c.user = strategy.user
-    c.save
-    c
-  end
-  
   # TODO checks and whatnot  !!!!  spec
   def add_user_to_course(user)
     user.add_to_my_strategy(self.strategy)

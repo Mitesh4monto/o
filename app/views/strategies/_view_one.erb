@@ -3,10 +3,10 @@
 	Activities:<BR>
 
 <ul id="activities" data-update-url="<%= sort_activities_url %>">
-<% activty_map = get_activity_by_map(strategy.activities) %>
-<% if activty_map.size > 1 %>
+<% activty_map = get_activity_by_map(strategy.current_activities) %>
+<% if activty_map.size > 0 %>
 	<% activty_map.each do |key, activities| %>
-		<strong><%= key.nil? ? "" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course   %></strong><BR>
+		<strong><%= key.nil? ? "none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course   %></strong><BR>
 			<ul id="activities" data-update-url="<%= sort_activities_url %>">
 		<% activities.each do |activity| %>
 
@@ -27,20 +27,20 @@
 		</ul>
 	<% end %>
 <% else %>
-<% strategy.current_activities.each do |activity| %>
+	<% strategy.current_activities.each do |activity| %>
 
 
-<li class="activity" id="activity_<%= activity.id %>">
-  	<span class="handle">[drag]</span>
+	<li class="activity" id="activity_<%= activity.id %>">
+	  	<span class="handle">[drag]</span>
 
-	<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
-	<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
+		<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
+		<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
 
-	Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
+		Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
 
-	<%= link_to "add entry about", hal_about_activity_path(activity.id)  %>
+		<%= link_to "add entry about", hal_about_activity_path(activity.id)  %>
 
-</li>
+	</li>
 
 <% end %>
 

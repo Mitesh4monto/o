@@ -8,11 +8,6 @@ class ActivitySequence < ActiveRecord::Base
   belongs_to :current_activity, class_name: ActivityInSequence, :foreign_key => 'current_activity_id'
 
 
-  amoeba do
-    enable
-    nullify :user_id
-  end
-
 
   #  ordered list of activities in sequence
   def activities
@@ -29,6 +24,7 @@ class ActivitySequence < ActiveRecord::Base
       existing_act.activity_sequence_id = as.id
       activity.type = "ActivityInSequence"
       existing_act.type = "ActivityInSequence"
+      existing_act.strategy_id = nil
       existing_act.save!
       activity.activity_sequence_id = as.id
       as.current_activity = as.activity_in_sequences.first
@@ -36,12 +32,26 @@ class ActivitySequence < ActiveRecord::Base
     end
   end
       
+  def copy_to_user(user)
+    as = self.dup
+    as.from_id = self.id
+    as.user_id = user.id
+    user.strategy.activity_sequences << as
+    self.activities.each do |activity|
+      new_activity = activity.copy_to_user(user)
+      new_activity.activity_sequence_id = as.id
+      new_activity.save
+    end
+    as.set_to_first
+    as.save
+    as
+  end
 
   # delete activity, remove from sequence and if it was current, set new current
   def destroy_activity(activity)
     # hacky  -- only one activiy in seq left after delete => destroy sequence and move last activity out
     if (self.activities.size == 2)
-      strategy_id = self.current_activity.strategy_id
+      strategy_id = self.strategy_id
       remaining_activity = self.activities.first if self.activities.first != activity
       remaining_activity = self.activities.last if self.activities.last != activity
       remaining_activity.activity_sequence = nil

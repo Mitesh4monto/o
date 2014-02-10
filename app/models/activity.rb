@@ -93,36 +93,19 @@ class Activity < ActiveRecord::Base
     end
   end
   
-  amoeba do
-    enable
-    nullify :user_id
-    # nullify :chapter_id
-    exclude_field :hals    
-    exclude_field :from_template_hals
-    exclude_field :comments
-    exclude_field :action_logs
-    exclude_field :copied_activities            
-    prepend :title => "Copy of "
-    # set from template as original's from, or directly to original
-    customize(lambda { |original_post,new_post|
-        })
-    customize([
-      lambda do |original_activity,new_activity|
-        if original_activity.from_id == nil then
-          new_activity.from_id = original_activity.id
-          puts original_activity.id
-        end
-      end,
-      lambda do |original_activity,new_activity| 
-        if original_activity.from_id then
-          new_activity.from_id = original_activity.from_id
-        end
-        # if original is within a course, put course info there
-        new_activity.course_id = original_activity.get_course_id
-      end
-    ])
+  # add this activity to a user's strategy
+  def copy_to_user(user)
+    activity = self.dup
+    activity.title = "KKopy of" + self.title
+    activity.user_id = user.id
+    activity.from_id = self.id
+    activity.strategy_id = user.strategy.id
+    activity.course_id = self.course_id
+    activity.goal = self.goal.copy_to_user(user) if self.goal
+    activity.save
+    activity
   end
-
+  
 
   # coruse this activity belongs to
   # if it's a user's, it should returns the course this activity was copied from if it exists
@@ -168,13 +151,6 @@ class Activity < ActiveRecord::Base
   end
   
   
-  # duplicate
-  def make_copy
-    a = self.amoeba_dup
-    a.save
-    a
-  end
-
   def print    
     puts "Activity  id: #{id}. title:" + self.title
     puts "strat: #{self.strategy_id}" 

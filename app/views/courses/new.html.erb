@@ -17,8 +17,8 @@ First tell us about your course:
 	    </div>
 	  <% end %>
 
-
-	  <%= f.inputs :name, :overview, :about_the_author %>
+    <%= f.text_field :name %>
+	  <%= f.inputs :overview, :about_the_author %>
 
 	<div>course image:<br />
 	<%= f.file_field :course_image %></div>

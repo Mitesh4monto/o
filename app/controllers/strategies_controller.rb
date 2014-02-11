@@ -20,7 +20,10 @@ class StrategiesController < ApplicationController
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     @udpates = ActionLog.latest(current_user)
     
-    @activity = Activity.find params[:id]
+    @activity = Activity.find_by_id params[:id]
+    if !@activity then
+      return redirect_to :myp      
+    end
     if (@activity.from_id) then
       @activity_from = Activity.find_by_id @activity.from_id
       if (@activity_from) then 

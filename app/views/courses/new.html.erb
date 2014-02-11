@@ -20,6 +20,8 @@ First tell us about your course:
     <%= f.text_field :name %>
 	  <%= f.inputs :overview, :about_the_author %>
 
+	<%= f.input  :tag_list, :label => "enter comma separated tags" %>
+
 	<div>course image:<br />
 	<%= f.file_field :course_image %></div>
 

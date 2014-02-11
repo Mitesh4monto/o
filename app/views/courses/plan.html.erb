@@ -7,7 +7,7 @@
 	<strong>Plan</strong>:<BR>
 		<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
 	 <% activty_map.each do |key, activities| %>
-<strong><%= @by || "Goal" %>: <%= key.nil? ? "none" : key.title %></strong><BR>
+<strong><%= @by || "Goal" %>: <%= key.nil? ? "" : key.title + "<BR>" %></strong>
 	<% activities.each do |activity| %>
 		<% if (activity.activity_sequence_id) %>
 			Sequence starting with Activity: <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>

@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     if @message.valid?
-      UserMailer.contact(@message, current_user).deliver
+      UserMailer.contact(@message, current_user).deliver!
       flash[:notice] = "Message sent! Thank you for contacting us."
       redirect_to controller: "Messages", action: 'sent'
     else

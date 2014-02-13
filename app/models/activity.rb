@@ -98,7 +98,12 @@ class Activity < ActiveRecord::Base
     activity = self.dup
     activity.title = "KKopy of" + self.title
     activity.user_id = user.id
-    activity.from_id = self.id
+    # point to original (self or self's from)
+    if (self.from_id)
+      activity.from_id = self.from_id
+    else
+      activity.from_id = self.id
+    end
     activity.strategy_id = user.strategy.id
     activity.course_id = self.course_id
     activity.goal = self.goal.copy_to_user(user) if self.goal
@@ -120,17 +125,6 @@ class Activity < ActiveRecord::Base
   end
   
 
-  # get strategy this activity is part of
-  # def strategy
-  #   self.activityable.strategy
-  # end
-
-  # add a hal to list of hals for activity
-  def hal_about(hal)
-    hal.fromable = self.get_hierarchical_from
-    self.hals << hal
-  end
-
   # get "from" template for chapter if exists or parent
   def get_hierarchical_from
     if (self.from_id) then
@@ -139,7 +133,6 @@ class Activity < ActiveRecord::Base
       self.strategy.get_hierarchical_from
     end
   end
-
   
   # returns all hals that have the same from template
   def get_related_hals

@@ -19,10 +19,6 @@ class Strategy < ActiveRecord::Base
    end
   end
   
-  def strategy
-    self
-  end
-  
   def text
     "STRAT"
   end

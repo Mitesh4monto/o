@@ -5,7 +5,6 @@ FactoryGirl.define do
     association :strategy, factory: :user_strategy    
     title "MyString"
     description "MyText"
-    element_order 1
     user
     # from template_activity
     # goal_id 1
@@ -16,7 +15,6 @@ FactoryGirl.define do
     goal    
     title "MyString"
     description "MyText"
-    element_order 1
     user
     # from template_activity
     # goal_id 1
@@ -32,7 +30,6 @@ FactoryGirl.define do
     association :strategy, factory: :course_strategy    
     title "MyString3"
     description "MyText2"
-    element_order 2
     association :course, factory: :course    
   end  
 
@@ -40,7 +37,6 @@ FactoryGirl.define do
     association :strategy, factory: :course_strategy    
     title "another title"
     description "long description"
-    element_order 4
     association :course, factory: :course    
   end  
 
@@ -48,7 +44,6 @@ FactoryGirl.define do
     association :strategy, factory: :user_strategy
     title "MyString"
     description "MyText"
-    element_order 1
     user
     association :from, factory: :template_activity
     # from template_activity

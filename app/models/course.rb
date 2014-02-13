@@ -29,13 +29,13 @@ class Course < ActiveRecord::Base
                   :external_site,
                   :course_image, 
                   :tag_list
-     has_attached_file :course_image, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/clipboardicon.png"
+     has_attached_file :course_image, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "https://s3-us-west-2.amazonaws.com/melearning/courses/course_images/000/000/078/medium/hawk.png"
 
   acts_as_taggable
                   
   validates_presence_of :name, :overview
 
-  after_create :create_strategy   
+  after_create :create_strategy
 
   # text used for updates
   def text
@@ -46,7 +46,7 @@ class Course < ActiveRecord::Base
   # currently on activities only
   def has_customizations?
     self.strategy.current_activities.each do |activity|
-      return true if !activity.customization.empty?
+      return true if activity.customization and !activity.customization.empty?
     end
     return false
   end
@@ -62,8 +62,8 @@ class Course < ActiveRecord::Base
 
 
   def add_activity(activity)
-    activity.strategy = self.strategy      
     activity.course_id = self.id;    
+    self.strategy.activities << activity      
   end
   
   # TODO checks and whatnot  !!!!  spec

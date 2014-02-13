@@ -27,8 +27,8 @@ class StrategiesController < ApplicationController
     if (@activity.from_id) then
       @activity_from = Activity.find_by_id @activity.from_id
       if (@activity_from) then 
-        if @activity_from.get_course_id then 
-          @course = Course.find @activity_from.get_course_id
+        if @activity_from.course_id then 
+          @course = @activity_from.course
         else 
           @from_user_activity = @activity_from.user
         end

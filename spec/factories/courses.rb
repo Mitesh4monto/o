@@ -7,6 +7,10 @@ FactoryGirl.define do
     overview "ooyeah"
     description "some description"
     about_the_author "about the um.. author"
-    # course_strategy
+
+    after(:create) do |course, evaluator|
+      activities = create_list(:activity, 3, strategy: course.strategy, course: course, user: course.user)
+    end
   end
+  
 end

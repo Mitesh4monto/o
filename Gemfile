@@ -7,6 +7,8 @@ gem 'rack-google-analytics'
 gem 'rails', '3.2.0'
 gem 'deep_cloneable'
 gem 'paperclip'
+gem "paperclip_database"
+gem 'aws-sdk'
 gem "ckeditor"
 gem 'acts_as_list'
 gem "RedCloth"
@@ -57,8 +59,9 @@ gem 'jquery-ui-rails'
 # gem 'capistrano'
 gem 'activerecord-postgresql-adapter'
 # gem 'ruby-debug-ide'
-# gem 'debugger'
+gem 'debugger'
 # To use debugger
+#gem 'ruby-debug'
 # gem 'ruby-debug19'  # , :require => 'ruby-debug'
 group :development, :test do 
   gem 'better_errors'

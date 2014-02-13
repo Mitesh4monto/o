@@ -3,7 +3,8 @@ require 'spec_helper'
 describe ActivitySequence do
   
   it "has a valid factory" do 
-    as = FactoryGirl.create(:activity_sequence).should be_valid 
+    as = FactoryGirl.create(:activity_sequence_in_plan).should be_valid 
+    as = FactoryGirl.create(:activity_sequence_in_course).should be_valid 
   end
 
   it "has a strategy it's part of" do 

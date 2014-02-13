@@ -44,9 +44,9 @@ class Hal < ActiveRecord::Base
   # make hal about item (set halable, from and course information based on item)
   def hal_about(item)
     self.halable = item
-    puts item.id
-    self.fromable = item.from    
-    self.course_id = item.get_course_id    
+    self.fromable = item.from
+    self.course_id = item.course_id    
+    item.hals << self
   end
   
   # get all hals related to an item (hals about items that have the same "from")

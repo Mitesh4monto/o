@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :activity_in_sequence do
+    title "tit"
   end
 end

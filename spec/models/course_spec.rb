@@ -7,33 +7,37 @@ describe Course do
   
   it "has a strategy" do
       c = FactoryGirl.create(:course)
-      c.course_strategy.should be_valid 
+      c.strategy.should be_valid 
+      c.strategy.activities.size.should eq 3
   end
   
   it "has a user" do
     c = FactoryGirl.create(:course)
     c.user.should be_valid
   end
-  
-  it "can be created from a strategy" do
-    s = FactoryGirl.create(:strategy)
-    c = Course.create_from_strategy(s)
-    c.should be_valid
-  end
 
-  it "can add a user to itself" do
+  it "can be joined by a user" do
     c = FactoryGirl.create(:course)
     user = FactoryGirl.create(:user)
-    usernumber_pre_add = c.users.size
+    actsize = user.strategy.activities.size    
     c.add_user_to_course(user)
-    c.users.size.should eq usernumber_pre_add +1
-    user.following_course_id.should eq c.id
+    c.get_course_followers.include?(user).should be_true
+    user.strategy.activities.size.should eq actsize + c.strategy.activities.size
   end
 
   it "can let you know if there are customization" do
     c = FactoryGirl.create(:course)
-    a = FactoryGirl.create(:activity_no_assoc)
-    c.strategy.current_activities
-    
+    a = FactoryGirl.create(:activity_no_assoc)    
+    a.customization = "fdsfs"
+    a.save
+    c.add_activity a
+    c.has_customizations?.should be_true
+
+    c1 = FactoryGirl.create(:course)
+    b = FactoryGirl.create(:activity_no_assoc)    
+    b.customization = ""
+    b.save
+    c1.add_activity b
+    c1.has_customizations?.should be_false    
   end
 end

@@ -1,7 +1,6 @@
 class Goal < ActiveRecord::Base
   acts_as_paranoid
-  # include ActionLogging
-  # has_many :action_logs, :as => :loggable, :dependent => :destroy
+  include ActionLogging
   belongs_to :strategy
   belongs_to :course
 
@@ -10,6 +9,14 @@ class Goal < ActiveRecord::Base
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
   has_many :activities #, :as => :activityable, :dependent => :destroy 
   has_one :user
+  
+  
+  def log_create
+    if (self.strategy.type == "UserStrategy")
+      ActionLog.log_create(self)         
+    end    
+  end
+  
   
   
   # add a hal to list of hals for activity

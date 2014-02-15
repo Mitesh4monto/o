@@ -23,6 +23,14 @@ class ActionLog < ActiveRecord::Base
     al.save
   end
   
+  # log other actions of an object
+  def self.log_other(user_id, action, obj, link = nil)
+    al = ActionLog.new(:user_id => user_id, :action => action, :link => link)
+    al.loggable = obj
+    al.save
+  end
+  
+  
   # get the latest action logs for a particular user
   def self.latest(user, qty = 10)
     #  get list of course owners user is following

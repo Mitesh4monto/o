@@ -15,7 +15,7 @@ class Hal < ActiveRecord::Base
   
   validates_presence_of :entry
 
-  has_many :action_logs, :as => :loggable, :dependent => :destroy
+  
   
   
   # text used for updates
@@ -88,5 +88,12 @@ class Hal < ActiveRecord::Base
     ActionLog.log_create(self) if self.privacy != 0
   end
   
+  def log_destroy
+    ActionLog.log_destroy(self) if self.privacy != 0
+  end
+  
+  def log_update
+    ActionLog.log_update(self) if self.privacy != 0
+  end
   
 end

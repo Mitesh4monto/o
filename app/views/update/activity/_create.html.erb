@@ -1,10 +1,10 @@
-create activity  
+created activity  
 <% if update.loggable %>
 	<% activity =  update.loggable %>
 	<% if activity.course_activity? %>
 		in course <%= link_to activity.strategy.course.name, activity.strategy.course %>
 	<% else %>
-		<%= link_to activity.title, activity.user %>'s 	
+		<%= link_to activity.title, activity %>	
 	<% end %>
 <% else %>
  a <%= update.loggable_type %> which has since been removed 

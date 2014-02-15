@@ -43,12 +43,22 @@ Opp::Application.configure do
   config.action_mailer.delivery_method = :smtp 
  
   config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :user_name            => "owlymacp@gmail.com",
-      :password             => "golfsmith5",
-      :authentication       => "plain",
-      :enable_starttls_auto => true
+      :address              => "mail.melearni.ng",
+      :domain              => "mail.melearni.ng",
+      :port                 => 2525,
+      :user_name            => "info@melearni.ng",
+      :password             => ENV['MEPASSWORD'],
+      :authentication       => "login",
+      :enable_starttls_auto => true,
+      :openssl_verify_mode => "none"
     }
+  # config.action_mailer.smtp_settings = {
+  #     :address              => "smtp.gmail.com",
+  #     :port                 => 587,
+  #     :user_name            => "owlymacp@gmail.com",
+  #     :password             => "golfsmith5",
+  #     :authentication       => "plain",
+  #     :enable_starttls_auto => true
+  #   }
     
  end

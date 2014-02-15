@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
     
   
   # TODO add rspec
-  # add all the activities from a strategy (user or course) into user's strategy
+  # add all the activities from a course strategy into user's strategy
   def add_to_my_strategy(strategy)
     # copy all activities
     strategy.activities.each do |activity|
@@ -121,6 +121,8 @@ class User < ActiveRecord::Base
     end
     
     self.strategy.save
+    # log action
+    ActionLog.log_other(self.id, "join", strategy.course) 
   end
 
   

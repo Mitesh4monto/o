@@ -69,6 +69,8 @@ class ActivitiesController < ApplicationController
     @activity.user_id = current_user.id
     respond_to do |format|
       if @activity.save
+          # log action
+          ActionLog.log_update(@course)         
           format.html { redirect_to course_plan_edit_path(@course.id), notice: 'Activity was successfully created.' }
       else
           format.html { render action: "add_activity_to_course" }
@@ -105,6 +107,7 @@ class ActivitiesController < ApplicationController
     
     respond_to do |format|
       if @activity.save
+        ActionLog.log_create(@activity)                 
         if params[:seq_activity]
           format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
         else
@@ -146,11 +149,7 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity = Activity.find(params[:id])
-    if @activity.type == "ActivityInSequence"
-      @activity.activity_sequence.destroy
-    else
-      @activity.destroy
-    end
+    @activity.destroy
 
     respond_to do |format|
       format.html { redirect_to :back, notice: "Activity was successfully deleted" }

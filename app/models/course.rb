@@ -1,8 +1,7 @@
 class Course < ActiveRecord::Base
   require 'will_paginate'
   include ActionLogging
-  
-  has_many :action_logs, :as => :loggable
+  LOGUPDATE = true
   
   # everyone's goals copied...?
   has_many :goals
@@ -36,6 +35,7 @@ class Course < ActiveRecord::Base
   validates_presence_of :name, :overview
 
   after_create :create_strategy
+
 
   # text used for updates
   def text

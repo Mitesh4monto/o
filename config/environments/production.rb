@@ -85,11 +85,13 @@ Opp::Application.configure do
  
   config.action_mailer.smtp_settings = {
       :address              => "mail.melearni.ng",
-      :port                 => 587,
-      :user_name            => "lemuel",
-      :password             => "boingg",
-      :authentication       => "ssl",
-      :enable_starttls_auto => true
+      :domain              => "mail.melearni.ng",
+      :port                 => 2525,
+      :user_name            => "info@melearni.ng",
+      :password             => ENV['MEPASSWORD'],
+      :authentication       => "login",
+      :enable_starttls_auto => true,
+      :openssl_verify_mode => "none",
     }
   
 end

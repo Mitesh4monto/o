@@ -2,7 +2,6 @@ require 'chronic'
 
 class Activity < ActiveRecord::Base
   include ActionLogging
-  has_many :action_logs, :as => :loggable
   acts_as_paranoid
   acts_as_taggable
   default_scope order('position')
@@ -30,7 +29,30 @@ class Activity < ActiveRecord::Base
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
   
   before_save :create_timing #, :create_goal_from_name
-  
+
+  def log_destroy
+    if (self.strategy.type == "CourseStrategy")
+      ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
+    else
+      ActionLog.log_destroy(self)             
+    end    
+  end
+
+  def log_create
+    if (self.strategy.type == "CourseStrategy")
+      ActionLog.log_other(self.user_id, "create", self.strategy.course)  if self.strategy.course.published?
+    elsif (self.strategy.type != "CourseStrategy" and self.course_id)
+      ActionLog.log_create(self)             
+    end    
+  end
+
+  def log_update
+    if (self.strategy.type == "CourseStrategy")
+      ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
+    else
+      ActionLog.log_update(self)             
+    end    
+  end
   
   def create_goal_from_name
     create_goal(:title => new_goal_text) unless new_goal_text.blank?

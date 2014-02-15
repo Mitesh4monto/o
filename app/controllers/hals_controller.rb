@@ -48,7 +48,6 @@ class HalsController < ApplicationController
       # @se = Activity.find(@hal.halable_id)
     end
   	
-    @hal.hal_about(@se)
     
     # if we're also sharing on fb:  post to wall
     if params[:fbshare] 
@@ -59,7 +58,8 @@ class HalsController < ApplicationController
     redirect = params[:from] || myp_path
     
     respond_to do |format|
-      if @hal.save
+      if @hal.hal_about(@se)
+      # @hal.save
         format.html { redirect_to redirect, notice: 'HAL was successfully created' }   #TODO CLEANUP
         # format.html { redirect_to @hal, notice: 'Hal was successfully created.' }
         format.json { render json: @hal, status: :created, location: @hal }

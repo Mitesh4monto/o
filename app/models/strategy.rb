@@ -15,7 +15,7 @@ class Strategy < ActiveRecord::Base
     if (ids.size > 0)
      Activity.where( "id in (#{ids.join(',')})")
    else 
-     []
+     Activity.where("1=0")  # hack to return empty AR relation.  
    end
   end
   

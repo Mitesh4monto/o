@@ -31,7 +31,7 @@ class Activity < ActiveRecord::Base
   before_save :create_timing #, :create_goal_from_name
 
   def log_destroy
-    if (self.strategy.type == "CourseStrategy")
+    if (self.strategy and self.strategy.class.name == "CourseStrategy")
       ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
     else
       ActionLog.log_destroy(self)             
@@ -39,15 +39,15 @@ class Activity < ActiveRecord::Base
   end
 
   def log_create
-    if (self.strategy.type == "CourseStrategy")
+    if (self.strategy and self.strategy.class.name == "CourseStrategy")
       ActionLog.log_other(self.user_id, "create", self.strategy.course)  if self.strategy.course.published?
-    elsif (self.strategy.type != "CourseStrategy" and self.course_id)
+    elsif (self.strategy.class.name != "CourseStrategy" and self.course_id)
       ActionLog.log_create(self)             
     end    
   end
 
   def log_update
-    if (self.strategy.type == "CourseStrategy")
+    if (self.strategy and self.strategy.class.name == "CourseStrategy")
       ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
     else
       ActionLog.log_update(self)             

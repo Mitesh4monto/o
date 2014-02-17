@@ -17,10 +17,13 @@ Course overview:
 	      </ul>
 	    </div>
 	  <% end %>
+ 
 
 	  <%= f.input :name, :label => "Course Name" %>
-	  <%= f.inputs :overview, :about_the_author %>
+	  <%= f.input :overview, :label => "Overview.  This will appear on the course listing page.  For details, especially for course followers, add those in the supplemental info area" %>
+	  <%= f.input :about_the_author, :label => "About the author" %>
 	
+	This will help people find your course and easily see what it's about. You can add as many as you wish, but they should be relevant to your course.
 	<%= f.input  :tag_list, :label => "enter comma separated tags" %>
 	
 	<%= image_tag @course.course_image.url(:medium) %>

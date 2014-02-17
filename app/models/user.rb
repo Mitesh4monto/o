@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :goals
   has_many :hals
   has_many :comments 
+  has_many :commitment_marks
   has_many :activities
   has_many :chapters
   belongs_to :following_course, :class_name => "Course", :foreign_key => 'following_course_id'

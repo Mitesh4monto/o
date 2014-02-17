@@ -12,15 +12,15 @@ module ActionLogging
 
   # logging callbacks to add actions to ActionLog
   def log_create    
-    ActionLog.log_create(self) if self.class::LOGCREATE
+    ActionLog.log_create(self) if defined? self.class::LOGCREATE and self.class::LOGCREATE
   end
   
   def log_destroy
-    ActionLog.log_destroy(self) if self.class::LOGDESTROY
+    ActionLog.log_destroy(self) if defined? self.class::LOGCREATE and self.class::LOGDESTROY
   end
   
   def log_update
-    ActionLog.log_update(self) if self.class::LOGUPDATE
+    ActionLog.log_update(self) if defined? self.class::LOGCREATE and self.class::LOGUPDATE
   end
 
 

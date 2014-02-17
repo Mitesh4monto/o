@@ -4,7 +4,7 @@ Add activity to sequence with <%= @seq_activity.title %>
 	<%= hidden_field_tag 'seq_activity', @seq_activity.id %>
 	<%= f.inputs :title,  :customization %>
 	<% select_goal = "Select a goal" %>	
-	<% if @seq_activity.type == "Activity" %>
+	<% if @seq_activity.class.name == "Activity" %>
 	<%= f.input :goal,  :as => :select, :collection => @seq_activity.strategy.goals, :prompt => "Select a Goal"  %>
 	<% else %>
 		<%= f.input :goal,  :as => :select, :collection => @seq_activity.activity_sequence.strategy.goals, :prompt => "Select a Goal"  %>

@@ -2,15 +2,30 @@ Add activity to course
 
 <%= semantic_form_for @activity.becomes(Activity), :url => create_activity_in_course_path do |f| %>
 	<%= hidden_field_tag 'course_id', @course.id %>
-	<%= f.inputs :title,  :customization %>
+	<%= f.input :title, :label => "The title as it will appear in the plan" %>
+	If you would like followers of this activity to modify this, enter how here (e.g. 'This activity is part of the workout activities.  Only keep one.  Delete this if you've picked another. <BR> You can also have instructions in the description, but this will appear in the Plan view.
+	<%= f.input :customization, :label => "Activity Customization information" %>
 
-<% select_goal = "Select a goal" %>	
-	<%= f.input :goal,  :as => :select, :collection => @course.strategy.goals, :prompt => "Select a Goal"  %>
+
+
+	Gaol for this activity.  What are we trying to achieve by doing this activity?  This can be left blank.
+	<% if @course.strategy.goals.size >0 %>
+		<% select_goal = "Select a goal" %>	
+		<%= f.input :goal,  :as => :select, :collection => @course.strategy.goals, :prompt => "Select a Goal" %>
 	Or create new:
-	 <%= f.text_field :new_goal_text %>
+	<% end %>
+	 <%= f.text_field :new_goal_text, :label => "Goal" %>
+	<hr>
 	
+	Description of the activity.  Add all details relevant.  We recommend adding other media to complement the text (external links, pictures, videos)
     <%= f.text_area :description, :class => 'ckeditor' %>
 
+
+	Enter how people should tackle this activity.  Is it <BR>
+	- a one time thing<BR>
+	- an activity to do in reaction to something (e.g. when I feel hunger strike; when I'm irrate)<BR>
+	- an activity to do repeatedly at a set frequency (e.g. 3 times per week)<BR>
+	- an activity to be done whenever (user discretion)<BR>
 	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
 
 	<div id='freak'>
@@ -20,13 +35,14 @@ Add activity to course
 	When the following occurs: <%= f.text_field :reactive_expression %>
 	</div>
 
-<%= f.radio_button :until_radio, "date" %>	
+	If this activity should have an end date
+	<%= f.radio_button :until_radio, "date" %>	
 	<div id='duration_label'>by</div>
 	<%= f.text_field :timing_duration %>
 	<BR>
-<%= f.radio_button :until_radio, "nodate" %>	
+	<%= f.radio_button :until_radio, "nodate" %>	
 	<%= label :until_radio, "No end date" %>
-	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
+	<%= f.input  :tag_list, :label => "Comma separated tags for this activity (e.g. 'weight loss, exercise')" %>
 	
    <%= f.actions :submit, :cancel %>
 <% end %>

@@ -21,6 +21,8 @@ class StrategiesController < ApplicationController
     @udpates = ActionLog.latest(current_user)
     
     @activity = Activity.find_by_id params[:id]
+    @commitment_marks = @activity.commitment_marks
+    
     if !@activity then
       return redirect_to :myp      
     end

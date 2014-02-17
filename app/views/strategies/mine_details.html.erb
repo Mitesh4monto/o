@@ -1,3 +1,4 @@
+<% @title = "My Plan" %>
 
   <div class="row">
     <div class="span4">
@@ -87,31 +88,11 @@ $(function() {
 
 <% if @activity.commitment_marks.size > 0 %>
 <BR>
-	
-Commitment marks:
-	<div id="calendar">
-	  <h2 id="month">
-		<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
-	    <%=h @date.strftime("%B %Y") %>
-	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
-	  </h2>
-	  <%= calendar_for @activity.commitment_marks, :year => @date.year, :month => @date.month do |calendar| %>
-		<%= calendar.head('Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
-	    <% calendar.day(:day_method => :done_date) do |date, cmss| %>
-	      <%= date.day %>
-	      <ul>
-			<table>
-				<% for cm in cmss %>
-				<tr bgcolor="000000" height=2px><td>done</td></tr>
-
-				<% end %>
-			</table>
-	      </ul>
-	    <% end %>
-	  <% end %>
-	</div>
-	
+<%= render :partial => 'activity_cm' %>
 <BR>
+<% else %>	
+	You don't have any commitment marks for this activity.  
+	<% if @activity.kind_of_timing != "Reactive" %>Do it and log it!<% end %>	
 <% end %>	
 <hr>
 <BR><BR><BR>

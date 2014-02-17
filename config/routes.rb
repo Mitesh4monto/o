@@ -18,6 +18,8 @@ Opp::Application.routes.draw do
   get "my_blog_entries", to: 'hals#view_mine', as: 'my_hals'
   get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
   get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
+
+  resources :hals
   
   
   # activities and strategies
@@ -37,6 +39,9 @@ Opp::Application.routes.draw do
   get "activities/mine", to: "strategies#mine",  as: 'user_strategy'
   get "strategies/mine", to: 'strategies#mine', as: 'myp'
   get "strategies/mine_details/:id", to: 'strategies#mine_details', as: 'mypd'
+
+  get "commitment_marks", to: 'commitment_marks#mycms', as: 'mycms'
+
 
   # courses
   get "courses/new", to: 'courses#new', as: 'create_course'
@@ -88,7 +93,6 @@ Opp::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
     
-  resources :hals
 
   match 'users/myprofile',  :controller => "users", :action => "myprofile"
   match 'users/editmyprofile',  :controller => "users", :action => "edit_profile"

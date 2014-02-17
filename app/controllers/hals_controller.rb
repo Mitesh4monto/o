@@ -20,6 +20,7 @@ class HalsController < ApplicationController
 
   def new_hal
     @hal = Hal.new
+    @from = my_hals_path
   end
   
   def help_wanted

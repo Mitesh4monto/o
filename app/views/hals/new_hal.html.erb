@@ -5,7 +5,7 @@
 			<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
 	<%= f.inputs :entry, :insights, :help %>
 	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
-	<%= hidden_field_tag 'from', '/hals/view_mine' %>
+	<%= hidden_field_tag 'from', @from %>
 	<%= f.hidden_field :halable_type, :value => "Activity" %>
 	<%= f.hidden_field :user_id, :value => current_user.id %>
 

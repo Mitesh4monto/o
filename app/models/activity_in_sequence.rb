@@ -17,6 +17,10 @@
      activity.save
      activity
    end
+   
+   def strategy
+     self.activity_sequence.strategy
+   end
 
 
  end

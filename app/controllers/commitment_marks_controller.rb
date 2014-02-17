@@ -12,6 +12,10 @@ class CommitmentMarksController < ApplicationController
     end
   end
 
+  def mycms
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today        
+  end
+
   def add_commitment_mark_to_activity
     # TODO check that one doesn't already exist for today
     @activity = Activity.find(params[:activity_id])

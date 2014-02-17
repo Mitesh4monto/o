@@ -3,6 +3,7 @@ class Strategy < ActiveRecord::Base
   has_many :activities, :dependent => :destroy  #, :as => :activityable, :dependent => :destroy 
   has_many :goals, :dependent => :destroy
   has_many :activity_sequences, :dependent => :destroy 
+  has_many :activity_in_sequences, through: :activity_sequences
   belongs_to :from, class_name: Strategy, :foreign_key => 'from_id'
 
   has_many :hals, :as => :halable #, :dependent => :destroy
@@ -17,6 +18,10 @@ class Strategy < ActiveRecord::Base
    else 
      Activity.where("1=0")  # hack to return empty AR relation.  
    end
+  end
+  
+  def get_all_activities
+    
   end
   
   def text

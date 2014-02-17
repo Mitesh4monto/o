@@ -1,3 +1,6 @@
+<% @title = "Add Entry #{@activity.title}" %>
+
+
 <%= semantic_form_for @hal do |f| %>
 	<%= f.inputs :entry, :insights, :help %>
 	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>

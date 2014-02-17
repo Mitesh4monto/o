@@ -1,3 +1,5 @@
+<% @title = "Edit plan for #{@course.name}" %>
+
 <%= stylesheet_link_tag "activities" %>
 <%= render :partial => 'course_edit' %>
 <BR><BR>	
@@ -39,7 +41,7 @@
 
 		<%= activity.id %>
 		Activity:  <%= link_to activity.title, show_activity_path(activity) %>
-	    	<%= link_to 'Edit', edit_activity_path(activity.id) %>
+	    	<%= link_to 'Edit', edit_activity_in_course_path(activity.id) %>
 		    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %> 
 		<BR>
 	<% end %>
@@ -58,7 +60,7 @@
 	<%= render :partial => 'strategies/timing' %>
 	<BR>
 	<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(@activity) %>	<BR>
-	<%= link_to 'edit', edit_activity_path(@activity) %> |
+	<%= link_to 'edit', edit_activity_in_course_path(@activity) %> |
     <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => @activity.id}, confirm: 'Are you sure?', method: :delete %>
 
 

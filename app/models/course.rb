@@ -2,7 +2,25 @@ class Course < ActiveRecord::Base
   require 'will_paginate'
   include ActionLogging
   LOGUPDATE = true
+
+  # search functionality
+  include PgSearch
+  multisearchable :against => [:name, :description, :overview, :about_the_author]
+  pg_search_scope :full_course_search, 
+    :against => [[:name, 'A'],[ :description, 'B'],[ :overview, 'B'],[ :about_the_author, 'B']],
+    using: {tsearch: {dictionary: "english"}},
+    :associated_against => {
+      :activities => [[:title, 'C'],[  :description, 'C'],[  :timing_expression, 'C']],
+      :activity_in_sequences => [[:title, 'C'],[:description, 'C'],[:timing_expression, 'C']],
+      :goals => [[:title, 'B']],
+  }
   
+  has_many :activity_in_sequences, :through => :strategy
+  has_many :activities, :through => :strategy
+  has_many :goals, :through => :strategy
+
+
+    
   # everyone's goals copied...?
   has_many :goals
   
@@ -15,7 +33,7 @@ class Course < ActiveRecord::Base
   belongs_to :user
   
   has_many :hals, :foreign_key => 'course_id'
-
+  
   has_many :user_strategies, class_name: Strategy, :foreign_key => 'course_id'
 
   attr_accessible :name,

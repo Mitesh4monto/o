@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'pg_search'
 gem 'active_attr'
 gem 'mail'
 gem 'turbo-sprockets-rails3'

@@ -1,5 +1,5 @@
-<% @title = "Add an Activity to #{@course.name}" %>
-Add activity to course
+<% @title = "Edit activity #{@activity.title}" %>
+Edit activity to course
 
 <%= semantic_form_for @activity.becomes(Activity), :url => create_activity_in_course_path do |f| %>
 	<%= hidden_field_tag 'course_id', @course.id %>

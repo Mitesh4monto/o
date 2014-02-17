@@ -1,3 +1,5 @@
+<% @title = "Details for #{@course.name}" %>
+
 <%= render :partial => 'course_edit' %>
 <BR><BR>
 <%= semantic_form_for @course, as: :course, url: :update_description  do |f| %>

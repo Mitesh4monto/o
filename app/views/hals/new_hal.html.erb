@@ -1,3 +1,6 @@
+<% @title = "Add Entry" %>
+
+
 <%= semantic_form_for @hal do |f| %>
 <%=   f.input :halable_id,  :label => "hal about which activity?", :as => :select, :include_blank => false, 
 			:collection => current_user.strategy.current_activities.map{|a| [a.title, a.id]} + [["General Entry", 0]]  %>

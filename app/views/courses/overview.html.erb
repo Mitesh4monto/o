@@ -1,3 +1,5 @@
+
+<% @title = "Overview for #{@course.name}" %>
 <%= render :partial => 'course_view' %>
 
 
@@ -5,7 +7,7 @@
 <div class="span4">
 	<strong>Course overview</strong>:  <BR>
 	<%= image_tag @course.course_image.url(:medium) %>
-	<%= @course.overview %>
+	<%= simple_format @course.overview %>
 </div>
 <div class="span4">
 	<strong>About the author</strong>

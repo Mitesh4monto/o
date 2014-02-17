@@ -58,6 +58,16 @@ class Activity < ActiveRecord::Base
     create_goal(:title => new_goal_text) unless new_goal_text.blank?
   end
   
+  def act_strategy
+    if self.strategy
+      self.strategy
+    elsif self.activity_sequence
+      self.activity_sequence.strategy
+    else
+      nil   #  TODO throw error?
+    end
+  end
+  
   # text used for updates
   def text
     self.title + " -- " + self.description

@@ -51,8 +51,18 @@ class ActivitiesController < ApplicationController
     if (!@course || @course.user != current_user)
       redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
     end
+  end
+  
+  # Add a new activity to a course user has created
+  def edit_activity_in_course
+    @activity = Activity.find(params[:id])
+    @course = @activity.act_strategy.course
+    if (!@course || @course.user != current_user)
+      redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
+    end
     
   end
+  
 
   def create_activity_in_course
     @activity = Activity.new(params[:activity])

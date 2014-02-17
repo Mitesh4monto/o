@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140208234315) do
+ActiveRecord::Schema.define(:version => 20140217045337) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -144,6 +144,14 @@ ActiveRecord::Schema.define(:version => 20140208234315) do
     t.integer  "course_id"
     t.integer  "privacy"
     t.datetime "deleted_at"
+  end
+
+  create_table "pg_search_documents", :force => true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "strategies", :force => true do |t|

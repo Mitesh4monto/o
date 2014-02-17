@@ -1,3 +1,13 @@
+<% @title = "Course listing" %>
+
+<%= form_tag courses_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+
 <h1>Listing courses</h1>
 
 <table>

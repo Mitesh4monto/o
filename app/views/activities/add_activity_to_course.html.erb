@@ -2,6 +2,18 @@
 Add activity to course
 
 <%= semantic_form_for @activity.becomes(Activity), :url => create_activity_in_course_path do |f| %>
+<% if @activity.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+    <ul>
+    <% @activity.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 	<%= hidden_field_tag 'course_id', @course.id %>
 	<%= f.input :title, :label => "The title as it will appear in the plan" %>
 	If you would like followers of this activity to modify this, enter how here (e.g. 'This activity is part of the workout activities.  Only keep one.  Delete this if you've picked another. <BR> You can also have instructions in the description, but this will appear in the Plan view.
@@ -36,10 +48,11 @@ Add activity to course
 	When the following occurs: <%= f.text_field :reactive_expression %>
 	</div>
 
-	If this activity should have an end date
-	<%= f.radio_button :until_radio, "date" %>	
-	<div id='duration_label'>by</div>
-	<%= f.text_field :timing_duration %>
+	If this activity should have a duration<BR>
+	<%= f.radio_button :until_radio, "date" %>
+	<%= label :until_radio, "Do it until" %>
+	<%= f.text_field :duration_number %> 
+	<%= f.select :duration_unit, ["Days", "Weeks", "Months", "Years"] %> after start
 	<BR>
 	<%= f.radio_button :until_radio, "nodate" %>	
 	<%= label :until_radio, "No end date" %>

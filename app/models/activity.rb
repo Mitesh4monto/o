@@ -18,9 +18,9 @@ class Activity < ActiveRecord::Base
   belongs_to :strategy
   acts_as_list scope: :strategy
 
-  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio, :tag_list, :goal_id, :new_goal_text
+  attr_accessible :from_id, :user_id, :title, :goal_text, :description, :course_id, :timing_expression, :timing_duration, :kind_of_timing, :customization, :strategy_id, :freak_number, :freak_interval, :reactive_expression, :until_radio, :tag_list, :goal_id, :new_goal_text, :duration_number, :duration_unit, :timing_until
   attr_accessor :new_goal_text
-  attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio
+  attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio, :duration_number, :duration_unit
   
   validates :title, :presence => {:message => "no blanky"}
   # validate :validate_timing   #TODO uncomment -- ONLY FOR TESTING
@@ -28,7 +28,7 @@ class Activity < ActiveRecord::Base
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
   has_many :copied_activities, class_name: Activity, :foreign_key => 'from_id'
   
-  before_save :create_timing #, :create_goal_from_name
+  before_save :create_timing
 
   def log_destroy
     if (self.strategy and self.strategy.class.name == "CourseStrategy")
@@ -52,20 +52,6 @@ class Activity < ActiveRecord::Base
     else
       ActionLog.log_update(self)             
     end    
-  end
-  
-  def create_goal_from_name
-    create_goal(:title => new_goal_text) unless new_goal_text.blank?
-  end
-  
-  def act_strategy
-    if self.strategy
-      self.strategy
-    elsif self.activity_sequence
-      self.activity_sequence.strategy
-    else
-      nil   #  TODO throw error?
-    end
   end
   
   # text used for updates
@@ -92,8 +78,19 @@ class Activity < ActiveRecord::Base
   # second part of the timing expression in the db
   def freak_interval
     expr = timing_expression.blank? ? "" : timing_expression.split.last
-    puts "expr: #{expr}"
     @freak_interval.nil? ? expr : @freak_interval
+  end
+
+  # first part of the timing expression in the db
+  def duration_number
+    expr = self.timing_duration.blank? ? "" : self.timing_duration.split.first
+    @duration_number.nil? ? expr : @duration_number
+  end
+  
+  # second part of the timing expression in the db
+  def duration_unit
+    expr = self.timing_duration.blank? ? "" : self.timing_duration.split.last
+    @duration_unit.nil? ? expr : @duration_unit
   end
   
   def reactive_expression
@@ -112,13 +109,15 @@ class Activity < ActiveRecord::Base
       self.timing_expression = @reactive_expression
     end
     self.timing_duration = "" if @until_radio == "nodate"
-    self.timing_duration = timing_duration if @until_radio == "date"  # necess?
+    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date"
   end
   
   # ensure until date is 
   def validate_timing
-    if @until_radio == "date" && Chronic.parse(self.timing_duration).nil?
-        errors.add(:timing_duration, "you need a valid date")
+    v = Float(@duration_number) rescue false
+    puts "v = #{v}"
+    if @until_radio == "date" && !(Float(@duration_number) rescue false)
+        errors.add(:timing_duration, "you need a duration")
     end
     if self.kind_of_timing == "Frequency" && @freak_number.blank?
       errors.add(:freak_number, "how often?")
@@ -135,6 +134,10 @@ class Activity < ActiveRecord::Base
       activity.from_id = self.from_id
     else
       activity.from_id = self.id
+    end
+    if (!self.timing_duration.blank?)
+      activity.timing_until = eval(self.timing_duration.split.first + "." + self.timing_duration.split.last.downcase + ".from_now")
+      puts activity.timing_until
     end
     activity.strategy_id = user.strategy.id
     activity.course_id = self.course_id

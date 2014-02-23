@@ -8,7 +8,7 @@ class StrategiesController < ApplicationController
 
   def copy_activity
     @activity = Activity.find(params[:id])
-    current_user.strategy.copy_activity_to_strategy(@activity)
+    @activity.copy_to_user(current_user)
     redirect_to root_path, notice: 'activity was successfully added.'
   end
   
@@ -21,11 +21,10 @@ class StrategiesController < ApplicationController
     @udpates = ActionLog.latest(current_user)
     
     @activity = Activity.find_by_id params[:id]
-    @commitment_marks = @activity.commitment_marks
-    
     if !@activity then
       return redirect_to :myp      
     end
+    @commitment_marks = @activity.commitment_marks
     if (@activity.from_id) then
       @activity_from = Activity.find_by_id @activity.from_id
       if (@activity_from) then 

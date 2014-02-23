@@ -1,4 +1,3 @@
-
 <% case @activity.kind_of_timing
 	when "Frequency" %>
 		Do it <%= @activity.timing_expression.split.first %> times per <%= @activity.timing_expression.split.last %>
@@ -11,6 +10,8 @@
 	<% else %>
 		 -- nah just kidding
 <% end %>
-<% if !@activity.timing_duration.empty? %>
- before <%= @activity.timing_duration %>	
+<% if !@activity.timing_duration.blank? and @activity.course_activity? %>
+until <%= @activity.timing_duration %> from join
+<% elsif @activity.timing_until %>
+before <%= @activity.timing_until.strftime("%m/%d/%Y") %>
 <% end %>

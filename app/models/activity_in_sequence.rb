@@ -2,6 +2,7 @@
    acts_as_list :scope => :activity_sequence, :column => 'act_seq_order'
    acts_as_paranoid
    belongs_to :activity_sequence
+   delegate :strategy, to: :activity_sequence, allow_nil: false
 
 
    # creates activity in sequence for user (not set in a sequence)
@@ -17,11 +18,7 @@
      activity.save
      activity
    end
-   
-   def strategy
-     self.activity_sequence.strategy
-   end
-
+ 
 
  end
  

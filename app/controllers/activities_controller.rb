@@ -56,7 +56,7 @@ class ActivitiesController < ApplicationController
   # Add a new activity to a course user has created
   def edit_activity_in_course
     @activity = Activity.find(params[:id])
-    @course = @activity.act_strategy.course
+    @course = @activity.strategy.course
     if (!@course || @course.user != current_user)
       redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
     end
@@ -66,9 +66,11 @@ class ActivitiesController < ApplicationController
 
   def create_activity_in_course
     @activity = Activity.new(params[:activity])
+    puts "duration: #{@activity.duration_unit}"
+    puts "duration num: #{@activity.duration_number}"
     @course = Course.find_by_id(params[:course_id])
     if !@activity.new_goal_text.empty?
-      goal = @course.create_new_goal(@activity.new_goal_text)
+      goal = @course.strategy.create_or_use_goal(@activity.new_goal_text)
       @activity.goal_id = goal.id
     end
     if (@course.user_id != current_user.id)   # TODO do better?

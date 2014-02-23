@@ -20,7 +20,7 @@ class ActivityInSequencesController < ActivitiesController
     ActivitySequence.add_activity_to_sequence_with(@activity, existing_act)
     @activity.user_id = current_user.id
     if !@activity.new_goal_text.empty?
-      goal = existing_act.course.create_new_goal(@activity.new_goal_text)
+      goal = existing_act.course.strategy.create_or_use_goal(@activity.new_goal_text)
       @activity.goal_id = goal.id
     end
     

@@ -5,6 +5,7 @@ class Strategy < ActiveRecord::Base
   has_many :activity_sequences, :dependent => :destroy 
   has_many :activity_in_sequences, through: :activity_sequences
   belongs_to :from, class_name: Strategy, :foreign_key => 'from_id'
+  belongs_to :user
 
   has_many :hals, :as => :halable #, :dependent => :destroy
   has_many :from_template_hals, :as => :halable #, :dependent => :destroy
@@ -20,18 +21,20 @@ class Strategy < ActiveRecord::Base
    end
   end
   
-  def get_all_activities
-    
-  end
+  # TODO
+  # def get_all_activities
+  # end
   
   def text
     "STRAT"
   end
   
-  def create_new_goal(goal_title, params = {})
-    Goal.create(params.merge(:title => goal_title, :user_id => self.user_id, :strategy_id => self.id))
+  # checks if a goal with that title exists.  returns that or a new goal in the strategy
+  def create_or_use_goal(goal_text)
+    goal = Goal.where(title: goal_text, strategy_id: self.id, user_id: self.user.id, course_id: self.course_id).first
+    goal ||= Goal.create!(title: goal_text, strategy_id: self.id, user_id: self.user.id, course_id: self.course_id)     
   end
-  
+    
   # if a strategy contains a specific activity as defined by same object or same origin of object (course or user)
   def contains_activity(activity)
     self.current_activities.each do |strat_activity|
@@ -55,15 +58,14 @@ class Strategy < ActiveRecord::Base
     self.current_activities.any? {|activity| !activity.customization.blank?}
   end
   
-  def copy_activity_to_strategy(activity)
-    
-    strat_activity = activity.dup
-    if (activity.from_id.nil?)
-      strat_activity.from_id = activity.id
-      strat_activity.save
-    end
-    self.activities << strat_activity
-  end
+  # def copy_activity_to_strategy(activity)    
+  #   strat_activity = activity.dup
+  #   if (activity.from_id.nil?)
+  #     strat_activity.from_id = activity.id
+  #     strat_activity.save
+  #   end
+  #   self.activities << strat_activity
+  # end
   
   def add_activity(activity)
     self.activities << activity

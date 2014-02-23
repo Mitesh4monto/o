@@ -74,11 +74,6 @@ class Course < ActiveRecord::Base
     CourseStrategy.create(:user_id => self.user_id, :course_id => self.id)
   end
 
-  def create_new_goal(goal_title)
-    g = self.strategy.create_new_goal(goal_title, {:course_id => self.id})
-  end
-
-
   def add_activity(activity)
     activity.course_id = self.id;    
     self.strategy.activities << activity      

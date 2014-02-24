@@ -55,6 +55,7 @@ class ActivitySequence < ActiveRecord::Base
   end
 
   # delete activity, remove from sequence and if it was current, set new current
+  # can only be called from within a course
   def destroy_activity(activity)
     # hacky  -- only one activiy in seq left after delete => destroy sequence and move last activity out
     if (self.activities.size == 2)
@@ -66,14 +67,6 @@ class ActivitySequence < ActiveRecord::Base
       remaining_activity.type = "Activity"
       remaining_activity.save
       self.destroy
-    elsif (self.current_activity == activity)
-      if has_next?
-        set_next 
-      elsif has_previous?
-        set_previous
-      else
-        self.destroy  #last activity got removed, no point in existing alone
-      end
     end
     activity.destroy      
   end

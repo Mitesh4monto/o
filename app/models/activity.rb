@@ -39,11 +39,12 @@ class Activity < ActiveRecord::Base
   end
 
   def log_create
-    if (self.strategy and self.strategy.class.name == "CourseStrategy")
-      ActionLog.log_other(self.user_id, "create", self.strategy.course)  if self.strategy.course.published?
-    elsif (self.strategy.class.name != "CourseStrategy" and self.course_id)
-      ActionLog.log_create(self)             
-    end    
+    # if (self.strategy and self.strategy.class.name == "CourseStrategy")
+    #   ActionLog.log_other(self.user_id, "create", self.strategy.course)  if self.strategy.course.published?
+    #   # don't log if it's in a course or from a course (copy)
+    # elsif (self.strategy.class.name != "CourseStrategy" and !self.course_id)  
+    #   ActionLog.log_create(self)             
+    # end    
   end
 
   def log_update
@@ -127,7 +128,7 @@ class Activity < ActiveRecord::Base
   # add this activity to a user's strategy
   def copy_to_user(user)
     activity = self.dup
-    activity.title = "KKopy of" + self.title
+    activity.title = self.title
     activity.user_id = user.id
     # point to original (self or self's from)
     if (self.from_id)

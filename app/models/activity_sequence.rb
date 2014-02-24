@@ -31,9 +31,16 @@ class ActivitySequence < ActiveRecord::Base
       as.save
     end
   end
+  
+  def add_activity_from_title_description(title, description)
+    ais = ActivityInSequence.new(:user_id => self.user_id, :title => title, :description => description, :kind_of_timing => "Whenever")
+    ais.activity_sequence_id = self.id
+    ais.save
+  end
       
   def copy_to_user(user)
     as = self.dup
+    as.save
     as.from_id = self.id
     as.user_id = user.id
     user.strategy.activity_sequences << as

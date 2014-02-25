@@ -22,7 +22,7 @@ class Activity < ActiveRecord::Base
   attr_accessor :new_goal_text
   attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio, :duration_number, :duration_unit
   
-  validates :title, :presence => {:message => "no blanky"}
+  # validates :title, :presence => {:message => "no blanky"}
   # validate :validate_timing   #TODO uncomment -- ONLY FOR TESTING
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'
@@ -31,11 +31,11 @@ class Activity < ActiveRecord::Base
   before_save :create_timing
 
   def log_destroy
-    if (self.strategy and self.strategy.class.name == "CourseStrategy")
-      ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
-    else
-      ActionLog.log_destroy(self)             
-    end    
+    # if (self.strategy and self.strategy.class.name == "CourseStrategy")
+    #   ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
+    # else
+    #   ActionLog.log_destroy(self)             
+    # end    
   end
 
   def log_create
@@ -48,11 +48,11 @@ class Activity < ActiveRecord::Base
   end
 
   def log_update
-    if (self.strategy and self.strategy.class.name == "CourseStrategy")
-      ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
-    else
-      ActionLog.log_update(self)             
-    end    
+    # if (self.strategy and self.strategy.class.name == "CourseStrategy")
+    #   ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
+    # else
+    #   ActionLog.log_update(self)             
+    # end    
   end
   
   # text used for updates

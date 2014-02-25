@@ -6,6 +6,27 @@
    delegate :strategy, to: :activity_sequence
 
 
+   def log_destroy
+     # if (self.course)
+     #   ActionLog.log_other(self.user_id, "update", self.course)  if self.course.published?
+     # end    
+   end
+
+   def log_create
+     # if (self.course)
+     #   ActionLog.log_other(self.user_id, "udpate", self.course)  if self.course.published?
+     # end    
+   end
+
+   def log_update
+     # if (self.strategy and self.strategy.class.name == "CourseStrategy")
+     #   ActionLog.log_other(self.user_id, "update", self.strategy.course)  if self.strategy.course.published?
+     # else
+     #   ActionLog.log_update(self)             
+     # end    
+   end
+
+
    # creates activity in sequence for user (not set in a sequence)
    def copy_to_user(user)
      activity = self.dup

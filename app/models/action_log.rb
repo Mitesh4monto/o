@@ -50,7 +50,8 @@ class ActionLog < ActiveRecord::Base
     # puts "size: #{users_id_list.size}"
     if (users_id_list.size > 0 )
       # puts "user_id in (#{users_id_list.join(',')})"
-      ActionLog.where(user_id: users_id_list).order('created_at DESC').limit(qty)
+      ActionLog.find_by_sql("select * from action_logs where user_id in (#{users_id_list.join(',')}) and id in(select max(id) from action_logs group by action, loggable_type, user_id, loggable_id) order by created_at desc limit #{qty}")
+      # ActionLog.where(user_id: users_id_list).order('created_at DESC').limit(qty)
     else
        []
     end

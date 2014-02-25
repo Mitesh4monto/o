@@ -24,6 +24,12 @@ class ActivityInSequencesController < ActivitiesController
       @activity.goal_id = goal.id
     end
     
+    puts "course: #{@activity.course.inspect}"
+
+    #  log action
+    ActionLog.log_other(current_user.id, "update", @activity.course)  if @activity.course.published?
+    
+    
     respond_to do |format|
       if @activity.save
           format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
@@ -38,12 +44,13 @@ class ActivityInSequencesController < ActivitiesController
 # DELETE /activities/1.json
 def destroy
   @activity = ActivityInSequence.find(params[:id])  
-  course = @activity.course
+  course = @activity.activity_sequence.strategy.course
+  puts "coooooooours: #{course.id}"
   @activity.activity_sequence.destroy_activity(@activity)
 
   respond_to do |format|
     #  assumes can only remove activity form activity sequence in course
-    format.html { redirect_to course, notice: "Activity and sequence were successfully deleted" }
+    format.html { redirect_to course_plan_edit_path(course), notice: "Activity and sequence were successfully deleted" }
     format.json { head :no_content }
   end
 end

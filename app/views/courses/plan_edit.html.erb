@@ -22,7 +22,7 @@
 					 <%= content_tag_for :li, activity do %>
 					 	<span class="handle">[drag]</span>
 						<% if (activity.activity_sequence_id) %>
-						Sequence starting with Activity: <%= link_to activity.title, course_plan_path(@course.id, activity.id) %>
+						Sequence starting with Activity: <%= link_to activity.title, course_plan_edit_path(@course.id, activity.id) %>
 						<% else %>	
 							Activity:  <%= link_to activity.title, course_plan_edit_path(@course.id, activity.id) %>
 						<% end %>

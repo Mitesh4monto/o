@@ -58,17 +58,23 @@ class ActivitySequence < ActiveRecord::Base
   # can only be called from within a course
   def destroy_activity(activity)
     # hacky  -- only one activiy in seq left after delete => destroy sequence and move last activity out
-    if (self.activities.size == 2)
-      strategy_id = self.strategy_id
+    if (self.activities.size == 2)      
       remaining_activity = self.activities.first if self.activities.first != activity
       remaining_activity = self.activities.last if self.activities.last != activity
-      remaining_activity.activity_sequence = nil
-      remaining_activity.strategy_id = strategy_id
-      remaining_activity.type = "Activity"
-      remaining_activity.save
+      copied_activity = remaining_activity.dup
+      copied_activity.activity_sequence = nil
+      copied_activity.strategy_id = self.strategy_id
+      copied_activity.type = "Activity"
+      copied_activity.course_id = self.strategy.course.id
+      copied_activity.becomes(Activity).save
       self.destroy
+    else
+      #  set first activity as current
+      first_activity = self.activities.first if self.activities.first != activity
+      first_activity = self.activities.second if self.activities.first != activity      
+      self.set_current(first_activity)
+      activity.destroy    
     end
-    activity.destroy      
   end
   
   def get_current()
@@ -116,7 +122,7 @@ class ActivitySequence < ActiveRecord::Base
   # TODO ellse?
   def set_current(activity)
     if (self.activity_in_sequences.include?(activity)) then
-      position= self.current_activity.position
+      position= self.current_activity.position 
       self.current_activity = activity
       self.current_activity.position = position
       self.current_activity.save

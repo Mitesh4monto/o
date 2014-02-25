@@ -59,8 +59,7 @@ class ActivitiesController < ApplicationController
     @course = @activity.strategy.course
     if (!@course || @course.user != current_user)
       redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
-    end
-    
+    end    
   end
   
 
@@ -79,6 +78,9 @@ class ActivitiesController < ApplicationController
     end
     @course.add_activity(@activity)
     @activity.user_id = current_user.id
+    
+    ActionLog.log_other(current_user.id, "update", @course)  if @course.published?
+    
     respond_to do |format|
       if @activity.save
           # log action
@@ -101,21 +103,14 @@ class ActivitiesController < ApplicationController
 
   # POST /activities
   # POST /activities.json
+  # create activity for a user's plan
   def create
     @activity = Activity.new(params[:activity])
     course_id = params[:course_id]    
-    # if adding to a course, point act to course
-    if (params[:seq_activity])
-      existing_act = Activity.find_by_id(params[:seq_activity])
-      @activity.course_id = existing_act.course_id
-      ActivitySequence.add_activity_to_sequence_with(@activity, existing_act)
-      # existing_act.save!
-      puts "id: #{@activity.activity_sequence_id}"
-    else
-      # if activity is for a user add to their strategy
-      @activity.strategy = current_user.strategy
-    end
+    @activity.strategy = current_user.strategy
     @activity.user_id = current_user.id
+    # log creation
+    ActionLog.log_create(@activity)             
     
     respond_to do |format|
       if @activity.save
@@ -137,6 +132,13 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
+    
+    if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")
+      ActionLog.log_other(current_user.id, "update", @course)  if @course.published?
+    else
+      ActionLog.log_update(@activity)             
+    end    
+    
 
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
@@ -161,8 +163,16 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity = Activity.find(params[:id])
-    @activity.destroy
 
+    # log deletion
+    if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")
+      ActionLog.log_other(current_user.id, "update", @course)  if @course.published?
+    else
+      ActionLog.log_destroy(@activity)             
+    end    
+
+    @activity.destroy
+    
     respond_to do |format|
       format.html { redirect_to :back, notice: "Activity was successfully deleted" }
       format.json { head :no_content }

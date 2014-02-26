@@ -29,6 +29,18 @@
 <% end %>
 
 
+Following:
+<% @user.following.each do |user| %>
+	<%= link_to user.name, user %>
+	<% if user != @user.following.last %>,<% end %>
+<% end %><BR>
+Followed by:
+<% @user.followers.each do |user| %>
+	<%= link_to user.name, user %>
+	<% if user != @user.following.last %>,<% end %>
+<% end %>
+<BR>
+
 <BR>
 User hals: 
 <%= render :partial => 'hals/view_hal_list', locals: {hals: @user.hals, show_user: false} %>

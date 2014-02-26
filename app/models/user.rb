@@ -34,7 +34,9 @@ class User < ActiveRecord::Base
   
   def follow(user)
     self.following << user
+    ActionLog.log_other(self.id, "follow", user)     
   end
+  
   def unfollow(user)
     self.following.delete(user)
   end

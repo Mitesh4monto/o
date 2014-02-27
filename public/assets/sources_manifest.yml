@@ -3,9 +3,10 @@ missing.png: be8732dac73d845ac5b142c8fb5f9fb0
 rails.png: be8732dac73d845ac5b142c8fb5f9fb0
 thumb/missing.png: be8732dac73d845ac5b142c8fb5f9fb0
 activities.js: 33d3ae144e36ddd99329c2b202f1632f
-application.js: 62706120184a940b21abc48a9b052942
+application.js: be170e950991adf1b3efafe57b082f61
+ckeditor/config.js: 79c3454cd45268219b226b918a03ee18
 activities.css: a377ed1db4832c4308af98dc8b4fe710
-application.css: 0384b82749bda5faad1f4c869dd4daed
+application.css: c2e5805fe3950257102edc928d7d5ae8
 jquery-ui/animated-overlay.gif: 691b2d4343303de8d214ad5395fd895d
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: a1eb3e0764573ed4b261ca742ed96ac3
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: 841636c8f8d33987bb8d2f31e8ef92ca
@@ -29,7 +30,6 @@ fontawesome-webfont.woff: 005a48840efd62d3930aa7c5f761c438
 twitter/bootstrap/glyphicons-halflings-white.png: ef3d5b8d6a297804352b4a46fdb5466d
 twitter/bootstrap/glyphicons-halflings.png: 0e7ff93d8f48fe1f5f762e4312e78da7
 ckeditor/application.js: 127f2d4eda984f6282892a582de558ed
-ckeditor/config.js: fc8229eb284bc3f1d1602c2e1a7b8f9a
 ckeditor/filebrowser/images/gal_add.jpg: 8aa905c95fad3086b6c3fc06bfb5b6d5
 ckeditor/filebrowser/images/gal_add.png: 54f9d6f12bd2ad0c7d7d6b6f9e07979a
 ckeditor/filebrowser/images/gal_del.png: 58ee11595f1b5715f5a6bf71187c5c8f

@@ -59,12 +59,11 @@ gem 'jquery-ui-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 gem 'activerecord-postgresql-adapter'
-# gem 'ruby-debug-ide'
-gem 'debugger'
-# To use debugger
-#gem 'ruby-debug'
-# gem 'ruby-debug19'  # , :require => 'ruby-debug'
 group :development, :test do 
+  # gem 'ruby-debug-ide'
+  # To use debugger
+  #gem 'ruby-debug'
+  # gem 'ruby-debug19'  # , :require => 'ruby-debug'
   gem 'better_errors'
   # gem 'binding_of_caller'
   gem 'meta_request'
@@ -75,6 +74,7 @@ group :development, :test do
   gem "webrat"
   gem 'cucumber-rails', :require => false
   gem 'capybara'
+  gem 'debugger'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'  
 end 

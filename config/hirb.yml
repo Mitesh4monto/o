@@ -16,6 +16,7 @@
         - from_id
         - strategy_id
         - type
+        - goal_id
         - position
         - act_seq_order        
         - activity_sequence_id

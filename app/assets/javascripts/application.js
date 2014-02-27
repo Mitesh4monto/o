@@ -16,4 +16,4 @@
 //= require jquery.ui.all
 //= require ckeditor/init
 //= require ckeditor/ckeditor
-
+//= require summernote.min

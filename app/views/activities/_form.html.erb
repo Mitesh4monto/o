@@ -16,7 +16,7 @@
 
 	<%= f.input :title %>
 
-		<%= f.input :goal,  :collection => current_user.strategy.goals, :prompt => "Select a Goal"  %>
+		<%= f.input :goal,  :collection => get_goals_for_strategy(current_user.strategy), :prompt => "Select a Goal"  %>
 		Or create new:
 		 <%= f.text_field :new_goal_text %>
 	<BR>
@@ -40,6 +40,7 @@ When the following occurs: <%= f.text_field :reactive_expression %>
 
 <BR>
 <%= f.text_area :description, :class => 'ckeditor' %>
+
 <%= f.actions :submit %>
 <% end %>
 <%= link_to "cancel", myp_path %>

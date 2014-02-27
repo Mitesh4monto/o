@@ -2,7 +2,6 @@ module ActivitiesHelper
   
   # organize activities in hash by => list of acts
   def get_activity_by_map(activities, by="goal_id")
-    activities.inspect
     keys = activities.pluck(by).uniq
     return_hash = Hash.new
     keys.each do |key|
@@ -10,6 +9,12 @@ module ActivitiesHelper
       return_hash[g] = activities.find_all {|a| a[by] == key}
     end
     return_hash
+  end
+  
+  # return all goals in a specific strategy (nil ommitted)
+  def get_goals_for_strategy(strategy)
+    keys = strategy.activities.pluck('goal_id').uniq
+    Goal.find(keys)
   end
 
 

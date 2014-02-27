@@ -109,6 +109,12 @@ class ActivitiesController < ApplicationController
     course_id = params[:course_id]    
     @activity.strategy = current_user.strategy
     @activity.user_id = current_user.id
+    # create new goal if new_goal_text filled in
+    if !@activity.new_goal_text.empty?
+      goal = current_user.strategy.create_or_use_goal(@activity.new_goal_text)
+      @activity.goal_id = goal.id
+    end
+    
     # log creation
     ActionLog.log_create(@activity)             
     

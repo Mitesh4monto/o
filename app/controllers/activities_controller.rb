@@ -140,6 +140,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     
     if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")
+      @course = @activity.strategy.course
       ActionLog.log_other(current_user.id, "update", @course)  if @course.published?
     else
       ActionLog.log_update(@activity)             

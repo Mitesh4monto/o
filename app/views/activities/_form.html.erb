@@ -1,3 +1,6 @@
+<%= addcustomjs 'ckeditor/init' %>
+<%= addcustomjs 'ckeditor/config' %>
+
 <%= semantic_form_for @activity.becomes(Activity) do |f| %>
 <% if @activity.errors.any? %>
   <div id="error_explanation">
@@ -16,7 +19,7 @@
 
 	<%= f.input :title %>
 
-		<%= f.input :goal,  :collection => get_goals_for_strategy(@activity.strategy), :prompt => "Select a Goal"  %>
+		<%= f.input :goal,  :collection => get_goals_for_strategy(current_user.strategy), :prompt => "Select a Goal"  %>
 		Or create new:
 		 <%= f.text_field :new_goal_text %>
 	<BR>

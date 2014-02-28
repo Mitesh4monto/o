@@ -35,7 +35,7 @@ production:
     # encoding: utf8
     host: localhost
     database: opp
-    username: lemuel2
+    username: lemuel
     password: 
 
 cucumber:

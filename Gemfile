@@ -35,7 +35,7 @@ gem 'acts_as_orderable'
 gem 'formtastic-bootstrap'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
-group :assets do
+group :assets, :production do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes

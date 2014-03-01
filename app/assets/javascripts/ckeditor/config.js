@@ -36,6 +36,7 @@ o.filebrowser.params)))})
 			  '/',
               ['Image', 'Attachment'],
               ['BulletedList','NumberedList'],
+			  ['Table'],
               ['Scayt'],
               ['Link','Unlink'],
               ['Source']

@@ -1,40 +1,48 @@
-<%= hal.created_at.strftime("%m/%d/%Y") %> - 
-<strong>entry</strong>: <%= hal.entry %>
-<BR>
-<strong>Insights</strong>: <%= hal.insights %>
-<BR>
-<strong>Tags: </strong>
-<%= render :partial => 'shared/tag_display', locals: {tags: hal.tags} %>
-<BR>
-<strong>Help</strong>: <%= hal.help %>
-<BR>
-<% if show_user %>
-	<strong>User</strong>:
-	<% if (hal.user) then %>
-		<%=  link_to hal.user.name, hal.user %>
-	<% else  %> 
-		Anonymous
-	<% end  %>
-	<BR>
-<% end %>
-<% if hal.halable %>
-	<strong>about</strong>:<%= link_to shorten(hal.halable.text, 40), hal.halable %>
-	<BR>
-<% end %>
+<div class="box_holder3">
+		<div class="image_holder"><img src="images/box_1.png"></div>
+		<p class="general">
+			<strong>
+			<% if hal.halable %>
+				<h3>About:<%= link_to shorten(hal.halable.text, 40), hal.halable %></h3>
+			<% else %>
+				<h3>Blog entry</h3>
+			<% end %>			
+			</strong></p>			
+		<p class="general">By : <strong>
+			<% if show_user %>
+				<strong>User</strong>:
+				<% if (hal.user) then %>
+					<%=  link_to hal.user.name, hal.user %>
+				<% else  %> 
+					Anonymous
+				<% end  %>
+				<BR>
+			<% end %>			
+		</strong>
+		</p>
+		<p class="general">Entered: <strong><%= hal.created_at.strftime("%m/%d/%Y") %></strong>
+		</p>
+		
+		<div class="clear"></div>
+		<p class="general">	<%= hal.entry %> </p>
+		<strong>Insights</strong>: <%= hal.insights %>
+		<BR>
+		<strong>Tags: </strong>
+		<%= render :partial => 'shared/tag_display', locals: {tags: hal.tags} %>
+		<strong>Help</strong>: <%= hal.help %>
+		<BR>
+		<div class="float_rgt"><a href="#" class="link">3 comments</a><span>|</span><a href="#" class="link">add a comment</a></div>
+		<div class="box_3">
+			<a href="#">Show more</a><div class="clear"></div>
+		</div>
+	</div>
 
-<% if hal.fromable_type %>
-	from:<%= hal.fromable_type %> id:<%= hal.fromable_id %> -- <%= link_to shorten(hal.fromable.text, 40), hal.fromable if hal.fromable %>
-<% end %>
-
-<BR>
 
 <% hal.comments.each do |comment| %>
 	Comment by <%= link_to comment.user.name, comment.user %> at <%= comment.created_at.strftime("%m/%d/%Y")%>
 	<BR>
 	<%= comment.body %> <BR>
-	<BR>
 	<% if (current_user && (comment.user_id == current_user.id || hal.user_id == current_user.id)) then %>
         <%= link_to 'Delete', comment, method: :delete %>
 	<% end %>
 <% end %>
-

@@ -1,0 +1,16 @@
+<% hals.each do |hal| %>
+	 <%= 	render :partial => 'hals/view_one', locals: {hal: hal, show_user: show_user} %>
+
+	<% commenting = true if local_assigns[:commenting].nil? 
+	# REMOVE!!
+	commenting = false%>
+	<% if commenting %>		
+		<h2>Add a comment:</h2>
+		<%= semantic_form_for Comment.new do |f| %>
+		      <%= f.text_area :body %>
+			<%= hidden_field_tag 'hal_id', hal.id %>
+			<%= hidden_field_tag 'red', request.original_url %>
+		 <%= f.actions %>
+	    <% end %>
+    <% end %>
+<% end %>

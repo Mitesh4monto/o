@@ -1,35 +1,54 @@
 <% @title = "Course listing" %>
 
-<%= form_tag courses_path, method: :get do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
-<% end %>
+<div class="page"><h2>Course Listing</h2>
+	<%= form_tag courses_path, :class => 'search', method: :get do %>
+	    <%= text_field_tag :query, params[:query] %>
+	    <%= submit_tag "Go", name: nil %>
+	<% end %>
+	<!-- <form class="search">
+	<input type="text" placeholder="Search by zit or zat">
+	<input type="submit" value="GO">
+	</form> -->
+</div>
+<div class="page3">
+	<section>
+	
+	<% @courses.each do |course| %>
+					
+		<div class="box_holder borderbtm">
+			<div class="title"><h3><%= course.name %></h3><span>&nbsp;</span></div>
+			<div class="triangle"></div>
+			<div class="box"><%= link_to image_tag(course.course_image.url(:thumb)), course if course.course_image.url%>
+			<p>
+				<span class="inn">
+					<%- followers = @followers[course.id.to_s] || 0  %>
+					<%- if followers.to_i > 1 %>
+						People following: <%= link_to followers.to_s, course_people_path(course)  %>
+					<%- end %>
+					<%- if course.hals.where("privacy != 0").size > 0 %>
+						<%- if followers.to_i > 0 %> | <% end %>
+						 <a href="#" title="See Blog Entries" class="link"><%= course.hals.where("privacy != 0").size %> Blog Entries</a>
+					<%- end %>
+				</span>
+				<%= shorten(course.overview, 400) %>
+			</p>
+			<p><span class="f">Date created: 2/2/14</span></p>
+			</div>		
+		</div>
+		<div class="clear"></div>	
+		<div class="box_2">
+			<a href="courselisting.html">View Course</a>
+			<div class="clear"></div>
+		</div>				
+		<div class="clear"></div>
+	<% end %>
+	<%= will_paginate @courses %>
 
+	<br />
 
-<h1>Listing courses</h1>
+	<%= link_to 'Create a New Course', new_course_path %>
+	</section>
 
-<table>
-
-<% @courses.each do |course| %>
-  <tr>
-    <td>id:<%= course.id %>
-	<%= link_to image_tag(course.course_image.url(:thumb)), course if course.course_image.url%></td>
-					    <td><%= link_to course.user.name, course.user if course.user %></td>
-    <td><%= link_to course.name, course %></td>
-    <td><%= raw short_description(course) %></td>
-    <td>creator:<%= course.user_id %></td>
-    <td><%= course.hals.where("privacy != 0").size %> entries about this course</td>
-	<% followers = @followers[course.id.to_s] || 0  %>
-	<td><%= link_to followers.to_s + " followers", course_people_path(course)  %> </td>
-
-  </tr>
-<% end %>
-</table>
-
-<%= will_paginate @courses %>
-
-<br />
-
-<%= link_to 'Create a New Course', new_course_path %>
+	<%= render :partial => 'shared/aside' %>
+				
+</div>

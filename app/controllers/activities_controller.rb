@@ -173,7 +173,7 @@ class ActivitiesController < ApplicationController
 
     # log deletion
     if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")
-      ActionLog.log_other(current_user.id, "update", @course)  if @course.published?
+      ActionLog.log_other(current_user.id, "update", @course)  if @activity.strategy.course.published?
     else
       ActionLog.log_destroy(@activity)             
     end    

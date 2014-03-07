@@ -49,6 +49,9 @@ class CoursesController < ApplicationController
     render "plan_edit"
   end
   
+  def edit_course
+    
+  end
   
   # owner edits plan
   def plan_edit

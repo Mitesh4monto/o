@@ -3,26 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title><%= if @title then @title else "me-Learning" end %></title>
+<meta name="viewport" content="width=device-width" />
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css"> -->
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script> -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> -->
 
-<%= stylesheet_link_tag    "application", :media => "all" %>
+<%= stylesheet_link_tag "application", :media => "all" %>
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 
+<script type="text/javascript">
+Shadowbox.init({
+language: 'en',
+players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
+});
+</script>
 <%= yield(:head_js) %>
 
 </head>
 
 
 <body>
-	<%= image_tag "/images/lobehold.png", size: "200x10" %><BR>
+	<div id="body_frame">
+		<div class="wrapper">
 	
 	<%= render :partial => "shared/menu_bar" %>
 
@@ -45,36 +53,39 @@
 		<% end %>
 	<% end %>
         
+
+	<div class="contain">
+		<div class="side"></div>
+		<div class="main_con">
+<%= yield %>
+				
+
 	
-  <div id="container-fluid">
-	<section>
-    <div class="row">
-      <div class="span1">f</div>
-      <div class="span9"><%= yield %></div>
-      <div class="span2">
-		<% if current_user %>
-			Updates:<BR>
-			<%= render :partial => 'shared/updates' %>
-		<% end %>
-      </div>
-    </div>
-</section>
-  </div>
+				</div>
+			<div class="side2"></div>
+		</div>
+		<div class="clear"></div>
+		<footers>
+			<div class='footers'>
+			<div class="nav2">
+				<ul>
+				<li> <a href="#">About met Learning</a></li>
+				<li> <a href="#">Terms of use</a></li>
+				<li> <a href="#">Like us on FB </a></li>
+				<li> <a href="#">Guidelines </a></li>
+				<li> <a href="#">Contact us</a></li>
+				</ul>
+			</div>
+			<div class="copy">Copyright ©2010 - 2014. All Rights Reserved</div>
+		</div>
+		</footers>
+	</div>
+	</div>
 
-
-
-
-<br><br>
-<div id="footer">
-	<%= render :partial => 'shared/footer' %>
-</div>
-<BR>
-<!-- debug -->
-<% if Rails.env == "development" %>
-  <div id="footnotes_holder">
-  </div>
-  <%= render :partial => 'shared/debug' %>
-<% end %>
-
-</body>
-</html>
+	<!-- debug -->
+	<% if Rails.env == "development" %>
+	  <!-- <div id="footnotes_holder"> -->
+	  <!-- </div> -->
+	  <!-- <%= render :partial => 'shared/debug' %> -->
+	<% end %>
+</body></html>

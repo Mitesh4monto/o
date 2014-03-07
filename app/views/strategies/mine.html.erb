@@ -1,8 +1,17 @@
 <% @title = "My Plan" %>
 
-  <div class="row">
-    <div class="span4">
-		<div id='plan_status'> <%= raw myp_status %> </div><BR>
+
+<div class="page"><h2>My Plan</h2>
+	<form class="search">
+	<input type="text" placeholder="Search by zit or zat">
+	<input type="submit" value="GO">
+	</form>
+</div>
+<div class="page3">
+<div class="left_bar">
+
+
+ <%= raw myp_status %> 
 	
     	<% if !current_user.strategy.current_activities.empty? %>
 			<strong>plan:</strong><BR>
@@ -11,14 +20,11 @@
 			<%= link_to 'Add activity', add_activity_path %>
 
 		<% end %>
-		
-    </div>
-    <div class="span6">
-		<b>my entries: </b>
-		<BR>
-		<%= render :partial => 'hals/view_hal_list', locals: {hals: current_user.hals.first(3), show_user: false, commenting: false} %>
 
+	</div>
+	<div class="right_bar">
 
+		<%= render :partial => 'hals/view_hal_list_new', locals: {hals: current_user.hals.first(3), show_user: false, commenting: false} %>
 
 		<% if @related_hals.size > 0 %>
 			<BR>
@@ -28,8 +34,6 @@
 				<%= render :partial => 'hals/view_one', locals: {hal: hal} %>
 			<% end %>
 		<% end %>
-
-
+	</div>
 		<BR><BR>
-    </div>
-  </div>
+</div>

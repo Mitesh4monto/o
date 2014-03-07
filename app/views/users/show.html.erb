@@ -1,49 +1,96 @@
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<%= image_tag @user.avatar.url(:thumb) if (@user.avatar.url(:thumb)) %>
-
-<BR>
-<strong>plan</strong>:<BR>
-		<strong>Activities</strong>:<BR>
-	<% @user.strategy.current_activities.each do |activity| %>
-	Activity:	<%= activity.id %>, <%= activity.title %> -- <%= link_to "Add this activity to my plan" , copy_activity_path(activity.id) %><BR>
-<% end %>
-
-
-<% if (current_user and current_user.following.include?(@user)) %>
-	<%= semantic_form_for @user, :url => unfollow_user_path(@user, method: :put) do |f| %>
-		<%= hidden_field_tag 'id', @user.id %>
-		<%= hidden_field_tag 'red', request.original_url %>
-		<%= f.action :submit, :label => "Unfollow User" %>
-	<% end %>
-<% else %>	
-	<%= semantic_form_for @user, :url => follow_user_path(@user, method: :put) do |f| %>
-		<%= hidden_field_tag 'id', @user.id %>
-		<%= hidden_field_tag 'red', request.original_url %>
-		<%= f.action :submit, :label => "Follow User" %>
-	<% end %>
-<% end %>
+<div class="page"><h2>User Profile</h2> 
+	<form class="search"> <input placeholder="Search by zit or zat" type="text"> <input value="GO" type="submit"> </form> </div> 
+	<div class="page3"> 
+		<div class="single" style="float:left; width:640px;"> 
+			<div class="section3"> 
+				<div class="box_holder">
+	 				<div class="box"> 
+						<div class="profile"> 
+							<div class="lft"> 
+								<%= image_tag @user.avatar.url(:thumb), :class => "img_lft" if (@user.avatar.url(:thumb)) %> 
+								<p> <%= @user.name %> <br> <span class="info"></span> </p> 
+             						</div> 
+							<div class="rgt"> <!--<a href="#" class="button" style=" margin-top:30px;">Follow</a>--></div> 
+							<div class="clear"></div>
+					</div>
 
 
-Following:
-<% @user.following.each do |user| %>
-	<%= link_to user.name, user %>
-	<% if user != @user.following.last %>,<% end %>
-<% end %><BR>
-Followed by:
-<% @user.followers.each do |user| %>
-	<%= link_to user.name, user %>
-	<% if user != @user.following.last %>,<% end %>
-<% end %>
-<BR>
+					<% if (current_user and !current_user.following.include?(@user)) %>
+						<%= semantic_form_for @user, :url => follow_user_path(@user, method: :put) do |f| %>
+							<%= hidden_field_tag 'id', @user.id %>
+							<%= hidden_field_tag 'red', request.original_url %>
+							<%= f.action :submit, :class => "button", :label => "Follow User" %>
+						<% end %>
+					<% end %>
 
-<BR>
-User hals: 
-<%= render :partial => 'hals/view_hal_list', locals: {hals: @user.hals, show_user: false} %>
 
-<BR><BR>
+					Following:
+					<% @user.following.each do |user| %>
+						<%= link_to user.name, user %>
+						<% if user != @user.following.last %>,<% end %>
+					<% end %><BR>
+					Followed by:
+					<% @user.followers.each do |user| %>
+						<%= link_to user.name, user %><%- if user != @user.followers.last %>,<% end %>
+					<% end %>
+					<BR>
+				</div> 
+			</div> 
+			<div class="clear"></div> 
+		</div>
+
+
+	
+	 <section> <h2 class="title">Plan:</h2>
+
+		<% activty_map = get_activity_by_map(@user.strategy.current_activities) %>
+		<% if activty_map.size > 0 %>
+			<% activty_map.each do |key, activities| %>
+				<div class="box_holder borderbtm">
+					<div class="title"><h3>Goal: <%= key.nil? ? "none" : key.title %><%= "-- from course " + key.course.name if key and key.course   %></h3><span>&nbsp;</span></div>
+					<div class="triangle"></div>
+					<% activities.each do |activity| %>
+						<div class="box"><p><%= activity.id %> -- <%= activity.title %><br></p>
+							<div class="float_rgt"><a href="#" class="link">View more</a><a href="#" class="link">1 blog entry</a><%= link_to "Add this activity to my plan" , copy_activity_path(activity.id) %></div>
+							<div class="clear"></div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		<% else %>
+			<div class="box_holder borderbtm">
+			<div class="title"><h3>Goal: take in calories </h3><span>&nbsp;</span></div>
+			<div class="triangle"></div>
+			<% @user.strategy.current_activities.each do |activity| %>
+				Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
+				<div class="float_rgt"><a href="#" class="link">View more</a><a href="#" class="link">2 blog entries</a></div>
+				</div>
+			</div>
+
+		<% end %>
+
+		<% end %>
+
+
+
+		<div class="space"></div>
+		<BR><BR>
+
+						
+		<%= render :partial => 'hals/view_hal_list_new', locals: {hals: @user.hals, show_user: false} %>
+		<BR><BR>
+
+	
+	</section>
+	</div>
+		<%= render :partial => 'shared/aside' %>
+</div>
+	
+	
+
+
+
+
+
 

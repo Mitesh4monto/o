@@ -1,0 +1,23 @@
+<div class="edit2"><a href="#">Join</a></div>
+<h2>People following this course</h2>
+
+<% author = @course.user %>
+<%= link_to author.name, author %> (author) 
+<% entries = author.hals.where(course_id: @course.id).size %>
+<% if entries > 0 %>
+	- <%= author.hals.where(course_id: @course.id).size %> entries about this course
+<% end %>
+<div class="clear"></div>
+
+
+<% @followers.each do |user| %>
+	<% if user != author %>
+		<%= link_to user.name, user %>
+		<% entries = user.hals.where(course_id: @course.id).size %>
+		<% if entries > 0 %>
+			 - <%= user.hals.where(course_id: @course.id).size %> entries about this course
+		<% end %>
+		<div class="clear"></div>
+	<% end %>
+<% end %>
+<div class="clear"></div>

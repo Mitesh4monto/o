@@ -1,0 +1,59 @@
+<% @title = "Edit plan for #{@course.name}" %>
+<%= stylesheet_link_tag "activities" %>
+
+
+
+				<div class="edit"><a href="#">Done Editing</a></div><div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div><div class="clear"></div>
+
+					<% if @course.strategy.current_activities.size == 0 %>
+					<p class="box_1">A course is comprised of activities.  They can be worked on simultaneously (e.g. exercising and dieting for a weight loss course) or sequentially (e.g. 12 step program).
+						By default all activities are simultaneous.  For sequential steps add an activity to an existing activity.</p>
+					<% end %>
+
+					<div class="left_panel">
+						<ul>
+							 <% @course.strategy.current_activities.each do |activity| %>		
+								 <%= content_tag_for :li, activity do %>
+									<% if (activity.activity_sequence_id) %>
+									<p>Sequence starting with Activity: <%= link_to activity.title, course_plan_edit_path(@course.id, activity.id) %></p>
+									<% else %>	
+									<p><%= link_to activity.title, course_plan_edit_path(@course.id, activity.id) %></p>
+									<% end %>
+								<% end %>
+							<% end %>
+						</ul>
+						<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
+					</div>
+
+
+					<div class="right_panel">
+						ssoiwek
+						<% if @activity %>
+							<div class="edit"><a href="#">Edit</a></div><div class="edit3"><a href="#">Delete</a></div>
+							<h5><%= @activity.title %></h5>
+							<h5><strong>goal</strong>: <%=  @activity.goal ? @activity.goal.title : "none"  %></h5>
+							<p> <%= raw @activity.description %></p>
+							<%= render :partial => 'strategies/timing' %>
+
+							<% if @activity.activity_sequence_id %>
+							Activities in sequence:
+								 <% @activity.activity_sequence.activities.each do |activity| %>		
+									<%= activity.id %>
+									Activity:  <%= link_to activity.title, show_activity_path(activity) %>
+								    	<%= link_to 'Edit', edit_activity_in_course_path(activity.id) %>
+									    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %> 
+									<BR>
+								<% end %>
+								<BR>
+								<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(@activity.activity_sequence.activity_in_sequences.first) %>	
+							<BR>	<%= link_to 'manage sequence', @activity.activity_sequence %>
+							<% else %>
+								<BR>
+								<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(@activity) %>	<BR>
+								<%= link_to 'edit', edit_activity_in_course_path(@activity) %> |
+							    <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => @activity.id}, confirm: 'Are you sure?', method: :delete %>
+							<% end %>
+						<% end %>
+
+					</div>
+ <div class="clear"></div>

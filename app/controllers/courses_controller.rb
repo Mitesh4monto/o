@@ -29,6 +29,15 @@ class CoursesController < ApplicationController
   def my_created
     @courses = current_user.courses
   end
+  
+  def view
+    @course = Course.find(params[:id])    
+    if @course.user != current_user and !@course.published?
+      return redirect_to :root, notice: 'Nothing here'       
+    end
+    @hals = @course.hals.not_private
+    @followers = @course.get_course_followers
+  end
 
   # GET /courses/1
   # GET /courses/1.json
@@ -50,7 +59,7 @@ class CoursesController < ApplicationController
   end
   
   def edit_course
-    
+    @course = Course.find(params[:id])
   end
   
   # owner edits plan
@@ -186,7 +195,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.update_attributes(params[:course])
           format.html { redirect_to course_overview_path(@course), notice: 'Course was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: "copacetic" }
       else
         format.html { render action: "edit", notice: 'Course was databasely challenged.'  }
         format.json { render json: @course.errors, status: :unprocessable_entity }

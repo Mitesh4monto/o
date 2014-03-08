@@ -20,44 +20,12 @@ $( "#tabs" ).tabs();
 <li><a href="#tabs-3">Courses Explanation</a></li>
 </ul>
 <div id="tabs-1">
-<div class="edit"><a href="#">Done Editing</a></div><div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div>
-<div class="clear"></div>
-<h2>Instruction</h2>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+	<%= @course.name %>
+	 <%= render :partial => 'overview_edit' %>
 
-	<form class="course_manage">
-		<div class="row"><label>Name</label><input type="text" class="top"><div class="clear"></div></div>
-		<div class="row"><label>Tags</label><input type="text"><div class="clear"></div></div>
-		<div class="row"><label>Overview</label><textarea></textarea><div class="clear"></div></div>
-		<div class="row"><label>About the Author</label><textarea></textarea><div class="clear"></div></div>
-		<div class="row"><label>External url</label><input type="text"><div class="clear"></div></div>
-		<div class="row"><label>Picture</label><input type="file"><div class="clear"></div></div>
-		<div class="row"><label>&nbsp;</label><input type="button" value="Save"> <input type="submit" value="Save and go to Plan"></div>
-	</form>
-<div class="clear"></div>
-</div>
+
 <div id="tabs-2">
-<div class="edit"><a href="#">Done Editing</a></div><div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div>
-<div class="clear"></div>
-<p class="box_1">Additional Instruction Lorem Ipsum Additional Instruction Lorem Ipsum Additional Instruction Lorem Ipsum</p>
-<div class="left_panel">
-<ul>
-<li> <p>Work out  --  Twice a week</p><p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p> <a href="#">view more</a></li>
-<li><p> Eat more -- Every day</p><p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p> </li>
-<li> <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><a href="#">view more</a></li>
-<li> <p>Title Timing Description</p> <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><a href="#">view more</a></li>
-</ul>
-</div>
-<div class="right_panel">
-<div class="edit"><a href="#">Edit</a></div><div class="edit3"><a href="#">Delete</a></div>
-<h5>Title</h5>
-<h5>Description</h5>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,<div class="squre"><img src="images/cross2.jpg" ></div><div class="squre2"><img src="images/cross.jpg" ></div></p>
-<div class="clear"></div>
-<p>hear's one with a branch.</p>
-</div>
-
-<div class="clear"></div>
+	 <%= render :partial => 'plan_edit' %>
 </div>
 <div id="tabs-3">
 <div class="edit"><a href="#">Done Editing</a></div>

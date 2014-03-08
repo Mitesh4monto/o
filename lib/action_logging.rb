@@ -16,11 +16,11 @@ module ActionLogging
   end
   
   def log_destroy
-    ActionLog.log_destroy(self) if defined? self.class::LOGCREATE and self.class::LOGDESTROY
+    ActionLog.log_destroy(self) if defined? self.class::LOGDESTROY and self.class::LOGDESTROY
   end
   
   def log_update
-    ActionLog.log_update(self) if defined? self.class::LOGCREATE and self.class::LOGUPDATE
+    ActionLog.log_update(self) if defined? self.class::LOGUPDATE and self.class::LOGUPDATE
   end
 
 

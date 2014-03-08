@@ -1,0 +1,36 @@
+<% @title = "Edit Course #{@course.name}" %>
+<%= 
+# render :partial => 'course_edit' 
+%>
+
+	<div class="edit"><a href="#">Done Editing</a></div><div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div>
+	<div class="clear"></div>
+	<h2>Instruction</h2>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+
+	<%= form_for @course, :format => :json, :html => {:class => "course_manage"} do |f| %>
+	  <% if @course.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+	      <ul>
+	      <% @course.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+			<div class="row"><label>Course Name</label><%= f.text_field :name, :class => "top", :label => "Course Name" %><div class="clear"></div></div>
+			<div class="row"><label>Overview</label><%= f.text_field :overview, :label => "Overview.  This will appear on the course listing page.  For details, especially for course followers, add those in the supplemental info area" %><div class="clear"></div></div>
+			<div class="row"><label>About the Author</label><%= f.text_area :about_the_author %><div class="clear"></div></div>
+			This will help people find your course and easily see what it's about. You can add as many as you wish, but they should be relevant to your course.
+			<div class="row"><label>Tag List</label><%= f.text_field  :tag_list, :label => "enter comma separated tags" %><div class="clear"></div></div>
+			<%= image_tag @course.course_image.url(:medium) %>
+			<div class="row"><label>New image</label><%= f.file_field :course_image %></div><div class="clear"></div>
+			<div class="row"><label>&nbsp;</label><%= submit_tag "save" %><input type="submit" value="Save and go to Plan"></div>
+	<div class="clear"></div>
+	
+
+	<% end %>
+
+</div>

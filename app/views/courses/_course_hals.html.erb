@@ -1,0 +1,56 @@
+<div class="edit2"><a href="#">Join</a></div>
+<h2>Blog entries by followers</h2>
+
+<% @hals.each do |hal| %>
+<div class="box">
+               <h1><%= link_to hal.user.name, hal.user %></h1>
+<%= hal.id %>
+				<%= image_tag hal.user.avatar.url(:thumb) if (hal.user.avatar.url(:thumb)) %> 
+               <p><%= hal.entry %></p>
+				<% if hal.halable %>
+	               <ul class="activity">
+	                 <li>Activity: <%= link_to hal.halable.title, hal.halable %></li>
+	               </ul>
+				<% end %>
+				  <br class="dis"/>				
+               <% if hal.comments.size > 0  %><span id="link" value=<%= hal.id %> class="collapselink marginlft30"><%=  hal.comments.size %> comments </span> | <% end %> 
+				<span id="addCommentLink<%= hal.id %>" class="collapselink"><a href='#'>Add a Comment</a></span>
+
+				<!-- comments -->
+				<% if hal.comments.size > 0  %>
+	               <div id="Comments<%= hal.id %>" class="comment">
+		             <ul>
+ 					 <% hal.comments.each do |comment| %>
+	                   <li>
+	                     <h1><%= comment.user.name %> Says</h1>
+	                     <span><%= comment.created_at.strftime("%m/%d/%Y") %></span>
+	                     <p><%= comment.body %></p>
+	                     <a href="#" class="reply">Reply</a> 
+						</li>
+					  <% end %>
+	                 </ul>
+	               </div>
+				<% end %>
+               <div id="addComment" class="comment">
+                 <ul>
+                   <li>
+                     <h1>Comment</h1>
+                     <textarea name="Comment" cols="20" rows="5"></textarea>
+                     <p>
+                       <input name="comment_button" type="button" class="send_button" value="Send">
+                     </p>
+                   </li>
+                 </ul>
+               </div>
+             </div>
+             <div class="clear"></div>
+<% end %>
+<script>
+$(function() {
+ $('.link').click(function () {
+        console.log($(this));
+alert($(this));
+    });
+});
+</script>
+

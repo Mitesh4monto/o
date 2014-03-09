@@ -7,7 +7,10 @@ class CommentsController < ApplicationController
     @comment = @hal.comments.new(params[:comment])
     @comment.user_id = current_user.id
     @comment.save
-    redirect_to params[:red]
+    respond_to do |format|
+      format.html { redirect_to params[:red] }
+      format.js { head :no_content }
+    end
   end  
   
   def destroy

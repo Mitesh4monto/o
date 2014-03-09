@@ -1,6 +1,7 @@
 <div class="edit2"><a href="#">Join</a></div>
 <h2>Blog entries by followers</h2>
 
+
 <% @hals.each do |hal| %>
 <div class="box">
                <h1><%= link_to hal.user.name, hal.user %></h1>
@@ -13,9 +14,8 @@
 	               </ul>
 				<% end %>
 				  <br class="dis"/>				
-               <% if hal.comments.size > 0  %><span id="link" value=<%= hal.id %> class="collapselink marginlft30"><%=  hal.comments.size %> comments </span> | <% end %> 
-				<span id="addCommentLink<%= hal.id %>" class="collapselink"><a href='#'>Add a Comment</a></span>
-
+               <% if hal.comments.size > 0  %><span id="<%= hal.id %>" title='<%= hal.id %>' class="collapselinkmarginlft30"><%=  hal.comments.size %> comments </span> | <% end %> 
+				<span id="<%= hal.id %>" title='<%= hal.id %>' class="collapselink">Add a Comment</span>
 				<!-- comments -->
 				<% if hal.comments.size > 0  %>
 	               <div id="Comments<%= hal.id %>" class="comment">
@@ -25,19 +25,41 @@
 	                     <h1><%= comment.user.name %> Says</h1>
 	                     <span><%= comment.created_at.strftime("%m/%d/%Y") %></span>
 	                     <p><%= comment.body %></p>
-	                     <a href="#" class="reply">Reply</a> 
+	                     <a href="#" onclick='return false;' title='<%= hal.id %>' class="reply">Reply</a> 
 						</li>
 					  <% end %>
 	                 </ul>
 	               </div>
 				<% end %>
-               <div id="addComment" class="comment">
+               <div id="addComment<%= hal.id %>" class="comment">
                  <ul>
                    <li>
                      <h1>Comment</h1>
-                     <textarea name="Comment" cols="20" rows="5"></textarea>
+					<%= form_for(Comment.new, :remote => true) do |f| %>
+					<%= hidden_field_tag 'hal_id', hal.id %>
+					  <% if @comment.errors.any? %>
+					    <div id="error_explanation">
+					      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+					      <ul>
+					      <% @comment.errors.full_messages.each do |msg| %>
+					        <li><%= msg %></li>
+					      <% end %>
+					      </ul>
+					    </div>
+					  <% end %>
+
+					  <div class="field">
+					    <%= f.label :body %><br />
+					    <%= f.text_area :body %>
+					  </div>
+					  <div class="actions">
+					    <%= f.submit %>
+					  </div>
+					<% end %>
+					
+                     <!-- <textarea name="Comment" cols="30" rows="5"></textarea> -->
                      <p>
-                       <input name="comment_button" type="button" class="send_button" value="Send">
+                       <!-- <input name="comment_button" type="button" class="send_button" value="Send"> -->
                      </p>
                    </li>
                  </ul>
@@ -45,12 +67,4 @@
              </div>
              <div class="clear"></div>
 <% end %>
-<script>
-$(function() {
- $('.link').click(function () {
-        console.log($(this));
-alert($(this));
-    });
-});
-</script>
 

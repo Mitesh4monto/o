@@ -37,6 +37,7 @@ class CoursesController < ApplicationController
     end
     @hals = @course.hals.not_private
     @followers = @course.get_course_followers
+    @comment = Comment.new
   end
 
   # GET /courses/1

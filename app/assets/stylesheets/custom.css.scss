@@ -96,7 +96,7 @@
 				.page2 form span { color:#555657; font-size:14px;font-family: 'opensans'; margin-left:5px;}
 				.log_in img { margin:30px 0 0; float:left;}
 				.log_in a { float:left; width:65%; font-size:13px; color:#555657;font-family: 'opensans'; padding-top:10px; }
-				.page2 form input[type="text"], .page2 form input[type="password"], .course_manage input[type="text"], .edit_form input[type="text"] { width:232px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; height:32px; border-radius:5px; float:left;}
+				.page2 form input[type="text"], .page2 form input[type="email"], .page2 form input[type="password"], .course_manage input[type="text"], .edit_form input[type="text"] { width:232px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; height:32px; border-radius:5px; float:left;}
 				.edit_form input[name="firstinput"] {width:25px;background:none; border:none; height:20px;border-radius:5px; float:left;}
 				.edit_form input[type="checkbox"] { float:left; width:50px;}
 				.edit_form select { float:left; width:120px;}
@@ -235,7 +235,7 @@
 				.profile ul li.rgt { width:40%; float:left; margin-right:10px; }
 				.form { width:400px; padding-top:20px;}
 				.form label { width:175px; padding:7px 5px 0 0; float:left; color:#333333; font-size:12px;font-family: 'opensans-bold';}
-				.form input[type="text"], .form input[type="password"] { width:200px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; height:32px; border-radius:5px; }
+				.form input[type="text"], .page2 form input[type="email"], .form input[type="password"] { width:200px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; height:32px; border-radius:5px; }
 				.form textarea {width:200px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none;height:100px; border-radius:5px;}
 				.form input[type=button] { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none;}
 				.button_blue { background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa;}
@@ -483,7 +483,7 @@
 				.activity li { padding:0px!important; margin:0px!important;}
 				.collapselink { margin-left:-9px; }
 				.page2 form label, .course_manage label, .edit_form label { width:155px;}
-				.page2 form input[type="text"], .page2 form input[type="password"], .course_manage input[type="text"], .edit_form input[type="text"] { width:140px;}
+				.page2 form input[type="text"], .page2 form input[type="email"], .page2 form input[type="password"], .course_manage input[type="text"], .edit_form input[type="text"] { width:140px;}
 				.course_manage textarea, .edit_form textarea { width: 140px; }
 				.course_manage { padding-left:0px; width:320px; padding-top:20px;}
 				.box1 { border: 1px solid #AAA; padding: 10px; margin:15px 0px 15px 0px; overflow:hidden; }
@@ -492,7 +492,7 @@
 				#tabs-4 .rgt { width:60%; float:right; }
 				section .pagi ul li { margin-bottom: 20px;}
 				.page3 .box_1 { width: 90%;margin-left: 0px;}
-				.form input[type="text"], .form input[type="password"] { width: 150px; }
+				.form input[type="text"],  .page2 form input[type="email"], .form input[type="password"] { width: 150px; }
 				.log_in h1 { margin-bottom:42px; }
 				}
 
@@ -521,3 +521,4 @@
 						font-size: 10pt;
 					}
 				}
+

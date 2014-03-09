@@ -29,7 +29,10 @@ $('#link2').hover(function() {
 		</ul>
 		
 	</nav>
+
+
 	<div class="user">
+		<% if current_user  %>
 		<div class="image">
 			<div class="image2">
 				<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
@@ -41,7 +44,11 @@ $('#link2').hover(function() {
 			    <li><%= link_to "Sign out", sign_out_path %></li>
 			</ul>
 		</div>
-	</div>
+	<% else %>
+	    <li><%= link_to "Sign up", new_user_registration_path %>/<%= link_to "sign in", new_user_session_path %></li>
+		<li><%= link_to "	with FB:", "/auth/facebook", id: "sign_in" %></li>	
+	<% end %>
+</div>
 	<div class="clear"></div>
 </header>
 

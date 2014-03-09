@@ -96,7 +96,7 @@ Opp::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
     
-
+  match 'users/login_or_signup',  :controller => "users", :action => "login_or_signup"
   match 'users/myprofile',  :controller => "users", :action => "myprofile"
   match 'users/editmyprofile',  :controller => "users", :action => "edit_profile"
 

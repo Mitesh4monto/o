@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except =>[:index,:show]
+  before_filter :authenticate_user!, :except =>[:index,:show,:login_or_signup]
 
   # GET /users
   # GET /users.json
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   
   def edit_profile
     @user = current_user    
+  end
+  
+  def login_or_signup
+    
   end
 
   # GET /users/1

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment.save
     respond_to do |format|
       format.html { redirect_to params[:red] }
-      format.js { head :no_content }
+      format.js
     end
   end  
   

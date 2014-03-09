@@ -25,7 +25,7 @@
 	                     <h1><%= comment.user.name %> Says</h1>
 	                     <span><%= comment.created_at.strftime("%m/%d/%Y") %></span>
 	                     <p><%= comment.body %></p>
-	                     <a href="#" onclick='return false;' title='<%= hal.id %>' class="reply">Reply</a> 
+	                     <a href="#" onclick='return false;' title='<%= hal.id %>' id="reply<%= comment.id %>" class="reply">Reply</a> 
 						</li>
 					  <% end %>
 	                 </ul>
@@ -48,7 +48,7 @@
 					    </div>
 					  <% end %>
 
-					  <div class="field">
+					  <div class="field" id="comment_body<%= hal.id %>">
 					    <%= f.label :body %><br />
 					    <%= f.text_area :body %>
 					  </div>

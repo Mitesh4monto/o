@@ -1,40 +1,57 @@
-
-
-<div class="span2">
-	<a href="<%= current_user.avatar.url(:medium) %>"><%= image_tag current_user.avatar.url(:small) if (current_user and current_user.avatar.url(:small)) %></a>
+<div class="page">
+  <h2>My Profile</h2>
 </div>
-<div class="span5">
-
-
-
-	name: <%= current_user.name %><BR>
-	email: <%= current_user.email %><BR>
-		<%= link_to "edit profile", '/users/editmyprofile' %>
+<div class="page3">
+  <div class="section3">
+    <div class="box_holder">
+      <div class="box">
+        <div class="profile">
+          <div class="lft width70"> 	
+	<%= image_tag current_user.avatar.url(:small), :class => "img_lft" %>
 		
-		
-	<BR><BR>
-	<div class="span2">
-		
-	
-		Following:
-		<% current_user.following.each do |user| %>
-		<%= link_to user.name, user %> --<%= semantic_form_for user, :url => unfollow_user_path(user, method: :put) do |f| %>
-			<%= hidden_field_tag 'id', user.id %>
-			<%= hidden_field_tag 'red', request.original_url %>
-			<%= f.action :submit, :label => "Unfollow User" %>
-		<% end %>
-
-		<BR>
-		<% end %>
-		<BR><BR>
-	</div>
-
-	<div class="span2">
-		Followed by:
-		<% current_user.followers.each do |user| %>
-		<%= link_to user.name, user %><BR>
-		<% end %>
-		<BR>
-
-	</div>
+            <div class="profile-lft margintop20">
+              <dl>
+                <dt>Name:</dt>
+                <dd><%= current_user.name %></dd>
+              </dl>
+              <dl>
+                <dt>Email:</dt>
+                <dd><%= current_user.email %></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="rgt margintop20" ><%= link_to "edit profile", edit_profile_path, :class => "button" %>
+            <div class="clear"></div>
+            <%= link_to "Mod Pass", edit_profile_path, :class => "button" %> </div>
+          <div class="clear space"></div>
+          <div class="divider"></div>
+          <div class="clear space"></div>
+          <div class="btm">
+            <div class="lft">
+              <h1 class="blacktxt">Following users:</h1>
+              <ul>
+				<% current_user.following.each do |user| %>
+					<li class="lft"><%= link_to user.name, user, :class => "link1" %></li>
+					<li class="rgt"><%= form_for user, :url => unfollow_user_path(user, method: :put) do |f| %>
+						<%= hidden_field_tag 'id', user.id %>
+						<%= hidden_field_tag 'red', request.original_url %>
+						<%= f.submit "Unfollow", :class => "button" %>
+					<% end %></li>
+				<% end %>
+              </ul>
+            </div>
+            <div class="rgt">
+              <h1 class="blacktxt">Followed by:</h1>
+              <ul>
+				<% current_user.followers.each do |user| %>
+					<li><%= link_to user.name, user, :class=>"link1" %></li>
+				<% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
 </div>

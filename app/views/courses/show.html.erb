@@ -1,87 +1,69 @@
-<% @title = "Course #{@course.name}" %>
-
-<%= stylesheet_link_tag "activities" %>
-
-
-<% if current_user && current_user.id == @course.user.id %>
-This is your course.  Care to...
-<% if !@course.published? %>
-	<%= link_to "publish course", publish_course_path(@course) %><BR>
-<% end %>
-	<%= link_to 'share on fb', share_course_on_fb_path(@course) if current_user.provider == "facebook"%> |
-<%= link_to 'Edit', edit_course_path(@course) %>
-<% end %>
-
-<BR><BR>
-
-
-<% if @course.published? %>
-	<%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %>
-<% end %>
-
-
-<%= link_to "entries", :controller => "courses", :action => "hals", :id => @course.id %>
-
-<p>
-  <b>Name:</b>
-  <%= @course.name %>
-</p>
-
-<p>
-  <b>author:</b>
-  <%= link_to @course.user.name, @course.user %>
-</p>
-
-<p>
-  <b>Ppl following:</b>
-<% @followers.each do |follower| %>
-  <%= link_to follower.name, follower %><BR>
-<% end %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= raw @course.description %>
-</p>
-
-<p>
-  <b> about the author:</b>
-  <%= @course.about_the_author %>
-</p>
-<p>
-  <b> published:</b>
-  <%= @course.published %>
-</p>
-
-<p>
-  <b>Plan:</b>
-</p>
-
-<ul id="activities" data-update-url="<%= sort_activities_url %>">
-
- <% @course.strategy.current_activities.each do |activity| %>		
-
- <%= content_tag_for :li, activity do %>
-	Activity:  <%= link_to activity.title, show_activity_path(activity.id) %>
-	<% if (activity.activity_sequence_id) %>
-	<%= link_to 'view sequence', activity_sequence_path(activity.activity_sequence_id) %>		
-	<% end %>
-<% end %>
-
-<% end %>
-<BR>
-	
+<script>
+$(function() {
+$( "#tabs" ).tabs();
+});
+</script>
+<script>
+function showHideDiv(id){
+  var obj = document.getElementById(id);
+    if (obj.style.display=="none"){
+      obj.style.display='block';
+    } else if(obj.style.display=="block"){
+      obj.style.display='none';
+    }
+}
+</script>
+<script>
+$(function() {
+$('#link1').hover(function() { 
+    $('#navmenu1').show(); 
+}, function() { 
+    $('#navmenu1').hide(); 
+});
+$('#link2').hover(function() { 
+    $('#navmenu2').show(); 
+}, function() { 
+    $('#navmenu2').hide(); 
+});
+});
+</script>
 
 
 
 
-------------------
-
-<%= render :partial => 'hals/view_hal_list', locals: {hals: @hals, show_user: true, commenting: true} %>
 
 
 
-<BR><BR>
 
 
-
+<div class="page">
+   <h2><%= @course.name %></h2>
+ </div>
+ <div class="page3">
+   <div class="tab_holder2">
+     <div id="tabs">
+       <ul>
+         <li><a href="#tabs-1">Overview</a></li>
+         <li><a href="#tabs-2">Plan</a></li>
+         <li><a href="#tabs-3">Details</a></li>
+         <li><a href="#tabs-4">Blogs</a></li>
+         <li><a href="#tabs-5">People</a></li>
+       </ul>
+       <div id="tabs-1" style="overflow:hidden;">
+         <%= render :partial => 'overview' %>
+       </div>
+       <div id="tabs-2">
+         <%= render :partial => 'plan' %>
+       </div>
+       <div id="tabs-3">
+         <%= render :partial => 'details' %>
+		</div>
+       <div id="tabs-4">
+         <%= render :partial => 'course_hals' %>
+       </div>
+       <div id="tabs-5">
+         <%= render :partial => 'course_followers' %>
+       </div>
+     </div>
+   </div>
+  </div>

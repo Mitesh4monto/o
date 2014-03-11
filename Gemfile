@@ -64,7 +64,7 @@ group :development, :test do
   # To use debugger
   #gem 'ruby-debug'
   # gem 'ruby-debug19'  # , :require => 'ruby-debug'
-  gem 'better_errors'
+  # gem 'better_errors'
   # gem 'binding_of_caller'
   gem 'meta_request'
   gem 'hirb'

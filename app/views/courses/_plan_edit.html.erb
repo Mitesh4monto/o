@@ -1,9 +1,7 @@
 <% @title = "Edit plan for #{@course.name}" %>
 <%= stylesheet_link_tag "activities" %>
 
-
-
-				<div class="edit"><a href="#">Done Editing</a></div><div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div><div class="clear"></div>
+<%= render :partial => 'new_course_edit' %>
 
 					<% if @course.strategy.current_activities.size == 0 %>
 					<p class="box_1">A course is comprised of activities.  They can be worked on simultaneously (e.g. exercising and dieting for a weight loss course) or sequentially (e.g. 12 step program).

@@ -37,16 +37,8 @@
                      <h1>Comment</h1>
 					<%= form_for(Comment.new, :remote => true) do |f| %>
 					<%= hidden_field_tag 'hal_id', hal.id %>
-					  <% if @comment.errors.any? %>
 					    <div id="error_explanation">
-					      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-					      <ul>
-					      <% @comment.errors.full_messages.each do |msg| %>
-					        <li><%= msg %></li>
-					      <% end %>
-					      </ul>
 					    </div>
-					  <% end %>
 
 					  <div class="field" id="comment_body<%= hal.id %>">
 					    <%= f.label :body %><br />

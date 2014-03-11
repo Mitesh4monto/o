@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :require_owner, :only =>[:edit, :update, :destroy, :plan_edit, :overview_edit, :description_edit, :publish_course, :update_description]
+  before_filter :require_owner, :only =>[:edit,:edit_course, :update, :destroy, :plan_edit, :overview_edit, :description_edit, :publish_course, :update_description]
   before_filter :authenticate_user!, :except =>[:index, :hals, :show, :overview, :plan, :description]
 
 
@@ -51,8 +51,6 @@ class CoursesController < ApplicationController
     @hals = @course.hals.not_private
     @followers = @course.get_course_followers
     # puts @followers.inspect
-    
-    render "overview"
   end
   
   def edit    
@@ -80,6 +78,34 @@ class CoursesController < ApplicationController
   def overview_edit
     @course = Course.find(params[:id])
   end
+  
+  def update_description
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      if @course.update_attributes(params[:course])
+        flash[:notice] = "Course updated Successfully"
+      else
+        flash[:notice] = "Doh!"
+      end
+      format.html
+      format.js
+    end
+  end
+  
+  
+  def overview_update
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      if @course.update_attributes(params[:course])
+        flash[:notice] = "Course updated Successfully"
+      else
+        flash[:notice] = "Doh!"
+      end
+      format.html 
+      format.js
+    end
+  end
+  
   
   def blogs
     @course = Course.find(params[:id])    
@@ -204,17 +230,6 @@ class CoursesController < ApplicationController
     end
   end
   
-  def update_description
-    @course = Course.find(params[:id])
-    respond_to do |format|
-      if @course.update_attributes(params[:course])
-          format.html { redirect_to course_description_path(@course), notice: 'Course Description was successfully updated.' }
-      else
-        format.html { render action: "description" }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /courses/1
   # DELETE /courses/1.json

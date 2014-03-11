@@ -1,50 +1,10 @@
 <div class="edit2"><a href="#">Join</a></div>
 <div class="clear"></div>
 <h2>Course Plan</h2>
-<div class="left_panel">
-  <div class="box1"> Work out - Twice a week<br/>
-    Working out can mean a lot of...
-    <div class="float_rgt"><a href="#" class="link">View more</a></div>
-  </div>
-  <div class="clear"></div>
-  <div class="box1"> Eat more - Every day<br/>
-    To beefcake you need to eat... </div>
-  <div class="clear"></div>
-  <div class="box1"> Watch shows about working out - <br/>
-    once a week
-    On our site we have tons of info...
-    <div class="float_rgt"><a href="#" class="link">View more</a></div>
-  </div>
-  <div class="clear"></div>
-  <div class="box1"> Title - Timing<br/>
-    Description...
-    <div class="float_rgt"><a href="#" class="link">View more</a></div>
-  </div>
-  <div class="clear"></div>
-  <div class="box1"> Title - Timing<br/>
-    Description...
-    <div class="float_rgt"><a href="#" class="link">View more</a></div>
-  </div>
-  <div class="clear"></div>
-</div>
-<div class="right_panel">
-  <div class="box1">
-    <div class="float_rgt"><a href="#">view less</a></div>
-    <div class="edit"><a href="#">Edit</a></div>
-    <div class="edit4"><a href="#">Delete</a></div>
-    <div class="clear"></div>
-    <h5>Title: Eat more</h5>
-    <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, ...
-    <div class="squre"><img src="images/cross2.jpg" ></div>
-    <div class="squre3"><img src="images/cross.jpg" ></div>
-    <div class="clear"></div>
-    <p>here's one with a bunch.</p>
-    <p><strong>Timing:</strong> Three times a day</p>
-    <p><strong>Duration: </strong>6 months</p>
-    </p>
-    <div class="float_rgt"><a href="#" class="link">5 new hals</a>|<br class="dis" /><a href="#">2 by ppl you follow</a></div>
-  </div>
-  <div> <a href="#" class="link">Add Activity in the sequence</a> <a href="#" class="link edit4">View details >></a></div>
-  <div class="clear"></div>
-</div>
+
+<% @course.strategy.current_activities.each do |activity| %>
+	<%= activity.id %><%= link_to activity.title, activity %>
+	<div class="clear"></div>
+<% end %>
+
 <div class="clear"></div>

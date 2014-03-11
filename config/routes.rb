@@ -60,6 +60,7 @@ Opp::Application.routes.draw do
   get "courses/overview_edit/:id", to: 'courses#overview_edit', as: 'course_overview_edit'
   get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'
   get "courses/publish_course/:id", to: 'courses#publish_course', as: 'publish_course'
+  get "courses/edit_course/:id", to: 'courses#edit_course', as: "edit_course"
   resources :courses
   
 
@@ -97,8 +98,8 @@ Opp::Application.routes.draw do
   
     
   match 'users/login_or_signup',  :controller => "users", :action => "login_or_signup"
-  match 'users/myprofile',  :controller => "users", :action => "myprofile"
-  match 'users/editmyprofile',  :controller => "users", :action => "edit_profile"
+  match 'users/myprofile',  :controller => "users", :action => "myprofile", :as => "my_profile"
+  match 'users/editmyprofile',  :controller => "users", :action => "edit_profile", :as => "edit_profile"
 
 
   resources :users do

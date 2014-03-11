@@ -1,31 +1,56 @@
-<%= link_to "edit pass", edit_user_registration_path %>
+<div class="page">
+  <h2>My Profile</h2>
+</div>
+<div class="page3">
+  <div class="section3">
+    <div class="box_holder">
+      <div class="box">
+        <div class="profile">
+          <div class="edit_prof_lft"><%= image_tag current_user.avatar.url(:small), :class => "img_lft" %> <br/>
+          </div>
+          <div class="edit_prof_rgt">
+			<%= form_for @user, :html => {:name => 'edit_profile', :class => 'form'} do |f| %>
+			  <% if @user.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+			      <ul>
+			      <% @user.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
 
+              <dl>
+                <dt>Name:</dt>
+                <dd>
+			    <%= f.text_field :name %>
+				</dd>
+			  </dl>
 
-<h2>Edit Profile</h2>
+              <dl>
+                <dt>New picture:</dt>
+                <dd>
+				  <%= f.file_field :avatar, :html => {:title => 'Delete'} %>
+				</dd>
+			  </dl>
 
-
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+              <dl style="margin-top:20px;">
+                <dt>&nbsp;</dt>
+                <dd>
+					<%= link_to 'Back', my_profile_path, {:class=>"button", :style=>"background:#CCCCCC; border:1px solid #999999;"} %>
+					&nbsp;
+					<%= f.submit "Save", {:class=>"button"} %>
+				</dd>
+              </dl>
+				<% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <div class="clear"></div>
   </div>
+</div>
 
-  <div><%= f.label :avatar %> <br />
-  <%= f.file_field :avatar %></div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+

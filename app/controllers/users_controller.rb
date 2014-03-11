@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to root_path, notice: 'Updated!' }
+        format.html { redirect_to my_profile_path, notice: 'Updated!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

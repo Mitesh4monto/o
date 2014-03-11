@@ -1,0 +1,16 @@
+var notification = $('#notice');
+notification.html('<%= flash[:notice] %>')
+// $('#overview_error_explanation').html('<%= flash[:notice] %>');
+
+<% if @course.errors.any? %>
+  // Create a list of errors
+  var errors = $('#overview_error_explanation');
+  errors.html('');
+
+  <% @course.errors.full_messages.each do |error| %>
+    errors.append('<li><%= escape_javascript(error) %></li>');
+  <% end %>
+
+<% end %>
+
+<%  flash.discard %>

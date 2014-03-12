@@ -59,6 +59,7 @@ class CoursesController < ApplicationController
   
   def edit_course
     @course = Course.find(params[:id])
+    @tab = 0
   end
   
   # owner edits plan
@@ -177,7 +178,7 @@ class CoursesController < ApplicationController
     @course = Course.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @course }
     end
   end
@@ -202,10 +203,12 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(params[:course])
     @course.user = current_user
+    @tab = 1
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to course_plan_edit_path(@course), notice: 'Course was successfully created.' }
+        format.html {   flash[:notice] = 'Course was successfully created.'
+                        render :edit_course}
         format.json { render json: @course, status: :created, location: @course }
       else
         format.html { render action: "new" }

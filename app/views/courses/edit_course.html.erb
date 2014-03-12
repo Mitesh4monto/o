@@ -1,10 +1,9 @@
 <script>
 $(function() {
 $( "#tabs" ).tabs();
+$('#tabs').tabs("option", 'active', <%= @tab %>)
 });
 </script>
-
-
 
 <div class="page"><h2><%= @course.name %></h2></div>
 <div class="page2">
@@ -12,12 +11,13 @@ $( "#tabs" ).tabs();
 					
 		<div id="tabs">
 			<ul>
-			<li><a href="#tabs-1">Courses Overview</a></li>
-			<li><a href="#tabs-2">Courses Plan</a></li>
-			<li><a href="#tabs-3">Courses Explanation</a></li>
+			<li><a href="#tabs-1">Overview</a></li>
+			<li><a href="#tabs-2">Plan</a></li>
+			<li><a href="#tabs-3">Additional Info</a></li>
 			</ul>
 			<div id="tabs-1">
 				<%= render :partial => 'overview_edit' %>
+			</div>
 			<div id="tabs-2">
 				<%= render :partial => 'plan_edit' %>
 			</div>

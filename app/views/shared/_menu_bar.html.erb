@@ -3,6 +3,7 @@
  		<%= image_tag "/images/lobehold.png", size: "200x10" %><BR>
 	<% end -%>
 	<nav>
+		<% if current_user  %>
 		<ul>
 		<li> <%= link_to "my Plan", :myp, class: 'stra'  %>  </li>
 		<li id='link1'> <a href="blog.html" class="blog">Blog</a>
@@ -13,6 +14,7 @@
 			<li><%= link_to "following", :following  %></li>
 			<li><%= link_to "my insights", :my_insights  %></li>
 		</ul>
+		<% end %>
 
 		<li id='link2'> <a href="/courses" class="course">Courses</a>
 			<ul id="navmenu2">

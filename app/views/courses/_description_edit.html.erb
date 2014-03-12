@@ -1,7 +1,7 @@
 <%= render :partial => 'new_course_edit' %>
 
 <div class="clear"></div>
-<%= form_for @course, as: :course, url: :update_description, :format => :json, :html => {:class => "course_manage"}, :remote => true do |f| %>
+<%= form_for @course, as: :course, url: update_description_path(@course), :format => :json, :html => {:class => "course_manage"}, :remote => true do |f| %>
   <div id="overview_error_explanation"></div>
 
   <div class="field">
@@ -13,7 +13,7 @@
 <div class="edit2">	<%= f.submit 'Save' %></div>
 <div class="clear"></div>
 
-  </div>
 <% end %>
 
 
+<div class="edit2"><%= link_to "<< See Plan", '#', :id => 'seeplan' %></div>

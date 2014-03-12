@@ -1,12 +1,3 @@
-<% if current_user and @course.user_id == current_user.id %>
-	<div class="edit"><%= link_to "Edit", edit_course_path(@course) %></div>
-<% end %>
-
-<% if @course.published? %>
-	<div class="edit2"><%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %></div>	
-<% end %>
-<div class="clear space"></div>
-
 <h2>Overview</h2>
 <div class="clear space"></div>
 <%= @course.overview %>
@@ -16,4 +7,4 @@
 <div class="clear space"></div>
 <%= @course.about_the_author %>
 
-<div class="edit2"><a href="#">See Plan >></a></div>
+<div class="edit2"><%= link_to "See Plan >>", '#', :id => 'seeplan' %></div>

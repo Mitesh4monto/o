@@ -1,1 +1,9 @@
-<div class="edit"><a href="#">Done Editing</a></div><div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div>
+<div class="edit">
+	<%= link_to "Done Editing", @course %>
+</div>
+<% if @course.published? %>
+<div class="edit2">
+	<span>This course is unpublished </span>
+	<%= link_to "Publish", publish_course_path(@course) %>
+</div>
+<% end %>

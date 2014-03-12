@@ -40,7 +40,6 @@ $('#link2').hover(function() {
    <h2><%= @course.name %></h2>
  </div>
  <div class="page3">
-   <div class="tab_holder2">
      <div id="tabs">
        <ul>
          <li><a href="#tabs-1">Overview</a></li>
@@ -50,20 +49,24 @@ $('#link2').hover(function() {
          <li><a href="#tabs-5">People</a></li>
        </ul>
        <div id="tabs-1" style="overflow:hidden;">
+		 <%= render :partial => 'course_view_top' %>
          <%= render :partial => 'overview' %>
        </div>
        <div id="tabs-2">
+  		 <%= render :partial => 'course_view_top' %>		 
          <%= render :partial => 'plan' %>
        </div>
        <div id="tabs-3">
+  		 <%= render :partial => 'course_view_top' %>		 
          <%= render :partial => 'details' %>
 		</div>
        <div id="tabs-4">
+  		 <%= render :partial => 'course_view_top' %>		 
          <%= render :partial => 'course_hals' %>
        </div>
        <div id="tabs-5">
+  		 <%= render :partial => 'course_view_top' %>		 
          <%= render :partial => 'course_followers' %>
        </div>
      </div>
-   </div>
   </div>

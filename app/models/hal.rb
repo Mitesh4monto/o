@@ -1,5 +1,6 @@
 class Hal < ActiveRecord::Base
   acts_as_paranoid
+  default_scope order("created_at DESC")
   include ActionLogging
   scope :private, -> { where(privacy: 0) }
   scope :not_private, -> { where("privacy <> 0") }
@@ -74,7 +75,7 @@ class Hal < ActiveRecord::Base
   
   # format post of this hal for FB (for now)
   def post_print
-    post = "I just wrote this post on miaou:\n #{entry}"
+    post = "I just wrote this post on http://www.melearni.ng:\n #{entry}"
     post += insights ? "\ninsights: #{insights}" : ""    
   end
   

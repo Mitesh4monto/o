@@ -1,6 +1,10 @@
 class UserStrategy < Strategy  
   belongs_to :user
   belongs_to :from, :foreign_key => 'from_id'
+
+  def title
+    self.user_id
+  end
   
   def get_hierarchical_from
     if (self.from)

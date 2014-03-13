@@ -6,6 +6,15 @@ class HalsController < ApplicationController
     @hals = current_user.hals
   end
   
+  def view
+    @mine = current_user.hals.first(10)
+    @following = current_user.find_following_hals.public.first(10)
+    @courses_hals = current_user.find_course_hals.public.first(10)
+    @all = Hal.public.first(30)
+    @help = Hal.help_wanted.public.first(10)
+    @insighted = current_user.hals.where("insights <> ''").first(10)
+  end
+  
   def my_insights
     @hals = current_user.hals.where("insights is not null")
   end

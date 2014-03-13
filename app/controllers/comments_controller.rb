@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   def create
     @hal = Hal.find(params[:hal_id])
     @comment = @hal.comments.new(params[:comment])
+    @page = params[:page]
     @comment.user_id = current_user.id
     @comment.save
     respond_to do |format|

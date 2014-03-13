@@ -1,16 +1,30 @@
+
 <% activty_map = get_activity_by_map(strategy.current_activities) %>
 <% if activty_map.size > 0 %>
 	<% activty_map.each do |key, activities| %>
 		<div class="box_holder3 border_btm">
 			<div class="title"><h3><%= key.nil? ? "none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h3></div>
 			<div class="box">
+			<div class="goal">
 		<% activities.each do |activity| %>
-		<h2 class="bold"><%= activity.id %><%= link_to activity.title, mypd_path(activity.id) %></h2>				
+		<%= activity.id %><%= link_to activity.title, mypd_path(activity.id) %>
+		<div class="plus" id="<%= activity.id %>"><a href="#"><img src="/images/plus1.png" alt=""></a>
+		                        <div id="Details<%= activity.id %>" class="plus_details" style="display: none;">
+		                          <ul>
+		                            <li><a href="#" title="blog about">blog about</a></li>
+		                            <li><a href="#" title="mark as done">mark as done</a></li>
+		                            <li><a href="#" title="Edit">Edit</a></li>
+		                            <li><a href="#" title="Delete">Delete</a></li>
+		                            <li><a href="#" title="View other ppl´s entries">View other ppl's entries</a></li>
+		                          </ul>
+		                        </div>
+		                      </div>
 			<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
 			<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
 			<%= link_to "add entry about", hal_about_activity_path(activity.id)  %>
 		<% end %>
 		</div>
+    </div>
 	</div>
 	<div class="clear"></div>
 

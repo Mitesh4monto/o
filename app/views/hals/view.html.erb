@@ -1,0 +1,52 @@
+<script>
+$(function() {
+$( "#tabs" ).tabs();
+});
+</script>
+
+
+<div class="page">
+   <h2>Blog entries</h2>
+	<%= link_to 'Add an entry',new_hal_path, :class => 'search' %>
+ </div>
+ <div class="page3">
+     <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1" title="Mine">Mine</a></li>
+          <li><a href="#tabs-2" title="My insights">My insights</a></li>
+          <li><a href="#tabs-3" title="Following">Following</a></li>
+          <li><a href="#tabs-4" title="All">My Courses</a></li>
+          <li><a href="#tabs-5" title="All">All</a></li>
+          <li><a href="#tabs-6" title="Help requested">Help requested</a></li>
+        </ul>
+       <div id="tabs-1" style="overflow:hidden;">
+		<div class="clear space"></div>
+		<h2>My Blog entries</h2>
+		 <%= render :partial => 'hal_list', locals: {hals: @mine, title: 'mine', show_user: false} %>
+       </div>
+       <div id="tabs-2">
+		 <div class="clear space"></div>
+		 <%= render :partial => 'my_insights', locals: {hals: @insighted, title: 'insights', show_user: false} %>
+       </div>
+       <div id="tabs-3">
+		<h2>Blog entries of people I follow</h2>
+		 <div class="clear space"></div>
+		 <%= render :partial => 'hal_list', locals: {hals: @following, title: 'following', show_user: true} %>
+		</div>
+       <div id="tabs-4">
+		<h2>My Course Blog entries</h2>
+		 <div class="clear space"></div>
+		 <%= render :partial => 'hal_list', locals: {hals: @courses_hals, title: 'courses', show_user: true} %>
+       </div>
+       <div id="tabs-5">
+		<h2>All Blog entries</h2>
+		 <div class="clear space"></div>
+		 <%= render :partial => 'hal_list', locals: {hals: @all, title: 'all', show_user: true} %>
+       </div>
+       <div id="tabs-6">
+		<h2>Help Requested Blog entries</h2>
+ 		 <div class="clear space"></div>
+		 <%= render :partial => 'hal_list', locals: {hals: @help, title: 'help', show_user: true} %>
+       </div>
+     </div>
+  </div>

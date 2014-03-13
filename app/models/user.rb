@@ -102,9 +102,12 @@ class User < ActiveRecord::Base
   
   # get all hals users followed by user
   def find_following_hals
-      Hal.where("user_id in (?)", self.following.collect(&:id)).order("created_at desc")
+      Hal.where("user_id in (?)", self.following.collect(&:id)).public.order("created_at desc")
   end
     
+  def find_course_hals
+    Hal.where("course_id in (?)", self.get_following_courses.collect(&:id)).public.order("created_at desc")    
+  end
   
   # TODO add rspec
   # add all the activities from a course strategy into user's strategy

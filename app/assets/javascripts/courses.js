@@ -23,5 +23,13 @@ $(function() {
 		$('#tabs').tabs("option", 'active', 2)
 	});
 
+
+	$(".collapselinkmarginlft30").click(function(){
+		console.log($(this));
+		var e="#Comments"+$(this)[0].id;
+		$(e).toggle(1000);
+	});
+	
+
 });
 

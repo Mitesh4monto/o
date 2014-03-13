@@ -16,6 +16,7 @@ Opp::Application.routes.draw do
   get "my_insights", to: 'hals#my_insights', as: 'my_insights'
   get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
   get "my_blog_entries", to: 'hals#view_mine', as: 'my_hals'
+  get "hals/view", to: 'hals#view', as: 'view_hals'
   get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
   get "hals/new_hal", to: 'hals#new_hal', as: 'new_hal'
 

@@ -1,9 +1,11 @@
 <div class="edit">
 	<%= link_to "Done Editing", @course %>
 </div>
-<% if @course.published? %>
+<% if !@course.published? %>
 <div class="edit2">
 	<span>This course is unpublished </span>
 	<%= link_to "Publish", publish_course_path(@course) %>
 </div>
+<% else %>
+	<%= link_to 'share on fb', share_course_on_fb_path(@course) if current_user.provider == "facebook"%> 
 <% end %>

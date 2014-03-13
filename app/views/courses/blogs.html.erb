@@ -1,8 +1,0 @@
-<% @title = "Blogs" %>
-
-<%= render :partial => 'course_view' %>
-
-
-
-<strong>Blog entries</strong><BR>
-<%= render :partial => 'hals/view_hal_list', locals: {hals: @course.hals, show_user: true, commenting: false} %>

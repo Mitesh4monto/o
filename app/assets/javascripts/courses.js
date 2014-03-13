@@ -1,9 +1,4 @@
 $(function() {
-	 $('.collapselinkmarginlft30').click(function () {
-		console.log($(this));
-		var com = "#Comments" + $(this)[0].id;
-		$(com).toggle(1000);
-	});
 
 	$(".collapselink").click(function(){
 		console.log($(this));

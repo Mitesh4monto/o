@@ -1,2 +1,0 @@
-page.replace_html :error_explanation, flash[:notice]
-flash.discard

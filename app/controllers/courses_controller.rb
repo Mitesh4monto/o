@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_filter :require_owner, :only =>[:edit,:edit_course, :update, :destroy, :plan_edit, :overview_edit, :description_edit, :publish_course, :update_description]
-  before_filter :authenticate_user!, :except =>[:index, :hals, :show, :overview, :plan, :description]
+  before_filter :require_owner, :only =>[:my_created, :edit_course, :destroy, :publish_course, :update_description, :overview_update]
+  before_filter :authenticate_user!, :except =>[:index, :hals, :show]
 
 
   # GET /courses
@@ -29,16 +29,6 @@ class CoursesController < ApplicationController
   def my_created
     @courses = current_user.courses
   end
-  
-  def view
-    @course = Course.find(params[:id])    
-    if @course.user != current_user and !@course.published?
-      return redirect_to :root, notice: 'Nothing here'       
-    end
-    @hals = @course.hals.not_private
-    @followers = @course.get_course_followers
-    @comment = Comment.new
-  end
 
   # GET /courses/1
   # GET /courses/1.json
@@ -53,33 +43,12 @@ class CoursesController < ApplicationController
     # puts @followers.inspect
   end
   
-  def edit    
-    render "plan_edit"
-  end
-  
   def edit_course
     @course = Course.find(params[:id])
     @tab = 0
   end
   
-  # owner edits plan
-  def plan_edit
-    @course = Course.find(params[:id])    
-    @activity = Activity.find_by_id(params[:activity_id])
-    @activity = @course.strategy.current_activities.first if !@activity
-  end
-
-  # owner edits plan
-  def description_edit
-    @course = Course.find(params[:id])    
-  end
-
-
-  # owner edits overview
-  def overview_edit
-    @course = Course.find(params[:id])
-  end
-  
+  # ajax call for description update
   def update_description
     @course = Course.find(params[:id])
     respond_to do |format|
@@ -94,6 +63,7 @@ class CoursesController < ApplicationController
   end
   
   
+  # ajax call for overview update
   def overview_update
     @course = Course.find(params[:id])
     respond_to do |format|
@@ -108,10 +78,6 @@ class CoursesController < ApplicationController
   end
   
   
-  def blogs
-    @course = Course.find(params[:id])    
-  end
-  
   def plan
     @course = Course.find(params[:id])    
     @by = params[:by]
@@ -119,20 +85,6 @@ class CoursesController < ApplicationController
     @activity = @course.strategy.current_activities.first if !@activity
   end
 
-  def description
-    @course = Course.find(params[:id])    
-  end
-
-  def people
-    @course = Course.find(params[:id])    
-  end
-
-
-  def overview
-    @course = Course.find(params[:id])
-  end
-
-  
   # owner publishes their course
   def publish_course
     @course = Course.find(params[:id])
@@ -150,6 +102,7 @@ class CoursesController < ApplicationController
     
   end
   
+  # used for guiding ppl who want to publish
   def course_ok?(course)
     if course.strategy.current_activities.size > 0
       true
@@ -159,6 +112,7 @@ class CoursesController < ApplicationController
     end
   end
   
+  # user joins course
   def join
     @course = Course.find(params[:id])
     @course.add_user_to_course(current_user)
@@ -217,22 +171,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PUT /courses/1
-  # PUT /courses/1.json
-  def update
-    @course = Course.find(params[:id])
-
-    respond_to do |format|
-      if @course.update_attributes(params[:course])
-          format.html { redirect_to course_overview_path(@course), notice: 'Course was successfully updated.' }
-        format.json { render json: "copacetic" }
-      else
-        format.html { render action: "edit", notice: 'Course was databasely challenged.'  }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
 
   # DELETE /courses/1
   # DELETE /courses/1.json

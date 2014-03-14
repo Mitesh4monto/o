@@ -25,7 +25,7 @@ from course <%= link_to @course.name, @course %><BR>
 <% elsif @from_user_activity %>
 from user <%= @from_user_activity.name %>
 <% end %>
-<%= render :partial => 'timing' %>
+<%= render :partial => 'timing', locals: {activity: @activity} %>
 <BR>
 <strong>Tags: </strong>
 <%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>

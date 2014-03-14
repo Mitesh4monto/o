@@ -45,7 +45,10 @@ class CoursesController < ApplicationController
   
   def edit_course
     @course = Course.find(params[:id])
-    @tab = 0
+    @tab = params[:tab] || 0
+    actid = params[:format] || nil
+    @activity = Activity.find_by_id(actid) #|| @course.activities.first
+    puts "tab: #{@tab}"
   end
   
   # ajax call for description update
@@ -72,7 +75,7 @@ class CoursesController < ApplicationController
       else
         flash[:notice] = "Doh!"
       end
-      format.html 
+      # format.html 
       format.js
     end
   end

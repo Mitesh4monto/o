@@ -14,6 +14,9 @@ errors.html('');
 
 <% else %>
   // empty the form for new submission
+	var image_link = '<%= image_tag @course.course_image.url(:medium) %>';
+	$('#overview_image').html(image_link);
+
 <% end %>
 
 <%  flash.discard 

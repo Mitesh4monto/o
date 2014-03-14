@@ -6,7 +6,7 @@
 		<% if current_user  %>
 		<ul>
 		<li> <%= link_to "my Plan", :myp, class: 'stra'  %>  </li>
-		<li id='link1'> <a href="blog.html" class="blog">Blog</a>
+		<li id='link1'> <%= link_to "View Blogs", :view_hals %>
 		<ul id="navmenu1">
 			<li><%= link_to "add an entry", new_hal_path  %></li>
             <li class="divider"></li>

@@ -25,21 +25,19 @@
 
 
 					<div class="right_panel">
-						ssoiwek
 						<% if @activity %>
-							<div class="edit"><a href="#">Edit</a></div><div class="edit3"><a href="#">Delete</a></div>
 							<h5><%= @activity.title %></h5>
 							<h5><strong>goal</strong>: <%=  @activity.goal ? @activity.goal.title : "none"  %></h5>
 							<p> <%= raw @activity.description %></p>
-							<%= render :partial => 'strategies/timing' %>
+							<%= render :partial => 'strategies/timing', locals: {activity: @activity} %>
 
 							<% if @activity.activity_sequence_id %>
 							Activities in sequence:
 								 <% @activity.activity_sequence.activities.each do |activity| %>		
 									<%= activity.id %>
 									Activity:  <%= link_to activity.title, show_activity_path(activity) %>
-								    	<%= link_to 'Edit', edit_activity_in_course_path(activity.id) %>
-									    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %> 
+									<div class="edit"><%= link_to 'Edit', edit_activity_in_course_path(activity.id) %></div>
+									<div class="edit3"><%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %></div>
 									<BR>
 								<% end %>
 								<BR>
@@ -48,8 +46,8 @@
 							<% else %>
 								<BR>
 								<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(@activity) %>	<BR>
-								<%= link_to 'edit', edit_activity_in_course_path(@activity) %> |
-							    <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => @activity.id}, confirm: 'Are you sure?', method: :delete %>
+								<div class="edit"><%= link_to 'edit', edit_activity_in_course_path(@activity) %></div>
+							    <div class="edit3"><%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => @activity.id}, confirm: 'Are you sure?', method: :delete %></div>
 							<% end %>
 						<% end %>
 

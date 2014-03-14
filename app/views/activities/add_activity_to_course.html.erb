@@ -1,5 +1,7 @@
 <% @title = "Add an Activity to #{@course.name}" %>
-Add activity to course
+
+<div class="page"><h2>Add activity to course<%= @course.name %></h2></div>
+<div class="page3">
 
 <%= semantic_form_for @activity.becomes(Activity), :url => create_activity_in_course_path do |f| %>
 <% if @activity.errors.any? %>
@@ -60,3 +62,4 @@ Add activity to course
 	
    <%= f.actions :submit, :cancel %>
 <% end %>
+</div>

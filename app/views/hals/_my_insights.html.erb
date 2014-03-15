@@ -1,3 +1,7 @@
+<% if hals.size == 0 %>
+<h2>No entries.</h2>
+<% end %>
+
 <% hals.each do |hal| %>
 <div class="box">
 	<%= hal.id %> - <%= hal.created_at.strftime("%m/%d/%Y") %>

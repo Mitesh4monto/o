@@ -17,8 +17,6 @@ class Hal < ActiveRecord::Base
   validates_presence_of :entry
 
   
-  
-  
   # text used for updates
   def text
     self.entry
@@ -35,7 +33,7 @@ class Hal < ActiveRecord::Base
   # find all hals where help has been requested
   #  TODO later sort by date and proximity to user
   def self.help_wanted
-     Hal.where(:help => true).order("created_at desc")
+     Hal.where(:help => true).public.order("created_at desc")
   end
   
   def get_all_comments
@@ -47,7 +45,7 @@ class Hal < ActiveRecord::Base
     self.halable = item
     self.fromable = item.from
     self.course_id = item.course_id    
-    item.hals << self
+    # item.hals << self
   end
   
   # get all hals related to an item (hals about items that have the same "from")

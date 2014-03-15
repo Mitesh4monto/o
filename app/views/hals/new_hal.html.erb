@@ -1,22 +1,74 @@
-<% @title = "Add Entry" %>
+<% @title = "Add Blog Entry" %>
+
+<div class="page">
+	<% if @activity %>
+	   <h2>Blog about <%= @activity.title %></h2>
+	<% else %>
+	   <h2>New Blog entry</h2>
+	<% end %>
+ </div>
+ <div class="page3">
+	<section>
+
+<%= semantic_form_for @hal, :html => {:class => "course_manage"} do |f| %>
+<% if @hal.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@hal.errors.count, "error") %> prohibited this Blog entry from being saved:</h2>
+    <ul>
+    <% @hal.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 
-<%= semantic_form_for @hal do |f| %>
-<%=   f.input :halable_id,  :label => "hal about which activity?", :as => :select, :include_blank => false, 
+<% if !@activity %>
+<div class="row">
+	<%= f.input :halable_id,  :label => "hal about which activity?", :as => :select, :include_blank => false, 
 			:collection => current_user.strategy.current_activities.map{|a| [a.title, a.id]} + [["General Entry", 0]]  %>
-			<% selection = {"public" => "1", "private" =>  "0"}  %>
-			<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
-	<%= f.inputs :entry, :insights, :help %>
-	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
-	<%= hidden_field_tag 'from', @from %>
-	<%= f.hidden_field :halable_type, :value => "Activity" %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="clear"></div>
+<% end %>
 
+<div class="row"><label>Entry</label><%= f.text_area  :entry %></div>
+<div class="clear"></div>
+
+<div class="row"><label>Insights</label><%= f.text_area  :insights %></div>
+<div class="clear"></div>
+
+<div class="row">
+	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
+</div>
+<div class="clear"></div>
+
+<div class="row">
+<label>Help requested</label>	<%= f.input :help %>
+</div>
+<div class="clear"></div>
+
+<div class="row">
+	<%  selection = {"public" => "1", "private" =>  "0" }  %>
+	<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
+</div>
+<div class="clear"></div>
+	
+	
+<% if @activity %>
+	<%= f.hidden_field :halable_id, :value => @activity.id %>
+	<%= f.hidden_field :halable_type, :value => "Activity" %>
+<% end %>
+
+	<div class="row">
+   		<%= f.submit %>
+		<%= submit_tag 'Cancel', :name => 'cancel' %>
+  
 	<% if current_user.provider == "facebook" %>
 		<%= submit_tag 'Share on FB', :name => 'fbshare' %>
 	<% end %>
-	
-	
-   <%= f.action :submit, :as => :button  %>
-   <%= f.action :cancel, :as => :link  %>
+	<div class="row">
+
 <% end %>
+	</section>
+	<%= render :partial => 'shared/aside' %>
+	
+</div>

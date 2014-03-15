@@ -1,3 +1,7 @@
+<% if hals.size == 0 %>
+<h2>No entries.</h2>
+<% end %>
+
 <% hals.each do |hal| %>
 <div class="box">
 		<% if show_user %>
@@ -11,7 +15,7 @@
 			<%= hal.id %>
                <p>Entry: <%= hal.entry %></p><%= hal.created_at.strftime("%m/%d/%Y") %>
                <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
-               <% if hal.help %><p><strong>Help requested</strong><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">Respond</span></p><% end %>
+               <% if hal.help %><p><strong>Help requested</strong><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">  >> Respond</span></p><% end %>
 	           <% if hal.course %><p>From course: <%= link_to hal.course.name, hal.course %></p><% end %>
 				<% if hal.halable %>
 	               <ul class="activity">

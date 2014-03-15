@@ -11,17 +11,16 @@
 		<div class="plus" id="<%= activity.id %>"><a href="#"><img src="/images/plus1.png" alt=""></a>
 		                        <div id="Details<%= activity.id %>" class="plus_details" style="display: none;">
 		                          <ul>
-		                            <li><a href="#" title="blog about">blog about</a></li>
-		                            <li><a href="#" title="mark as done">mark as done</a></li>
+		                            <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
+		                            <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
 		                            <li><a href="#" title="Edit">Edit</a></li>
-		                            <li><a href="#" title="Delete">Delete</a></li>
-		                            <li><a href="#" title="View other ppl´s entries">View other ppl's entries</a></li>
+		                            <li><%= link_to "Delete Activity", activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %></li>
 		                          </ul>
 		                        </div>
 		                      </div>
-			<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
-			<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
-			<%= link_to "add entry about", hal_about_activity_path(activity.id)  %>
+			&nbsp;&nbsp;
+			
+			
 		<% end %>
 		</div>
     </div>
@@ -37,7 +36,7 @@
 				<h2 class="bold"><%= activity.id %><%= link_to activity.title, mypd_path(activity.id) %></h2>				
 				<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
 				<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
-				<%= link_to "add entry about", hal_about_activity_path(activity.id)  %>
+				<%= link_to "add entry about", new_hal_path(activity.id)  %>
 			<% end %>
 			</div>
 		</div>

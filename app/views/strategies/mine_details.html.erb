@@ -30,7 +30,7 @@ from user <%= @from_user_activity.name %>
 <strong>Tags: </strong>
 <%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
 <BR>
-<%= link_to 'blog about', hal_about_activity_path(@activity.id) %>
+<%= link_to 'blog about', new_hal_path(@activity.id) %>
 
 <BR><BR>
 <% if @activity.type == "ActivityInSequence" and @activity.activity_sequence.has_previous? %>

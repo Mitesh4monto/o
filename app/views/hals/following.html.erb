@@ -1,9 +1,0 @@
-<% @title = "Following" %>
-
-
-following |
-<%= link_to "my insights", my_insights_path  %> |
-<%= link_to "add an entry", new_hal_path  %>
-
-<BR><BR>
-<%= render :partial => 'hals/view_hal_list', locals: {hals: @hals, show_user: true } %>

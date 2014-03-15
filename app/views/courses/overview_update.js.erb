@@ -1,6 +1,5 @@
-var notification = $('#notice');
-notification.html('<%= flash[:notice] %>')
-// $('#overview_error_explanation').html('<%= flash[:notice] %>');
+var notification = $('#notif');
+notification.html('	<div class="save"><%= flash[:notice] %></div>')
 
 <% if @course.errors.any? %>
 
@@ -13,11 +12,11 @@ errors.html('');
   <% end %>
 
 <% else %>
-  // empty the form for new submission
+  	// update the image preview
 	var image_link = '<%= image_tag @course.course_image.url(:medium) %>';
 	$('#overview_image').html(image_link);
 
 <% end %>
+$('html, body').animate({ scrollTop: 0 }, 'fast');
 
-<%  flash.discard 
-%>
+<%  flash.discard %>

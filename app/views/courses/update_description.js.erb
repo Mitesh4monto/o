@@ -1,6 +1,5 @@
-var notification = $('#notice');
-notification.html('<%= flash[:notice] %>')
-// $('#overview_error_explanation').html('<%= flash[:notice] %>');
+var notification = $('#notif');
+notification.html('	<div class="save"><%= flash[:notice] %></div>')
 
 <% if @course.errors.any? %>
   // Create a list of errors
@@ -14,3 +13,4 @@ notification.html('<%= flash[:notice] %>')
 <% end %>
 
 <%  flash.discard %>
+$('html, body').animate({ scrollTop: 0 }, 'fast');

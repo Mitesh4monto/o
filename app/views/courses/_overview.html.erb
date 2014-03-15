@@ -1,16 +1,22 @@
- <h2>Overview</h2>
-	<%= image_tag @course.course_image.url(:small), :width => "120", :class => 'img_lft' %>
+<div>
+	 <h2>Overview</h2>
+	<%= image_tag @course.course_image.url(:medium), :width => "120", :class => 'img_lft' %>
     <p><%= @course.overview %></p>
 </div>
 <div class="clear space"></div>
 <div>
-<h2>About the Author</h2>
+	<h2>About the Author</h2>
 	<%= image_tag current_user.avatar.url(:small), :width=>"120", :class => "img_lft" %>
     <p><%= @course.about_the_author %></p>
+</div>
+<div>
     <p> <strong class="strongwidth90">External url</strong><%= link_to @course.external_site, @course.external_site, :class => "link" %></p>
     <p><strong class="strongwidth90">Tags</strong><br class="dis">
 		None TODO
 	</p>
 	<div class="edit"><a href="#">Edit</a></div>
 
+
 <div class="edit2"><%= link_to "See Plan >>", '#', :id => 'seeplan' %></div>
+
+</div>

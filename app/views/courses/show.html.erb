@@ -40,6 +40,7 @@ $('#link2').hover(function() {
    <h2><%= @course.name %></h2>
  </div>
  <div class="page3">
+	<section>
      <div id="tabs">
        <ul>
          <li><a href="#tabs-1">Overview</a></li>
@@ -69,4 +70,7 @@ $('#link2').hover(function() {
          <%= render :partial => 'course_followers' %>
        </div>
      </div>
+	</section>
+	<%= render :partial => 'shared/aside' %>
+	
   </div>

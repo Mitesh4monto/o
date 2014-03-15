@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
 
          logger.info("received from Facebook: #{auth.to_yaml}")
          logger.info("received from Facebook: #{auth.info.image}")
-         user = User.create(name:auth.info.name,
+         user = User.new(name:auth.info.name,
                             provider:auth.provider,
                             oauth_token:auth.credentials.token,
                             uid:auth.uid,
@@ -78,6 +78,8 @@ class User < ActiveRecord::Base
                             oauth_expires_at:Time.at(auth.credentials.expires_at),
                             password:Devise.friendly_token[0,20]
                             )
+        user.skip_confirmation!
+        user.save
         user.avatar = open(auth.info.image)
         logger.info("adding avatar from #{auth.info.image}")
         user.save
@@ -90,12 +92,14 @@ class User < ActiveRecord::Base
     logger.info("received from Facebook: #{auth.inspect}")
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      user = User.create(name:auth.extra.raw_info.name,
+      user = User.new(name:auth.extra.raw_info.name,
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
                            password:Devise.friendly_token[0,20]
-                           ).skip_confirmation! 
+                           )
+      user.skip_confirmation! 
+      user.save
     end
     user
   end

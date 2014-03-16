@@ -4,6 +4,7 @@ class StrategiesController < ApplicationController
   def mine
     @related_hals = Hal.get_hals_related_to_strategy(current_user.strategy)
     @udpates = ActionLog.latest(current_user)
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today    
   end
 
   def copy_activity

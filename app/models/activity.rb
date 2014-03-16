@@ -110,7 +110,7 @@ class Activity < ActiveRecord::Base
       self.timing_expression = @reactive_expression
     end
     self.timing_duration = "" if @until_radio == "nodate"
-    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date"
+    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date" and self.timing_until.blank?
   end
   
   # ensure until date is 
@@ -171,12 +171,13 @@ class Activity < ActiveRecord::Base
   end
   
   # returns all hals that have the same from template
-  def get_related_hals
-    if (self.from_id)
-      Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.id = ? or (activities.from_id = ? and activities.id != ?)", self.from_id, self.from_id, self.id])
-    else  
-      return []
-    end    
+  def related_hals
+    Hal.get_related_hals(self)
+    # if (self.from_id)
+    #   Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.id = ? or (activities.from_id = ? and activities.id != ?)", self.from_id, self.from_id, self.id])
+    # else  
+    #   return []
+    # end    
   end
   
   

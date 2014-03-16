@@ -13,7 +13,7 @@ jQuery ->
   toggle_fields()
 
 jQuery ->
-  $("#activity_timing_duration").datepicker()
+  $("#activity_timing_until").datepicker()
 
 jQuery ->
   $('#activity_kind_of_timing').change -> 

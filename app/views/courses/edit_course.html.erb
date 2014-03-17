@@ -1,7 +1,9 @@
 <script>
+$(document).ready(function(){
 $(function() {
 $( "#tabs" ).tabs();
 $('#tabs').tabs("option", 'active', <%= @tab %>)
+});
 });
 </script>
 

@@ -17,7 +17,7 @@
 <BR>
 <% else %>	
 	You don't have any commitment marks for this activity.  
-	<% if activity.kind_of_timing != "Reactive" %>Do it and log it!<% end %>	
+	<% if activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %><% end %>	
 <% end %>
 
 <%= render :partial => 'hals/hal_list', locals: {hals: activity.hals.first(3), show_user: false, commenting: false, title: "My Entries"} %>

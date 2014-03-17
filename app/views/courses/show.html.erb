@@ -50,23 +50,23 @@ $('#link2').hover(function() {
          <li><a href="#tabs-5">People</a></li>
        </ul>
        <div id="tabs-1" style="overflow:hidden;">
-		 <%= render :partial => 'course_view_top' %>
+		 <%= render :partial => 'course_view_top', locals: {tab: 0} %>
          <%= render :partial => 'overview' %>
        </div>
        <div id="tabs-2">
-  		 <%= render :partial => 'course_view_top' %>		 
+  		 <%= render :partial => 'course_view_top', locals: {tab: 1} %>
          <%= render :partial => 'plan' %>
        </div>
        <div id="tabs-3">
-  		 <%= render :partial => 'course_view_top' %>		 
+  		 <%= render :partial => 'course_view_top', locals: {tab: 2} %>
          <%= render :partial => 'details' %>
 		</div>
        <div id="tabs-4">
-  		 <%= render :partial => 'course_view_top' %>		 
+  		 <%= render :partial => 'course_view_top', locals: {tab: 0} %>
          <%= render :partial => 'course_hals' %>
        </div>
        <div id="tabs-5">
-  		 <%= render :partial => 'course_view_top' %>		 
+  		 <%= render :partial => 'course_view_top', locals: {tab: 0} %>
          <%= render :partial => 'course_followers' %>
        </div>
      </div>

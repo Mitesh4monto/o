@@ -16,7 +16,7 @@
 		<div class="clear"></div>
 	<% end %>
 <% else %>
-	<% strategy.current_activities.each do |activity| %>
+	<% @course.strategy.current_activities.each do |activity| %>
 			<div class="box">
 				<%= activity.id %> - <%= activity.title %>
 				<div class='act_deets'>

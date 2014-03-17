@@ -1,4 +1,8 @@
 $(function() {
+	$(".linkOne").click(function(){
+		var act = "#rightbar" + $(this)[0].title;
+		$(act).toggle(1000);
+	});
 
 	$(".collapselink").click(function(){
 		console.log($(this));
@@ -22,7 +26,6 @@ $(function() {
 	$("#seedetails").click(function(){
 		$('#tabs').tabs("option", 'active', 2)
 	});
-
 
 	$(".collapselinkmarginlft30").click(function(){
 		console.log($(this));

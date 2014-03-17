@@ -1,57 +1,48 @@
-<% @title = "Edit plan for #{@course.name}" %>
 <%= stylesheet_link_tag "activities" %>
 
 <%= render :partial => 'new_course_edit' %>
 
-					<% if @course.strategy.current_activities.size == 0 %>
-					<p class="box_1">A course is comprised of activities.  They can be worked on simultaneously (e.g. exercising and dieting for a weight loss course) or sequentially (e.g. 12 step program).
-						By default all activities are simultaneous.  For sequential steps add an activity to an existing activity.</p>
+<%= render :partial => 'plan_instructions' %>
+<script>
+// $(document).ready(function(){
+// $(".linkOne").click(function(){
+// 	var act = "#rightbar" + $(this)[0].title;
+// 	$(act).toggle(1000);
+// });
+// });
+</script>
+					<% activity_map = get_activity_by_map(@course.strategy.current_activities) %>
+						<% activity_map.each do |key, activities| %>
+							<div class="box_holder3 width100">
+								<% if activity_map.size != 1 or activity_map.keys.first != nil %>
+									<div class="title"><h3><%= key.nil? ? "Goal: none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h3></div>
+								<% end %>
+								<div class="box">
+									<div class="goal">
+									
+											<!-- Activities -->
+										<% activities.each do |activity| %>
+											<% if activity.type == "ActivityInSequence" %>
+												ActivitySequence starting with 
+											<% end %>
+											<%= activity.id %><%= link_to activity.title, activity %>							
+											<a href="#" onclick='return false;' class="linkOne", title='<%= activity.id %>'>view more</a><BR>
+											<div id="rightbar<%= activity.id %>" class="right_bar width97" style="margin-left:10px;">
+												<div class="float_rgt"><img src="/images/close.png" alt="close" title='<%= activity.id %>' class="linkOne closebtn"></div>
+												sdfs
+												<%= render :partial => 'show_activity_details', locals: {activity: activity} %>
+											</div>
+										<% end %>
+									</div>
+							    </div>
+							</div>
+						<div class="clear"></div>
+
+
 					<% end %>
 
-					<div class="left_panel">
-						<ul>
-							 <% @course.strategy.current_activities.each do |activity| %>		
-								 <%= content_tag_for :li, activity do %>
-									<% if (activity.activity_sequence_id) %>
-									<p>Sequence starting with Activity: <%= link_to activity.title, course_plan_edit_path(@course.id, activity.id) %></p>
-									<% else %>	
-									<p><%= link_to activity.title, course_plan_edit_path(@course.id, activity.id) %></p>
-									<% end %>
-								<% end %>
-							<% end %>
-						</ul>
-						<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
-					</div>
+					<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
 
-
-					<div class="right_panel">
-						<% if @activity %>
-							<h5><%= @activity.title %></h5>
-							<h5><strong>goal</strong>: <%=  @activity.goal ? @activity.goal.title : "none"  %></h5>
-							<p> <%= raw @activity.description %></p>
-							<%= render :partial => 'strategies/timing', locals: {activity: @activity} %>
-
-							<% if @activity.activity_sequence_id %>
-							Activities in sequence:
-								 <% @activity.activity_sequence.activities.each do |activity| %>		
-									<%= activity.id %>
-									Activity:  <%= link_to activity.title, show_activity_path(activity) %>
-									<div class="edit"><%= link_to 'Edit', edit_activity_in_course_path(activity.id) %></div>
-									<div class="edit3"><%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %></div>
-									<BR>
-								<% end %>
-								<BR>
-								<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(@activity.activity_sequence.activity_in_sequences.first) %>	
-							<BR>	<%= link_to 'manage sequence', @activity.activity_sequence %>
-							<% else %>
-								<BR>
-								<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(@activity) %>	<BR>
-								<div class="edit"><%= link_to 'edit', edit_activity_in_course_path(@activity) %></div>
-							    <div class="edit3"><%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => @activity.id}, confirm: 'Are you sure?', method: :delete %></div>
-							<% end %>
-						<% end %>
-
-					</div>
 <div class="clear"></div>
 <div class="edit2"><%= link_to "<< Overview", '#', :id => 'seeoverview' %></div>
 <div class="edit2"><%= link_to "Course Additional Information >>", '#', :id => 'seedetails' %></div>

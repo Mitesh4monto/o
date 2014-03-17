@@ -28,7 +28,11 @@
           <div class="clear space"></div>
           <div class="btm">
             <div class="lft">
+			<% if current_user.following.size > 0  %>
               <h1 class="blacktxt">Following users:</h1>
+			<% else %>
+              <h1 class="blacktxt">Not Following any users</h1>
+			<% end %>
               <ul>
 				<% current_user.following.each do |user| %>
 					<li class="lft"><%= link_to user.name, user, :class => "link1" %></li>
@@ -41,7 +45,11 @@
               </ul>
             </div>
             <div class="rgt">
+			<% if current_user.following.size > 0  %>
               <h1 class="blacktxt">Followed by:</h1>
+			<% else %>
+              <h1 class="blacktxt">Not Followed by anyone</h1>
+			<% end %>
               <ul>
 				<% current_user.followers.each do |user| %>
 					<li><%= link_to user.name, user, :class=>"link1" %></li>

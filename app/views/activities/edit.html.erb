@@ -1,8 +1,13 @@
 <% @title = "Edit #{@activity.title}" %>
 
+<div class="page"><h2>Edit <%= @activity.title %></h2></div>
+<div class="page3">
+	<section>
+		<div class="box_holder3 width100">
+
 <h1>Editing activity</h1>
-
 <%= render 'form' %>
-
-<%= link_to 'Show', @activity %> |
-<%= link_to 'Back', root_path %>
+	</div>
+</section>
+<%= render :partial => 'shared/aside' %>
+</div>

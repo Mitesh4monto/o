@@ -10,6 +10,7 @@ $( "#tabs" ).tabs();
 	<%= link_to 'Add an entry',new_hal_path, :class => 'search' %>
  </div>
  <div class="page3">
+		<section>
      <div id="tabs">
         <ul>
           <li><a href="#tabs-1" title="Mine">Mine</a></li>
@@ -49,4 +50,6 @@ $( "#tabs" ).tabs();
 		 <%= render :partial => 'hal_list', locals: {hals: @help, title: 'help', show_user: true} %>
        </div>
      </div>
+		</section>
+		<%= render :partial => 'shared/aside' %>
   </div>

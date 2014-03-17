@@ -1,31 +1,33 @@
 <h2>Course Plan</h2>
 
-<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
-<% if activty_map.size > 0 %>
-	<% activty_map.each do |key, activities| %>
-			<div class="title"><h3><%= key.nil? ? "none" : "Goal: " + key.title %></h3></div>
+
+<% activity_map = get_activity_by_map(@course.strategy.current_activities) %>
+	<% activity_map.each do |key, activities| %>
+		<div class="box_holder3 width100">
+			<% if activity_map.size != 1 or activity_map.keys.first != nil %>
+				<div class="title"><h3><%= key.nil? ? "Goal: none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h3></div>
+			<% end %>
 			<div class="box">
-				<% activities.each do |activity| %>
-					<%= activity.id %> - <%= activity.title %>
-					<div class='act_deets'>
-						<strong>description</strong>: <%= raw activity.description %>
-						<%= render :partial => 'strategies/timing', locals: {activity: activity} %>
-					</div>
-				<% end %>
-		    </div>
-		<div class="clear"></div>
-	<% end %>
-<% else %>
-	<% @course.strategy.current_activities.each do |activity| %>
-			<div class="box">
-				<%= activity.id %> - <%= activity.title %>
-				<div class='act_deets'>
-					<strong>description</strong>: <%= raw @activity.description %><BR>
-					<%= render :partial => 'timing', locals: {activity: activity} %>
+				<div class="goal">
+				
+						<!-- Activities -->
+					<% activities.each do |activity| %>
+						<% if activity.type == "ActivityInSequence" %>
+							ActivitySequence starting with 
+						<% end %>
+						<%= activity.id %><%= link_to activity.title, activity %> -- <%= render :partial => 'strategies/timing', locals: {activity: activity} %>     
+						<a href="#" onclick='return false;' class="linkOne", title='<%= activity.id %>'>view more</a><BR>
+						<div id="rightbar<%= activity.id %>" class="right_bar width97" style="margin-left:10px;">
+							<div class="float_rgt"><img src="/images/close.png" alt="close" title='<%= activity.id %>' class="linkOne closebtn"></div>
+							<%= render :partial => 'show_activity_details', locals: {activity: activity} %>
+						</div>
+					<% end %>
 				</div>
-			</div>
-		<div class="clear"></div>
-	<% end %>
+		    </div>
+		</div>
+	<div class="clear"></div>
+
+
 <% end %>
 
 <div class="clear"></div>

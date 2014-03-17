@@ -97,6 +97,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/1/edit
   def edit
     @activity = Activity.find(params[:id])
+    @from = params[:from]
     redirect_to @activity, notice: 'No way, not yours.'  if (@activity.user_id != current_user.id)
   end
   
@@ -154,7 +155,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
         if @activity.myp_activity?
-          format.html { redirect_to mypd_path(@activity), notice: 'Activity was successfully updated.' }
+          format.html { redirect_to :myp, notice: 'Activity was successfully updated.' }
           format.json { head :no_content }
         elsif @activity.course_activity?
           format.html { redirect_to course_plan_edit_path(@activity.strategy.course), notice: 'Activity was successfully created.' }

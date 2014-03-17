@@ -3,14 +3,6 @@
 <%= render :partial => 'new_course_edit' %>
 
 <%= render :partial => 'plan_instructions' %>
-<script>
-// $(document).ready(function(){
-// $(".linkOne").click(function(){
-// 	var act = "#rightbar" + $(this)[0].title;
-// 	$(act).toggle(1000);
-// });
-// });
-</script>
 					<% activity_map = get_activity_by_map(@course.strategy.current_activities) %>
 						<% activity_map.each do |key, activities| %>
 							<div class="box_holder3 width100">
@@ -25,12 +17,11 @@
 											<% if activity.type == "ActivityInSequence" %>
 												ActivitySequence starting with 
 											<% end %>
-											<%= activity.id %><%= link_to activity.title, activity %>							
+											<%= activity.id %><%= link_to activity.title, activity %>  -- <%= render :partial => 'strategies/timing', locals: {activity: activity} %>     
 											<a href="#" onclick='return false;' class="linkOne", title='<%= activity.id %>'>view more</a><BR>
 											<div id="rightbar<%= activity.id %>" class="right_bar width97" style="margin-left:10px;">
 												<div class="float_rgt"><img src="/images/close.png" alt="close" title='<%= activity.id %>' class="linkOne closebtn"></div>
-												sdfs
-												<%= render :partial => 'show_activity_details', locals: {activity: activity} %>
+												<%= render :partial => 'edit_activity_details', locals: {activity: activity} %>
 											</div>
 										<% end %>
 									</div>

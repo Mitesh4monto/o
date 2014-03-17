@@ -1,5 +1,5 @@
 <div class="edit">
-	<%= link_to "Done Editing", @course %>
+	<div class="edit"><%= link_to "Done Editing", show_course_path(@course, @tab) %></div>
 </div>
 <% if !@course.published? %>
 <div class="edit2">

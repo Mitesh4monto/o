@@ -1,11 +1,3 @@
-<script>
-$(document).ready(function(){
-  $(".linkOne").click(function(){
-	var act = "#rightbar" + $(this)[0].title;
-	$(act).toggle(1000);
-  });
-});
-</script>
 
 <% activty_map = get_activity_by_map(strategy.current_activities) %>
 <% if activty_map.size > 0 %>
@@ -15,23 +7,23 @@ $(document).ready(function(){
 			<div class="box">
 			<div class="goal">
 		<% activities.each do |activity| %>
-		<%= activity.id %><%= link_to activity.title, activity %>
-		<div class="plus" id="<%= activity.id %>"><a href="#"><img src="/images/plus1.png" alt=""></a>
-		                        <div id="Details<%= activity.id %>" class="plus_details" style="display: none;">
-		                          <ul>
-		                            <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
-		                            <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
-		                            <li><a href="#" title="Edit">Edit</a></li>
-		                            <li><%= link_to "Delete Activity", activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %></li>
-		                          </ul>
-		                        </div>
-		                      </div>
-			&nbsp;&nbsp;
+			<%= activity.id %><%= link_to activity.title, activity %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+			<div class="plus" id="<%= activity.id %>"><a href="#"><img src="/images/plus1.png" alt=""></a>
+	            <div id="Details<%= activity.id %>" class="plus_details" style="display: none;">
+	              <ul>
+	                <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
+	                <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
+					<li><%= link_to 'Edit', edit_activity_path(activity) %></li>
+	                <li><%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %></li>
+	              </ul>
+	            </div>
+	          </div>
+	
 			<a href="#" onclick='return false;' class="linkOne", title='<%= activity.id %>'>view more</a>
 			<div id="rightbar<%= activity.id %>" class="right_bar width97" style="margin-left:10px;">
 				<%= render :partial => 'view_activity', locals: {activity: activity} %>
 			</div>
-			
+	<BR>		
 		<% end %>
 		</div>
     </div>

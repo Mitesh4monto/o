@@ -1,51 +1,78 @@
 <%= addcustomjs 'ckeditor/init' %>
 <%= addcustomjs 'ckeditor/config' %>
 
-<%= semantic_form_for @activity.becomes(Activity) do |f| %>
-<% if @activity.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+<%= semantic_form_for @activity.becomes(Activity), :html => {:class => "course_manage"}  do |f| %>
+	<%= hidden_field_tag 'from', @from %>
+	<% if @activity.errors.any? %>
+	  <div id="error_explanation">
+	    <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
 
-    <ul>
-    <% @activity.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+	    <ul>
+	    <% @activity.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
 
 
 
+	<div class="row">
+		<label>Title:</label><%= f.text_field :title %>
+		<div class="clear"></div>
+	</div>
 
-	<%= f.input :title %>
-
+	<div class="row">
 		<%= f.input :goal,  :collection => get_goals_for_strategy(current_user.strategy), :prompt => "Select a Goal"  %>
-		Or create new:
-		 <%= f.text_field :new_goal_text %>
-	<BR>
-<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
+		<div class="clear"></div>
+	</div>
+	<div class="row">
+		<label>Or create new:</label>
+		 <%= f.text_field :new_goal_text,  :maxlength => 60 %>
+		<div class="clear"></div>
+	</div>
 
-<div id='freak'>
-<%= f.text_field :freak_number %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
-</div>
-<div id='react'>
-When the following occurs: <%= f.text_field :reactive_expression %>
-</div>
+	<div class="row">
+		<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
+		<div class="clear"></div>
+	</div>
 
-<%= f.radio_button :until_radio, "date" %>	
-	<div id='duration_label'>by</div>
-	<%= f.text_field :timing_until %>
-	<BR>
-<%= f.radio_button :until_radio, "nodate" %>	
-	<%= label :until_radio, "No end date" %>
+	<div class="row">
+		<div id='freak'>
+			<%= f.text_field :freak_number, :maxlength => 3, :size => 3 %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="row">
+		<div id='react'>
+		When the following occurs: <%= f.text_field :reactive_expression %>
+		</div>
+		<div class="clear"></div>
+	</div>
 
-	<%= f.input  :tag_list, :label => "enter comma separated tags" %>
+	<div class="row">
+		<label>Until</label>
+		<%= f.radio_button :until_radio, "date" %>	
+		<div id='duration_label'>by</div>
+		<%= f.text_field :timing_until %>
+		<div class="clear"></div>
+		<%= f.radio_button :until_radio, "nodate" %>	
+		<%= label :until_radio, "No end date" %>
+		<div class="clear"></div>
+	</div>
 
-<BR>
-<%= f.text_area :description, :class => 'ckeditor' %>
+	<div class="row">
+		<%= f.input  :tag_list, :label => "enter comma separated tags" %>
+	</div>
+	<BR><BR>
+	<div class="row">
+		<%= f.text_area :description, :class => 'ckeditor' %>
+	</div>
 
-<%= f.actions :submit %>
+	<div class="row">
+		<%= f.submit %>
+		<%= submit_tag 'Cancel', :name => 'cancel' %>
+	</div>
 <% end %>
-<%= link_to "cancel", myp_path %>
 
 

@@ -1,0 +1,28 @@
+<!-- ACT IN SEQ -->
+<% if activity.type == "ActivityInSequence" %>
+	<ul id="activities" data-update-url="<%= sort_activity_sequences_url %>">
+		<% activity_sequence = activity.activity_sequence %>
+ 		<% activity_sequence.activities.each do |activity| %>		
+		 <%= content_tag_for :div, activity do %>
+				<span class="handle">[drag]</span>
+				<%= activity.id %><%= link_to activity.title, show_activity_path(activity) %>
+		    	<%= link_to 'Edit', edit_activity_path(activity.id) %>
+			    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %>
+			 <% end %>
+		<% end %>
+	</ul>
+	<BR>
+
+	<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity_sequence.activity_in_sequences.first) %>	
+	<!-- ACT IN SEQ -->
+<% else %>
+			                            <%= link_to "Edit Activity", edit_activity_in_course_path(activity) %>
+	<strong>Description</strong>: <%= raw activity.description %><BR>
+	<%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+	<BR>
+	<% if !activity.tags.blank? %>
+		<strong>Tags: </strong>
+		<%= render :partial => 'shared/tag_display', locals: {tags: activity.tags} %>
+	<% end %>
+	<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>
+<% end %>

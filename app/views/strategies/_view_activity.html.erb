@@ -1,20 +1,40 @@
 <div class="float_rgt"><img src="/images/close.png" alt="close" title='<%= activity.id %>' class="linkOne closebtn">
 </div>
 
-<strong>Description</strong>: <%= raw activity.description %><BR>
-<% if activity.from %> Copied from: <%= link_to activity.from.title, activity.from  %> <% end %>
-	<BR>
-<%= render :partial => 'strategies/timing', locals: {activity: activity} %>
-<BR>
-<% if !activity.tags.blank? %>
-<strong>Tags: </strong>
-<%= render :partial => 'shared/tag_display', locals: {tags: activity.tags} %>
+<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
+	<%= link_to "<< go to previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
 <% end %>
 
+<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
+	<%= link_to "go to next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
+<% end %>
+
+<BR>
+<!-- <iframe src='<%= activity_description_url(activity) %>'></iframe> -->
+<strong>Description</strong>: <%= sanitize activity.description %><BR>	
+<BR>
+<% if activity.from %> 
+	Copied from: <%= link_to activity.from.title, activity.from  %> <BR>
+<% end %>
+
+<%= render :partial => 'shared/tag_display', locals: {tags: activity.tags} %>
+
+
+<%= activity.type %>
+<!-- ACT IN SEQ -->
+<% if activity.type == "ActivityInSequence" %>
+		<% activity_sequence = activity.activity_sequence %>
+ 		<% activity_sequence.activities.each do |activity| %>		
+<% if activity_sequence.current_activity == activity %>>> Current <% end %>
+		<%= activity.id %><%= link_to activity.title, show_activity_path(activity) %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %><BR>
+		<% end %>
+	<BR>
+<% end %>
+<!-- ACT IN SEQ -->
+
+
 <% if activity.commitment_marks.size > 0 %>
-<BR>
-<%= render :partial => 'activity_cm', locals: {activity: activity} %>
-<BR>
+	<%= render :partial => 'activity_cm', locals: {activity: activity} %><BR>
 <% else %>	
 	You don't have any commitment marks for this activity.  
 	<% if activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %><% end %>	
@@ -22,7 +42,7 @@
 
 <%= render :partial => 'hals/hal_list', locals: {hals: activity.hals.first(3), show_user: false, commenting: false, title: "My Entries"} %>
 
-<%= render :partial => 'hals/hal_list', locals: {hals: activity.related_hals.first(3), show_user: true, commenting: true, title: "Related Entries"} %>
+<%= render :partial => 'hals/hal_list', locals: {hals: activity.related_hals.first(3), show_user: true, commenting: true, title: "Related Entries"}   if  activity.related_hals.size > 0 %>
 
 <% if activity.hals.size > 1 or activity.related_hals.size > 3 %>
 	<div class="edit padding10"><%= link_to "View more entries", show_activity_path(activity) %></div>

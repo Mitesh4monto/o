@@ -1,5 +1,6 @@
 <% case activity.kind_of_timing
 	when "Frequency" %>
+	
 		Do it <%= activity.timing_expression.split.first %> times per <%= activity.timing_expression.split.last %>
 	<% when "One time" %>
 		one time thing

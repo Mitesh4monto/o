@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'certified'
 gem 'oboe-heroku'
 gem "remotipart"
 gem 'pg_search'

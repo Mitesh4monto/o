@@ -37,9 +37,9 @@ Opp::Application.configure do
   config.log_level = :debug
   # Rails.logger = Rails.application.config.logger = logger
 =======
->>>>>>> Stashed changes
   # config.log_level = :debug
 
+>>>>>>> Stashed changes
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
 

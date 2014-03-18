@@ -44,7 +44,7 @@ class HalsController < ApplicationController
     respond_to do |format|
       if @hal.save      
         # if we're also sharing on fb:  post to wall
-        if params[:fbshare] 
+        if params["fbshare.x"] 
           graph = Koala::Facebook::API.new(current_user.oauth_token)
           graph.put_wall_post(@hal.post_print)
         end

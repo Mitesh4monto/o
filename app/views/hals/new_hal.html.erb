@@ -63,7 +63,7 @@
 		<%= submit_tag 'Cancel', :name => 'cancel' %>
   
 	<% if current_user.provider == "facebook" %>
-		<%= submit_tag 'Share on FB', :name => 'fbshare' %>
+		<%= image_submit_tag '/images/share-on-facebook-button.gif', :name => 'fbshare', :width => 100 %>
 	<% end %>
 	<div class="row">
 

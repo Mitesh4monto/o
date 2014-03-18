@@ -100,7 +100,7 @@ transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);}
 .edit_form input[name="firstinput"] {width:25px;background:none; border:none; height:20px;border-radius:5px; float:left;}
 .edit_form input[type="checkbox"] { float:left; width:50px;}
 .edit_form select { float:left; width:120px;}
-.course_manage { padding-left:50px; width:620px; padding-top:20px;}
+.course_manage { padding-left:50px; width:520px; padding-top:20px;}
 .course_manage input[type="text"], .edit_form input[type="text"]  { width:300px}
 .course_manage textarea, .edit_form textarea {width:300px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none;height:100px; border-radius:5px; float:left;}
 .page2 form input[type="text"], form input.top[type="text"] {background:#d2efff; border-left:3px solid #c7e3f2; border-top:4px solid #c7e3f2;}
@@ -120,7 +120,7 @@ footer {padding:27px 27px; float:left;width:982px;}
 .nav2 ul li a { text-decoration:none; color:#000; font-size:12px;font-family: 'opensans'; font-weight:bold;}
 .nav2 ul li a:hover { color:#fff;}
 .copy { float:right;color:#000; font-size:12px;font-family: 'opensans';font-weight:bold;}
-section { width:750px; float:left; padding:0 10px 10px 30px;}
+section { width:640px; float:left; padding:0 10px 10px 30px;}
 .section2 { width:930px; float:left; padding:0 10px 10px 30px;}
 section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; position:relative; width:640px; margin-top:15px;}
 section .box_holder .title, .section2 .box_holder .title, .left_bar .box_holder3 .title, .right_bar .box_holder3 .title{ padding-left:25px; padding-right:23px; background:#dde9a5; position:absolute; width:70%; top:10px; left:-15px; border-radius:5px; z-index:1; min-width:37px;}
@@ -145,7 +145,7 @@ section .pagi ul { margin:20px 0; padding-left:0;}
 section .pagi ul li { float:left; list-style:none; padding:0 3px;}
 section .pagi ul li a { padding:5px 12px; border:1px solid #a5a5a5; border-radius:5px; text-decoration:none; color:#777777; font-size:12px;font-family: 'opensans'; background:#f4f4f4; box-shadow:0px 2px 2px 0px #ccc;}
 section .pagi ul li a:hover { background:#3d7fc9; color:#fff;}
-aside { width:150px; float:right; border:2px solid #c9c8c8;  margin-top:15px; padding:2px;  margin-right: 4px; margin-bottom:15px;}
+aside { width:280px; float:right; border:2px solid #c9c8c8;  margin-top:15px; padding:2px;  margin-right: 4px; margin-bottom:15px;}
 aside .box_holder { float:left; position:relative; width:100%;}
 aside .box_holder .title {padding-left:25px;background:#dde9a5; position:absolute; width:90%;top:10px; left:-15px;border-radius:5px; z-index:1;}
 aside .box_holder2 {float:left; width:100%; text-align:center;padding:10px 0 15px; border-bottom:1px solid #c9c8c8;}

@@ -1,0 +1,16 @@
+<% @title = "People in #{@course.name}" %>
+
+<%= render :partial => 'course_view', locals: { current_view: "people"}  %>
+<BR><BR>
+
+<strong>Author:</strong><BR>
+<%= image_tag @course.user.avatar.url(:thumb) %>
+  	<%= link_to @course.user.name, @course.user %>
+
+<HR>
+	
+<strong>Followers:</strong><BR>
+<% @course.get_course_followers.each do |follower| %>
+<%= image_tag follower.avatar.url(:thumb) %>
+<%= link_to follower.name, follower %> <BR>
+<% end %>

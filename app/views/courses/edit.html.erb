@@ -1,0 +1,33 @@
+<% @title = "Edit #{@course.name}" %>
+
+<%= render :partial => 'course_edit' %>
+<BR>
+
+Course overview:  
+<BR>
+
+
+	<%= semantic_form_for(@course) do |f| %>
+	  <% if @course.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+	      <ul>
+	      <% @course.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+
+	  <%= f.inputs :name, :overview, :about_the_author %>
+	<div><%= f.label :course_image %> <br />
+	<%= f.file_field :course_image %></div>
+
+
+	  <%= f.actions %>
+
+	  </div>
+	<% end %>
+

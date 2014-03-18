@@ -18,7 +18,7 @@ if followers.size > 0  %>
 	<% if !@course.published? %>
 		<%= link_to "publish course", publish_course_path(@course) %><BR>
 	<% end %>
-	<%= link_to image_tag("/images/share-on-facebook-button.gif"), share_course_on_fb_path(@course) if current_user.provider == "facebook" %>
+	<%= link_to 'share on fb  |', share_course_on_fb_path(@course) if current_user.provider == "facebook"%>
 	<%= link_to 'Edit course', edit_course_path(@course) %><BR><BR>
 	<%= link_to 'Delete course', @course, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<BR><BR>

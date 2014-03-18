@@ -46,7 +46,7 @@ Opp::Application.routes.draw do
 
 
   # courses
-  get "courses/show/:id(/:tab)", to: 'courses#show', as: 'show_course'
+  # get "courses/show/:id(/:tab)", to: 'courses#show', as: 'show_course'
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
   get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'

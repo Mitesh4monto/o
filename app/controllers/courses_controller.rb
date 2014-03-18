@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
-    @tab = params[:tab] || 0
+    part = params[:part] || "overview"
     if @course.user != current_user and !@course.published?
       return redirect_to :root, notice: 'Nothing here'       
     end
@@ -80,6 +80,14 @@ class CoursesController < ApplicationController
     end
   end
   
+  
+  def plan
+    @course = Course.find(params[:id])    
+    @by = params[:by]
+    @activity = Activity.find_by_id(params[:activity_id])
+    @activity = @course.strategy.current_activities.first if !@activity
+  end
+
   # owner publishes their course
   def publish_course
     @course = Course.find(params[:id])

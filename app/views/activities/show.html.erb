@@ -1,35 +1,42 @@
-<div class="page"><h2><%= @activity.title %></h2></div>
-<div class="page3">
-	<section>
-		<div class="box_holder3 width100">
-
-
-<% if @activity.goal %><strong>Goal</strong>: <%= @activity.goal.title %> <% end %>
 <% if @activity.strategy and @activity.strategy.course %>
-	Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
+Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
 <% elsif @activity.user and !@activity.activity_sequence_id %>
-	In <%= link_to @activity.user.name, @activity.user %>'s plan<BR>
+In <%= link_to @activity.user.name, @activity.user %>'s plan
 <% end %>
 
-<strong>description</strong>: <%= raw @activity.description %><BR>
-
-<% if @activity.from %>
-	<strong>From</strong>:<%= link_to @activity.from.title, @activity.from  %><BR>
-<% end %>
-
-<%= render :partial => 'strategies/timing', locals: {activity: @activity} %><BR>
-<%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %><BR>
+<strong>title</strong>:<%= @activity.title %>
 <BR>
-<% if (current_user && (@activity.user_id == current_user.id)) then %>
-	<%= link_to 'Edit', edit_activity_path(@activity) %> 
+<strong>description</strong>: <%= raw @activity.description %>
+<BR>
+<%= link_to "from" + @activity.from.title, @activity.from if @activity.from %>
+	<BR>
+<strong>Timing</strong>: <%= @activity.kind_of_timing %><BR>
+<BR><strong>timing expression</strong>: <%= @activity.timing_expression %><BR>
+<strong>duration</strong>: <%= @activity.timing_duration %>
+<BR>
+<strong>Tags: </strong>
+<%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
+
+<BR><BR>
+
+
+<strong>hals</strong>:<BR>
+<% @hals.each do |hal| %>
+	<%= render :partial => 'hals/view_one', locals: {hal: hal, show_user: true} %>
+<hr>
+<% end %>
+
+<% if @related_hals.size > 0 %>
+	<BR>
+	<b>Related Hals:</b>
+	<BR>
+	<% @related_hals.each do |hal| %>
+		<%= render :partial => 'hals/view_one', locals: {hal: hal, show_user: true} %>
+		<hr>
+	<% end %>
 <% end %>
 
 
-<%= render :partial => 'hals/hal_list', locals: {hals: @hals, title: 'Owner entries', show_user: true} %>
-
-<%= render :partial => 'hals/hal_list', locals: {hals: @related_hals, title: 'Related entries', show_user: true} %>
-
-		</div>
-	</section>
-	<%= render :partial => 'shared/aside' %>
-</div>
+<% if (current_user && (@activity.user_id == current_user.id)) then %>
+<%= link_to 'Edit', edit_activity_path(@activity) %> 
+<% end %>

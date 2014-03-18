@@ -33,11 +33,9 @@ Opp::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-<<<<<<< Updated upstream
+
   config.log_level = :debug
   # Rails.logger = Rails.application.config.logger = logger
-=======
->>>>>>> Stashed changes
   # config.log_level = :debug
 
   # Prepend all log lines with the following tags

@@ -111,7 +111,7 @@ class Activity < ActiveRecord::Base
     end
     # timing duration only used for course activities
     self.timing_duration = "" if @until_radio == "nodate"
-    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date" and !self.timing_until.blank?
+    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date" and self.timing_until.blank?
   end
   
   # ensure until date is 

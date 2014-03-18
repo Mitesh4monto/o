@@ -4,7 +4,7 @@
 		<div class="triangle2"></div>
 		<% @udpates.each do |update| %>
 			<div class="box_holder2">
-				<%= update.id %> <%= link_to update.user.name, update.user %><%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
+				<%= update.id %> <%= link_to update.user.name, update.user %>&nbsp;<%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
 			</div>
 		<% end %>
 </div>

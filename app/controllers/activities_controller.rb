@@ -143,6 +143,7 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
+    # create new goal if new_goal_text filled in
     
     if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")
       @course = @activity.strategy.course
@@ -154,6 +155,11 @@ class ActivitiesController < ApplicationController
 
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
+        if !@activity.new_goal_text.empty?
+          goal = current_user.strategy.create_or_use_goal(@activity.new_goal_text)
+          @activity.goal_id = goal.id
+          @activity.save
+        end        
         if @activity.myp_activity?
           format.html { redirect_to :myp, notice: 'Activity was successfully updated.' }
           format.json { head :no_content }

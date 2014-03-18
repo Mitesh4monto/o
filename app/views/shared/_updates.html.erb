@@ -1,5 +1,5 @@
 <% @udpates.each do |update| %>
-	<%= update.id %> <%= link_to update.user.name, update.user %> 
+	<%= update.id %> <%= link_to update.user.name, update.user %>&nbsp;
 	<%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
 	<BR>
 <% end %>

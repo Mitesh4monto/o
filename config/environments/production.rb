@@ -34,7 +34,7 @@ Opp::Application.configure do
 
   # See everything in the log (default is :info)
   config.log_level = :debug
-  Rails.logger = Rails.application.config.logger = logger
+  # Rails.logger = Rails.application.config.logger = logger
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
 

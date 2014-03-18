@@ -12,9 +12,9 @@ end
 module Opp
   class Application < Rails::Application
 
-    config.after_initialize do
-       ActionView::Base.sanitized_allowed_tags.delete 'div'
-     end
+    # config.after_initialize do
+    #    ActionView::Base.sanitized_allowed_tags.delete 'div'
+    #  end
       
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)    
 

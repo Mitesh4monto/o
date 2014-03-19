@@ -62,10 +62,17 @@
    		<%= f.submit %>
 		<%= submit_tag 'Cancel', :name => 'cancel' %>
   
+<<<<<<< HEAD
 	<% if current_user.provider == "facebook" %>
 		<%= image_submit_tag '/images/share-on-facebook-button.gif', :name => 'fbshare', :width => 100 %>
 	<% end %>
 	<div class="row">
+=======
+		<% if current_user.provider == "facebook" %>
+			<%= image_submit_tag("/images/share-on-facebook-button.gif", :name => 'fbshare', :width => 100) %>
+		<% end %>
+	</div>
+>>>>>>> parent of 7f58066... test
 
 <% end %>
 	</section>

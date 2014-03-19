@@ -1,6 +1,7 @@
 <script>
 $(function() {
 $( "#tabs" ).tabs();
+$('#tabs').tabs("option", 'active', <%= @tab %>)
 });
 </script>
 <script>
@@ -27,12 +28,6 @@ $('#link2').hover(function() {
 });
 });
 </script>
-
-
-
-
-
-
 
 
 

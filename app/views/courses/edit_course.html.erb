@@ -8,7 +8,8 @@ $('#tabs').tabs("option", 'active', <%= @tab %>)
 </script>
 
 <div class="page"><h2><%= @course.name %></h2></div>
-<div class="page2">
+<div class="page3">
+	<section>
 	<div class="tab_holder2">
 		<div id="tabs">
 			<ul>
@@ -28,4 +29,6 @@ $('#tabs').tabs("option", 'active', <%= @tab %>)
 		</div>
 
 	</div>
+	</section>
+	<%= render :partial => 'shared/aside' %>
 </div>

@@ -47,9 +47,9 @@ class HalsController < ApplicationController
     respond_to do |format|
       if @hal.save      
         # if we're also sharing on fb:  post to wall
-        if params[:fbshare] 
+        if params['fbshare.x'] 
           graph = Koala::Facebook::API.new(current_user.oauth_token)
-          graph.put_wall_post(@hal.post_print)
+          a = graph.put_wall_post(@hal.post_print(url_for(:controller => 'hals', :action => 'show', :id => @hal.id)))
         end
         
         format.html { redirect_to redirect, notice: 'HAL was successfully created' }   #TODO CLEANUP

@@ -79,9 +79,9 @@ class Hal < ActiveRecord::Base
   end
   
   # format post of this hal for FB (for now)
-  def post_print
-    post = "I just wrote this post on http://www.melearni.ng:\n #{entry}"
-    post += insights ? "\ninsights: #{insights}" : ""    
+  def post_print(url)
+    post = "I just wrote this post at #{url}:\n #{entry}"
+    post += insights ? "\n<strong>insights</strong>: #{insights}" : ""    
   end
   
   def print

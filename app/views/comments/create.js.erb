@@ -1,4 +1,4 @@
-$('#Comments<%= @page %><%= @hal.id %>').find("ul").append('<li><h1><%= current_user.name %> Says</h1><span><%= @comment.created_at.strftime("%m/%d/%Y") %></span><p><%=j @comment.body %></p><a href="#" onclick="return false;" id="reply<%= @comment.id %>" title="<%= @hal.id %>" class="reply">Reply</a> </li>');
+$('#Comments<%= @page %><%= @hal.id %>').find("ul").append('<li><h1><%= current_user.name %> Says</h1><span><%= @comment.created_at.strftime("%m/%d/%Y") %></span><p><%=j @comment.body %></p><a href="#" onclick="return false;" id="reply<%= @page %><%= @comment.id %>" title="<%= @page %><%= @hal.id %>" class="reply">Reply</a> <%= link_to "Delete", @comment, method: :delete %></li>');
 $("#addComment<%= @page %><%= @hal.id %>").toggle(1000);
 $("#reply<%= @page %><%= @comment.id %>").click(function(){
 	console.log($(this));

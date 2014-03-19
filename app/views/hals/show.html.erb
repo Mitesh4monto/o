@@ -1,4 +1,104 @@
 <% @title = "View Blog Entry" %>
 
 
-<%= render :partial => 'hals/view_one', locals: {hal: @hal, show_user: true} %>
+<div class="page">
+   <h2>Blog entries</h2>
+	<%= link_to 'Add an entry',new_hal_path, :class => 'search' %>
+ </div>
+ <div class="page3">
+	<section>
+
+				<div class="image_holder"><%= image_tag @hal.user.avatar.url(:small), :class => "img_lft" if (@hal.user.avatar.url(:small)) %></div>
+				<p class="general">
+					<strong>
+					<% if @hal.halable %>
+						<h3>About:<%= link_to @hal.halable.title, @hal.halable %></h3>
+					<% else %>
+						<h3>Blog entry</h3>
+					<% end %>			
+					</strong></p>			
+					<% if current_user != @hal.user %>
+					<p class="general">By : <strong>
+						<strong>User</strong>:
+						<% if (@hal.user) then %>
+							<%=  link_to @hal.user.name, @hal.user %>
+						<% else  %> 
+							Anonymous
+						<% end  %>
+						<BR>
+						</p>
+					<% end %>			
+					</strong>
+				<p class="general">Entered: <strong><%= @hal.created_at.strftime("%m/%d/%Y") %></strong>
+				</p>
+				<% if @hal.course %><p class="general">From course: <%= link_to @hal.course.name, @hal.course %></p><% end %>
+	           
+
+				<div class="clear"></div>
+				<p class="general">	Entry: <%= @hal.entry %> </p>
+				<BR>
+				<% if @hal.insights %>
+					<p class="general"><strong>Insights</strong>: <%= @hal.insights %></p>
+					<BR><BR>
+				<% end %>
+				<p class="general">
+				<%= render :partial => 'shared/tag_display', locals: {tags: @hal.tags} %>
+				</p>
+				<BR><BR>
+				<% if @hal.help %>
+					<strong>Help requested</strong>
+					<BR>
+				<% end %>
+
+<% title = 'single' %>
+               <% if @hal.comments.size > 0  %><span id="<%= title %><%= @hal.id %>" title='<%= title %><%= @hal.id %>' class="collapselinkmarginlft30"><%=  @hal.comments.size %> comments </span> | <% end %> 
+				<span id="<%= title %><%= @hal.id %>" title='<%= title %><%= @hal.id %>' class="collapselinkhals">Add a Comment</span>
+				<!-- comments -->
+				<% if @hal.comments.size > 0  %>
+	               <div id="Comments<%= title %><%= @hal.id %>" class="comment">
+		             <ul>
+ 					 <% @hal.comments.each do |comment| %>
+	                   <li>
+	                     <h1><%= comment.user.name %> Says</h1>
+	                     <span><%= comment.created_at.strftime("%m/%d/%Y") %></span>
+	                     <p><%= comment.body %></p>
+	                     <a href="#" onclick='return false;' title='<%= title %><%= @hal.id %>' id="reply<%= title %><%= comment.id %>" class="reply">Reply</a> 
+						<% if (current_user && (comment.user_id == current_user.id || @hal.user_id == current_user.id)) then %>
+					        <%= link_to 'Delete', comment, method: :delete %>
+						<% end %>
+	
+						</li>
+					  <% end %>
+	                 </ul>
+	               </div>
+				<% end %>
+               <div id="addComment<%= title %><%= @hal.id %>" class="comment">
+                 <ul>
+                   <li>
+                     <h1>Comment</h1>
+					<%= form_for(Comment.new, :remote => true) do |f| %>
+					<%= hidden_field_tag 'hal_id', @hal.id %>
+					<%= hidden_field_tag 'page', title %>
+					    <div id="error_explanation">
+					    </div>
+
+					  <div class="field" id="comment_body<%= title %><%= @hal.id %>">
+					    <%= f.label :body %><br />
+					    <%= f.text_area :body %>
+					  </div>
+					  <div class="actions">
+					    <%= f.submit %>
+					  </div>
+					<% end %>
+
+                     <!-- <textarea name="Comment" cols="30" rows="5"></textarea> -->
+                     <p>
+                       <!-- <input name="comment_button" type="button" class="send_button" value="Send"> -->
+                     </p>
+                   </li>
+                 </ul>
+               </div>
+
+	</section>
+	<%= render :partial => 'shared/aside' %>
+</div>

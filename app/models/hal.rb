@@ -22,6 +22,13 @@ class Hal < ActiveRecord::Base
     self.entry
   end
   
+  def private?
+    self.privacy == 0
+  end
+  def public?
+    self.privacy == 1
+  end
+  
   def add_comment(comment)
     self.comments << comment
   end

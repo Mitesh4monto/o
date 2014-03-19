@@ -13,6 +13,9 @@ class HalsController < ApplicationController
 
   def show
     @hal = Hal.find(params[:id])
+    if (current_user != @hal.user and @hal.private?)
+      return redirect_to :root, notice: "This is not the blog you're looking for"
+    end
   end
   
   def edit

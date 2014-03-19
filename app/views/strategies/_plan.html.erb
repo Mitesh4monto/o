@@ -1,0 +1,56 @@
+<script>
+$(document).ready(function(){
+  $(".linkOne").click(function(){
+	var act = "#rightbar" + $(this)[0].title;
+	$(act).toggle(1000);
+  });
+});
+</script>
+
+<% activty_map = get_activity_by_map(strategy.current_activities) %>
+<% if activty_map.size > 0 %>
+	<% activty_map.each do |key, activities| %>
+		<div class="box_holder3 width100">
+			<div class="title"><h3><%= key.nil? ? "none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h3></div>
+			<div class="box">
+			<div class="goal">
+		<% activities.each do |activity| %>
+		<%= activity.id %><%= link_to activity.title, activity %>
+		<div class="plus" id="<%= activity.id %>"><a href="#"><img src="/images/plus1.png" alt=""></a>
+		                        <div id="Details<%= activity.id %>" class="plus_details" style="display: none;">
+		                          <ul>
+		                            <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
+		                            <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
+		                            <li><a href="#" title="Edit">Edit</a></li>
+		                            <li><%= link_to "Delete Activity", activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %></li>
+		                          </ul>
+		                        </div>
+		                      </div>
+			&nbsp;&nbsp;
+			<a href="#" onclick='return false;' class="linkOne", title='<%= activity.id %>'>view more</a>
+			<div id="rightbar<%= activity.id %>" class="right_bar width97" style="margin-left:10px;">
+				<%= render :partial => 'view_activity', locals: {activity: activity} %>
+			</div>
+			
+		<% end %>
+		</div>
+    </div>
+	</div>
+	<div class="clear"></div>
+
+	<% end %>
+<% else %>
+	<% strategy.current_activities.each do |activity| %>
+		<div class="box_holder3 border_btm">
+			<div class="box">
+			<% activities.each do |activity| %>
+				<h2 class="bold"><%= activity.id %><%= link_to activity.title, mypd_path(activity.id) %></h2>				
+				<%= link_to image_tag("/images/checkmark.png", :size => "15x18", :title => "Did today"), :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %>&nbsp;&nbsp;
+				<%= link_to image_tag("/images/delete_small.jpg", :size => "20x20", :title => "Delete Activity"), activity.becomes(Activity), confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
+				<%= link_to "add entry about", new_hal_path(activity.id)  %>
+			<% end %>
+			</div>
+		</div>
+		<div class="clear"></div>
+	<% end %>
+<% end %>

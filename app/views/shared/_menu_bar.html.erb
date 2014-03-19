@@ -18,19 +18,23 @@
 			<ul id="navmenu2">
                 <li><a href="/courses">Browse courses</a></li>
 				<% if (current_user && current_user.get_following_courses.size>0) %>
-				Enrolled in:
-					<% 	current_user.get_following_courses.each do |course| %>
-
-					<li><%= link_to course.name, course %></li>
-
-					<% end %>
+				<li id="link2a"><a href="#" title="Courses Plan">Courses I follow</a>
+					<ul id="navmenu2a">
+						<% 	current_user.get_following_courses.each do |course| %>
+							<li><%= link_to course.name, course %></li>
+						<% end %>
+					</ul>
+				</li>
 				<% end %>
 				<% if (current_user && current_user.courses.size>0) %>
-                <li class="divider"></li>
-				Created:
-					<% 	current_user.courses.each do |course| %>
-					<li><%= link_to course.name, course %></li>
-					<% end %>
+				<li id="link2b"><a href="#" title="Courses Explanation">Courses I created</a>
+					<ul id="navmenu2b">
+						<% 	current_user.courses.each do |course| %>
+						<li><%= link_to course.name, course %></li>
+						<% end %>
+					</ul>
+				</li>
+									
 				<% end %>
                 <li class="divider"></li>
                 <li><a href="/courses/new">create a course</a></li>

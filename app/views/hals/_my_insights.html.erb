@@ -4,7 +4,7 @@
 
 <% hals.each do |hal| %>
 <div class="box">
-	<%= hal.id %> - <%= hal.created_at.strftime("%m/%d/%Y") %>
+	<%= hal.id %> - <%= link_to hal.created_at.strftime("%m/%d/%Y"), hal %>
 	<p>	<% if !hal.insights.blank? %><strong>Insights</strong>: <%= hal.insights %><% end %>
 	<% if hal.halable %>
 		- About Activity: <%= link_to hal.halable.title, hal.halable %>

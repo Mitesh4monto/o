@@ -1,19 +1,11 @@
 <aside>
 <div class="box_holder">
-		<div class="title"><h3>Latest News </h3></div>
+		<div class="title"><h3>Updates</h3></div>
 		<div class="triangle2"></div>
-		<div class="box_holder2">
-			<h2><a href="#">International branch campuses are</a> </h2>
-			<p>resource-intensive, complex endeavors, especially in the context.</p>
-		</div>
-		<div class="box_holder2">
-			<h3><a href="#">International branch campuses are</a> </h3>
-			<p>resource-intensive, complex endeavors, especially in the context.</p>
-		</div>
-		<div class="box_holder2">
-			<h3><a href="#">International branch campuses are</a> </h3>
-			<p>resource-intensive, complex endeavors, especially in the context.</p>
-		</div>
-	<div class="read"><a href="#">Read All News »</a></div>
+		<% @udpates.each do |update| %>
+			<div class="box_holder2">
+				<%= update.id %> <%= link_to update.user.name, update.user %>&nbsp;<%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
+			</div>
+		<% end %>
 </div>
 </aside>

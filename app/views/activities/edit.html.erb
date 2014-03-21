@@ -1,8 +1,14 @@
 <% @title = "Edit #{@activity.title}" %>
 
-<h1>Editing activity</h1>
+<div class="page"><h2>New activity</h2></div>
+<div class="page3">
+	<section>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @activity %> |
-<%= link_to 'Back', root_path %>
+	<%= render 'form' %>
+
+	</section>
+	<%= render :partial => 'shared/aside' %>
+	
+</div>
+

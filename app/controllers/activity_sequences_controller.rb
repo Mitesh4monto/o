@@ -33,4 +33,26 @@ class ActivitySequencesController < ApplicationController
     @activity_sequence.set_previous
     redirect_to myp_path(@activity_sequence.current_activity)
   end
+  
+  # DELETE /activity_sequences/1
+  # DELETE /activity_sequences/1.json
+  def destroy
+    @activity_sequence = ActivitySequence.find(params[:id])  
+    strategy = @activity_sequence.strategy
+    @activity_sequence.destroy
+
+    respond_to do |format|
+      if (strategy.type == "UserStrategy")
+        #  assumes can only remove activity form activity sequence in course
+        format.html { redirect_to myp_path, notice: "Activity Sequence were successfully deleted" }
+        format.json { head :no_content }
+      else
+        #  assumes can only remove activity form activity sequence in course
+        format.html { redirect_to course_plan_edit_path(course), notice: "Activity was successfully deleted" }
+        format.json { head :no_content }
+      end
+    end
+  end
+  
+  
 end

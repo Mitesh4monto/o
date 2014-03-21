@@ -44,7 +44,11 @@
 							       <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
 							       <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
 								<li><%= link_to 'Edit', edit_activity_path(activity) %></li>
+								<% if activity.type == "ActivityInSequence" %>
+							       <li><%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete %></li>
+								<% else %>
 							       <li><%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %></li>
+								<% end %>
 							     </ul>
 							   </div>
 						  </div>

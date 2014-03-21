@@ -1,32 +1,9 @@
 <h2>Course Plan</h2>
 
-<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
-<% if activty_map.size > 0 %>
-	<% activty_map.each do |key, activities| %>
-			<div class="title"><h3><%= key.nil? ? "none" : "Goal: " + key.title %></h3></div>
-			<div class="box">
-				<% activities.each do |activity| %>
-					<%= activity.id %> - <%= activity.title %>
-					<div class='act_deets'>
-						<strong>description</strong>: <%= raw activity.description %>
-						<%= render :partial => 'strategies/timing', locals: {activity: activity} %>
-					</div>
-				<% end %>
-		    </div>
-		<div class="clear"></div>
-	<% end %>
-<% else %>
-	<% @course.strategy.current_activities.each do |activity| %>
-			<div class="box">
-				<%= activity.id %> - <%= activity.title %>
-				<div class='act_deets'>
-					<strong>description</strong>: <%= raw @activity.description %><BR>
-					<%= render :partial => 'timing', locals: {activity: activity} %>
-				</div>
-			</div>
-		<div class="clear"></div>
-	<% end %>
-<% end %>
+<%= 
+ render :partial => 'strategies/view_two', locals: {strategy: @course.strategy} 
+%>
+
 
 <div class="clear"></div>
 

@@ -13,7 +13,7 @@ errors.html('');
 
 <% else %>
   	// update the image preview
-	var image_link = '<%= image_tag @course.course_image.url(:medium) %>';
+	var image_link = '<%= image_tag @course.course_image.url(:medium), :width=>"90", :class=>"float_lft" %>';
 	$('#overview_image').html(image_link);
 
 <% end %>

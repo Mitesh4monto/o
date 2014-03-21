@@ -1,0 +1,78 @@
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("li").click(function(){
+				$(this).toggleClass("active");
+				$(this).next("div").stop('true','true').slideToggle("slow");
+			});
+			<% if @activity %>
+				showdiv('<%= @activity.id %>');
+			<% end %>
+		});
+		function showdiv(a) {
+		$('.content').hide();
+		$('#'+a).toggle('slow');
+		}
+	</script>
+
+				<div class="left_bar width94">
+					<div class="box_holder3 width100">
+						<div class="title"><h3>My Plan</h3></div><br/>
+						<!--<div  class="edit4"><a href="#">Show customization</a></div>-->
+						<div class="clear"></div>
+						<div class="toggle">
+							<ul>
+								
+								
+								<li class="lft">
+									<ul>
+
+<% activty_map = get_activity_by_map(strategy.current_activities) %>
+<% if activty_map.size > 0 %>
+	<% activty_map.each do |key, activities| %>
+		<li class="column_a"><h4><%= key.nil? ? "none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h4></li>
+
+		<li class="column_b">
+		<% activities.each do |activity| %>
+					<ul>		
+						<li class="" onClick="showdiv('<%= activity.id %>');">
+										<%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+										
+							<div class="plus" class="divOne"  id="ss<%= activity.id %>"  style="float:right;"><a href="#"><img src="/images/plus1.png" alt=""></a>
+							   <div id="Detailsss<%= activity.id %>" class="plus_details" style="display: none;">
+							     <ul>
+							       <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
+							       <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
+								<li><%= link_to 'Edit', edit_activity_path(activity) %></li>
+							       <li><%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %></li>
+							     </ul>
+							   </div>
+						  </div>
+						</li>
+					</ul>
+		<% end %>
+	</li>
+	</li>
+	<div class="clear"></div>
+<% end %>
+<% end %>
+</li></ul>
+										
+						<div class="clear"></div>
+			            <div class="box_3"><%= link_to 'Add activity', add_activity_path, :class => 'green' %>
+						<%= link_to 'Look for courses', courses_path %>
+			              <div class="clear"></div>
+			            </div>
+			            				
+		
+				<li class="rgt">
+					<% strategy.current_activities.each do |activity| %>
+						<div id="<%= activity.id %>" class="content" <% if activity != strategy.current_activities.first  %>style="display:none;" <% end %>>
+							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity} %>
+						</div>
+					<% end %>
+			</li>	
+	</ul>
+</div>
+				</div>
+	<div class="clear"></div>

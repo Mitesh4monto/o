@@ -22,7 +22,7 @@ class Activity < ActiveRecord::Base
   attr_accessor :new_goal_text
   attr_writer :freak_number, :freak_interval, :reactive_expression, :until_radio, :duration_number, :duration_unit
   
-  # validates :title, :presence => {:message => "no blanky"}
+  validates :title, :presence => {:message => "no blanky"}
   # validate :validate_timing   #TODO uncomment -- ONLY FOR TESTING
 
   belongs_to :from, class_name: Activity, :foreign_key => 'from_id'

@@ -1,0 +1,69 @@
+<% if !defined?(show_user) 
+	show_user = true
+	 end %>
+	<% if !defined?(title) 
+		title = "title"
+		 end %>
+	
+<% if show_user %>
+	<% if (hal.user) then %>
+	        	<h1><%= link_to hal.user.name, hal.user %></h1>
+		<%= image_tag hal.user.avatar.url(:thumb) if (hal.user.avatar.url(:thumb)) %> 
+	<% else  %> 
+		Anonymous
+	<% end  %>
+<% end %>
+               <p>Entry: <%= hal.entry %></p><%= hal.created_at.strftime("%m/%d/%Y") %>
+               <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
+               <% if hal.help %><p><strong>Help requested</strong><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">  >> Respond</span></p><% end %>
+	           <% if hal.course %><p>From course: <%= link_to hal.course.name, hal.course %></p><% end %>
+		<% if hal.halable %>
+	               <ul class="activity">
+	                 <li>Activity: <%= link_to hal.halable.title, hal.halable %></li>
+	               </ul>
+		<% end %>
+		  <br class="dis"/>				
+               <% if hal.comments.size > 0  %><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkmarginlft30"><%=  hal.comments.size %> comments </span> | <% end %> 
+		<span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">Add a Comment</span>
+		<!-- comments -->
+		<% if hal.comments.size > 0  %>
+	               <div id="Comments<%= title %><%= hal.id %>" class="comment">
+             <ul>
+ 					 <% hal.comments.each do |comment| %>
+	                   <li>
+	                     <h1><%= comment.user.name %> Says</h1>
+	                     <span><%= comment.created_at.strftime("%m/%d/%Y") %></span>
+	                     <p><%= comment.body %></p>
+	                     <a href="#" onclick='return false;' title='<%= title %><%= hal.id %>' id="reply<%= title %><%= comment.id %>" class="reply">Reply</a> 
+				</li>
+			  <% end %>
+	                 </ul>
+	               </div>
+		<% end %>
+               <div id="addComment<%= title %><%= hal.id %>" class="comment">
+                 <ul>
+                   <li>
+                     <h1>Comment</h1>
+			<%= form_for(Comment.new, :remote => true) do |f| %>
+			<%= hidden_field_tag 'hal_id', hal.id %>
+			<%= hidden_field_tag 'page', title %>
+			    <div id="error_explanation">
+			    </div>
+
+			  <div class="field" id="comment_body<%= title %><%= hal.id %>">
+			    <%= f.label :body %><br />
+			    <%= f.text_area :body %>
+			  </div>
+			  <div class="actions">
+			    <%= f.submit %>
+			  </div>
+			<% end %>
+			
+                     <!-- <textarea name="Comment" cols="30" rows="5"></textarea> -->
+                     <p>
+                       <!-- <input name="comment_button" type="button" class="send_button" value="Send"> -->
+                     </p>
+                   </li>
+                 </ul>
+               </div>
+             <div class="clear"></div>

@@ -32,36 +32,36 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 	<div id="body_frame">
 		<div class="wrapper">
 	
-	<%= render :partial => "shared/menu_bar" %>
-	<div id="notif"></div>
-	
-<div id='notice'></div>
-
+		<header>
+			<%= render :partial => "shared/menu_bar" %>
+		<div class="clear"></div>
 	<% flash.each do |name, msg| %>
 		<% if name == :notice %>
-		  <div class="notice">
-		    <a class="close" data-dismiss="alert">×</a>
+			  <div class="notification">
 		    <%= msg %>
 		  </div>
 		<% elsif name == :error %>
-		  <div class="alert alert-error">
-		    <a class="close" data-dismiss="alert">×</a>
+			  <div class="error">
 		    <%= msg %>
 		  </div>
 		<% elsif name == :partial %>
-		  <div class="alert alert-success">
-		    <a class="close" data-dismiss="alert">×</a>
+			  <div class="notification">
 			<%= render :partial => "shared/flashes/#{msg}" %>
 		  </div>
 		<% end %>
 	<% end %>
         
+</header>
 
 
 	<div class="contain">
 		<div class="side"></div>
 		<div class="main_con">
+			<!-- <div class="page"><h2><%= @title %></h2></div>
+				<div class="page3">			 -->
 <%= yield %>
+				<!-- </div>
+			 </div> -->
 				
 
 	

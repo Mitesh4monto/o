@@ -105,7 +105,7 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   # create activity for a user's plan
   def create
-    debugger
+    # debugger
     @activity = Activity.new(params[:activity])
     # jquery dp hack
     until_date = params[:activity][:timing_until]

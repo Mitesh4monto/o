@@ -1,0 +1,74 @@
+<div class="clear"></div>
+<div class="show">
+	<div class="edit margin5"><a href="#" class="linkTwo" >Edit</a>
+		<div class="edit_box" id="rightbar2">
+            <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
+		</div>
+	</div>				
+	<div class="edit3a"><a href="#" class="linkThree">Delete</a>
+		<div class="edit_box" id="rightbar3">
+			<div class="close"><a href="#"><img class="linkThree" src="/images/close.png" alt=""></a></div>
+	       <form class="form" id="contact" name="contact" method="post" action="#">
+		      <div class="row save">
+		        Are you sure you want to delete?
+		      </div>
+		      <div class="row" style="text-align:center; margin-left:150px;">
+		        <input type="button" value="Yes" style="background:#CCCCCC; border:1px solid #999999;">
+		        &nbsp;
+		        <input type="button" value="No">
+		      </div>
+	    	</form>
+	    </div>			
+		
+		<div style="width:400px; height:300px; padding:10px; display:none" id="Delete">
+		  <div style="background:#fff; width:340px; height:240px; border:1px solid #c7c7c7; padding:30px;">
+		  </div>
+		</div>
+	</div>
+	<div class="edit"><a href="#">Blog about</a></div><div class="edit3a margin3"><a href="#">Mark as done</a></div>
+	<div class="clear"></div>
+	
+	<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
+		<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
+	<% end %>
+
+	<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
+		<%= link_to "next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
+	<% end %>
+
+	
+<h5>Title:<%= link_to activity.title, activity %></h5>
+<h5>Description</h5>
+<p>
+	<%= sanitize activity.description %>
+</p>
+<p><span class="bold">Timing:</span></p><%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+<BR>
+<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
+	<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
+<% end %>
+
+<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
+	<%= link_to "next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
+<% end %>
+
+<% if activity.type == "ActivityInSequence" %>
+<BR><b>Activities in the sequence:</b><BR>
+	<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
+		<%= link_to activity_in_sequence.title, activity_in_sequence %>		
+		<% if activity.activity_sequence.current_activity != activity_in_sequence %>
+		<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
+		<% else %> << Current
+		<% end %><BR>
+	<% end %>
+
+<% end %>
+
+
+			<% activity.hals.each do |hal| %>
+				<div class="box_holder3 width100">
+					<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
+				</div>
+				<div class="clear"></div>
+			<% end %>
+</div>

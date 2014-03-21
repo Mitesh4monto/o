@@ -27,35 +27,26 @@
           <div class="divider"></div>
           <div class="clear space"></div>
           <div class="btm">
-            <div class="lft">
 			<% if current_user.following.size > 0  %>
               <h1 class="blacktxt">Following users:</h1>
 			<% else %>
               <h1 class="blacktxt">Not Following any users</h1>
 			<% end %>
-              <ul>
+              <ul><p>
 				<% current_user.following.each do |user| %>
-					<li class="lft"><%= link_to user.name, user, :class => "link1" %></li>
-					<li class="rgt"><%= form_for user, :url => unfollow_user_path(user, method: :put) do |f| %>
-						<%= hidden_field_tag 'id', user.id %>
-						<%= hidden_field_tag 'red', request.original_url %>
-						<%= f.submit "Unfollow", :class => "button" %>
-					<% end %></li>
+					<%= link_to user.name, user, :class => "link1" %><%- if user != current_user.following.last -%>, <% end %>
 				<% end %>
-              </ul>
-            </div>
-            <div class="rgt">
+              </p></ul>
 			<% if current_user.following.size > 0  %>
               <h1 class="blacktxt">Followed by:</h1>
 			<% else %>
               <h1 class="blacktxt">Not Followed by anyone</h1>
 			<% end %>
-              <ul>
+              <ul><p>
 				<% current_user.followers.each do |user| %>
-					<li><%= link_to user.name, user, :class=>"link1" %></li>
+					<%= link_to user.name, user, :class=>"link1" %><% if user != current_user.followers.last %>, <% end %>
 				<% end %>
-              </ul>
-            </div>
+              </p></ul>
           </div>
         </div>
       </div>

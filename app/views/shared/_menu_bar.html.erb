@@ -1,17 +1,16 @@
-<header>
 	<%= content_tag :div, class: "logo" do -%>
- 		<%= image_tag "/images/lobehold.png", size: "200x10" %><BR>
+ 		<%= link_to image_tag("/images/lobehold.png", size: "200x10"), root_path %><BR>
 	<% end -%>
 	<nav>
-		<% if current_user  %>
 		<ul>
-		<li> <%= link_to "my Plan", :myp, class: 'stra'  %>  </li>
-		<li id='link1'> <%= link_to "View Blogs", :view_hals %>
-		<ul id="navmenu1">
-			<li><%= link_to "add an entry", new_hal_path  %></li>
-            <li class="divider"></li>
-            <li><%= link_to "View Blogs", :view_hals %></li>
-		</ul>
+		<% if current_user  %>
+			<li> <%= link_to "my Plan", :myp, class: 'stra'  %>  </li>
+			<li id='link1'> <%= link_to "Blog", :view_hals %>
+			<ul id="navmenu1">
+				<li><%= link_to "add an entry", new_hal_path  %></li>
+	            <li class="divider"></li>
+	            <li><%= link_to "View Blogs", :view_hals %></li>
+			</ul>
 		<% end %>
 
 		<li id='link2'> <a href="/courses" class="course">Courses</a>
@@ -40,11 +39,12 @@
                 <li><a href="/courses/new">create a course</a></li>
 			</ul>
 		</li>
+	 </ul>
 		
 	</nav>
 
+	<% if current_user  %>
 	<div class="user">
-		<% if current_user  %>
 		<div class="image">
 			<div class="image2">
 				<%= image_tag current_user.avatar.url(:thumb) if (current_user and current_user.avatar.url(:thumb)) %>
@@ -56,10 +56,11 @@
 			    <li><%= link_to "Sign out", sign_out_path %></li>
 			</ul>
 		</div>
+	</div>
 	<% else %>
-	    <li><%= link_to "Sign up", new_user_registration_path %>/<%= link_to "sign in", new_user_session_path %></li>
-		<li><%= link_to "	with FB:", "/auth/facebook", id: "sign_in" %></li>	
+	<div class="userlogin">
+		<%= link_to image_tag("/images/fb_login.png"), "/auth/facebook", :class => "fblogin", :alt=>"Facebook Login", id: "sign_in" %>
+		<input name="login" value="Login" type="button" class="loginbtn" onClick="location.href='<%= new_user_session_path %>'"></div>
+		<div class="clear"></div>
+	</div>
 	<% end %>
-</div>
-	<div class="clear"></div>
-</header>

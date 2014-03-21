@@ -53,6 +53,9 @@ $(function() {
 	}, function() { 
 	    $('#navmenu2b').hide(); 
 	});
+
+	// for tips to work
+	$(".tipped").tipper();
 	
 
 });

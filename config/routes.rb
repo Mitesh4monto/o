@@ -39,14 +39,21 @@ Opp::Application.routes.draw do
   get "strategies/copy_activity/:id", to: "strategies#copy_activity",  as: 'copy_activity'
 
   get "activities/mine", to: "strategies#mine",  as: 'user_strategy'
-  get "strategies/mine", to: 'strategies#mine', as: 'myp'
+  get "strategies/mine(/:id)", to: 'strategies#mine', as: 'myp'
   get "strategies/mine_details/:id", to: 'strategies#mine_details', as: 'mypd'
 
   get "commitment_marks", to: 'commitment_marks#mycms', as: 'mycms'
 
 
   # courses
-  get "courses/show/:id(/:tab)", to: 'courses#show', as: 'show_course'
+  get "courses/new", to: 'courses#new', as: 'create_course'
+  get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
+  get "courses/:id(/:tab)", to: 'courses#show', as: 'show_course'
+  get "courses/:id/4", to: 'courses#show', as: 'course_people'
+  get "courses/:id/3", to: 'courses#show', as: 'course_blogs'
+  get "courses/:id/2", to: 'courses#show', as: 'course_description'
+  get "courses/:id/1", to: 'courses#show', as: 'course_plan'
+  get "courses/:id/0", to: 'courses#show', as: 'course_overview'
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
   get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'

@@ -1,11 +1,13 @@
-<aside>
-<div class="box_holder">
-		<div class="title"><h3>Updates</h3></div>
-		<div class="triangle2"></div>
-		<% @udpates.each do |update| %>
-			<div class="box_holder2">
-				<%= update.id %> <%= link_to update.user.name, update.user %>&nbsp;<%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
-			</div>
-		<% end %>
-</div>
-</aside>
+<% if current_user %>
+	<aside>
+	<div class="box_holder">
+			<div class="title"><h3>Updates</h3></div>
+			<div class="triangle2"></div>
+			<% @udpates.each do |update| %>
+				<div class="box_holder2">
+					<%= update.id %> <%= link_to update.user.name, update.user %>&nbsp;<%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
+				</div>
+			<% end %>
+	</div>
+	</aside>
+<% end %>

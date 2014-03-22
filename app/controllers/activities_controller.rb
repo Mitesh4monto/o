@@ -164,6 +164,7 @@ class ActivitiesController < ApplicationController
           format.json { head :no_content }          
         end
       else
+        flash[:error] = "Some errors occured - Activity Could not be saved"
         format.html { render action: "edit" }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end

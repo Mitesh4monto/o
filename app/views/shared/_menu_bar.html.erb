@@ -4,8 +4,9 @@
 	<nav>
 		<ul>
 		<% if current_user  %>
-			<li> <%= link_to "my Plan", :myp, class: 'stra'  %>  </li>
-			<li id='link1'> <%= link_to "Blog", :view_hals %>
+		<li> <a href="javascript:void(0);" onclick="javascript:introJs().start();">Getting Started</a>
+			<li><div data-intro="This is where you have your plan.  You'll be spending a lot of time here" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div></li>
+			 <li id='link1'> <div data-intro='And all blogs are here, for your courses, general blogs, your own, the people you follow...' data-step='2'> <%= link_to "Blog", :view_hals %></div>
 			<ul id="navmenu1">
 				<li><%= link_to "add an entry", new_hal_path  %></li>
 	            <li class="divider"></li>
@@ -13,7 +14,8 @@
 			</ul>
 		<% end %>
 
-		<li id='link2'> <a href="/courses" class="course">Courses</a>
+		<li id='link2'> <div data-intro='Courses can be found here.  The ones you follow, the ones you create, and all others' data-step='3'> 
+		<a href="/courses" class="course">Courses</a></div>
 			<ul id="navmenu2">
                 <li><a href="/courses">Browse courses</a></li>
 				<% if (current_user && current_user.get_following_courses.size>0) %>

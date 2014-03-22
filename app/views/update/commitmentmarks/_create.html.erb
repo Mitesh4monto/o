@@ -1,0 +1,7 @@
+Added a commitment mark for
+<% if update.loggable and update.loggable.cmable %>
+	<% activity =  update.loggable %>
+		<%= link_to update.loggable.cmable.title, update.loggable.cmable %>
+<% else %>
+a <%= update.loggable_type %> which has since been removed 
+<% end %>

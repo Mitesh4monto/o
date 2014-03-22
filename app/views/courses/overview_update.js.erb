@@ -1,11 +1,14 @@
-var notification = $('#notif');
-notification.html('	<div class="save"><%= flash[:notice] %></div>')
+var notification = $('.info');
+notification.html('	<div class="notification"><%= flash[:notice] %></div>')
 
 <% if @course.errors.any? %>
 
   // Create a list of errors
-  var errors = $('#overview_error_explanation');
-errors.html('');
+notification.html('	<div class="error"><%= flash[:error] %></div>')
+  var info = $('.ovinfo');
+  info.html('	<div class="save"></div>');
+  var errors = $('.save');
+	// errors.html('');
 
   <% @course.errors.full_messages.each do |error| %>
     errors.append('<li><%= escape_javascript(error) %></li>');

@@ -40,7 +40,7 @@ $("#tabs").tabs({disabled: [1,2]});
 				<div class="row"><label>Overview<%= tipper("Overview.  This will appear on the course listing page. <BR> For details, especially for course followers, add those in the supplemental info area", "right") %></label><%= f.text_area :overview %><div class="clear"></div></div>
 				<div class="row"><label>About the Author</label><%= f.text_area :about_the_author %><div class="clear"></div></div>
 				This will help people find your course and easily see what it's about. You can add as many as you wish, but they should be relevant to your course.
-				<div class="row"><label>Tag List<%= tipper("Enter comma separated tags.  This will help people find your course and easily see what it's about. You can add as many as you wish, but they should be relevant to your course.", "right") %></label><%= f.text_field  :tag_list  %><div class="clear"></div></div>
+				<div class="row"><label>Tag List<%= tipper("Enter comma separated tags.  This will help people find your course and easily see what it's about.<br> You can add as many as you wish, but they should be relevant to your course.", "right") %></label><%= f.text_field  :tag_list  %><div class="clear"></div></div>
 				<div class="row"><label>Course Image</label><%= f.file_field :course_image %></div><div class="clear"></div>
 				<div class="row"><label>&nbsp;</label>
 				<%= f.submit %>

@@ -15,4 +15,5 @@
 //= require jquery.ui.all
 //= require ckeditor/init
 //= require ckeditor/ckeditor
+//= require introjs
 //= require_tree

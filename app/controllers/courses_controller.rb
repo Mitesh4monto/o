@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
       if @course.update_attributes(params[:course])
         flash[:notice] = "Course updated Successfully"
       else
-        flash[:notice] = "Doh!"
+        flash[:error] = "An error occured!"
       end
       format.html
       format.js
@@ -73,7 +73,7 @@ class CoursesController < ApplicationController
       if @course.update_attributes(params[:course])
         flash[:notice] = "Course updated Successfully"
       else
-        flash[:notice] = "Doh!"
+        flash[:error] = "The overview could not be saved"
       end
       # format.html 
       format.js

@@ -32,9 +32,10 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 	<div id="body_frame">
 		<div class="wrapper">
 	
-		<header>
+		<header>						
 			<%= render :partial => "shared/menu_bar" %>
 		<div class="clear"></div>
+			  <div class="info"></div>		
 	<% flash.each do |name, msg| %>
 		<% if name == :notice %>
 			  <div class="notification">

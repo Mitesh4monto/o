@@ -3,17 +3,8 @@
 <BR><BR>
 <%= semantic_form_for @course, as: :course, url: :update_description  do |f| %>
   <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-      <% @course.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <div class="ovinfo"></div>
   <div class="field">
 	Enter details for this course.  It could be a reference for course followers or more details for someone who might be interested in joining.  We recommend adding other media to complement the text in an engaging way (external links, pictures, videos)<BR>
     <%= f.text_area :description, :class => 'ckeditor' %>

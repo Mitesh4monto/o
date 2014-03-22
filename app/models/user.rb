@@ -67,8 +67,8 @@ class User < ActiveRecord::Base
          logger.info("me: #{profile.to_yaml}")
          logger.info("user: #{user.to_yaml}")
 
-         logger.info("received from Facebook: #{auth.to_yaml}")
-         logger.info("received from Facebook: #{auth.info.image}")
+         # logger.info("received from Facebook: #{auth.to_yaml}")
+         # logger.info("received from Facebook: #{auth.info.image}")
          user = User.new(name:auth.info.name,
                             provider:auth.provider,
                             oauth_token:auth.credentials.token,

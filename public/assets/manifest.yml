@@ -41,10 +41,10 @@ triangle2.png: triangle2-65727fc69718606d6ce4c43553b45e94.png
 ul_back.png: ul_back-dce9bd8c49b2497670ec84a9ebb33b05.png
 user.jpg: user-78fb41d766b17e7443c2c2491e2e51c6.jpg
 activities.js: activities-34fabf6c97f646e53523fe3899924385.js
-application.js: application-e5914de19d3c25bd3ab1c5ebee130f31.js
+application.js: application-9f49c0545bc72c1569e4382a8803ae24.js
 ckeditor/config.js: ckeditor/config-0216fb7a862c8a8016c3a135fd9c9965.js
 activities.css: activities-4fce825408753a04b0b5094198f3ee7f.css
-application.css: application-aba1930cb99d40132e3b7f3dc4aa6e93.css
+application.css: application-7fefb72d83415bad4217fd92a481cb58.css
 jquery-ui/animated-overlay.gif: jquery-ui/animated-overlay-691b2d4343303de8d214ad5395fd895d.gif
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png
@@ -67,7 +67,7 @@ fontawesome-webfont.ttf: fontawesome-webfont-ea7524141a8a91bdd7d3b1decee250ce.tt
 fontawesome-webfont.woff: fontawesome-webfont-005a48840efd62d3930aa7c5f761c438.woff
 twitter/bootstrap/glyphicons-halflings-white.png: twitter/bootstrap/glyphicons-halflings-white-ef3d5b8d6a297804352b4a46fdb5466d.png
 twitter/bootstrap/glyphicons-halflings.png: twitter/bootstrap/glyphicons-halflings-0e7ff93d8f48fe1f5f762e4312e78da7.png
-ckeditor/application.js: ckeditor/application-efc14e92170b473fedbdeb3df15952b5.js
+ckeditor/application.js: ckeditor/application-dbf77bba382082d15926e34221a53a19.js
 ckeditor/filebrowser/images/gal_add.jpg: ckeditor/filebrowser/images/gal_add-8aa905c95fad3086b6c3fc06bfb5b6d5.jpg
 ckeditor/filebrowser/images/gal_add.png: ckeditor/filebrowser/images/gal_add-54f9d6f12bd2ad0c7d7d6b6f9e07979a.png
 ckeditor/filebrowser/images/gal_del.png: ckeditor/filebrowser/images/gal_del-58ee11595f1b5715f5a6bf71187c5c8f.png
@@ -95,7 +95,7 @@ ckeditor/filebrowser/images/thumbs/xls.gif: ckeditor/filebrowser/images/thumbs/x
 ckeditor/filebrowser/images/thumbs/xlsx.gif: ckeditor/filebrowser/images/thumbs/xlsx-d9066f44575b09119b6bf112d05ebeb9.gif
 ckeditor/filebrowser/images/thumbs/zip.gif: ckeditor/filebrowser/images/thumbs/zip-5edc2913effcc4ca93c3d272c8ac7a88.gif
 ckeditor/filebrowser/javascripts/application.js: ckeditor/filebrowser/javascripts/application-c63f60fa8bc354c4f5966d7ed4ca689c.js
-ckeditor/init.js: ckeditor/init-e5de09c648068b6f333cd218258de8a6.js
+ckeditor/init.js: ckeditor/init-a0a57d03471304965e51dbf769122935.js
 ckeditor/application.css: ckeditor/application-68d9c296d36a9f07cd96b3edf9eac5e5.css
 ckeditor/CHANGES.md: ckeditor/CHANGES-09c7293f2915455d77c7a7d274595954.md
 ckeditor/LICENSE.md: ckeditor/LICENSE-6c50a314df8275e8a160be2ade5812c8.md
@@ -227,7 +227,7 @@ ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js: ckeditor/plugins/a11yhelp/dialo
 ckeditor/plugins/about/dialogs/about.js: ckeditor/plugins/about/dialogs/about-f173256d82517bff6a6d161a0c6736cc.js
 ckeditor/plugins/about/dialogs/hidpi/logo_ckeditor.png: ckeditor/plugins/about/dialogs/hidpi/logo_ckeditor-a5795252c21ced3b3f46260817aff9a3.png
 ckeditor/plugins/about/dialogs/logo_ckeditor.png: ckeditor/plugins/about/dialogs/logo_ckeditor-887ccbe1048424f20f62e3a2bb4415b2.png
-ckeditor/plugins/clipboard/dialogs/paste.js: ckeditor/plugins/clipboard/dialogs/paste-f4282e34f959ed990eb777155cc1dab9.js
+ckeditor/plugins/clipboard/dialogs/paste.js: ckeditor/plugins/clipboard/dialogs/paste-9f693aeb9e49be475a8f174f481ffaac.js
 ckeditor/plugins/colordialog/dialogs/colordialog.js: ckeditor/plugins/colordialog/dialogs/colordialog-cf972b6a13fb3fe0194ddda80d87f498.js
 ckeditor/plugins/dialog/dialogDefinition.js: ckeditor/plugins/dialog/dialogDefinition-41b7c30cca9cf5f3628916b81c262937.js
 ckeditor/plugins/div/dialogs/div.js: ckeditor/plugins/div/dialogs/div-962a78b65c8b9b28bac28c31908da57a.js

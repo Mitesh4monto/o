@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'introjs-rails'
 gem "remotipart"
 gem 'pg_search'
 gem 'active_attr'

@@ -25,8 +25,12 @@
 
 <% if !@activity %>
 <div class="row">
+	<% coll = current_user.strategy.current_activities.map do |a|   
+		c = a.course_id!= nil ? ' - ' + a.course.name : ''
+		[a.title + c, a.id] 
+		end %>
 	<%= f.input :halable_id,  :label => "Blog about which activity?", :as => :select, :include_blank => false, 
-			:collection => current_user.strategy.current_activities.map{|a| [a.title, a.id]} + [["General Entry", 0]]  %>
+			:collection => coll + [["General Entry", 0]]  %>
 <div class="clear"></div>
 <% end %>
 

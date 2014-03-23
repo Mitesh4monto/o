@@ -69,7 +69,7 @@
 	<% else %>
 	<div class="userlogin">
 		<%= link_to image_tag("/images/fb_login.png"), "/auth/facebook", :class => "fblogin", :alt=>"Facebook Login", id: "sign_in" %>
-		<input name="login" value="Login" type="button" class="loginbtn" onClick="location.href='<%= new_user_session_path %>'"></div>
+		<input name="login" value="Login" type="button" class="loginbtn" onClick="location.href='<%= new_user_session_path %>'">
 		<div class="clear"></div>
 	</div>
 	<% end %>

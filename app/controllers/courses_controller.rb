@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :require_owner, :only =>[:my_created, :edit_course, :destroy, :publish_course, :update_description, :overview_update]
-  before_filter :authenticate_user!, :except =>[:index, :hals, :show]
+  before_filter :authenticate_user!, :except =>[:index, :hals, :show, :join]
 
 
   # GET /courses
@@ -118,14 +118,20 @@ class CoursesController < ApplicationController
   # user joins course
   def join
     @course = Course.find(params[:id])
-    @course.add_user_to_course(current_user)
-    if @course.has_customizations?
-      notice = 'Course was successfully joined.  We recommend you turn on customizations to tweak it for you'
-    else
-      notice = 'Course was successfully joined'
-    end
+    if (!current_user)
+      flash[:notice] = "Please login or register to join course #{@course.name}"
+      session[:course_join] = @course.id
+      redirect_to signin_path
+    else    
+      @course.add_user_to_course(current_user)
+      if @course.has_customizations?
+        notice = 'Course was successfully joined.  We recommend you turn on customizations to tweak it for you'
+      else
+        notice = 'Course was successfully joined'
+      end
     
-    redirect_to root_path, notice: notice
+      redirect_to root_path, notice: notice
+    end
     
   end
 

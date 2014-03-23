@@ -52,6 +52,7 @@ Opp::Application.configure do
       :enable_starttls_auto => true,
       :openssl_verify_mode => "none"
     }
+    
   # config.action_mailer.smtp_settings = {
   #     :address              => "smtp.gmail.com",
   #     :port                 => 587,

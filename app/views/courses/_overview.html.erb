@@ -6,7 +6,7 @@
 <div class="clear space"></div>
 <div>
 	<h2>About the Author</h2>
-	<%= image_tag current_user.avatar.url(:small), :width=>"120", :class => "img_lft" %>
+	<%= image_tag @course.user.avatar.url(:small), :width=>"120", :class => "img_lft" %>
     <p><%= @course.about_the_author %></p>
 </div>
 <div>

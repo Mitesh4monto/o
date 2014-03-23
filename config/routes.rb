@@ -80,9 +80,9 @@ Opp::Application.routes.draw do
 
   match 'my_plan/:id',  :controller => "strategies", :action => "mine", :activity_id => :id
 
-  devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
+  devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }, :controllers => { :registrations => "registrations" }
   devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
+    get "sign_in", :to => "devise/sessions#new", as: 'signin'
     get "sign_out", :to => "devise/sessions#destroy" #destroy_user_session"
   end  # devise_for :users
   devise_for :users, :controllers => {:registrations => 'registrations'}

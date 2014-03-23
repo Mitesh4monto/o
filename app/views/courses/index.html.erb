@@ -18,12 +18,13 @@
 			<p>
 				<span class="inn">
 					<%- followers = @followers[course.id.to_s] || 0  %>
-					<%- if followers.to_i > 1 %>
+					<%- if followers.to_i > 0 %>
 						People following: <%= link_to followers.to_s, course_people_path(course)  %>
 					<%- end %>
 					<%- if course.hals.where("privacy != 0").size > 0 %>
 						<%- if followers.to_i > 0 %> | <% end %>
-						 <a href="#" title="See Blog Entries" class="link"><%= course.hals.where("privacy != 0").size %> Blog Entries</a>
+						<% halscount = course.hals.where("privacy != 0").size %>
+						<%= link_to pluralize(halscount, " Blog Entry", " Blog entries"), course_blogs_path(course), :class=>"link" %>
 					<%- end %>
 				</span>
 				<%= shorten(course.overview, 400) %>

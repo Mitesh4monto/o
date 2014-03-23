@@ -44,7 +44,7 @@
 <p>
 	<%= sanitize activity.description %>
 </p>
-<% if !activity.customization.empty? %> <p>Customization: <%= activity.customization %></p><% end %>
+<% if !activity.customization.nil? %> <p>Customization: <%= activity.customization %></p><% end %>
 <p><span class="bold">Timing:</span><%= render :partial => 'strategies/timing', locals: {activity: activity} %>
 <BR></p>
 <% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>

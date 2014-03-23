@@ -4,14 +4,21 @@
 	<nav>
 		<ul>
 		<% if current_user  %>
-		<li> <a href="javascript:void(0);" onclick="javascript:introJs().start();">Getting Started</a>
-			<li><div data-intro="This is where you have your plan.  You'll be spending a lot of time here" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div></li>
-			 <li id='link1'> <div data-intro='And all blogs are here, for your courses, general blogs, your own, the people you follow...' data-step='2'> <%= link_to "Blog", :view_hals %></div>
-			<ul id="navmenu1">
-				<li><%= link_to "add an entry", new_hal_path  %></li>
-	            <li class="divider"></li>
-	            <li><%= link_to "View Blogs", :view_hals %></li>
+		<li id='link0'> <a href="javascript:void(0);" onclick="javascript:introJs().start();">Getting Started</a>
+			<ul id="navmenu0">
+				<li><a href="javascript:void(0);" onclick="javascript:introJs().start();">mini Tutorial</a></li>
+	            <li><%= link_to "How it works", about_path %></li>
 			</ul>
+		</li>
+			
+			<li><div data-intro="This is where you have your plan.  You'll be spending a lot of time here" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div></li>
+			 <li id='link1'> <div data-intro='And all blogs are here, for your courses, general blogs, your own, the people you follow...' data-step='2'> <%= link_to "Blog", :view_hals, class: 'blog' %></div>
+				<ul id="navmenu1">
+					<li><%= link_to "add an entry", new_hal_path  %></li>
+		            <li class="divider"></li>
+		            <li><%= link_to "View Blogs", :view_hals %></li>
+				</ul>
+			</li>
 		<% end %>
 
 		<li id='link2'> <div data-intro='Courses can be found here.  The ones you follow, the ones you create, and all others' data-step='3'> 

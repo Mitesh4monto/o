@@ -33,6 +33,11 @@ $(function() {
 		$(e).toggle(1000);
 	});
 
+	$('#link0').hover(function() { 
+	    $('#navmenu0').show(); 
+	}, function() { 
+	    $('#navmenu0').hide(); 
+	});
 	$('#link1').hover(function() { 
 	    $('#navmenu1').show(); 
 	}, function() { 

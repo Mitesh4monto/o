@@ -25,30 +25,30 @@
 
 <% if !@activity %>
 <div class="row">
-	<%= f.input :halable_id,  :label => "hal about which activity?", :as => :select, :include_blank => false, 
+	<%= f.input :halable_id,  :label => "Blog about which activity?", :as => :select, :include_blank => false, 
 			:collection => current_user.strategy.current_activities.map{|a| [a.title, a.id]} + [["General Entry", 0]]  %>
 <div class="clear"></div>
 <% end %>
 
-<div class="row"><label>Entry</label><%= f.text_area  :entry %></div>
+<div class="row"><label>Entry<%= tipper("The main content of your blog entry") %></label><%= f.text_area  :entry %></div>
 <div class="clear"></div>
 
-<div class="row"><label>Insights</label><%= f.text_area  :insights %></div>
+<div class="row"><label>Insights <%= tipper("Any insights that might have come from this activity") %></label><%= f.text_area  :insights %></div>
 <div class="clear"></div>
 
 <div class="row">
-<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
+<label>Tag List<%= tipper("Enter comma separated tags.<BR>It'll make it easy to organize your entries and find related entries.", "bottom") %></label><%= f.input  :tag_list, :label => false %>
 </div>
 <div class="clear"></div>
 
 <div class="row">
-<label>Help requested</label>	<%= f.input :help %>
+<label>Help requested <%= tipper("If you'd like assistance from other people, or are struggling with a part of the activity mark this.<BR>Please explain in your entry what you're struggling with") %></label>	<%= f.input :help %>
 </div>
 <div class="clear"></div>
 
 <div class="row">
 	<%  selection = {"public" => "1", "private" =>  "0" }  %>
-	<%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection %>
+	<label>Visibility <%= tipper("if you don't want others to see this entry mark it as private") %></label> <%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection, :label => false %>
 </div>
 <div class="clear"></div>
 	
@@ -59,7 +59,7 @@
 <% end %>
 
 	<div class="row">
-   		<%= f.submit %>
+   		<%= f.submit "Create Entry" %>
 		<%= submit_tag 'Cancel', :name => 'cancel' %>
   
 		<% if current_user.provider == "facebook" %>

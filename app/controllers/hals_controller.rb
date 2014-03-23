@@ -52,7 +52,7 @@ class HalsController < ApplicationController
           a = graph.put_wall_post(@hal.post_print(url_for(:controller => 'hals', :action => 'show', :id => @hal.id)))
         end
         
-        format.html { redirect_to redirect, notice: 'HAL was successfully created' }   #TODO CLEANUP
+        format.html { redirect_to redirect, notice: 'Entry was successfully created' }   #TODO CLEANUP
         # format.html { redirect_to @hal, notice: 'Hal was successfully created.' }
         format.json { render json: @hal, status: :created, location: @hal }
       else        

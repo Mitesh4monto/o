@@ -48,12 +48,6 @@ Opp::Application.routes.draw do
   # courses
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
-  get "courses/:id(/:tab)", to: 'courses#show', as: 'show_course'
-  get "courses/:id/4", to: 'courses#show', as: 'course_people'
-  get "courses/:id/3", to: 'courses#show', as: 'course_blogs'
-  get "courses/:id/2", to: 'courses#show', as: 'course_description'
-  get "courses/:id/1", to: 'courses#show', as: 'course_plan'
-  get "courses/:id/0", to: 'courses#show', as: 'course_overview'
   get "courses/new", to: 'courses#new', as: 'create_course'
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
   get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'
@@ -62,6 +56,12 @@ Opp::Application.routes.draw do
   get "courses/edit_course/:id/0", to: 'courses#overview_edit', as: 'course_overview_edit'
   get "courses/edit_course/:id/1", to: 'courses#edit_course', as: 'course_plan_edit'
   get "courses/edit_course/:id/2", to: 'courses#description_edit', as: 'course_description_edit'
+  get "courses/:id(/:tab)", to: 'courses#show', as: 'show_course'
+  get "courses/:id/4", to: 'courses#show', as: 'course_people'
+  get "courses/:id/3", to: 'courses#show', as: 'course_blogs'
+  get "courses/:id/2", to: 'courses#show', as: 'course_description'
+  get "courses/:id/1", to: 'courses#show', as: 'course_plan'
+  get "courses/:id/0", to: 'courses#show', as: 'course_overview'
   resources :courses
   
 

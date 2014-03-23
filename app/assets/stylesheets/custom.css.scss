@@ -264,6 +264,8 @@ h2.head { color: #555657; font-size: 19px; font-family: 'opensans'; padding-bott
 .edit_prof_rgt .form {width:430px;/* float:left;*/ padding:0px; margin:0px; float:left;}
 .borderbtm { border-bottom:1px solid #c7c7c7; }
 .link { color:#0094ba; text-decoration:underline!important; font-family: 'opensans'; font-size:13px; }
+.link0 { color:#0094ba!important; text-decoration:underline!important; font-family: 'opensans'; font-size:13px; }
+.link0:hover { color:#0094ba!important; text-decoration:none!important; font-family: 'opensans'; font-size:13px; }
 .link1 { color:#0094ba!important; text-decoration:underline!important; font-family: 'opensans'; font-size:13px; }
 .link1:hover { color:#0094ba!important; text-decoration:none!important; font-family: 'opensans'; font-size:13px; }
 .link-bold { text-decoration:none; padding:0 5px; border:none; background:none;color:#333333;  font-weight:bold; }
@@ -318,6 +320,12 @@ h2.head { color: #555657; font-size: 19px; font-family: 'opensans'; padding-bott
 .collapselink { padding: 4px 7px; font-size: 13px; color: #9AB71F!important; font-family: 'opensans'; cursor:pointer; text-decoration:underline; }
 .send_button {background:url(/images/button.jpg)0 0 repeat-x!important;padding:5px 10px!important; border-radius:5px; font-size:13px; font-family: 'opensans'; float:left; color:#fff!important; border:none; cursor:pointer;}
 .comment textarea { border:1px solid #ccc; padding:10px; border-radius:10px; width:300px; }
+
+ul#navmenu0 { display:none; position:absolute; width:120px; z-index:999; padding:0px!important; margin:0px!important; }
+ul#navmenu0 li { background:none!important; padding:0px; }
+ul#navmenu0 li a { padding:10px; display:block; width:120px; color:#000; background:#c6dc55; border-left:1px solid #fafafa; border-right:1px solid #fafafa; border-bottom:1px solid #fafafa; }
+ul#navmenu0 li a:hover { padding:10px; display:block; width:120px; background:#0094ba; color:#fff; }
+
 ul#navmenu1 { display:none; position:absolute; width:120px; z-index:999; padding:0px!important; margin:0px!important; }
 ul#navmenu1 li { background:none!important; padding:0px; }
 ul#navmenu1 li a { padding:10px; display:block; width:120px; color:#000; background:#c6dc55; border-left:1px solid #fafafa; border-right:1px solid #fafafa; border-bottom:1px solid #fafafa; }

@@ -1,10 +1,10 @@
 created an entry
 <% if update.loggable %>
-	<% if update.loggable.halable.class == UserStrategy %>
-		<%= link_to shorten(update.loggable.text, 50), update.loggable.user %>
-	<% else %>
+	<% if update.loggable.halable %>
 		about  <%= update.loggable.halable.class %>: 
 	   	<%= link_to shorten(update.loggable.halable.text, 50), update.loggable.halable %>
+	<% else %>
+		<%= link_to shorten(update.loggable.text, 50), update.loggable.user %>
 	<% end %>
 <% else %>
   which has since been removed 

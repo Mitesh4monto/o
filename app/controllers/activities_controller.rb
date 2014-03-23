@@ -142,7 +142,15 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
+
+    # add new goal if entered
+    new_goal_text = params[:activity][:new_goal_text]
+    if !new_goal_text.empty?
+      goal = @activity.strategy.create_or_use_goal(new_goal_text)
+      @activity.goal_id = goal.id
+    end    
     
+    # log update activity
     if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")
       @course = @activity.strategy.course
       ActionLog.log_other(current_user.id, "update", @course)  if @course.published?

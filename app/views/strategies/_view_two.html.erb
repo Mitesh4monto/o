@@ -24,7 +24,7 @@
 							<ul>
 								
 								
-								<li class="lft">
+								<li class="lft" data-intro='Your plan' data-step='4'>
 									<ul>
 
 <% activty_map = get_activity_by_map(strategy.current_activities) %>
@@ -71,8 +71,10 @@
 		
 				<li class="rgt">
 					<% strategy.current_activities.each do |activity| %>
-						<div id="<%= activity.id %>" class="content" <% if activity != strategy.current_activities.first  %>style="display:none;" <% end %>>
-							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity} %>
+						<% first = false
+						first = true if activity == strategy.current_activities.first %>
+						<div id="<%= activity.id %>" class="content" <% if !first  %>style="display:none;" <% end %>>
+							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first} %>
 						</div>
 					<% end %>
 			</li>	

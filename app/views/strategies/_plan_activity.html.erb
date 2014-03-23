@@ -1,6 +1,6 @@
 <div class="clear"></div>
 <div class="show">
-	<div class="edit margin5"><a href="#" class="linkTwo" >Edit</a>
+	<div class="edit margin5"><a href="#" class="linkTwo"  <% if first %>data-intro='bla...' data-step='8'<% end %> >Edit</a>
 		<div class="edit_box" id="rightbar2">
             <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
 		</div>
@@ -25,7 +25,7 @@
 		  </div>
 		</div>
 	</div>
-	<div class="edit"><a href="#">Blog about</a></div><div class="edit3a margin3"><a href="#">Mark as done</a></div>
+	<div class="edit"><a href="#">Blog about</a></div><div class="edit3a margin3"><a href="#" class='button tipped' data-title="This will mark the activity as done with today's date.<BR>Come back every time you do this activity and mark it.">Mark as done</a></div>
 	<div class="clear"></div>
 	
 	<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
@@ -37,13 +37,16 @@
 	<% end %>
 
 	
-<h5>Title:<%= link_to activity.title, activity %></h5>
-<h5>Description</h5>
+<h5><strong>Title:</strong><%= link_to activity.title, activity %></h5><BR>
+<% if activity.course_id %> From course: <%= link_to activity.course.name, activity.course %> <% end %>
+<BR>
+<strong>Description</strong>
 <p>
 	<%= sanitize activity.description %>
 </p>
-<p><span class="bold">Timing:</span></p><%= render :partial => 'strategies/timing', locals: {activity: activity} %>
-<BR>
+<% if !activity.customization.empty? %> <p>Customization: <%= activity.customization %></p><% end %>
+<p><span class="bold">Timing:</span><%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+<BR></p>
 <% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
 	<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
 <% end %>

@@ -12,6 +12,9 @@
 		function showdiv(a) {
 		$('.content').hide();
 		$('#'+a).toggle('slow');
+		$(document.body).animate({
+		    'scrollTop':   $('#'+a).offset().top
+		}, 500);
 		}
 	</script>
 
@@ -73,7 +76,7 @@
 					<% strategy.current_activities.each do |activity| %>
 						<% first = false
 						first = true if activity == strategy.current_activities.first %>
-						<div id="<%= activity.id %>" class="content" <% if !first  %>style="display:none;" <% end %>>
+						<div id="<%= activity.id %>" class="content" style="display:none;">
 							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first} %>
 						</div>
 					<% end %>

@@ -13,6 +13,7 @@
 		Anonymous
 	<% end  %>
 <% end %>
+	<%= hal.id %>
                <p>Entry: <%= hal.entry %></p><%= hal.created_at.strftime("%m/%d/%Y") %>
                <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
                <% if hal.help %><p><strong>Help requested</strong><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">  >> Respond</span></p><% end %>
@@ -31,7 +32,7 @@
              <ul>
  					 <% hal.comments.each do |comment| %>
 	                   <li>
-	                     <h1><%= comment.user.name %> Says</h1>
+	                     <% if comment.user %><h1><%= comment.user.name %> Says</h1><% end %>
 	                     <span><%= comment.created_at.strftime("%m/%d/%Y") %></span>
 	                     <p><%= comment.body %></p>
 	                     <a href="#" onclick='return false;' title='<%= title %><%= hal.id %>' id="reply<%= title %><%= comment.id %>" class="reply">Reply</a> 

@@ -5,6 +5,17 @@ class ApplicationController < ActionController::Base
   def get_updates
     @udpates = ActionLog.latest(current_user) if current_user
   end
+  
+  def post_register(user)
+    if session[:course_join] != nil      
+      course = Course.find(session[:course_join])
+      course.add_user_to_course(user)       
+      session[:course_join] = nil
+    else
+      course = Course.find(AppSetting.get('intro_course'))
+      course.add_user_to_course(user)       
+    end    
+  end
     
   # used in before filter to make sure object can be viewed/modified by current user
   def require_owner

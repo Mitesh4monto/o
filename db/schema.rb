@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140223014435) do
+ActiveRecord::Schema.define(:version => 20140324014241) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(:version => 20140223014435) do
     t.integer  "user_id"
     t.integer  "from_id"
     t.datetime "deleted_at"
+  end
+
+  create_table "app_settings", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ckeditor_assets", :force => true do |t|

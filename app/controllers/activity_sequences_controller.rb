@@ -17,7 +17,7 @@ class ActivitySequencesController < ApplicationController
     @activity_sequence = ActivitySequence.find(params[:id])
     @activity = Activity.find(params[:activity_id])
     @activity.activity_sequence.set_current(@activity)
-    redirect_to myp_path(@activity_sequence.current_activity)
+    redirect_to myp_path(@activity)
   end
 
   # next in sequence is active

@@ -1,4 +1,4 @@
-<div class="page"><h2><%= @activity.title %></h2></div>
+<div class="page"><h2><%= @activity.title %> <% if @activity.course %> from course <%= @activity.course.name %> <% end %></h2></div>
 	<div class="page3">
 		<section>
 <% if (current_user && (@activity.user_id == current_user.id)) then %>
@@ -26,6 +26,19 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 <% if @activity.from %> Copied from: <%= link_to @activity.from.title, @activity.from  %> <% end %>
 	<BR>
 	<BR>
+
+<% if @activity.type == "ActivityInSequence" %>
+	<BR><b>Activities in the sequence:</b><BR>
+		<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
+			<%= link_to activity_in_sequence.title, activity_in_sequence %>		
+			<% if @activity.activity_sequence.current_activity != activity_in_sequence and activity_in_sequence.user == current_user %>
+			<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
+			<% else %> << Current
+			<% end %><BR>
+		<% end %>
+
+<% end %>
+
 
 <% if @hals.size > 0 %>
 	<strong>hals</strong>:<BR>

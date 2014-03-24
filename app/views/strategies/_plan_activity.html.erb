@@ -55,14 +55,19 @@
 	<%= link_to "next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
 <% end %>
 
+<BR>
 <% if activity.type == "ActivityInSequence" %>
-<BR><b>Activities in the sequence:</b><BR>
-	<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
-		<%= link_to activity_in_sequence.title, activity_in_sequence %>		
-		<% if activity.activity_sequence.current_activity != activity_in_sequence %>
-		<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
-		<% else %> << Current
-		<% end %><BR>
+	<% if activity.activity_sequence.activities.size < 10 %>
+	<BR><b>Activities in the sequence:</b><BR>
+		<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
+			<%= link_to activity_in_sequence.title, activity_in_sequence %>		
+			<% if activity.activity_sequence.current_activity != activity_in_sequence %>
+			<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
+			<% else %> << Current
+			<% end %><BR>
+		<% end %>
+	<% else %>
+	<%= link_to 'See all activities in this sequence', activity %>
 	<% end %>
 
 <% end %>

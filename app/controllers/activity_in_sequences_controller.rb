@@ -40,6 +40,24 @@ class ActivityInSequencesController < ActivitiesController
     end
   end
   
+  def delete_as
+    @activity = ActivityInSequence.find(params[:id])  
+    strategy = @activity.activity_sequence.strategy
+    # puts "coooooooours: #{course.id}"
+    @activity.activity_sequence.destroy
+
+    respond_to do |format|
+      if (strategy.type == "UserStrategy")
+        #  assumes can only remove activity form activity sequence in course
+        format.html { redirect_to myp_path, notice: "Activity and sequence were successfully deleted" }
+        format.json { head :no_content }
+      else
+        #  assumes can only remove activity form activity sequence in course
+        format.html { redirect_to course_plan_edit_path(course), notice: "Activity and sequence were successfully deleted" }
+        format.json { head :no_content }
+      end
+    end
+  end
 
 # DELETE /activities/1
 # DELETE /activities/1.json

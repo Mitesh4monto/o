@@ -69,6 +69,11 @@ class Course < ActiveRecord::Base
     return false
   end
 
+  # Any reasons why course can't be published here
+  def publishable?
+      self.strategy.current_activities.size > 0
+  end
+
   # create strategy object for course after create
   def create_strategy
     CourseStrategy.create(:user_id => self.user_id, :course_id => self.id)

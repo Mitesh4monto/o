@@ -9,51 +9,5 @@
 <% @title = "Edit activity #{@activity.title}" %>
 
 
-<%= semantic_form_for @activity.becomes(Activity) do |f| %>
-	<%= hidden_field_tag 'course_id', @course.id %>
-	<%= f.input :title, :label => "The title as it will appear in the plan" %>
-	If you would like followers of this activity to modify this, enter how here (e.g. 'This activity is part of the workout activities.  Only keep one.  Delete this if you've picked another. <BR> You can also have instructions in the description, but this will appear in the Plan view.
-	<%= f.input :customization, :label => "Activity Customization information" %>
-
-
-
-	Gaol for this activity.  What are we trying to achieve by doing this activity?  This can be left blank.
-	<% if @course.strategy.goals.size >0 %>
-		<% select_goal = "Select a goal" %>	
-		<%= f.input :goal,  :as => :select, :collection => @course.strategy.goals, :prompt => "Select a Goal" %>
-	Or create new:
-	<% end %>
-	 <%= f.text_field :new_goal_text, :label => "Goal" %>
-	<hr>
-	
-	Description of the activity.  Add all details relevant.  We recommend adding other media to complement the text (external links, pictures, videos)
-    <%= f.text_area :description, :class => 'ckeditor' %>
-
-
-	Enter how people should tackle this activity.  Is it <BR>
-	- a one time thing<BR>
-	- an activity to do in reaction to something (e.g. when I feel hunger strike; when I'm irrate)<BR>
-	- an activity to do repeatedly at a set frequency (e.g. 3 times per week)<BR>
-	- an activity to be done whenever (user discretion)<BR>
-	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
-
-	<div id='freak'>
-	<%= f.text_field :freak_number %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
-	</div>
-	<div id='react'>
-	When the following occurs: <%= f.text_field :reactive_expression %>
-	</div>
-	<%= puts @activity.until_radio %>
-
-	If this activity should have a duration<BR>
-	<%= f.radio_button :until_radio, "date" %>
-	<%= label :until_radio, "do it until" %>
-	<%= f.text_field :duration_number %> <%= f.select :duration_unit, ["Days", "Weeks", "Months"] %> after start
-	<BR>
-	<%= f.radio_button :until_radio, "nodate" %>	
-	<%= label :until_radio, "No end date" %>
-	<%= f.input  :tag_list, :label => "Comma separated tags for this activity (e.g. 'weight loss, exercise')" %>
-	
-   <%= f.actions :submit, :cancel %>
-<% end %>
+<%= render :partial => 'activity_in_course_form', locals: {url: activity_path(@activity)} %>
 </div>

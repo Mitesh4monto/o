@@ -35,7 +35,7 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 		<header>						
 			<%= render :partial => "shared/menu_bar" %>
 		<div class="clear"></div>
-			  <div class="info"></div>		
+			  <div class="info">
 	<% flash.each do |name, msg| %>
 		<% if name == :notice %>
 			  <div class="notification">
@@ -51,6 +51,7 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 		  </div>
 		<% end %>
 	<% end %>
+	</div>		
         
 </header>
 

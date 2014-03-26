@@ -1,0 +1,63 @@
+<div class="clear"></div>
+<div class="show">
+	<div class="edit margin5"><%= link_to 'Edit', edit_activity_in_course_path(activity) %>
+		<div class="edit_box" id="rightbar2">
+            <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
+		</div>
+	</div>				
+	<div class="edit3a"><a href="#" class="linkThree">Delete</a>
+		<div class="edit_box" id="rightbar3">
+			<div class="close"><a href="#"><img class="linkThree" src="/images/close.png" alt=""></a></div>
+	       <form class="form" id="contact" name="contact" method="post" action="#">
+		      <div class="row save">
+		        Are you sure you want to delete?
+		      </div>
+		      <div class="row" style="text-align:center; margin-left:150px;">
+		        <input type="button" value="Yes" style="background:#CCCCCC; border:1px solid #999999;">
+		        &nbsp;
+		        <input type="button" value="No">
+		      </div>
+	    	</form>
+	    </div>			
+		
+		<div style="width:400px; height:300px; padding:10px; display:none" id="Delete">
+		  <div style="background:#fff; width:340px; height:240px; border:1px solid #c7c7c7; padding:30px;">
+		  </div>
+		</div>
+	</div>
+	
+		<div class="clear"></div>
+	
+<h5><strong>Title:</strong><%= link_to activity.title, activity %></h5><BR>
+<strong>Description</strong>
+<p>
+	<%= sanitize activity.description %>
+</p>
+<% if !activity.customization.nil? %> <p>Customization: <%= activity.customization %></p><% end %>
+<p><span class="bold">Timing:</span><%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+<BR></p>
+	
+	<% if activity.activity_sequence_id %>
+		Activities in sequence:<BR>
+		<ul id="activities" data-update-url="<%= sort_activity_sequences_url %>">
+		 <% activity.activity_sequence.activities.each do |activity| %>		
+			 <%= content_tag_for :li, activity do %>
+				<span class="handle">[drag]</span>
+				<%= activity.id %>
+				Activity:  <%= link_to activity.title, show_activity_path(activity) %>
+		    	<%= link_to 'Edit', edit_activity_in_course_path(activity.id) %>
+			    <%= link_to 'Delete', activity, confirm: 'Are you sure?', method: :delete %> 
+			<% end %>
+		<% end %>
+		</ul>
+		<BR>
+		<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(activity.activity_sequence.activity_in_sequences.first) %>	
+		<BR>	<%= link_to 'manage sequence', activity.activity_sequence %>
+	<% else %>
+		<BR>
+		<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>	<BR>
+		<%= link_to 'edit', edit_activity_in_course_path(activity) %> |
+	    <%= link_to 'Delete', {:action => 'destroy', :controller => 'activities', :id => activity.id}, confirm: 'Are you sure?', method: :delete %>
+	<% end %>
+
+</div>

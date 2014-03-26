@@ -66,7 +66,7 @@ class HalsController < ApplicationController
     @hal = Hal.find(params[:id])
 
     respond_to do |format|
-      if @hal.update_attributes(params[:course])
+      if @hal.update_attributes(params[:hal])
         format.html { redirect_to root_path, notice: 'Entry was successfully updated.' }
         format.json { head :no_content }
       else

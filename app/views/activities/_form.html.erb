@@ -17,6 +17,7 @@
 
 	<div class="row">
 		<label>Title</label><%= f.text_field  :title%>
+		<div class="clear"></div>
 	</div>
 
 	<div class="row">
@@ -48,7 +49,8 @@
 		<table>
 			<tr>
 				<td><label>Until</label></td>
-				<td><%= f.radio_button :until_radio, "date" %><div id='duration_label'><label>by</label></div><%= f.text_field :timing_until %></td>
+				<td><%= f.radio_button :until_radio, "date" %><div id='duration_label'><label>by</label></div><%= f.text_field :timing_until %>
+					</td>
 			</tr>
 			<tr>
 				<td><td>

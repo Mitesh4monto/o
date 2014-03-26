@@ -45,7 +45,7 @@
 							   <div id="Detailsss<%= activity.id %>" class="plus_details" style="display: none;">
 							     <ul>
 							       <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
-							       <li><%= link_to 'Did today', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %></li>
+							       <li><%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :remote => true %></li>
 								<li><%= link_to 'Edit', edit_activity_path(activity) %></li>
 								<% if activity.type == "ActivityInSequence" %>
 							       <li><%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete %></li>
@@ -77,7 +77,7 @@
 						<% first = false
 						first = true if activity == strategy.current_activities.first %>
 						<div id="<%= activity.id %>" class="content" style="display:none;">
-							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first} %>
+							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first,myp: true, edit: true} %>
 						</div>
 					<% end %>
 			</li>	

@@ -3,6 +3,8 @@
 <% end %>
 
 <% if @course.published? %>
-	<div class="edit2"><%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %></div>	
+	<div class="edit2"><%= link_to "Join Course", :controller => "courses", :action => "join", :id => @course.id %></div>
+	<% elsif current_user and @course.user_id == current_user.id %>
+		<div class="edit2"><%= link_to "publish course", publish_course_path(@course) %></div>
 <% end %>
 <div class="clear space"></div>

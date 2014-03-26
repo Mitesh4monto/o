@@ -16,6 +16,7 @@ Opp::Application.routes.draw do
   get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
   get "my_blog_entries", to: 'hals#view_mine', as: 'my_hals'
   get "hals/view", to: 'hals#view', as: 'view_hals'
+  get "hals/edit/:id", to: 'hals#edit', as: 'edit_hal'
   # get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
   get "hals/new_hal(/:id)", to: 'hals#new_hal', as: 'new_hal'
 
@@ -80,7 +81,7 @@ Opp::Application.routes.draw do
 
   match 'my_plan/:id',  :controller => "strategies", :action => "mine", :activity_id => :id
 
-  devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }, :controllers => { :registrations => "registrations" }
+  devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new", as: 'signin'
     get "sign_out", :to => "devise/sessions#destroy" #destroy_user_session"

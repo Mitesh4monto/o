@@ -3,45 +3,66 @@
 <%= render :partial => 'new_course_edit' %>
 
 <%= render :partial => 'plan_instructions' %>
-<script>
-// $(document).ready(function(){
-// $(".linkOne").click(function(){
-// 	var act = "#rightbar" + $(this)[0].title;
-// 	$(act).toggle(1000);
-// });
-// });
-</script>
-					<% activity_map = get_activity_by_map(@course.strategy.current_activities) %>
-						<% activity_map.each do |key, activities| %>
-							<div class="box_holder3 width100">
-								<% if activity_map.size != 1 or activity_map.keys.first != nil %>
-									<div class="title"><h3><%= key.nil? ? "Goal: none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h3></div>
-								<% end %>
-								<div class="box">
-									<div class="goal">
-									
-											<!-- Activities -->
-										<% activities.each do |activity| %>
-											<% if activity.type == "ActivityInSequence" %>
-												ActivitySequence starting with 
-											<% end %>
-											<%= activity.id %><%= link_to activity.title, activity %>							
-											<a href="#" onclick='return false;' class="linkOne", title='<%= activity.id %>'>view more</a><BR>
-											<div id="rightbar<%= activity.id %>" class="right_bar width97" style="margin-left:10px;">
-												<div class="float_rgt"><img src="/images/close.png" alt="close" title='<%= activity.id %>' class="linkOne closebtn"></div>
-												sdfs
-												<%= render :partial => 'show_activity_details', locals: {activity: activity} %>
-											</div>
-										<% end %>
-									</div>
-							    </div>
-							</div>
-						<div class="clear"></div>
 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("li").click(function(){
+				$(this).toggleClass("active");
+				$(this).next("div").stop('true','true').slideToggle("slow");
+			});
+			<% if @activity %>
+				showdiv('<%= @activity.id %>');
+			<% end %>
+		});
+		function showdiv(a) {
+		$('.content').hide();
+		$('#'+a).toggle('slow');
+		$(document.body).animate({
+		    'scrollTop':   $('#'+a).offset().top
+		}, 500);
+		}
+	</script>
 
+<div class="left_bar width94">
+	<div class="toggle">
+		<ul>
+			<li class="lft" data-intro='Your plan' data-step='4'>
+				<ul>
+				<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
+				<% if activty_map.size > 0 %>
+					<% activty_map.each do |key, activities| %>
+						<li class="column_a"><h4><%= key.nil? ? "none" : "Goal: " + key.title %></h4></li>
+						<li class="column_b">
+						<% activities.each do |activity| %>
+							<ul>		
+								<li class="" onClick="showdiv('<%= activity.id %>');"><%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>								
+								</li>
+							</ul>
+						<% end %>
+						</li>
+					<div class="clear"></div>
 					<% end %>
-
-					<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
+				<% end %>
+				</ul>
+			</li>
+										
+			<div class="clear"></div>
+	        <div class="box_3">
+				<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
+				<div class="clear"></div>
+	        </div>
+		
+			<li class="rgt">
+				<% @course.strategy.current_activities.each do |activity| %>
+					<div id="<%= activity.id %>" class="content" style="display:none;">
+						<%= render :partial => 'strategies/plan_activity_course_edit', locals: {activity: activity} %>
+					</div>
+				<% end %>
+			</li>	
+		</ul>
+	</div>
+</div>
+<div class="clear"></div>
 
 <div class="clear"></div>
 <div class="edit2"><%= link_to "<< Overview", '#', :id => 'seeoverview' %></div>

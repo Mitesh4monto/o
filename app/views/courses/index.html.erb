@@ -24,10 +24,10 @@
 					<%- if course.hals.where("privacy != 0").size > 0 %>
 						<%- if followers.to_i > 0 %> | <% end %>
 						<% halscount = course.hals.where("privacy != 0").size %>
-						<%= link_to pluralize(halscount, " Blog Entry", " Blog entries"), course_blogs_path(course), :class=>"link" %>
+						<%= link_to pluralize(halscount, " Blog entry", " Blog entries"), course_blogs_path(course), :class=>"link" %>
 					<%- end %>
 				</span>
-				<%= shorten(course.overview, 400) %>
+				<%= shorten(course.overview, 400) if course.overview %>
 			</p>
 			<p><span class="f">Date created: 2/2/14</span></p>
 			</div>		

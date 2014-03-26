@@ -1,10 +1,45 @@
 <% @title = "Edit Entry" %>
 
+<div class="page">
+	   <h2>Edit entry</h2>
+ </div>
+ <div class="page3">
+	<section>
 
-<%= semantic_form_for @hal do |f| %>
-	<%= f.inputs :entry, :insights, :help %>
-	<%= f.input  :tag_list, :label => "Tags (comma separated)" %>
+
+<%= semantic_form_for @hal, :html => {:class => "course_manage"}  do |f| %>
+<div class="row"><label>Entry<%= tipper("The main content of your blog entry") %></label><%= f.text_area  :entry %></div>
+<div class="clear"></div>
+<div class="row"><label>Insights <%= tipper("Any insights that might have come from this activity") %></label><%= f.text_area  :insights %></div>
+<div class="clear"></div>
+
+<div class="row">
+<label>Tag List<%= tipper("Enter comma separated tags.<BR>It'll make it easy to organize your entries and find related entries.", "bottom") %></label><%= f.input  :tag_list, :label => false %>
+</div>
+<div class="clear"></div>
+<div class="row">
+<label>Help requested <%= tipper("If you'd like assistance from other people, or are struggling with a part of the activity mark this.<BR>Please explain in your entry what you're struggling with") %></label>	<%= f.input :help %>
+</div>
+<div class="clear"></div>
+
+<div class="row">
+	<%  selection = {"public" => "1", "private" =>  "0" }  %>
+	<label>Visibility <%= tipper("if you don't want others to see this entry mark it as private") %></label> <%= f.input :privacy, :as => :select, :include_blank => false, :collection => selection, :label => false %>
+</div>
+<div class="clear"></div>
 	
-	<%= hidden_field_tag 'activity_id', @activity_id %>
-   <%= f.actions :submit, :cancel %>
+<% if @activity %>
+	<%= f.hidden_field :halable_id, :value => @activity.id %>
+	<%= f.hidden_field :halable_type, :value => "Activity" %>
 <% end %>
+
+	<div class="row">
+   		<%= f.submit "Update Entry" %>
+		<%= submit_tag 'Cancel', :name => 'cancel' %>
+	</div>
+<% end %>
+
+</section>
+	<%= render :partial => 'shared/aside' %>
+	
+</div>

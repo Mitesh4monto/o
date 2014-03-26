@@ -18,6 +18,7 @@
                <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
                <% if hal.help %><p><strong>Help requested</strong><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">  >> Respond</span></p><% end %>
 	           <% if hal.course %><p>From course: <%= link_to hal.course.name, hal.course %></p><% end %>
+	<% if hal.user == current_user %> <%= link_to 'Edit', edit_hal_path(hal) %> <% end %>
 		<% if hal.halable %>
 	               <ul class="activity">
 	                 <li>Activity: <%= link_to hal.halable.title, hal.halable %></li>

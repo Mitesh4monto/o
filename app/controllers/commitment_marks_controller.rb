@@ -30,7 +30,10 @@ class CommitmentMarksController < ApplicationController
     @commitment_mark.save  #TODO check this that
     flash[:activity_id] = params[:activity_id]
     flash[:partial] = "commitment_logged"
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
 end

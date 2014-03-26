@@ -23,7 +23,7 @@ class Strategy < ActiveRecord::Base
   
   # TODO
   # def get_all_activities
-  # end
+  # end/images
   
   def text
     "STRAT"

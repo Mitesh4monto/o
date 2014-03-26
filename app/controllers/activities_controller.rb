@@ -165,7 +165,7 @@ class ActivitiesController < ApplicationController
           format.html { redirect_to mypd_path(@activity), notice: 'Activity was successfully updated.' }
           format.json { head :no_content }
         elsif @activity.course_activity?
-          format.html { redirect_to course_plan_edit_path(@activity.strategy.course), notice: 'Activity was successfully created.' }
+          format.html { redirect_to course_plan_edit_path(@activity.strategy.course), notice: 'Activity was successfully updated.' }
           format.json { head :no_content }          
         else 
           format.html { redirect_to root_path, notice: 'Activity was successfully updated.' }

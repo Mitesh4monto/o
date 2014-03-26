@@ -92,14 +92,16 @@ class CoursesController < ApplicationController
   def publish_course
     @course = Course.find(params[:id])
     if !course_ok?(@course)
-      return redirect_to :back
+      return redirect_to edit_course_path(@course)
     end      
     @course.published = true
     respond_to do |format|
       if @course.save
-        format.html { redirect_to :back, notice: "Your course is now published. View it <a href='/courses/#{@course.id}'>here</a>".html_safe }
+        flash[:notice] =  "Your course is now published. View it <a href='/courses/#{@course.id}'>here</a>".html_safe 
+        format.html { redirect_to @course}
       else
-        format.html { redirect_to :back, notice: 'Something went kaboom' }
+        flash[:error] =  'Something went kaboom'
+        format.html { redirect_to :back }
       end
     end
     
@@ -107,10 +109,10 @@ class CoursesController < ApplicationController
   
   # used for guiding ppl who want to publish
   def course_ok?(course)
-    if course.strategy.current_activities.size > 0
+    if course.publishable?
       true
     else
-      flash[:errors] = "hey add some activities to your plan"
+      flash[:error] = "The course doesn't have any activities.  Add some before publishing."
       false
     end
   end

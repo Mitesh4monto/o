@@ -1,5 +1,8 @@
+<% myp = (defined?(myp) and myp)? true : false %>
+
 <div class="clear"></div>
 <div class="show">
+	<% if defined?(edit) and edit %>	
 	<div class="edit margin5"><a href="#" class="linkTwo"  <% if first %>data-intro='bla...' data-step='8'<% end %> >Edit</a>
 		<div class="edit_box" id="rightbar2">
             <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
@@ -25,20 +28,27 @@
 		  </div>
 		</div>
 	</div>
-	<div class="edit"><a href="#">Blog about</a></div><div class="edit3a margin3"><a href="#" class='button tipped' data-title="This will mark the activity as done with today's date.<BR>Come back every time you do this activity and mark it.">Mark as done</a></div>
-	<div class="clear"></div>
+	<% end %>
 	
-	<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
-		<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
-	<% end %>
+	<!-- for my plan: edit, delete, move in AS -->
+	<% if myp %>
+		<div class="edit"><a href="#">Blog about</a></div>
+		<div class="edit3a margin3"><a href="#" class='button tipped' data-title="This will mark the activity as done with today's date.<BR>Come back every time you do this activity and mark it.">Mark as done</a></div>
+				
+		<div class="clear"></div>
+	
+		<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
+			<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
+		<% end %>
 
-	<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
-		<%= link_to "next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
+		<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
+			<%= link_to "next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
+		<% end %>
 	<% end %>
-
+	<!-- end for my plan: edit, delete, move in AS -->
 	
 <h5><strong>Title:</strong><%= link_to activity.title, activity %></h5><BR>
-<% if activity.course_id %> From course: <%= link_to activity.course.name, activity.course %> <% end %>
+<% if activity.course_id and myp %> From course: <%= link_to activity.course.name, activity.course %> <% end %>
 <BR>
 <strong>Description</strong>
 <p>
@@ -56,27 +66,31 @@
 <% end %>
 
 <BR>
-<% if activity.type == "ActivityInSequence" %>
-	<% if activity.activity_sequence.activities.size < 10 %>
-	<BR><b>Activities in the sequence:</b><BR>
-		<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
-			<%= link_to activity_in_sequence.title, activity_in_sequence %>		
-			<% if activity.activity_sequence.current_activity != activity_in_sequence %>
-			<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
-			<% else %> << Current
-			<% end %><BR>
+	
+									
+<% if myp %>
+	<% if activity.type == "ActivityInSequence" %>
+		<% if activity.activity_sequence.activities.size < 10 %>
+		<BR><b>Activities in the sequence:</b><BR>
+			<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
+				<%= link_to activity_in_sequence.title, activity_in_sequence %>		
+				<% if activity.activity_sequence.current_activity != activity_in_sequence %>
+				<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
+				<% else %> << Current
+				<% end %><BR>
+			<% end %>
+		<% else %>
+		<%= link_to 'See all activities in this sequence', activity %>
 		<% end %>
-	<% else %>
-	<%= link_to 'See all activities in this sequence', activity %>
+
 	<% end %>
 
+
+	<% activity.hals.each do |hal| %>
+		<div class="box_holder3 width100">
+			<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
+		</div>
+		<div class="clear"></div>
+	<% end %>
 <% end %>
-
-
-			<% activity.hals.each do |hal| %>
-				<div class="box_holder3 width100">
-					<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
-				</div>
-				<div class="clear"></div>
-			<% end %>
 </div>

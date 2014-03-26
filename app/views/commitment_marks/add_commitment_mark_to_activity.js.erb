@@ -1,0 +1,5 @@
+var notification = $('.info');
+notification.html('	<div class="notification"><%= render :partial => "shared/flashes/commitment_logged" %></div>')
+
+<%  flash.discard %>
+$('html, body').animate({ scrollTop: 0 }, 'fast');

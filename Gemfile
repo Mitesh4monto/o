@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'newrelic_rpm'
 gem 'introjs-rails'
 gem "remotipart"
 gem 'pg_search'

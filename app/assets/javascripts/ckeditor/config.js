@@ -1,5 +1,6 @@
-CKEDITOR.editorConfig=function(e){e.filebrowserBrowseUrl="/ckeditor/attachment_files",
-e.filebrowserFlashBrowseUrl="/ckeditor/attachment_files",
+CKEDITOR.editorConfig=function(e){
+// e.filebrowserBrowseUrl="/ckeditor/attachment_files",
+// e.filebrowserFlashBrowseUrl="/ckeditor/attachment_files",
 e.filebrowserFlashUploadUrl="/ckeditor/attachment_files",
 // e.filebrowserImageBrowseLinkUrl="/ckeditor/pictures",
 // e.filebrowserImageBrowseUrl="/ckeditor/pictures",
@@ -33,7 +34,6 @@ o.filebrowser.params)))})
               ['TextColor', 'BGColor'],
               ['Bold','Italic','Underline'],
               ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-			  '/',
               ['Image', 'Attachment'],
               ['BulletedList','NumberedList'],
 			  ['Table'],

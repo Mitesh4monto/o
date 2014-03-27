@@ -1,11 +1,6 @@
 <h2>Course Plan</h2>
 
-<%= 
- # render :partial => 'strategies/view_one', locals: {strategy: @course.strategy} 
-%>
-<% @course.strategy.activities.each do |activity| %>
-	<%= activity.id %><%= link_to activity.title, activity %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %><BR>
-<% end %>
+<%=  render :partial => 'strategies/view_two', locals: {strategy: @course.strategy, myp: false} %>
 
 <div class="clear"></div>
 

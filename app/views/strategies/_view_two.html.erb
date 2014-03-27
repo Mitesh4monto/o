@@ -40,7 +40,8 @@
 					<ul>		
 						<li class="" onClick="showdiv('<%= activity.id %>');">
 										<%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
-										
+								
+						<% if myp %>		
 							<div class="plus" class="divOne"  id="ss<%= activity.id %>"  style="float:right;"><a href="#"><img src="/images/plus1.png" alt=""></a>
 							   <div id="Detailsss<%= activity.id %>" class="plus_details" style="display: none;">
 							     <ul>
@@ -55,33 +56,36 @@
 							     </ul>
 							   </div>
 						  </div>
+						<% end %>
 						</li>
 					</ul>
 		<% end %>
 	</li>
-	</li>
 	<div class="clear"></div>
+	<% end %>
 <% end %>
+</ul></li>
+<% if myp %>	
+	<div class="clear"></div>
+          <div class="box_3">
+		<%= link_to 'Add activity', add_activity_path, :class => 'green' %>
+		<%= link_to 'Look for courses', courses_path %>
+            	<div class="clear"></div>
+          </div>
 <% end %>
-</li></ul>
-										
-						<div class="clear"></div>
-			            <div class="box_3"><%= link_to 'Add activity', add_activity_path, :class => 'green' %>
-						<%= link_to 'Look for courses', courses_path %>
-			              <div class="clear"></div>
-			            </div>
-			            				
-		
-				<li class="rgt">
-					<% strategy.current_activities.each do |activity| %>
-						<% first = false
-						first = true if activity == strategy.current_activities.first %>
-						<div id="<%= activity.id %>" class="content" style="display:none;">
-							<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first,myp: true, edit: true} %>
-						</div>
-					<% end %>
-			</li>	
+          				
+
+<li class="rgt">
+<% strategy.current_activities.each do |activity| %>
+	<% first = false
+	first = true if activity == strategy.current_activities.first %>
+	<div id="<%= activity.id %>" class="content" style="display:none;">
+		<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first, myp: myp} %>
+	</div>
+<% end %>
+</li>	
 	</ul>
 </div>
-				</div>
+</div>
+					</div>
 	<div class="clear"></div>

@@ -1,8 +1,8 @@
 CKEDITOR.editorConfig=function(e){e.filebrowserBrowseUrl="/ckeditor/attachment_files",
 e.filebrowserFlashBrowseUrl="/ckeditor/attachment_files",
 e.filebrowserFlashUploadUrl="/ckeditor/attachment_files",
-e.filebrowserImageBrowseLinkUrl="/ckeditor/pictures",
-e.filebrowserImageBrowseUrl="/ckeditor/pictures",
+// e.filebrowserImageBrowseLinkUrl="/ckeditor/pictures",
+// e.filebrowserImageBrowseUrl="/ckeditor/pictures",
 e.filebrowserImageUploadUrl="/ckeditor/pictures",
 e.filebrowserUploadUrl="/ckeditor/attachment_files",
 e.filebrowserParams=function(){for(var e,r,t,o=document.getElementsByTagName("meta"), a=new Object,i=0;i<o.length;i++)

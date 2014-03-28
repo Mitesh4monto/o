@@ -62,6 +62,7 @@ gem 'jquery-ui-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 gem 'activerecord-postgresql-adapter'
+gem 'better_errors'
 group :development, :test do 
   # gem 'ruby-debug-ide'
   # To use debugger

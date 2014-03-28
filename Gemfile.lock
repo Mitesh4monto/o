@@ -48,6 +48,9 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.0.4)
     callsite (0.0.11)
     capybara (2.1.0)
@@ -327,6 +330,7 @@ DEPENDENCIES
   acts_as_orderable
   acts_as_paranoid
   aws-sdk
+  better_errors
   capybara
   capybara-webkit
   chronic

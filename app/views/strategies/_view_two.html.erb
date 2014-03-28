@@ -30,11 +30,10 @@
 								<li class="lft" data-intro='Your plan' data-step='4'>
 									<ul>
 
-<% activty_map = get_activity_by_map(strategy.current_activities) %>
+<% activty_map = get_activity_by_goal_or_course(strategy.current_activities) %>
 <% if activty_map.size > 0 %>
 	<% activty_map.each do |key, activities| %>
-		<li class="column_a"><h4><%= key.nil? ? "none" : "Goal: " + key.title %><%= "-- from course " + key.course.name if key and key.course %></h4></li>
-
+		<li class="column_a"><h4><%= key.nil? ? "none" : key %></h4></li>
 		<li class="column_b">
 		<% activities.each do |activity| %>
 					<ul>		
@@ -64,7 +63,7 @@
 	<div class="clear"></div>
 	<% end %>
 <% end %>
-</ul></li>
+</ul>
 <% if myp %>	
 	<div class="clear"></div>
           <div class="box_3">
@@ -74,7 +73,7 @@
           </div>
 <% end %>
           				
-
+</li>
 <li class="rgt">
 <% strategy.current_activities.each do |activity| %>
 	<% first = false

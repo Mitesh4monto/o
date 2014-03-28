@@ -41,7 +41,7 @@
 										<%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
 								
 						<% if myp %>		
-							<div class="plus" class="divOne"  id="ss<%= activity.id %>"  style="float:right;"><a href="#"><img src="/images/plus1.png" alt=""></a>
+							<div class="plus" id="ss<%= activity.id %>"  style="float:right; position:relative;"><a href="#"><img src="/images/plus1.png" alt=""></a>
 							   <div id="Detailsss<%= activity.id %>" class="plus_details" style="display: none;">
 							     <ul>
 							       <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>

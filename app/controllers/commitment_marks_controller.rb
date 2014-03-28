@@ -31,7 +31,7 @@ class CommitmentMarksController < ApplicationController
     flash[:activity_id] = params[:activity_id]
     flash[:partial] = "commitment_logged"
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to myp_path(@activity) }
       format.js
     end
   end

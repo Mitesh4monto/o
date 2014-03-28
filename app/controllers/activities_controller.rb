@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     @hals = @activity.hals
     @related_hals = Hal.get_related_hals(@activity)
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today    
 
     respond_to do |format|
       format.html # show.html.erb

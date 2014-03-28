@@ -49,6 +49,10 @@ ul#navmenu0 li a:hover { padding:10px; display:block; width:120px; background:#0
 				
 body{margin:0;padding:0;background:url(/images/body.jpg) 0 top repeat-x #FFFFFF;}
 #body_frame { background:url(/images/footer.jpg) 0 bottom repeat-x; padding-bottom:98px;}
+
+.calact { font-family: 'opensans'; font-size:10px;}
+
+
 .clear { clear:both;}
 .wrapper { width:1036px; margin:0px auto;}
 header {  padding:20px 27px 0; float:left;width:982px;}
@@ -323,6 +327,18 @@ h2.head { color: #555657; font-size: 19px; font-family: 'opensans'; padding-bott
 .collapselink { padding: 4px 7px; font-size: 13px; color: #9AB71F!important; font-family: 'opensans'; cursor:pointer; text-decoration:underline; }
 .send_button {background:url(/images/button.jpg)0 0 repeat-x!important;padding:5px 10px!important; border-radius:5px; font-size:13px; font-family: 'opensans'; float:left; color:#fff!important; border:none; cursor:pointer;}
 .comment textarea { border:1px solid #ccc; padding:10px; border-radius:10px; width:300px; }
+ul#navmenu0 { display:none; position:absolute; width:120px; z-index:999; padding:0px!important; margin:0px!important; }
+ul#navmenu0 li { background:none!important; padding:0px; }
+ul#navmenu0 li a { padding:10px; display:block; width:120px; color:#000; background:#c6dc55; border-left:1px solid #fafafa; border-right:1px solid #fafafa; border-bottom:1px solid #fafafa; }
+ul#navmenu0 li a:hover { padding:10px; display:block; width:120px; background:#0094ba; color:#fff; }
+
+ul#navmenuplan { display:none; position:absolute; width:120px; z-index:999; padding:0px!important; margin:0px!important; }
+ul#navmenuplan li { background:none!important; padding:0px; }
+ul#navmenuplan li a { padding:10px; display:block; width:120px; color:#000; background:#c6dc55; border-left:1px solid #fafafa; border-right:1px solid #fafafa; border-bottom:1px solid #fafafa; }
+ul#navmenuplan li a:hover { padding:10px; display:block; width:120px; background:#0094ba; color:#fff; }
+
+.pagination .next_page { padding:5px 12px; border:1px solid #a5a5a5; border-radius:5px; text-decoration:none; color:#777777; font-size:12px;font-family: 'opensans'; background:#f4f4f4; box-shadow:0px 2px 2px 0px #ccc;}
+
 ul#navmenu1 { display:none; position:absolute; width:120px; z-index:999; padding:0px!important; margin:0px!important; }
 ul#navmenu1 li { background:none!important; padding:0px; }
 ul#navmenu1 li a { padding:10px; display:block; width:120px; color:#000; background:#c6dc55; border-left:1px solid #fafafa; border-right:1px solid #fafafa; border-bottom:1px solid #fafafa; }

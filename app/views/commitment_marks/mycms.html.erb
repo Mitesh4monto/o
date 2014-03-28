@@ -1,35 +1,47 @@
-<div id="calendar">
-  <h2 id="month">
-	<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
-    <%=h @date.strftime("%B %Y") %>
-    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
-  </h2>
-  <%= calendar_for current_user.commitment_marks, :year => @date.year, :month => @date.month do |calendar| %>
-  	<%= calendar.head('Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
-    <% calendar.day(:day_method => :done_date) do |date, cmss| %>
-      <%= date.day %>
-      <ul>
-		<table>
-			<% for cm in cmss %>
-			<% cmable = current_user.commitment_marks.select {|v| v.cmable_id == cm.cmable_id}.first.cmable %>
+<div class="page">
+   <h2>CMs</h2>
+ </div>
+ <div class="page3">
+	<section>
+
+
+	<div id="calendar">
+	  <h2 id="month">
+		<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
+	    <%=h @date.strftime("%B %Y") %>
+	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
+	  </h2>
+	  <%= calendar_for current_user.commitment_marks, :year => @date.year, :month => @date.month do |calendar| %>
+	  	<%= calendar.head('Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+	    <% calendar.day(:day_method => :done_date) do |date, cmss| %>
+	      <%= date.day %>
+	      <ul>
+			<table>
+				<% for cm in cmss %>
+				<% cmable = current_user.commitment_marks.select {|v| v.cmable_id == cm.cmable_id}.first.cmable %>
 			
-			<tr bgcolor="<%= convert_string_to_hex(cmable.title) %>" height=2px><td>
-				</td></tr>
-			<% end %>
+				<tr bgcolor="<%= convert_string_to_hex(cmable.title) %>" height=2px><td>
+					</td></tr>
+				<% end %>
 
-		</table>
-      </ul>
-    <% end %>
-  <% end %>
+			</table>
+	      </ul>
+	    <% end %>
+	  <% end %>
+	</div>
+
+	<BR>
+		Caption:
+		<BR><BR>
+	<TABLE cellspacing="0" cellpadding="4">
+	<%  ms = current_user.commitment_marks.pluck(:cmable_id).uniq
+		cms = ms.collect { |id| current_user.commitment_marks.where(cmable_id: id, cmable_type: "Activity").first.cmable } %>
+	<% cms.each do |activity| %>
+		<tr  height=2px><td width=20 bgcolor=<%= convert_string_to_hex(activity.title) %>></td><td><font size="2"><%= link_to activity.title, activity %></font></td></tr>
+	<% end %>
+	</TABLE>
+
+	</section>
+	<%= render :partial => 'shared/aside' %>
+	
 </div>
-
-<BR>
-	Caption:
-	<BR><BR>
-<TABLE cellspacing="0" cellpadding="4">
-<%  ms = current_user.commitment_marks.pluck(:cmable_id).uniq
-	cms = ms.collect { |id| current_user.commitment_marks.where(cmable_id: id, cmable_type: "Activity").first.cmable } %>
-<% cms.each do |activity| %>
-	<tr  height=2px><td width=20 bgcolor=<%= convert_string_to_hex(activity.title) %>></td><td><font size="2"><%= link_to activity.title, activity %></font></td></tr>
-<% end %>
-</TABLE>

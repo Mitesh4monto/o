@@ -7,9 +7,9 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if (params[:query])
-      @courses = Course.full_course_search(params[:query]).published.page(params[:page]).per_page(10)
+      @courses = Course.full_course_search(params[:query]).listed.page(params[:page]).per_page(10)
     else 
-      @courses = Course.published.paginate(:page => params[:page], :per_page => 10).order("created_at desc")
+      @courses = Course.listed.paginate(:page => params[:page], :per_page => 10).order("created_at desc")
     end
     @followers = Course.get_number_people_following_published_courses
 
@@ -94,7 +94,7 @@ class CoursesController < ApplicationController
     if !course_ok?(@course)
       return redirect_to edit_course_path(@course)
     end      
-    @course.published = true
+    @course.publish
     respond_to do |format|
       if @course.save
         flash[:notice] =  "Your course is now published. View it <a href='/courses/#{@course.id}'>here</a>".html_safe 

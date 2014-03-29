@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324014241) do
+ActiveRecord::Schema.define(:version => 20140329014759) do
 
   create_table "action_logs", :force => true do |t|
     t.integer  "user_id"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20140324014241) do
     t.integer  "course_image_file_size"
     t.datetime "course_image_updated_at"
     t.text     "external_site"
+    t.integer  "status",                    :default => 0
   end
 
   create_table "goals", :force => true do |t|

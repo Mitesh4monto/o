@@ -25,8 +25,12 @@ class Course < ActiveRecord::Base
   has_many :goals
   
   acts_as_paranoid
-  scope :published, -> { where(published: true) }
-  scope :unpublished, -> { where(published: false) }
+  UNPUBLISHED = 0
+  PUBLISHED = 1
+  LISTED = 2
+  scope :unpublished, -> { where(status: UNPUBLISHED) }
+  scope :published, -> { where(status: PUBLISHED) }
+  scope :listed, -> { where(status: LISTED) }
 
   
   has_one :strategy, class_name: CourseStrategy, :dependent => :destroy
@@ -42,7 +46,7 @@ class Course < ActiveRecord::Base
                   :description,
                   :overview,
                   :about_the_author,
-                  :published,
+                  :status,
                   :external_site,
                   :course_image, 
                   :tag_list
@@ -68,6 +72,25 @@ class Course < ActiveRecord::Base
     end
     return false
   end
+  
+  def published?    
+    self.status >= PUBLISHED
+  end
+  
+  def listed?
+    self.status == LISTED
+  end
+  
+  # publish a course => set status
+  def publish
+    self.status = PUBLISHED
+  end
+
+  # list a course => set status
+  def list
+    self.status = LISTED
+  end
+
 
   # Any reasons why course can't be published here
   def publishable?

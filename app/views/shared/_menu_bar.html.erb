@@ -4,9 +4,13 @@
 	<nav>
 		<ul>
 		<% if current_user  %>
-		<li id='link0'> <a href="javascript:void(0);" onclick="javascript:introJs().start();">Getting Started</a>
+		<li id='link0'> <a href="javascript:void(0);">Getting Started</a>
 			<ul id="navmenu0">
-				<li><a href="javascript:void(0);" onclick="javascript:introJs().start();">mini Tutorial</a></li>
+				<% if current_page?(myp_path) %>
+					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
+				<% else %>
+		            <li><%= link_to "Tutorial n/a", '#' %></li>
+				<% end %>
 	            <li><%= link_to "How it works", about_path %></li>
 			</ul>
 		</li>

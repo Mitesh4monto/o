@@ -10,11 +10,15 @@
 			<% end %>
 		});
 		function showdiv(a) {
-		$('.content').hide();
-		$('#'+a).toggle('slow');
-		$(document.body).animate({
-		    'scrollTop':   $('#'+a).offset().top
-		}, 500);
+			inanimateshowdiv(a);
+			$(document.body).animate({
+			    'scrollTop':   $('#'+a).offset().top
+			}, 500);
+		}
+		
+		function inanimateshowdiv(a) {
+			$('.content').hide();
+			$('#'+a).toggle('slow');
 		}
 	</script>
 

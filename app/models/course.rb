@@ -90,6 +90,10 @@ class Course < ActiveRecord::Base
   def list
     self.status = LISTED
   end
+  # unlist a course => set status
+  def unlist
+    self.status = PUBLISHED
+  end
 
 
   # Any reasons why course can't be published here

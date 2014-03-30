@@ -72,6 +72,8 @@ Opp::Application.routes.draw do
   get "about_us", to: 'info#about', as: 'about'
   get "eula", to: 'info#eula', as: 'eula'
   get "privacy", to: 'info#privacy', as: 'privacy'
+  get "howitworks", to: 'info#howitworks', as: 'howitworks'
+  get "gettingstartedcreate", to: 'info#gettingstartedcreate', as: 'gettingstartedcreate'
 
   get "contact_us", to: 'messages#new', as: 'contact_us'
   resources :messages

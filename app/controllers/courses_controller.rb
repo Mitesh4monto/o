@@ -124,14 +124,18 @@ class CoursesController < ApplicationController
       flash[:notice] = "Please login or register to join course #{@course.name}"
       session[:course_join] = @course.id
       redirect_to signin_path
-    else    
-      @course.add_user_to_course(current_user)
-      if @course.has_customizations?
-        notice = 'Course was successfully joined.  We recommend you turn on customizations to tweak it for you'
+    else
+      if @course.published?
+        @course.add_user_to_course(current_user)
+        if @course.has_customizations?
+          notice = 'Course was successfully joined.  We recommend you turn on customizations to tweak it for you'
+        else
+          notice = 'Course was successfully joined'
+        end
       else
-        notice = 'Course was successfully joined'
+        flash[:error] = "An error occured. YOu cannot add that course"
+        notice = 'error'
       end
-    
       redirect_to root_path, notice: notice
     end
     

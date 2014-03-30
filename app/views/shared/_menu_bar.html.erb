@@ -4,7 +4,7 @@
 	<nav>
 		<ul>
 		<% if current_user  %>
-		<li id='link0'> <a href="javascript:void(0);">Getting Started</a>
+		<li id='link0'> <a href="javascript:void(0);" data-intro='Welcome to the quick tour.  You can click the right arrow to go to the next step.' data-step='0'>Getting Started</a>
 			<ul id="navmenu0">
 				<% if current_page?(myp_path) %>
 					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
@@ -15,7 +15,7 @@
 			</ul>
 		</li>
 			
-			<li id='linkplan''><div data-intro="This is where you have your plan.  You'll be spending a lot of time here" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div>
+			<li id='linkplan''><div data-intro="This is where you have your plan.  You'll be spending a lot of time here.  You can manage your plan, and view your commitment marks" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div>
 				<ul id="navmenuplan">
 					<li><%= link_to "My Plan", :myp  %></li>
 		            <li class="divider"></li>
@@ -23,7 +23,7 @@
 				</ul>
 				
 			</li>
-			 <li id='link1'> <div data-intro='And all blogs are here, for your courses, general blogs, your own, the people you follow...' data-step='2'> <%= link_to "Blog", :view_hals, class: 'blog' %></div>
+			 <li id='link1'> <div data-intro='All blogs are here: for your courses, general blogs, your own, the people you follow.  Blog early, blog often.' data-step='2'> <%= link_to "Blog", :view_hals, class: 'blog' %></div>
 				<ul id="navmenu1">
 					<li><%= link_to "add an entry", new_hal_path  %></li>
 		            <li class="divider"></li>
@@ -32,7 +32,7 @@
 			</li>
 		<% end %>
 
-		<li id='link2'> <div data-intro='Courses can be found here.  The ones you follow, the ones you create, and all others' data-step='3'> 
+		<li id='link2'> <div data-intro='Courses can be found here.  You can browse all listed ones, and see the ones you follow, the ones you create.' data-step='3'> 
 		<a href="/courses" class="course">Courses</a></div>
 			<ul id="navmenu2">
                 <li><a href="/courses">Browse courses</a></li>

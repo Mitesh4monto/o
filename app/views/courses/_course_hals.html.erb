@@ -12,7 +12,7 @@
 	               </ul>
 				<% end %>
 				  <br class="dis"/>				
-               <% if hal.comments.size > 0  %><span id="<%= hal.id %>" title='<%= hal.id %>' class="collapselinkmarginlft30"><%=  hal.comments.size %> comments </span> | <% end %> 
+               <% if hal.comments.size > 0  %><span id="<%= hal.id %>" title='<%= hal.id %>' class="collapselinkmarginlft30"><%=  pluralize(hal.comments.size, 'comment') %> </span> | <% end %> 
 				<span id="<%= hal.id %>" title='<%= hal.id %>' class="collapselink">Add a Comment</span>
 				<!-- comments -->
 				<% if hal.comments.size > 0  %>

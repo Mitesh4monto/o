@@ -24,12 +24,12 @@
 					<% end %>
 
 
-					Following:
+					<% if @user.following.size > 0 %>Following:<% end %>
 					<% @user.following.each do |user| %>
 						<%= link_to user.name, user %>
 						<% if user != @user.following.last %>,<% end %>
 					<% end %><BR>
-					Followed by:
+					<% if @user.followers.size > 0 %>Followed by:<% end %>
 					<% @user.followers.each do |user| %>
 						<%= link_to user.name, user %><%- if user != @user.followers.last %>,<% end %>
 					<% end %>
@@ -43,33 +43,8 @@
 	
 	 <section> <h2 class="title">Plan:</h2>
 
-		<% activty_map = get_activity_by_map(@user.strategy.current_activities) %>
-		<% if activty_map.size > 0 %>
-			<% activty_map.each do |key, activities| %>
-				<div class="box_holder borderbtm">
-					<div class="title"><h3>Goal: <%= key.nil? ? "none" : key.title %><%= "-- from course " + key.course.name if key and key.course   %></h3><span>&nbsp;</span></div>
-					<div class="triangle"></div>
-					<% activities.each do |activity| %>
-						<div class="box"><p><%= activity.id %> -- <%= activity.title %><br></p>
-							<div class="float_rgt"><a href="#" class="link">View more</a><a href="#" class="link">1 blog entry</a><%= link_to "Add this activity to my plan" , copy_activity_path(activity.id) %></div>
-							<div class="clear"></div>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
-		<% else %>
-			<div class="box_holder borderbtm">
-			<div class="title"><h3>Goal: take in calories </h3><span>&nbsp;</span></div>
-			<div class="triangle"></div>
-			<% @user.strategy.current_activities.each do |activity| %>
-				Activity:	<%= activity.id %> -- <%= link_to activity.title, mypd_path(activity.id) %>
-				<div class="float_rgt"><a href="#" class="link">View more</a><a href="#" class="link">2 blog entries</a></div>
-				</div>
-			</div>
+	<%= render :partial => 'strategies/view_two', locals: {strategy: @user.strategy, myp: false} %>
 
-		<% end %>
-
-		<% end %>
 
 
 

@@ -3,10 +3,11 @@ Commitment marks:<BR>
 	  <h2 id="month">
 		<% if nav_month %>
 			<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
-		<% end %>
-	    <%=h @date.strftime("%B %Y") %>
-		<% if nav_month %>
+		    <%=h @date.strftime("%B %Y") %>
 	    	<%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
+		<% else %>
+			<% @date =  Date.today %>
+			<%=h @date.strftime("%B %Y") %>    
 		<% end %>
 	  </h2>
 	  <%= calendar_for activity.commitment_marks, :year => @date.year, :month => @date.month do |calendar| %>
@@ -22,5 +23,4 @@ Commitment marks:<BR>
 	      </ul>
 	    <% end %>
 	  <% end %>
-	<%= link_to 'View All marks', mycms_path %>
 	</div>

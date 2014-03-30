@@ -3,39 +3,28 @@
 <div class="clear"></div>
 <div class="show">
 	<% if myp %>	
-	<div class="edit margin5"><a href="#" class="linkTwo"  <% if first %>data-intro='bla...' data-step='8'<% end %> >Edit</a>
-		<div class="edit_box" id="rightbar2">
-            <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
-		</div>
-	</div>				
-	<div class="edit3a"><a href="#" class="linkThree">Delete</a>
-		<div class="edit_box" id="rightbar3">
-			<div class="close"><a href="#"><img class="linkThree" src="/images/close.png" alt=""></a></div>
-	       <form class="form" id="contact" name="contact" method="post" action="#">
-		      <div class="row save">
-		        Are you sure you want to delete?
-		      </div>
-		      <div class="row" style="text-align:center; margin-left:150px;">
-		        <input type="button" value="Yes" style="background:#CCCCCC; border:1px solid #999999;">
-		        &nbsp;
-		        <input type="button" value="No">
-		      </div>
-	    	</form>
-	    </div>			
-		
-		<div style="width:400px; height:300px; padding:10px; display:none" id="Delete">
-		  <div style="background:#fff; width:340px; height:240px; border:1px solid #c7c7c7; padding:30px;">
-		  </div>
-		</div>
-	</div>
+		<div class="edit margin5" <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='8'<% end %>>		
+				<%= link_to "Edit", edit_activity_path(activity), :class=>"linkTwo" %>
+			</div>				
+
+		<div class="edit3a" <% if first %>data-intro="Another way to customize your plan is deleting activities, whether you created them or they're part of a course." data-step='9' <% end %>>
+			<% if activity.type == "ActivityInSequence" %>
+		       <%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"linkThree" %>
+			<% else %>
+		       <%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"linkThree" %>
+			<% end %>
+			</div>
 	<% end %>
 	
 	<!-- for my plan: edit, delete, move in AS -->
 	<% if myp %>
-		<div class="edit"><a href="#">Blog about</a></div>
-		<div class="edit3a margin3"><a href="#" class='button tipped' data-title="This will mark the activity as done with today's date.<BR>Come back every time you do this activity and mark it.">Mark as done</a></div>
-				
-		<div class="clear"></div>
+		<div class="edit"  <% if first %>data-intro="You can blog about any activity.  Simply click here, enter your thoughts/feelings, or let your pet walk on the keyboard." data-step='10' <% end %>>
+			<%= link_to "Blog about", new_hal_path(activity.id)  %>
+		</div>
+		<div class="edit3a margin3" <% if first %>data-intro="If you've committed to activities, it's nice to keep track of when you do them, especially recurring ones.  Whenever you do an activity mark it here.  You can see the calendar of when you've done them later" data-step='11' <% end %>> 			<%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :remote => true %>
+		</div>
+
+	<div class="clear"></div>
 	
 		<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
 			<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
@@ -60,11 +49,13 @@
 
 	<div class="clear"></div>
 	<% if activity.commitment_marks.size > 0 %>
-		<%= render :partial => 'strategies/activity_cm', locals: {activity: activity, nav_month: false} %><BR>
+		<%= render :partial => 'strategies/activity_cm', locals: {activity: activity, nav_month: false} %>
+		<%= link_to 'View All marks', mycms_path if myp %>
 	<% else %>	
 		You don't have any commitment marks for this activity.  
 		<% if activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %><% end %>	
 	<% end %>
+	<div class="clear"></div>
 
 
 <% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>

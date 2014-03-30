@@ -21,17 +21,18 @@
 			$('#'+a).toggle('slow');
 		}
 	</script>
-
 				<div class="left_bar width94">
+					<% if myp %>		
 					<div class="box_holder3 width100">
 						<div class="title"><h3>My Plan</h3></div><br/>
 						<!--<div  class="edit4"><a href="#">Show customization</a></div>-->
+						<% end %>							
 						<div class="clear"></div>
 						<div class="toggle">
 							<ul>
 								
 								
-								<li class="lft" data-intro='Your plan' data-step='4'>
+								<li class="lft" data-intro='This is your plan.  All the activities in your plan organized by goal and course' data-step='4'>
 									<ul>
 
 <% activty_map = get_activity_by_goal_or_course(strategy.current_activities) %>
@@ -41,7 +42,7 @@
 		<li class="column_b">
 		<% activities.each do |activity| %>
 					<ul>		
-						<li class="" onClick="showdiv('<%= activity.id %>');">
+						<li class="" onClick="showdiv('<%= activity.id %>');"  <% if activity == strategy.current_activities.first %>data-intro='This is an activity in your plan.  You can click on it to view details' data-step='5' <% end %>>
 										<%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
 								
 						<% if myp %>		
@@ -70,7 +71,7 @@
 </ul>
 <% if myp %>	
 	<div class="clear"></div>
-          <div class="box_3">
+          <div class="box_3" data-intro='If you wish to add activities, you can add one from scratch or look for a course you could join' data-step='6'>
 		<%= link_to 'Add activity', add_activity_path, :class => 'green' %>
 		<%= link_to 'Look for courses', courses_path %>
             	<div class="clear"></div>
@@ -82,13 +83,15 @@
 <% strategy.current_activities.each do |activity| %>
 	<% first = false
 	first = true if activity == strategy.current_activities.first %>
-	<div id="<%= activity.id %>" class="content" style="display:none;">
+	<div id="<%= activity.id %>" class="content" style="display:none;" <% if first %> data-intro='Activity details are here.  View and manage them here.  You can click on the activity name to see more details if there are any.' data-step='7'<% end %>>
 		<%= render :partial => 'strategies/plan_activity', locals: {activity: activity, first: first, myp: myp} %>
 	</div>
 <% end %>
 </li>	
 	</ul>
+		</div>
+	</div>
+	<% if myp %>			
 </div>
-</div>
-					</div>
+	<% end %>
 	<div class="clear"></div>

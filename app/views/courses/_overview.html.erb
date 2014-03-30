@@ -10,7 +10,7 @@
     <p><%= @course.about_the_author %></p>
 </div>
 <div>
-    <p> <strong class="strongwidth90">External url</strong><%= link_to @course.external_site, @course.external_site, :class => "link" %></p>
+    <p> <strong class="strongwidth90">External url</strong><%= link_to @course.external_site, @course.external_site, :class => "link" if @course.external_site %></p>
     <p><strong class="strongwidth90">Tags</strong><br class="dis">
 		None TODO
 	</p>

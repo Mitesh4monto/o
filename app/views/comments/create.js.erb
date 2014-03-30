@@ -1,5 +1,6 @@
 $('#Comments<%= @page %><%= @hal.id %>').find("ul").append('<li><h1><%= current_user.name %> Says</h1><span><%= @comment.created_at.strftime("%m/%d/%Y") %></span><p><%=j @comment.body %></p><a href="#" onclick="return false;" id="reply<%= @page %><%= @comment.id %>" title="<%= @page %><%= @hal.id %>" class="reply">Reply</a> <%= link_to "Delete", @comment, method: :delete %></li>');
 $("#addComment<%= @page %><%= @hal.id %>").toggle(1000);
+$("#<%= @page %><%= @hal.id %>").html("<%= pluralize(@hal.comments.size, 'comments') %>");
 $("#reply<%= @page %><%= @comment.id %>").click(function(){
 	console.log($(this));
 	var com = "#addComment<%= @hal.id %>";

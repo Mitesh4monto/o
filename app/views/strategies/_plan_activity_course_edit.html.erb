@@ -5,26 +5,13 @@
             <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
 		</div>
 	</div>				
-	<div class="edit3a"><a href="#" class="linkThree">Delete</a>
-		<div class="edit_box" id="rightbar3">
-			<div class="close"><a href="#"><img class="linkThree" src="/images/close.png" alt=""></a></div>
-	       <form class="form" id="contact" name="contact" method="post" action="#">
-		      <div class="row save">
-		        Are you sure you want to delete?
-		      </div>
-		      <div class="row" style="text-align:center; margin-left:150px;">
-		        <input type="button" value="Yes" style="background:#CCCCCC; border:1px solid #999999;">
-		        &nbsp;
-		        <input type="button" value="No">
-		      </div>
-	    	</form>
-	    </div>			
-		
-		<div style="width:400px; height:300px; padding:10px; display:none" id="Delete">
-		  <div style="background:#fff; width:340px; height:240px; border:1px solid #c7c7c7; padding:30px;">
-		  </div>
+	<div class="edit3a">
+		<% if activity.type == "ActivityInSequence" %>
+	       <%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"linkThree" %>
+		<% else %>
+	       <%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"linkThree" %>
+		<% end %>
 		</div>
-	</div>
 	
 		<div class="clear"></div>
 	

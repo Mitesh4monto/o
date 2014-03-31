@@ -38,6 +38,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new.json
   def new
     @activity = Activity.new
+    @activity.until_radio = 'no_date'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,6 +49,7 @@ class ActivitiesController < ApplicationController
   # Add a new activity to a course user has created
   def add_activity_to_course
     @activity = Activity.new
+    @activity.until_radio = 'no_date'
     @course = Course.find_by_id(params[:id])
     if (!@course || @course.user != current_user)
       redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      

@@ -2,6 +2,7 @@ $(function() {
 	$(".collapselinkhals").click(function(){
 		console.log($(this));
 		var com = "#addComment" + $(this)[0].title;
+		console.log(com);
 		if ($(com).is(":visible")) {
 			$(document.body).animate({'scrollTop':   $(com).offset().top}, 500);
 		}

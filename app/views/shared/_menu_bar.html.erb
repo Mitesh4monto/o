@@ -7,7 +7,7 @@
 		<li id='link0'> <a href="javascript:void(0);" data-intro='Welcome to the quick tour.  You can click the right arrow to go to the next step.' data-step='0'>Getting Started</a>
 			<ul id="navmenu0">
 				<% if current_page?(myp_path) %>
-					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
+					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id if current_user.strategy.current_activities.first %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
 				<% else %>
 		            <li><%= link_to "Tutorial n/a", '#' %></li>
 				<% end %>

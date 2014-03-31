@@ -3,7 +3,7 @@
 <% end %>
 <% hals.each do |hal| %>
 <div class="box">
-		<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>
+		<%= render :partial => 'hals/single_hal', locals: {hal: hal, title: title} %>
 </div>
 <% end %>
 

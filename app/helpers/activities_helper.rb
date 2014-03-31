@@ -4,8 +4,11 @@ module ActivitiesHelper
   def get_activity_by_goal_or_course(activities)
     keys = activities.pluck('goal_id').uniq
     return_hash = Hash.new
-    # no course, no goal activities
+    # if activities with no course, no goal
     return_hash[nil] = activities.find_all {|a| a if a.goal_id== nil and a.course_id == nil}
+    # if no courseless goalless activities were found, remove nil key
+    return_hash.delete_if{|k,v| k==nil and v==[]}
+    
     # for other activities
     keys.each do |key|
       g = Goal.find_by_id key

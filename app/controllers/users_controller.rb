@@ -43,6 +43,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def follow_user
+    @user = User.find(params[:id])
+    current_user.follow(@user)    
+    redirect_to :back, notice: "Now following #{@user.name}."
+  end
+  
   def follow
     @user = User.find(params[:id])
     current_user.follow(@user)

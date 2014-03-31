@@ -26,7 +26,9 @@
 	<div class="row">
 		<label>Goal<%= tipper("What are we trying to achieve by doing this activity?  This can be left blank.") %></label>
 		<% if @course.strategy.goals.size > 0 %>
-			<%= f.input :goal,  :collection => get_goals_for_strategy(current_user.strategy).concat([Goal.new(:id => 0, :title => 'Create a New Goal')]), :prompt => "Select a Goal", :label => false  %>
+			<%= f.input :goal,  :collection => 
+get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'Create a New Goal')]),
+ :prompt => "Select a Goal", :label => false  %>
 			<div class="clear"></div>		
 			<%= f.text_field :new_goal_text, :style=>"display:none;" %>
 		<% else %>
@@ -46,7 +48,7 @@
 		") %></label>
 		<div class="clear"></div>
 		<div class="row">
-		<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["One time", "Reactive", "Frequency", "Other" ], :default => "One time" %>
+		<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Other", "One time", "Reactive", "Frequency"], :default => "Other" %>
 		</div>
 		<div class="clear"></div>
 

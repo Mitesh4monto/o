@@ -1,7 +1,6 @@
 <% @title = "My Plan" %>
+<% @show_aside = false %>
 
-<div class="page"><h2>My Plan</h2></div>
-	<div class="page3">
 	 <!-- <%= raw myp_status %>  -->
 	    	<% if !current_user.strategy.current_activities.empty? %>
 			<%= 
@@ -25,5 +24,3 @@
 		<%= 
 		# render :partial => 'shared/aside' 
 		%>
-	</div>
- </div>

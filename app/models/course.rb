@@ -127,7 +127,7 @@ class Course < ActiveRecord::Base
   # true for now  -- get all users enrolled in a course
   #  definiton of enrolled in a course is any user that has an activity in their strategy that's in this course or was
   def get_course_followers
-      User.find_by_sql(["select * from users where id in (select distinct(user_id) from activities where course_id = ?)", self.id])
+    User.find_by_sql(["select * from users where id in (select distinct(user_id) from activities where course_id = ?)", self.id])
   end
 
 
@@ -136,7 +136,7 @@ class Course < ActiveRecord::Base
   def self.get_number_people_following_published_courses
     # results = ActiveRecord::Base.connection.execute("select count(distinct(a.user_id)), 
     #       c.id as course from activities a, courses c where c.published=true and c.id = a.course_id group by c.id").to_set
-              results = ActiveRecord::Base.connection.execute("select count(distinct(user_id)), course_id  from activities where course_id is not null group by course_id").to_set
+    results = ActiveRecord::Base.connection.execute("select count(distinct(user_id)), course_id  from activities where course_id is not null group by course_id").to_set
     return_set = {}
     results.each do |result|      
       return_set[result["course_id"]] = result["count"]

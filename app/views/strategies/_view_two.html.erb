@@ -43,7 +43,7 @@
 		<% activities.each do |activity| %>
 					<ul>		
 						<li class="" onClick="showdiv('<%= activity.id %>');"  <% if activity == strategy.current_activities.first %>data-intro='This is an activity in your plan.  You can click on it to view details' data-step='5' <% end %>>
-										<%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+										<%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
 								
 						<% if myp %>		
 							<div class="plus" id="ss<%= activity.id %>"  style="float:right; position:relative;"><a href="#"><img src="/images/plus1.png" alt=""></a>

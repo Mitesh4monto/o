@@ -4,13 +4,10 @@ $( "#tabs" ).tabs();
 });
 </script>
 
-<div class="left">
-<div class="inn">
-	<div class="page">
-	   <h2>Blog entries</h2>
-		<%= link_to 'Add an entry',new_hal_path, :class => 'search' %>
-	 </div>
-<div class="page3">
+<% @title = "Blogginess"  %>
+<% @show_aside = true %>
+
+		<!-- <%= link_to 'Add an entry',new_hal_path, :class => 'button_head' %> -->
    <div class="tab_holder">
      <div id="tabs">
         <ul>
@@ -52,7 +49,3 @@ $( "#tabs" ).tabs();
        </div>
      </div>
  </div>
-	<%= render :partial => 'shared/aside' %>
-</div>
-</div>
-</div>

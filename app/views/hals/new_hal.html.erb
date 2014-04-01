@@ -1,14 +1,5 @@
 <% @title = "Add Blog Entry" %>
-
-<div class="page">
-	<% if @activity %>
-	   <h2>Blog about <%= @activity.title %></h2>
-	<% else %>
-	   <h2>New Blog entry</h2>
-	<% end %>
- </div>
- <div class="page3">
-	<section>
+<% @show_aside = true %>
 
 <%= semantic_form_for @hal, :html => {:class => "course_manage"} do |f| %>
 <% if @hal.errors.any? %>
@@ -26,11 +17,12 @@
 <% if !@activity %>
 <div class="row">
 	<% coll = current_user.strategy.current_activities.map do |a|   
-		c = a.course_id!= nil ? ' - ' + a.course.name : ''
+		c = a.course!= nil ? ' - ' + a.course.name : ''
 		[a.title + c, a.id] 
 		end %>
 	<%= f.input :halable_id,  :label => "Blog about which activity?", :as => :select, :include_blank => false, 
 			:collection => coll + [["General Entry", 0]]  %>
+</div>
 <div class="clear"></div>
 <% end %>
 
@@ -74,7 +66,3 @@
 	</div>
 
 <% end %>
-	</section>
-	<%= render :partial => 'shared/aside' %>
-	
-</div>

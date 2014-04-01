@@ -1,14 +1,8 @@
 <% @title = "Course listing" %>
+<% @search_path = courses_path %>
+<% @show_aside = true if current_user %>
 
-<div class="page"><h2>Course Listing</h2>
-	<%= form_tag courses_path, :class => 'search', method: :get do %>
-	    <%= text_field_tag :query, params[:query] %>
-	    <%= submit_tag "Go", name: nil %>
-	<% end %>
-</div>
-<div class="page3">
-	<section>
-	
+<section>
 	<% @courses.each do |course| %>
 					
 		<div class="box_holder borderbtm">
@@ -44,10 +38,4 @@
 	<br />
 
 	<%= link_to 'Create a New Course', new_course_path %>
-	</section>
-
-	<%= 
-	# render :partial => 'shared/aside' 
-	%>
-				
-</div>
+</section>

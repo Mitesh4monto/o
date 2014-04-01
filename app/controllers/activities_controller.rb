@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
   # Add a new activity to a course user has created
   def add_activity_to_course
     @activity = Activity.new
-    @activity.until_radio = 'no_date'
+    # @activity.until_radio = 'no_date'
     @course = Course.find_by_id(params[:id])
     if (!@course || @course.user != current_user)
       redirect_to @course, notice: 'Not yours.  Pas touche.  || dunt exist'      
@@ -165,7 +165,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
         if @activity.myp_activity?
-          format.html { redirect_to mypd_path(@activity), notice: 'Activity was successfully updated.' }
+          format.html { redirect_to myp_path(@activity), notice: 'Activity was successfully updated.' }
           format.json { head :no_content }
         elsif @activity.course_activity?
           format.html { redirect_to course_plan_edit_path(@activity.strategy.course), notice: 'Activity was successfully updated.' }

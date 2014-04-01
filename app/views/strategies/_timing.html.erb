@@ -1,9 +1,13 @@
 <% case activity.kind_of_timing
 	when "Frequency" %>	
-		<%= activity.timing_expression.split.first %> times per <%= activity.timing_expression.split.last %>
+		<% if activity.timing_expression %>
+			<%= activity.timing_expression.split.first %> times per <%= activity.timing_expression.split.last %>
+		<% else %>
+			timing error
+		<% end %>
 	<% when "One time" %>
 		Once
-	<% when "Whenever" %>
+	<% when "Other" %>
 	<% when "Reactive" %>
 		When "<%= activity.timing_expression %>."    
 	<% else %>

@@ -6,13 +6,16 @@
 <div class="clear space"></div>
 <div>
 	<h2>About the Author</h2>
-	<%= image_tag @course.user.avatar.url(:small), :width=>"120", :class => "img_lft" %>
+	<%= link_to((image_tag @course.user.avatar.url(:small), :width=>"120", :class => "img_lft"), @course.user) if @course.user.avatar.url != "/images/original/anonymousUser.jpg" %>
     <p><%= @course.about_the_author %></p>
 </div>
 <div>
-    <p> <strong class="strongwidth90">External url</strong><%= link_to @course.external_site, @course.external_site, :class => "link" if @course.external_site %></p>
-    <p><strong class="strongwidth90">Tags</strong><br class="dis">
-		None TODO
+	<% if @course.external_site and !@course.external_site.empty? %>
+    <p> <strong class="strongwidth90">External url</strong><%= link_to @course.external_site, @course.external_site, :class => "link" %></p>
+<BR>
+	<% end %>
+    <p><br class="dis">
+		<%= render :partial => 'shared/tag_display', locals: {tags: @course.tags} %>
 	</p>
 
 </div>

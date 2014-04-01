@@ -1,6 +1,6 @@
 class Goal < ActiveRecord::Base
   acts_as_paranoid
-  include ActionLogging
+  # include ActionLogging
   belongs_to :strategy
   belongs_to :course
 

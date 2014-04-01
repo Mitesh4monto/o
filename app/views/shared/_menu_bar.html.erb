@@ -15,7 +15,7 @@
 			</ul>
 		</li>
 			
-			<li id='linkplan''><div data-intro="This is where you have your plan.  You'll be spending a lot of time here.  You can manage your plan, and view your commitment marks" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div>
+			<li id='linkplan'><div data-intro="This is where you have your plan.  You'll be spending a lot of time here.  You can manage your plan, and view your commitment marks" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div>
 				<ul id="navmenuplan">
 					<li><%= link_to "My Plan", :myp  %></li>
 		            <li class="divider"></li>
@@ -62,6 +62,9 @@
 	 </ul>
 		
 	</nav>
+	<% if current_user  %>	
+	<!-- <div style="float:left; margin-left:10px;"><a href="#"><img src="/images/getting_started.jpg" alt=""></a></div> -->
+	<% end %>
 
 	<% if current_user  %>
 	<div class="user">

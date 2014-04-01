@@ -54,7 +54,7 @@
 
 	<div class="row">
 		<div id='freak'>
-			<label>Timing Frequency</label><%= f.text_field :freak_number %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
+			<label>Timing Frequency</label><%= f.text_field :freak_number, :style=>"width:50px; margin-right:10px;" %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
 		</div>
 	</div>
 

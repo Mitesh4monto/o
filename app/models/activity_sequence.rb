@@ -33,7 +33,7 @@ class ActivitySequence < ActiveRecord::Base
   end
   
   def add_activity_from_title_description(title, description)
-    ais = ActivityInSequence.new(:user_id => self.user_id, :title => title, :description => description, :kind_of_timing => "Whenever")
+    ais = ActivityInSequence.new(:user_id => self.user_id, :title => title, :description => description, :kind_of_timing => "Other")
     ais.activity_sequence_id = self.id
     ais.save
   end
@@ -122,9 +122,9 @@ class ActivitySequence < ActiveRecord::Base
   # TODO ellse?
   def set_current(activity)
     if (self.activity_in_sequences.include?(activity)) then
-      position= self.current_activity.position 
+      position= self.current_activity.position if self.current_activity
       self.current_activity = activity
-      self.current_activity.position = position
+      self.current_activity.position = position if position
       self.current_activity.save
       self.save
     end      

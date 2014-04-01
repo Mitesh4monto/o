@@ -1,5 +1,5 @@
 <% @title = "Add an Activity to Sequence" %>
-Add activity to sequence with <%= @seq_activity.title %>
+<% @show_aside = true %>
 
 <%= semantic_form_for @activity do |f| %>
 	<%= hidden_field_tag 'seq_activity', @seq_activity.id %>
@@ -11,7 +11,7 @@ Add activity to sequence with <%= @seq_activity.title %>
 
     <%= f.text_area :description, :class => 'ckeditor' %>
 
-	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Whenever" ], :default => "One time" %>
+	<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Reactive", "One time", "Frequency", "Other" ], :default => "One time" %>
 
 	<div id='freak'>
 	<%= f.text_field :freak_number %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>

@@ -1,22 +1,36 @@
 <h2>People following this course</h2>
 
-<% author = @course.user %>
-<%= link_to author.name, author %> (author) 
-<% entries = author.hals.where(course_id: @course.id).size %>
-<% if entries > 0 %>
-	- <%= author.hals.where(course_id: @course.id).size %> entries about this course
-<% end %>
+<div class="people">
+	<ul>
+		<li>
+		<% author = @course.user %>
+	<%= link_to((image_tag author.avatar.url(:thumb), :class => "float_lft_img"), author)  %>
+	<%= link_to author.name, author, :class => 'link' %> (author)<br/>
+	<% entries = author.hals.where(course_id: @course.id).size %>
+	<% if entries > 0 %>
+	 	- <%= author.hals.where(course_id: @course.id).size %> entries about this course
+		<% end %>
+ 		</li>
+	</ul>
+</div>
+
 <div class="clear"></div>
 
 
-<% @followers.each do |user| %>
-	<% if user != author %>
-		<%= link_to user.name, user %>
-		<% entries = user.hals.where(course_id: @course.id).size %>
-		<% if entries > 0 %>
-			 - <%= user.hals.where(course_id: @course.id).size %> entries about this course
+<div class="people">
+	<ul>
+	<% @followers.each do |user| %>
+		<% if user != author %>
+			<li>
+				<%= link_to((image_tag user.avatar.url(:thumb), :class => "float_lft_img"), user)  %>
+			<%= link_to user.name, user, :class => 'link' %><br/>
+			<% entries = user.hals.where(course_id: @course.id).size %>
+			<% if entries > 0 %>
+				 - <%= user.hals.where(course_id: @course.id).size %> entries about this course
+			<% end %>
+			 </li>
 		<% end %>
-		<div class="clear"></div>
 	<% end %>
-<% end %>
+	</ul>
+</div>
 <div class="clear"></div>

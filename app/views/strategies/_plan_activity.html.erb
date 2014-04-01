@@ -37,7 +37,7 @@
 	<!-- end for my plan: edit, delete, move in AS -->
 	
 <h5><strong>Title:</strong><%= link_to activity.title, activity %></h5><BR>
-<% if activity.course_id and myp %> From course: <%= link_to activity.course.name, activity.course %> <% end %>
+<% if activity.course and myp %> From course: <%= link_to activity.course.name, activity.course %> <% end %>
 <BR>
 <strong>Description</strong>
 <p>

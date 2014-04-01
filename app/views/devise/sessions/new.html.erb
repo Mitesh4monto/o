@@ -29,10 +29,10 @@
 	        <div class="clear"></div>
       	</div>
 	  <% end -%>
-      <div class="clear"></div>
-      <label>&nbsp;</label>
-
-	  <div><%= f.submit "Sign in" %></div>
+		<div class="clear"></div>
+		<label>&nbsp;</label>
+    	<%= f.submit "Sign in" %>
+	  <%= link_to image_tag("/images/fb.png"), "/auth/facebook" %>
       <label>&nbsp;</label>
 	  <%= render "devise/shared/links" %>
 	<% end %>

@@ -1,5 +1,16 @@
-<p>Welcome <%= @email %>!</p>
+<p><strong>Welcome to meLearning!</strong></p>
 
-<p>You can confirm your account email through the link below:</p>
+Your account is ready to use.  
 
-<p><%= link_to 'Confirm my account', user_confirmation_url(:confirmation_token => @resource.confirmation_token) %></p>
+<p>You can confirm your account email through the link:  <%= link_to 'Confirm my account', user_confirmation_url(:confirmation_token => @resource.confirmation_token) %></p>
+<BR>
+<p>Thanks for signing up.  Feel free to <%= link_to 'contact us', contact_us_url %> with your feedback and questions.</p>
+<p>Check out the <%= link_to "courses", courses_path %> in the application.<BR>
+If you'd like to <strong>create a course</strong>, you can view the <%= link_to "Getting Started Overview", gettingstartedcreate_path %>.</p>
+<BR>
+
+	<p>Be sure to like us on <%= link_to "facebook", "https://www.facebook.com/melearningapp" %> and follow us on <%= link_to "twitter", 'https://twitter.com/melearningapp' %>.</p>
+
+
+<p>We hope you enjoy the app!<BR>
+The meLearning team</p>

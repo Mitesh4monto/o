@@ -1,6 +1,7 @@
-<div class="page"><h2>Activity: <strong><%= @activity.title %></strong> <% if @activity.course %> from course <%= @activity.course.name %> <% end %></h2></div>
-	<div class="page3">
-		<section>
+<% @title = "Activity:" +  @activity.title %>
+<% @title += "from course" + @activity.course.name if @activity.course %>
+<% @show_aside = true %>
+
 <% if (current_user && (@activity.user_id == current_user.id)) then %>
 	<div class="box_3"><%= link_to 'Edit', edit_activity_path(@activity), :class => 'green' %>
 	<%= link_to 'Blog about it', new_hal_path(@activity.id) %>
@@ -68,9 +69,3 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 	<% end %>
 <% end %>
 
-
-	</section>
-	<%= render :partial => 'shared/aside' %>
-	
-	</div>
-</div>

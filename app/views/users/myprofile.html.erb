@@ -1,7 +1,6 @@
-<div class="page">
-  <h2>My Profile</h2>
-</div>
-<div class="page3">
+<% @title = "My Profile" %>
+<% @show_aside = true %>
+
   <div class="section3">
     <div class="box_holder">
       <div class="box">
@@ -22,7 +21,7 @@
           </div>
           <div class="rgt margintop20" ><%= link_to "edit profile", edit_profile_path, :class => "button" %>
             <div class="clear"></div>
-            <%= link_to "Mod Pass", edit_profile_path, :class => "button" %> </div>
+            <%= link_to "Mod Pass", edit_user_registration_path,:class => "button" %> </div>
           <div class="clear space"></div>
           <div class="divider"></div>
           <div class="clear space"></div>
@@ -53,4 +52,3 @@
     </div>
     <div class="clear"></div>
   </div>
-</div>

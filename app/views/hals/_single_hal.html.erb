@@ -16,17 +16,19 @@
 		Anonymous
 	<% end  %>
 <% end %>
-               <p><%= hal.entry %></p><%= hal.created_at.strftime("%m/%d/%Y") %>
+<p class="date"><%= hal.created_at.strftime("%m/%d/%Y") %></p>
+               <p><%= hal.entry %></p>
                <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
                <% if hal.help %><p><strong>Help requested</strong><span title='<%= title %><%= hal.id %>' class="collapselinkhals">  >> Respond</span></p><% end %>
-	<% if hal.user == current_user %> <%= link_to 'Edit', edit_hal_path(hal) %> <% end %>
 	               <ul>
 					<% if hal.halable %><li>Activity: <%= link_to hal.halable.title, hal.halable %></li><% end %>
 		           <% if hal.course %><p>in course: <%= link_to hal.course.name, hal.course %></p><% end %>
-	               </ul>
-		  <div class="dis"><div class="clear"></div></div>
+               </ul>
+				  <div class="dis"><div class="clear"></div>
+				</div>
                <a href="javascript:void(0);"><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkmarginlft30"><% if hal.comments.size > 0  %><%=  pluralize(hal.comments.size, "comment") %>  </span></a> | <% end %> 
 		<a href="javascript:void(0);"><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">Add a Comment</span></a>
+		<% if hal.user == current_user %> <%= link_to 'Edit', edit_hal_path(hal), :class => 'button_head' %> <% end %>
 		<!-- comments -->
 	               <div id="Comments<%= title %><%= hal.id %>" class="comment">
              <ul>
@@ -46,7 +48,7 @@
                  <ul>
                    <li>
                      <h1>Comment</h1>
-			<%= form_for(Comment.new, :remote => true) do |f| %>
+			<%= form_for(Comment.new, :remote => true, :class => 'course_manage') do |f| %>
 			<%= hidden_field_tag 'hal_id', hal.id %>
 			<%= hidden_field_tag 'page', title %>
 			    <div id="error_explanation">
@@ -57,7 +59,7 @@
 			    <%= f.text_area :body %>
 			  </div>
 			  <div class="actions">
-			    <%= f.submit %>
+				<%= f.submit "Create Comment", {:class=>"button"} %>
 			  </div>
 			<% end %>
 			

@@ -1,3 +1,10 @@
+select { background:#e7e7e7;border-left:3px solid #cecece; 
+
+border-top:4px solid #cecece;border-bottom:none; border-right:none; 
+
+border-radius:5px;height:40px; width:auto; padding:5px;}
+.facebooklink {float:left; width:auto;}
+.facebooklink a { margin:10px; padding:0px; }
 .boxed {
   border: 1px solid green;
   padding:15px;
@@ -76,18 +83,18 @@ nav ul li a.blog { background:url(/images/blog.png) 0 6px no-repeat;}
 nav ul li a.course { background:url(/images/course.png) 0 2px no-repeat;}
 nav ul li a.edu { background:url(/images/edu.png) 0 0 no-repeat;}
 nav ul li a.active { color:#899d2c; }
-.user { float:right;}
+.user { float:right; margin-top:-5px;}
 .user .image { width:61px; height:55px; background:#a3c026; float:left; }
 .user .image2 { width:51px; height:45px; padding:5px; overflow:hidden; background:#a3c026; text-align:center;}
 .user .image img { width:100%; height:auto;}
-.user .name { float:left; position:relative;background:url(/images/button.jpg) 0 0 repeat-x; padding:3px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer;}
-.user .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name.png) center right no-repeat; padding:0 30px 0 0;}
+.user .name { float:left; position:relative;background:url(/images/button.jpg) 0 0 repeat-x; padding:3px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer; min-width:135px;}
+.user .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name.png) center right no-repeat; padding:0 30px 0 0; float:right;}
 .user .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:10px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
 .user .name:hover ul{ display:block;}
 .user .name ul li { list-style:none; background:#88b452; border-top:1px solid #accb87; padding:5px; width:161px;}
 .user .name ul li:hover { background:#bdd84b; color:#000}
 .user .name ul li:last-child { border-bottom:4px solid #bdd84b; border-radius:0 0 5px 5px;}
-.user .name ul li a { background:none; padding:2px 5px;font-family: 'opensans'; font-size:13px; color:#fff;}
+.user .name ul li a { background:none; padding:2px 5px;font-family: 'opensans'; font-size:13px; color:#fff; float:none!important;}
 .user .name ul li a:hover { color:#000;}
 .contain { width:100%; float:left; margin-top:45px;}
 .side { width:27px; min-height:466px; float:left; background:url(/images/side.png) 0 0 no-repeat;}
@@ -102,8 +109,8 @@ nav ul li a.active { color:#899d2c; }
 .page h2 {color:#555657; font-size:19px;font-family: 'opensans'; padding-left:23px; width:auto; float:left;}
 .page2 { width:100%; min-height:437px;float:left; background:url(/images/devider.png) center top repeat-y #fff; padding-bottom:20px;}
 .page3 {width:100%;float:left; background:#fff;}
-.page3 .tab_holder { width:640px; float:left; padding:10px 20px;}
-.page3 .tab_holder2 { width:640px; float:left; padding:10px 20px;}
+.page3 .tab_holder { width:auto; float:left; padding:10px 20px;}
+.page3 .tab_holder2 { width:auto; float:left; padding:10px 20px;}
 .side2 { width:27px;min-height:466px; float:left;background:url(/images/side2.png) 0 0 no-repeat;}
 .arrowbox { position:absolute; background:#e7e7e7; width:30px;height:30px;right:110px;top:75%;
  -moz-transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);
@@ -128,6 +135,7 @@ transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);}
 .course_manage textarea, .edit_form textarea {width:300px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none;height:100px; border-radius:5px; float:left;}
 .page2 form input[type="text"], form input.top[type="text"] {background:#d2efff; border-left:3px solid #c7e3f2; border-top:4px solid #c7e3f2;}
 .page2 form input[type="checkbox"] { background:#d4d4d4; border-top:2px solid #a3a3a3;}
+.page2 form input[type="checkbox"] { background:#d4d4d4; border-top:2px solid #a3a3a3;}
 .page2 form input[type="button"], .course_manage input[type="submit"], .edit a, .box_3 a.green, .customization a { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
 .creat input[type="submit"], .log_in input[type="submit"] { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
 .course_manage input[type="button"], .edit_form input[type="button"]{ background:url(/images/button.jpg)0 0 repeat-x;padding:5px 20px; margin:30px 20px 50px 0; border-radius:5px; font-size:13px; font-family: 'opensans'; float:left; color:#fff; border:none; cursor:pointer;}
@@ -146,7 +154,7 @@ footer {padding:27px 27px; float:left;width:982px;}
 .copy { float:right;color:#000; font-size:12px;font-family: 'opensans';font-weight:bold;}
 section { width:640px; float:left; padding:0 10px 10px 30px;}
 .section2 { width:930px; float:left; padding:0 10px 10px 30px;}
-section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; position:relative; width:640px; margin-top:15px;}
+section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; position:relative; width:auto; margin-top:15px;}
 section .box_holder .title, .section2 .box_holder .title, .left_bar .box_holder3 .title{ padding-left:25px; padding-right:23px; background:#dde9a5; position:absolute; width:70%; top:10px; left:-15px; border-radius:5px; z-index:1; min-width:37px;}
 .triangle, .triangle2 { background:url(/images/triangle.png) left top no-repeat; width:16px; height:24px; position:absolute; top: 46px; left:-15px;}
 .triangle2 {background:url(/images/triangle2.png) left top no-repeat; width:8px; height:15px; position:absolute;top: 42px;left:-12px;}
@@ -484,4 +492,20 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .people ul li { width:45%; float:left; margin-right:20px; list-style:none; margin-bottom:15px; }
 .people ul li img { border:1px solid #ccc; padding:2px;}
 .button_head {background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; margin:5px 20px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
-.date {float:right; padding:10px 20px 0px; font-style:italic; font-size:13px; font-family:'opensans'; text-decoration:underline;}
+.date { text-align:right; margin-top:-10px; padding:0px;font-style:italic; font-size:13px; font-family:'opensans'; text-decoration:underline;}
+form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; border-radius:5px;height:40px; width:auto; padding:5px;}
+
+.facebooklink {float:left; width:auto;}
+.facebooklink a { margin:0px; padding:0px; }
+
+
+.getstart { float:right; clear:both; margin-top:-45px;}
+.getstart .name { float:left; position:relative;background:url(/images/getting_started.png) 0 0 no-repeat; padding:5px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer;}
+.getstart .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name1.png) center right no-repeat; padding:0 30px 0 0;}
+.getstart .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:10px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
+.getstart .name:hover ul{ display:block;}
+.getstart .name ul li { list-style:none; background:#88b452; border-top:1px solid #accb87; padding:5px; width:161px;}
+.getstart .name ul li:hover { background:#bdd84b; color:#000}
+.getstart .name ul li:last-child { border-bottom:4px solid #bdd84b; border-radius:0 0 5px 5px;}
+.getstart .name ul li a { background:none; padding:2px 5px;font-family: 'opensans'; font-size:13px; color:#fff;}
+.getstart .name ul li a:hover { color:#000;}

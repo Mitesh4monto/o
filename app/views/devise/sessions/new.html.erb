@@ -1,15 +1,8 @@
-  <div class="page">
-    <h1>Login or registeeer</h1>
-    <div class="arrowbox"></div>
-  </div>
+<% @title = "Register"  %>
 
-  <div class="page2">
+<div class="page2">
 	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'log_in'}) do |f| %>
 	    <h1>Login</h1>
-	    <div class="row">
-	    	<%= link_to image_tag("/images/fb.png"), "/auth/facebook" %>
-		  <div class="clear"></div>
-		</div>
 	    <div class="row">
 		  <%= f.label :email %>
 		  <%= f.email_field :email, :autofocus => true %>
@@ -31,8 +24,10 @@
 	  <% end -%>
 		<div class="clear"></div>
 		<label>&nbsp;</label>
-    	<%= f.submit "Sign in" %>
+<div>    	<%= f.submit "Sign in" %></div>
+<div class="facebooklink">
 	  <%= link_to image_tag("/images/fb.png"), "/auth/facebook" %>
+	</div>
       <label>&nbsp;</label>
 	  <%= render "devise/shared/links" %>
 	<% end %>
@@ -73,4 +68,4 @@
 
 	  <div><%= f.submit "Sign up" %></div>
 	<% end %>
-  </div>
+</div>

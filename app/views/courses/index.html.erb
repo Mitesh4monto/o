@@ -1,6 +1,6 @@
 <% @title = "Course listing" %>
 <% @search_path = courses_path %>
-<% @show_aside = true if current_user %>
+<% @show_aside = false%>
 
 <section>
 	<% @courses.each do |course| %>
@@ -10,20 +10,21 @@
 			<div class="triangle"></div>
 			<div class="box"><%= link_to image_tag(course.course_image.url(:thumb)), course if course.course_image.url%>
 			<p>
-				<span class="inn">
-					<%- followers = @followers[course.id.to_s] || 0  %>
-					<%- if followers.to_i > 0 %>
-						People following: <%= link_to followers.to_s, course_people_path(course)  %>
-					<%- end %>
-					<%- if course.hals.where("privacy != 0").size > 0 %>
-						<%- if followers.to_i > 0 %> | <% end %>
-						<% halscount = course.hals.where("privacy != 0").size %>
-						<%= link_to pluralize(halscount, " Blog entry", " Blog entries"), course_blogs_path(course), :class=>"link" %>
-					<%- end %>
-				</span>
 				<%= shorten(course.overview, 400) if course.overview %>
 			</p>
-			<p><span class="f">Date created: 2/2/14</span></p>
+			<p><span class="f">Date created: 2/2/14</span>
+			<span class="inn">
+				<%- followers = @followers[course.id.to_s] || 0  %>
+				<%- if followers.to_i > 0 %>
+					People following: <%= link_to followers.to_s, course_people_path(course)  %>
+				<%- end %>
+				<%- if course.hals.where("privacy != 0").size > 0 %>
+					<%- if followers.to_i > 0 %> | <% end %>
+					<% halscount = course.hals.where("privacy != 0").size %>
+					<%= link_to pluralize(halscount, " Blog entry", " Blog entries"), course_blogs_path(course), :class=>"link" %>
+				<%- end %>
+			</span>
+			</p>
 			</div>		
 		</div>
 		<div class="clear"></div>	
@@ -36,6 +37,8 @@
 	<%= will_paginate @courses %>
 
 	<br />
+	<div class="clear"></div>
+	<br />
 
-	<%= link_to 'Create a New Course', new_course_path %>
+	<%= link_to 'Create a Course', new_course_path, :class => 'button_head', :style => 'float:left; margin:0px' %>
 </section>

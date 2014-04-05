@@ -1,13 +1,5 @@
-select { background:#e7e7e7;border-left:3px solid #cecece; 
-
-border-top:4px solid #cecece;border-bottom:none; border-right:none; 
-
-border-radius:5px;height:40px; width:auto; padding:5px;}
-.facebooklink {float:left; width:auto;}
-.facebooklink a { margin:10px; padding:0px; }
 .boxed {
-  border: 1px solid green;
-  padding:15px;
+  border: 1px solid green ; margin: 10px;
 }
 ul#navmenu0 { display:none; position:absolute; width:120px; z-index:999; padding:0px!important; margin:0px!important; }
 ul#navmenu0 li { background:none!important; padding:0px; }
@@ -20,6 +12,24 @@ ul#navmenuplan li a { padding:10px; display:block; width:120px; color:#000; back
 ul#navmenuplan li a:hover { padding:10px; display:block; width:120px; background:#0094ba; color:#fff; }
 
 .pagination .next_page { padding:5px 12px; border:1px solid #a5a5a5; border-radius:5px; text-decoration:none; color:#777777; font-size:12px;font-family: 'opensans'; background:#f4f4f4; box-shadow:0px 2px 2px 0px #ccc;}
+
+.facebooklink {float:left; width:auto;}
+.facebooklink a { margin:10px; padding:0px; }
+
+select { background:#e7e7e7;border-left:3px solid #cecece; 
+
+border-top:4px solid #cecece;border-bottom:none; border-right:none; 
+
+border-radius:5px;height:40px; width:auto; padding:5px;}
+.facebooklink {float:left; width:auto;}
+.facebooklink a { margin:10px; padding:0px; }
+.boxed {
+  border: 1px solid green;
+  padding:15px;
+}
+
+.new_comment .button {background:#bed84b;padding:5px 15px; margin:0px 20px 10px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; line-height:20px!important; }
+.profile .button_blue1 {background:url(/images/button.jpg)0 0 repeat-x!important; padding:5px 15px; margin:0px 20px 10px 0; border-radius:5px; border-left:1px solid #007baa!important;border-right:1px solid #007baa!important; cursor:pointer; color:#fff; font-size:13px; font-family: 'opensans'; float:left; line-height:20px!important; }
 
 
 /* CSS Document */
@@ -179,7 +189,7 @@ section .pagi ul { margin:20px 0; padding-left:0;}
 section .pagi ul li { float:left; list-style:none; padding:0 3px;}
 section .pagi ul li a { padding:5px 12px; border:1px solid #a5a5a5; border-radius:5px; text-decoration:none; color:#777777; font-size:12px;font-family: 'opensans'; background:#f4f4f4; box-shadow:0px 2px 2px 0px #ccc;}
 section .pagi ul li a:hover { background:#3d7fc9; color:#fff;}
-aside { width:280px; float:right; border:2px solid #c9c8c8;  margin-top:0px; padding:2px;  margin-right: 0px; margin-bottom:0px; background:#f4f4f4;}
+aside { width:100px; float:right; border:2px solid #c9c8c8;  margin-top:0px; padding:2px;  margin-right: 0px; margin-bottom:0px; background:#f4f4f4;}
 aside .box_holder { float:left; position:relative; width:100%;}
 aside .box_holder .title {padding-left:25px;background:#dde9a5; position:absolute; width:90%;top:10px; left:-15px;border-radius:5px; z-index:1;}
 aside .box_holder2 {float:left; width:100%; text-align:center;padding:10px 0 15px; border-bottom:1px solid #c9c8c8;}

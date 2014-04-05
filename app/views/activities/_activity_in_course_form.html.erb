@@ -25,7 +25,7 @@
 
 	<div class="row">
 		<label>Goal<%= tipper("What are we trying to achieve by doing this activity?  This can be left blank.") %></label>
-		<% if @course.strategy.goals.size > 0 %>
+		<% if get_goals_for_strategy(@course.strategy) %>
 			<%= f.input :goal,  :collection => 
 get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'Create a New Goal')]),
  :prompt => "Select a Goal", :label => false  %>

@@ -32,7 +32,7 @@ class ActivityInSequencesController < ActivitiesController
     
     respond_to do |format|
       if @activity.save
-          format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
+          format.html { redirect_to course_plan_edit_path(@activity.course_id), notice: 'Activity was successfully created.' }          
       else
         format.html { render action: "add_to_sequence" }
         format.json { render json: @activity.errors, status: :unprocessable_entity }

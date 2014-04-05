@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Melearni</title>
+<link rel="stylesheet" type="text/css" href="/assets/custom.css">
+<link rel="stylesheet" type="text/css" href="/assets/responsive.css">
+<link rel="stylesheet" href="assets/jqsleeky.css">
+<script src="/assets/jquery.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+$(function() {
+$( "#tabs" ).tabs();
+});
+</script>
+<script>
+$(function() {
+$('#link1').hover(function() { 
+    $('#navmenu1').show(); 
+}, function() { 
+    $('#navmenu1').hide(); 
+});
+$('#link2').hover(function() { 
+    $('#navmenu2').show(); 
+}, function() { 
+    $('#navmenu2').hide(); 
+});
+$('#link2a').hover(function() { 
+    $('#navmenu2a').show(); 
+}, function() { 
+    $('#navmenu2a').hide(); 
+});
+$('#link2b').hover(function() { 
+    $('#navmenu2b').show(); 
+}, function() { 
+    $('#navmenu2b').hide(); 
+});
+});
+</script>
+
+<script>
+function upload(){
+  document.getElementById("image_src").click();
+ }
+ </script>
+
+
+
+
+
+
+		<link href="css/jquery.fs.tipper.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="js/jquery.fs.tipper.js"></script>
+
+		<style>
+			.tipped:hover { background: #777; }
+		</style>
+
+		<script>
+			$(document).ready(function() {
+				$(".tipped").tipper();
+			});
+		</script>		
+</head>
+<body>
+<div id="body_frame">
+  <div class="wrapper">
+    <header>
+      <div class="logo"><img src="images/logo.png"></div>
+      <nav>
+				<ul>
+				<li> <a href="#" class="stra">My Strategy</a>  </li>
+				<li id="link1"> <a href="blog.html" class="blog" >My Blog</a>  
+				<ul id="navmenu1">
+					<li><a href="blog.html#tab-1" title="Mine">Mine</a></li>
+					<li><a href="blog.html#tab-2" title="Following">Following</a></li>
+					<li><a href="blog.html#tab-3" title="All">All</a></li>
+					<li><a href="blog.html#tab-4" title="Help requested">Help requested</a></li>
+					<li><a href="blog.html#tab-5" title="My insights">My insights</a></li>
+				</ul>
+				</li>
+				<li id="link2"> <a href="courses.html" class="course active">Manage Courses</a>  
+				<ul id="navmenu2">
+					<li><a href="courses.html" title="Courses Overview">browse courses</a></li>
+					<li id="link2a"><a href="courses.html" title="Courses Plan">my create coures</a>
+						<ul id="navmenu2a">
+							<li><a href="courses.html" title="courses 1">coures 1</a></li>
+							<li><a href="courses.html" title="courses 2">coures 2</a></li>
+						</ul>
+					</li>
+					<li id="link2b"><a href="courses.html" title="Courses Explanation">courses i follow</a>
+					<ul id="navmenu2b">
+							<li><a href="courses.html" title="courses x">course x</a></li>
+							<li><a href="courses.html" title="courses y">course y</a></li>
+						</ul>
+					
+					</li>
+					<li><a href="courses.html" title="create course">create course</a></li>
+				</ul>
+				</li>
+				<!--<li> <a href="education.html" class="edu">Education</a>  </li>-->
+				</ul>
+			</nav>
+      <div class="user">
+        <div class="image">
+          <div class="image2"><img src="images/user.jpg"></div>
+        </div>
+        <div class="name"><a href="#">Jo blow</a>
+          <ul>
+            <li><a href="#">Creat Courses</a></li>
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#">Setting</a></li>
+            <li><a href="#">Messages</a></li>
+            <li><a href="#">Notifications</a></li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+	  <div class="notification">Notification Will Go Here...</div>
+    </header>
+    <div class="contain">
+      <div class="side"></div>
+      <div class="main_con">
+	  <div class="content-full">
+	  <div class="left">
+	  <div class="inn">
+        <div class="page">
+          <h2>Courses</h2>
+          <form class="search">
+            <input type="text" placeholder="Search by zit or zat">
+            <input type="submit" value="GO">
+          </form>
+        </div>
+        <div class="page3">
+          <div class="tab_holder2">
+            <div id="tabs">
+              <ul>
+                <li><a href="#tabs-1">Courses Overview</a></li>
+                <li><a href="#tabs-2">Courses Plan</a></li>
+                <li><a href="#tabs-3">Courses Explanation</a></li>
+              </ul>
+              <div id="tabs-1">
+                <div class="edit"><a href="#">Done Editing</a></div>
+                <div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div>
+                <div class="clear"></div>
+                <h2>Instruction</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+				<div class="save">Course saved successfully</div>
+                <form class="course_manage">
+                  <div class="row"><span class="reqdfield">*required field </span>
+                    <label>Name</label>
+                    <a href="#" class="button tipped" data-title="Type your name hare"  data-tipper-options='{"direction":"left","follow":"true"}'><input type="text" class="top"></a>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="row"><span class="reqdfield">*required field </span>
+                    <label>Tags <span class="tipped" data-title="Extra Information here: Demo text Demo text Demo text"  data-tipper-options='{"direction":"right","follow":"true"}'>?</span></label>
+                    <a href="#" class="button tipped" data-title="Demo text"  data-tipper-options='{"direction":"left","follow":"true"}'><input type="text"></a>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="row"><span class="reqdfield">*required field </span>
+                    <label>Overview <span class="tipped" data-title="Extra Information here: Demo text Demo text Demo text"  data-tipper-options='{"direction":"right","follow":"true"}'>?</span></label>
+                    <a href="#" class="button tipped" data-title="Demo text"  data-tipper-options='{"direction":"left","follow":"true"}'><textarea></textarea></a>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="row"><span class="reqdfield">*required field </span>
+                    <label>About the Author <span class="tipped" data-title="Additional Instruction: Demo text Demo text Demo text"  data-tipper-options='{"direction":"right","follow":"true"}'>?</span></label>
+                    <a href="#" class="button tipped" data-title="Demo text"  data-tipper-options='{"direction":"left","follow":"true"}'><textarea></textarea></a>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="row"><span class="reqdfield">*required field </span>
+                    <label>External url</label>
+                    <a href="#" class="button tipped" data-title="Demo text"  data-tipper-options='{"direction":"left","follow":"true"}'><input type="text"></a>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="row">
+                    <label>Picture</label>
+                    <a href="#" class="button tipped" data-title="Select picture here"  data-tipper-options='{"direction":"left","follow":"true"}'><img src="images/cross2.jpg" alt="" width="90" class="float_lft" ><div class="container1"> <img id="img" src="images/change_picture.png" onClick="upload()" alt="hello"/>
+                      <input type="file" name="image_src" id="image_src" />
+                    </div></a>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="row">
+                    <label class="disnone">&nbsp;</label>
+                    <input type="button" value="Save" class="margintop10">
+                    <input type="submit" value="Save and go to Plan" class="gobtn">
+                  </div>
+                </form>
+                <div class="clear"></div>
+              </div>
+              <div id="tabs-2">
+                <div class="edit"><a href="#">Done Editing</a></div>
+                <div class="edit2"><span>This course is unpublished </span><a href="#">Publish</a></div>
+                <div class="clear"></div>
+                <p class="box_1">Additional Instruction Lorem Ipsum Additional Instruction Lorem Ipsum Additional Instruction Lorem Ipsum</p>
+                <div class="left_panel">
+                  <ul>
+                    <li>
+                      <p>Work out  --  Twice a week</p>
+                      <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                      <a href="#">view more</a></li>
+                    <li>
+                      <p> Eat more -- Every day</p>
+                      <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    </li>
+                    <li>
+                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                      <a href="#">view more</a></li>
+                    <li>
+                      <p>Title Timing Description</p>
+                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                      <a href="#">view more</a></li>
+                  </ul>
+                </div>
+                <div class="right_panel">
+                  <div class="edit"><a href="#">Edit</a></div>
+                  <div class="edit3 margin2"><a href="#">Delete</a></div>
+				  <div class="clear space"></div>
+                  <h5>Title</h5>
+                  <h5>Description</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
+                  <div class="squre"><img src="images/cross2.jpg" ></div>
+                  <div class="squre2"><img src="images/cross.jpg" ></div>
+                  </p>
+                  <div class="clear"></div>
+                  <p>hear's one with a branch.</p>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div id="tabs-3">
+                <div class="edit"><a href="#">Done Editing</a></div>
+                <div class="clear"></div>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+                <div class="edit2"><a href="#">Save</a></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <!-------------end of tabholder--------------- -->
+        </div>
+		</div>
+		</div>
+		<div class="right">
+		<aside>
+            <div class="box_holder">
+              <div class="title">
+                <h3>Latest News </h3>
+              </div>
+              <div class="triangle2"></div>
+              <div class="box_holder2">
+                <h2><a href="#">International branch campuses are</a> </h2>
+                <img src="images/no_image.jpg" alt="">
+                <p>resource-intensive, complex endeavors, especially in the context.</p>
+              </div>
+              <div class="box_holder2">
+                <h3><a href="#">International branch campuses are</a> </h3>
+                <img src="images/no_image.jpg" alt="">
+                <p>resource-intensive, complex endeavors, especially in the context.</p>
+              </div>
+              <div class="box_holder2">
+                <h3><a href="#">International branch campuses are</a> </h3>
+                <img src="images/no_image.jpg" alt="">
+                <p>resource-intensive, complex endeavors, especially in the context.</p>
+              </div>
+              <div class="read"><a href="#">Read All News »</a></div>
+            </div>
+          </aside>
+		</div>
+		</div>
+      </div>
+      <div class="side2"></div>
+    </div>
+    <div class="clear"></div>
+    <footer>
+      <div class="nav2">
+        <ul>
+          <li> <a href="#">About met Learning</a></li>
+          <li> <a href="#">Terms of use</a></li>
+          <li> <a href="#">Like us on FB </a></li>
+          <li> <a href="#">Guidelines </a></li>
+          <li> <a href="#">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="copy">Copyright &copy;2010 - 2014. All Rights Reserved</div>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

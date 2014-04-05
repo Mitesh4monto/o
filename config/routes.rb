@@ -53,9 +53,9 @@ Opp::Application.routes.draw do
   get "courses/my_created", to: 'courses#my_created', as: 'my_created_courses'
   get "courses/update_description/:id", to: 'courses#update_description', as: 'update_description'
   get "courses/publish_course/:id", to: 'courses#publish_course', as: 'publish_course'
-  get "courses/edit_course/:id(/:tab)", to: 'courses#edit_course', as: "edit_course"
+  get "courses/edit_course/:id(/:tab)/(:actvitiy_id)", to: 'courses#edit_course', as: "edit_course"
   get "courses/edit_course/:id/0", to: 'courses#overview_edit', as: 'course_overview_edit'
-  get "courses/edit_course/:id/1", to: 'courses#edit_course', as: 'course_plan_edit'
+  get "courses/edit_course/:id/1/(:actvitiy_id)", to: 'courses#edit_course', as: 'course_plan_edit'
   get "courses/edit_course/:id/2", to: 'courses#description_edit', as: 'course_description_edit'
   get "courses/:id(/:tab)", to: 'courses#show', as: 'show_course'
   get "courses/:id/4", to: 'courses#show', as: 'course_people'

@@ -1,4 +1,6 @@
+<% @show_aside = true %>
 <% @title = @course.name %>
+
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -16,9 +18,7 @@ function showHideDiv(id){
 }
 </script>
 
-<% @show_aside = true %>
-<% @title = @course.name %>
-
+<div class='tab_holder2'>
      <div id="tabs">
        <ul>
          <li><a href="#tabs-1">Overview</a></li>
@@ -48,3 +48,4 @@ function showHideDiv(id){
          <%= render :partial => 'course_followers' %>
        </div>
      </div>
+</div>

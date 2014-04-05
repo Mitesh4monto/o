@@ -40,7 +40,12 @@ module ActivitiesHelper
   # return all goals in a specific strategy (nil ommitted)
   def get_goals_for_strategy(strategy)
     keys = strategy.activities.pluck('goal_id').uniq
-    Goal.find(keys)
+    if (keys != [nil])
+      Goal.find(keys)
+    else 
+      # no goals
+      nil
+    end
   end
 
 

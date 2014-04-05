@@ -3,8 +3,7 @@
 <% @hals.each do |hal| %>
 <div class="box">
 <% if hal.user %>               <h1><%= link_to hal.user.name, hal.user %></h1><% end %>
-<%= hal.id %>
-				<%= image_tag hal.user.avatar.url(:thumb) if (hal.user and hal.user.avatar.url(:thumb)) %> 
+				<%= image_tag hal.user.avatar.url(:small) if (hal.user and hal.user.avatar.url(:small)) %> 
                <p><%= hal.entry %></p>
 				<% if hal.halable %>
 	               <ul class="activity">

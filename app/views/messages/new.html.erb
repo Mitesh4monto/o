@@ -1,4 +1,4 @@
-<h1>Contact Us</h1>
+<% @title = 'Contact Us' %>
 
 <%= form_for @message, :html => {:class => "course_manage"} do |f| %>
   <% if @message.errors.any? %>
@@ -15,25 +15,32 @@
 	<%= f.hidden_field :name, :value => current_user.name %>
 	<%= f.hidden_field :email, :value => current_user.email %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= current_user.name %>
+	<div class="clear"></div><br />
   </div>
   <div class="field">
+		<div class="clear"></div>
     <%= f.label :email %><br />
     <%= current_user.email %>
+	<div class="clear"></div><br />
   </div>
 <% else %>
   <div class="field">
-    <%= f.label :name %><br />
+	<div class="clear"></div>
+    <%= f.label :name %>
     <%= f.text_field :name %>
+	<div class="clear"></div><br />
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+	<div class="clear"></div>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br />
+	<div class="clear"></div><br />
   </div>
 <% end %>
   <div class="field">
-    <%= f.label :content, "Message" %><br />
+    <%= f.label :content, "Message" %>
     <%= f.text_area :content, :rows => 5 %>
   </div>
   <div class="actions"><%= f.submit "Send Message" %></div>

@@ -2,6 +2,18 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
   end
+  
+  def news
+    email = params[:email]
+    # debugger
+    @message = Message.new(:name => 'ss', :email => email, :content => "newsletter thing - #{email}")
+    UserMailer.contact(@message).deliver!
+    
+    respond_to do |format|
+      # format.html { redirect_to root_path }
+      format.js
+    end
+  end
 
   def create
     @message = Message.new(params[:message])

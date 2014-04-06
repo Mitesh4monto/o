@@ -77,9 +77,9 @@ Opp::Application.routes.draw do
   get "gettingstartedcreate", to: 'info#gettingstartedcreate', as: 'gettingstartedcreate'
 
   get "contact_us", to: 'messages#new', as: 'contact_us'
+  match "newsletter", to: 'messages#news', as: 'newsletter'
   resources :messages
 
-  
   match "add_commitment_mark_to_activity/:activity_id", :controller => "commitment_marks", :action => "add_commitment_mark_to_activity"
 
   match 'my_plan/:id',  :controller => "strategies", :action => "mine", :activity_id => :id

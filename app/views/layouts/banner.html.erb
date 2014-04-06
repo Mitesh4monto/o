@@ -26,7 +26,8 @@
  <link rel="shortcut icon" href="/bannfiles/favicon.png" type="image/x-icon">
  
  
-
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tag %>
  <!-- Load Javascript Scripts -->
 <script type="text/javascript" src="/bannfiles/bootstrap.min.js"></script>
 <script src="/bannfiles/jquery.min.js"></script>
@@ -503,12 +504,11 @@
 		 <img src="/bannfiles/news-icon2.png" alt="">
 		
    		<!-- Begin MailChimp Signup Form -->
-        
-        <form action="http://melearni.ng/news" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate="">
-	    <input type="email" value="" name="EMAIL" class="email subem" id="mce-EMAIL" placeholder="Your Email Adress Here ..." required="">
+		<%= form_for(Message.new, :url => newsletter_url, :class => "validate", :remote => true) do |f| %>
+	    <input type="email" value="" name="email" class="email subem" id="email2" placeholder="Your Email Adress Here ..." required="">
 	    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button subsc">
-        </form>
-        
+		<% end %>
+		        
         <!--End mc_embed_signup-->
 		 </div>
 	 </div>

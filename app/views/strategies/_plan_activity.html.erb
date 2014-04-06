@@ -1,29 +1,19 @@
 <% myp = (defined?(myp) and myp)? true : false %>
 
-<div class="clear"></div>
+<div class='titleboxed'><%= link_to activity.title, activity %></div>
+<div class="clear"></div><BR>
+<h3 class="float_lft"><% if activity.course and myp %> From course: <%= link_to activity.course.name, activity.course %> <% end %></h3>
+<div class="clear"></div><BR>
 <div class="show">
-	<% if myp %>	
-		<div class="edit margin5" <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='8'<% end %>>		
-				<%= link_to "Edit", edit_activity_path(activity), :class=>"linkTwo" %>
-			</div>				
-
-		<div class="edit3a" <% if first %>data-intro="Another way to customize your plan is deleting activities, whether you created them or they're part of a course." data-step='9' <% end %>>
-			<% if activity.type == "ActivityInSequence" %>
-		       <%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"linkThree" %>
-			<% else %>
-		       <%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"linkThree" %>
-			<% end %>
-			</div>
-	<% end %>
-	
 	<!-- for my plan: edit, delete, move in AS -->
-	<% if myp %>
-		<div class="edit"  <% if first %>data-intro="You can blog about any activity.  Simply click here, enter your thoughts/feelings, or let your pet walk on the keyboard." data-step='10' <% end %>>
+	<% if myp %>	
+	<div style='margin-left:auto; margin-right:auto;display:block;width:55%'>
+		<div class="edit3a margin3" <% if first %>data-intro="You can blog about any activity.  Simply click here, enter your thoughts/feelings, or let your pet walk on the keyboard." data-step='10' <% end %>>
 			<%= link_to "Blog about", new_hal_path(activity.id)  %>
 		</div>
 		<div class="edit3a margin3" <% if first %>data-intro="If you've committed to activities, it's nice to keep track of when you do them, especially recurring ones.  Whenever you do an activity mark it here.  You can see the calendar of when you've done them later" data-step='11' <% end %>> 			<%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :remote => true %>
 		</div>
-
+		</div>
 	<div class="clear"></div>
 	
 		<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
@@ -36,15 +26,17 @@
 	<% end %>
 	<!-- end for my plan: edit, delete, move in AS -->
 	
-<h5><strong>Title:</strong><%= link_to activity.title, activity %></h5><BR>
-<% if activity.course and myp %> From course: <%= link_to activity.course.name, activity.course %> <% end %>
-<BR>
+<% if !activity.description.empty? %>
 <div class='boxed'>
 	<%= sanitize activity.description %>
 </div>
-<% if !activity.customization.nil? %> <p>Customization: <%= activity.customization %></p><% end %>
-<p><span class="bold">Timing:</span><%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+<% end %>
+<% if activity.customization and !activity.customization.empty? %> <p>Customization: <%= activity.customization %></p><% end %>
+
+<% timing = timing_text(activity); if !timing.empty? %>
+<p><span class="bold">Timing:</span><%= timing %>
 <BR></p>
+<% end %>
 
 	<div class="clear"></div>
 	<% if activity.commitment_marks.size > 0 %>
@@ -66,7 +58,23 @@
 <% end %>
 
 <BR>
-	
+
+<% if myp %>	
+	<div class="edit margin5" style='float:left;background:#9DAAAA;' <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='8'<% end %>>		
+			<%= link_to "Edit", edit_activity_path(activity), :class=>"linkTwo", :style => 'float:right;background:#9DAAAA;' %>
+		</div>				
+		&nbsp;&nbsp;&nbsp;
+
+	<div class="edit margin5" style='float:right;' <% if first %>data-intro="Another way to customize your plan is deleting activities, whether you created them or they're part of a course." data-step='9' <% end %>>
+		<% if activity.type == "ActivityInSequence" %>
+	       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"linkThree", :style => 'background:#9DAAAA;' %>
+		<% else %>
+	       <%= link_to "Delete", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"linkThree", :style => 'background:#9DAAAA;' %>
+		<% end %>
+		</div>
+<% end %>
+
+
 									
 <% if myp %>
 	<% if activity.type == "ActivityInSequence" %>

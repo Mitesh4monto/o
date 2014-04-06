@@ -11,16 +11,19 @@
 <div class="clear"></div>
 <% if @activity.strategy and @activity.strategy.course %>
 Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
-<% elsif @activity.user and !@activity.activity_sequence_id %>
+<% elsif @activity.user and !@activity.activity_sequence_id and @activity.user != current_user %>
 In <%= link_to @activity.user.name, @activity.user %>'s plan
 <% end %>
-
-<BR><BR>
-<strong>Title</strong>:<%= @activity.title %>
 <BR>
-<strong>Description</strong>: <%= sanitize @activity.description %>
-	<BR>
-<strong>Timing:</strong> <%= render :partial => 'strategies/timing', locals: {activity: @activity} %>
+<% if @activity.goal_id %>
+<strong>Goal: </strong><%= @activity.goal.title %>
+<% end %>
+<BR>
+<%= render :partial => 'strategies/timing', locals: {activity: @activity, labelled: true} %>
+<BR>
+<div class='boxed'>
+<%= sanitize @activity.description %>
+</div>
 <BR>
 <%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
 <BR>

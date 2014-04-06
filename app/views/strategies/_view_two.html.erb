@@ -38,14 +38,14 @@
 <% activty_map = get_activity_by_goal_or_course(strategy.current_activities) %>
 <% if activty_map.size > 0 %>
 	<% activty_map.each do |key, activities| %>
-		<li class="column_a"><h4><%= key.nil? ? "none" : key %></h4></li>
+		<li class="column_a"><% if !(key.nil?) %><h4><%= key %></h4></li><% end %>
 		<li class="column_b">
 		<% activities.each do |activity| %>
 					<ul>		
 						<li class="" onClick="showdiv('<%= activity.id %>');"  <% if activity == strategy.current_activities.first %>data-intro='This is an activity in your plan.  You can click on it to view details' data-step='5' <% end %>>
-										<%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>
+										<%= activity.title %> <% timing = timing_text(activity); if !timing.empty? %>- <%= timing %> <% end %>
 								
-						<% if myp %>		
+						<% if false	 %>		
 							<div class="plus" id="ss<%= activity.id %>"  style="float:right; position:relative;"><a href="#"><img src="/images/plus1.png" alt=""></a>
 							   <div id="Detailsss<%= activity.id %>" class="plus_details" style="display: none;">
 							     <ul>

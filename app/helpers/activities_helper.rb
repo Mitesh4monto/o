@@ -53,4 +53,34 @@ module ActivitiesHelper
     Goal.where(course_id: course_id).pluck(:title)
   end
   
+  def timing_text(activity)
+    return_text = ''
+    case activity.kind_of_timing
+    	when "Frequency"
+      		if activity.timing_expression 
+    			  return_text = activity.timing_expression.split.first +  "times per" + activity.timing_expression.split.last
+      	  else 
+      			return_text = "timing error"
+    		 end
+    	 when "One time"
+    		 return_text = "Once"
+    	 when "Other" 
+    	 when "Whenever" 
+    	 when "Reactive" 
+    	   if activity.timing_expression
+    		   return_text = "When " +  activity.timing_expression    
+  		   else
+  		     return_text = 'Reactive'
+  		   end
+    	 else 
+    		 return_text = "error"
+    end 
+    if !activity.timing_duration.blank? and activity.course_activity? 
+      return_text += "until "  + activity.timing_duration + "from join"
+    elsif activity.timing_until 
+      return_text = "before "  +  activity.timing_until.strftime("%m/%d/%Y") 
+    end 
+    return_text    
+  end
+  
 end

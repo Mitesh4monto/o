@@ -39,6 +39,11 @@ class ApplicationController < ActionController::Base
       my_profile_path
   end
       
+  def after_sign_out_path_for(resource)
+    puts '****************************************[[[[[[[]]]]]]]'
+    '/courses'
+  end
+      
   def after_sign_in_path_for(resource)
     post_sign_in(resource)
     root_path

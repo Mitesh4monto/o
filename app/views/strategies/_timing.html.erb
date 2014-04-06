@@ -1,3 +1,6 @@
+<% if (defined?(labelled) and labelled and activity.kind_of_timing != "Other") %>
+<strong>Timing:</strong>
+<% end %>
 <% case activity.kind_of_timing
 	when "Frequency" %>	
 		<% if activity.timing_expression %>
@@ -8,6 +11,7 @@
 	<% when "One time" %>
 		Once
 	<% when "Other" %>
+	<% when "Whenever" %>
 	<% when "Reactive" %>
 		When "<%= activity.timing_expression %>."    
 	<% else %>

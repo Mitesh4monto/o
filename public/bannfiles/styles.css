@@ -107,7 +107,7 @@ header { background-color:#efefef;  height:63px; padding-top:17px;}
 .logo h1 { font-size: 34px; color:#191919; line-height:28px;}
 .logo h2 { font-size: 11px; color:#1c1c1c; line-height:18px;}
 .phone { float:right;  padding-top:3px; }
-ul.social { float:right; width:74px; padding-top:8px;}
+ul.social { float:right; width:74px; padding-top:28px;padding-right:25px;}
 ul.social li { width:20px; float:left; height:20px; margin-left:4px;}
 #facebook   { background:url(../img/social.png) no-repeat; }
 #twitter   { background:url(../img/social.png) no-repeat; background-position:-20px 0 ;}
@@ -799,3 +799,8 @@ input.error {  border:1px solid #ff4343; }
 .about h4 { line-height:20px; margin-top:30px; font-size:18px; text-align:justify; }
 .about h6 { line-height:20px; margin-top:30px; font-size:22px; text-align:justify; }
 
+.login { float:right; margin-top:-5px;}
+.loginn { float:right; margin:5,5,5,5; padding-top: 25px;
+}
+.userlogin { width:230px; float:right; margin-top:18px; }
+.loginbtn { width:80px; height:30px; border:none; text-align:center; color:#fff; font-size:15px;font-family: 'opensans-bold'; background:url(/images/loginbg.png) no-repeat; cursor:pointer;  }

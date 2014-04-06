@@ -5,6 +5,10 @@ class InfoController < ApplicationController
   def howitworks
     
   end
+  
+  def banner
+    render :layout => 'banner'
+  end
 
   def gettingstartedcreate
     

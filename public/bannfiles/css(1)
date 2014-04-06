@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Doppio One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Doppio One Regular'), local('DoppioOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/doppioone/v2/DGr_HuCg-_zePcleoqvEX73hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}

@@ -69,6 +69,7 @@ Opp::Application.routes.draw do
   match "share_course_on_fb/:id", to: "courses#share_course_on_fb", as: "share_course_on_fb"
 
   # static pages
+  get "bann", to: 'info#bann', as: 'bann'
   get "about_us", to: 'info#about', as: 'about'
   get "eula", to: 'info#eula', as: 'eula'
   get "privacy", to: 'info#privacy', as: 'privacy'

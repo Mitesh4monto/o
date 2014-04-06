@@ -1,0 +1,101 @@
+
+/*----------------------------------------------------------------------*/
+/* ---------------------------- Green Tea Skin  --------------------- */
+/*--------------------------------------------------------------------*/
+
+/* Phone Number Color */
+p strong { color:#6e8d07; }
+
+/* Logo Shape Color */
+.logo hgroup { 
+    background:url(../../img/skins/logo-green.png) no-repeat;
+	padding-left:54px; 
+	}
+h2 span { font-family: 'Doppio One', sans-serif; color:#6e8d07;}
+/* Main Product Gradient and Colors */
+#main_product {
+    margin:0 0 50px;
+	padding:33px 0 20px;
+	clear:both;
+	background: -moz-linear-gradient(top, #86a80c 1%, #5c7903 100%); /* Mozilla */ 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#86a80c), color-stop(100%,#5c7903)); /* Chrome,Safari4 */
+    background: -webkit-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* Chrome10 and Safari5 */
+    background: -o-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* Opera 11.10 */
+    background: -ms-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* IE10 */
+    background: linear-gradient(to bottom, #86a80c 1%,#5c7903 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86a80c', endColorstr='#5c7903',GradientType=0 ); /* IE6-8 */
+	}
+.main_p1 h2 span { 
+    font-family:'Signika', sans-serif; 
+	font-size:15px;
+    color:#2e3b03;
+	background: url(../../img/span-bg.png) repeat;
+	padding:2px 5px;
+	}
+.main_p1 h1 { 
+    color:#efefef;
+	text-shadow:0 0.5px 0 #2e3b03;
+	}
+ul.features-1 li { 
+    padding:0 0 0 30px;
+	margin:20px 0 0 4px;
+	background:url(../../img/icon-features.png) no-repeat left;
+	color:#e2ffdd;
+	text-shadow:0 1px 0 #4d911b;
+	}
+ul.features-2 li { 
+    font-size:14px;
+    padding:0 0 0 30px;
+	margin:20px 0 0 4px;
+	background:url(../../img/skins/shape-green.png) no-repeat left;
+	color:#8C8C8C;
+	
+	}
+/* Buttons Colors */
+a.small-trial-button { 
+    
+	height:47px;
+	width:125px;
+	background:url(../../img/skins/small-trial-button-green.png) no-repeat;
+	display:block;
+	}
+
+/* Pricing Tables Colors */
+.prc-header2 { 
+    background:url(../../img/skins/prc-header2-green.png) no-repeat;
+	height:132px;
+	color:#efefef;
+	}
+.prc-footer2 { 
+    background-color:#6c8a06;
+	height:40px;
+	padding:10px 0;
+	}
+	@media(min-width: 480px) and (max-width: 767px) { 
+.prc-header2 { 
+    background:none;
+	background-color:#6e8d07;
+	}
+	}
+/* NewsLetter Colors */
+.news2 { 
+    background: -moz-linear-gradient(top, #86a80c 1%, #5c7903 100%); /* Mozilla */ 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#86a80c), color-stop(100%,#5c7903)); /* Chrome,Safari4 */
+    background: -webkit-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* Chrome10 and Safari5 */
+    background: -o-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* Opera 11.10 */
+    background: -ms-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* IE10 */
+    background: linear-gradient(to bottom, #86a80c 1%,#5c7903 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86a80c', endColorstr='#5c7903',GradientType=0 ); /* IE6-8 */
+	float:right;
+	height:70px;
+	}
+.news1 h3 span {color:#6c8a06;  }
+.buy-footer { 
+   background: -moz-linear-gradient(top, #86a80c 1%, #5c7903 100%); /* Mozilla */ 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#86a80c), color-stop(100%,#5c7903)); /* Chrome,Safari4 */
+    background: -webkit-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* Chrome10 and Safari5 */
+    background: -o-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* Opera 11.10 */
+    background: -ms-linear-gradient(top, #86a80c 1%,#5c7903 100%); /* IE10 */
+    background: linear-gradient(to bottom, #86a80c 1%,#5c7903 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86a80c', endColorstr='#5c7903',GradientType=0 ); /* IE6-8 */
+	} 

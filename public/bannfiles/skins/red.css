@@ -1,0 +1,105 @@
+
+/*----------------------------------------------------------------------*/
+/* ---------------------------- Red Glamour Skin  --------------------- */
+/*--------------------------------------------------------------------*/
+
+/* Phone Number Color */
+p strong { color:#e62f37; }
+
+/* Logo Shape Color */
+.logo hgroup { 
+    background:url(../../img/skins/logo-red.png) no-repeat;
+	padding-left:54px; 
+	}
+
+/* Main Product Gradient and Colors */
+h2 span { font-family: 'Doppio One', sans-serif; color:#e62f37;}
+#main_product {
+    margin:0 0 50px;
+	padding:33px 0 20px;
+ 
+	clear:both;
+	background: -moz-linear-gradient(top, #d02c2b 1%, #c31a21 100%); /* Mozilla */ 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d02c2b), color-stop(100%,#c31a21)); /* Chrome,Safari4 */
+    background: -webkit-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* Chrome10 and Safari5 */
+    background: -o-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* Opera 11.10 */
+    background: -ms-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* IE10 */
+    background: linear-gradient(to bottom, #d02c2b 1%,#c31a21 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02c2b', endColorstr='#c31a21',GradientType=0 ); /* IE6-8 */
+	}
+.main_p1 h2 span { 
+    font-family:'Signika', sans-serif; 
+	font-size:15px;
+    color:#7f0600;
+	background: url(../../img/span-bg.png) repeat;
+	padding:2px 5px;
+	}
+.main_p1 h1 { 
+    color:#efefef;
+	text-shadow:0 0.5px 0 #7f2024;
+	}
+ul.features-1 li { 
+    padding:0 0 0 30px;
+	margin:20px 0 0 4px;
+	background:url(../../img/icon-features.png) no-repeat left;
+	color:#f7d2d0;
+	text-shadow:0 1px 0 #7c0600;
+	}
+	ul.features-2 li { 
+    font-size:14px;
+    padding:0 0 0 30px;
+	margin:20px 0 0 4px;
+	background:url(../../img/skins/shape-red.png) no-repeat left;
+	color:#8C8C8C;
+	
+	}
+
+/* Buttons Colors */
+a.small-trial-button { 
+    
+	height:47px;
+	width:125px;
+	background:url(../../img/skins/small-trial-button-red.png) no-repeat;
+	display:block;
+	}
+
+/* Pricing Tables Colors */
+.prc-header2 { 
+    background:url(../../img/skins/prc-header2-red.png) no-repeat;
+	height:132px;
+	color:#efefef;
+	}
+.prc-footer2 { 
+    background-color:#e12c34;
+	height:40px;
+	padding:10px 0;
+	}
+	@media(min-width: 480px) and (max-width: 767px) { 
+.prc-header2 { 
+    background:none;
+	background-color:#e12c34;
+	}
+	}
+/* NewsLetter Colors */
+.news2 { 
+    background: -moz-linear-gradient(top, #d02c2b 1%, #c31a21 100%); /* Mozilla */ 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d02c2b), color-stop(100%,#c31a21)); /* Chrome,Safari4 */
+    background: -webkit-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* Chrome10 and Safari5 */
+    background: -o-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* Opera 11.10 */
+    background: -ms-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* IE10 */
+    background: linear-gradient(to bottom, #d02c2b 1%,#c31a21 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02c2b', endColorstr='#c31a21',GradientType=0 ); /* IE6-8 */
+	float:right;
+	height:70px;
+	}
+.news1 h3 span {color:#e62f37;  }
+.buy-footer { 
+    background: -moz-linear-gradient(top, #d02c2b 1%, #c31a21 100%); /* Mozilla */ 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d02c2b), color-stop(100%,#c31a21)); /* Chrome,Safari4 */
+    background: -webkit-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* Chrome10 and Safari5 */
+    background: -o-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* Opera 11.10 */
+    background: -ms-linear-gradient(top, #d02c2b 1%,#c31a21 100%); /* IE10 */
+    background: linear-gradient(to bottom, #d02c2b 1%,#c31a21 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02c2b', endColorstr='#c31a21',GradientType=0 ); /* IE6-8 */
+	
+}

@@ -916,7 +916,7 @@ body .ui-tooltip {
 	color: #000;
 	text-decoration: none;
 	font-family: 'opensans-bold';
-	font-size:12px;
+	font-size:14px;
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
@@ -1295,3 +1295,4 @@ body .ui-tooltip {
     border-top: 0px solid #0094ba!important;
     border-left: 0px solid #fff!important;
     width: 0; }
+

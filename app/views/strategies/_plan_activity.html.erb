@@ -49,11 +49,11 @@
 	<div class="clear"></div>
 
 
-<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
+<% if myp and activity.type == "ActivityInSequence" and activity.activity_sequence.has_previous? %>
 	<%= link_to "<< previous", :controller => "ActivitySequences", :action => "set_previous", :id => activity.activity_sequence.id %>
 <% end %>
 
-<% if activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
+<% if myp and activity.type == "ActivityInSequence" and activity.activity_sequence.has_next? %>
 	<%= link_to "next >>", :controller => "ActivitySequences", :action => "set_next", :id => activity.activity_sequence.id %>
 <% end %>
 
@@ -76,22 +76,20 @@
 
 
 									
-<% if myp %>
 	<% if activity.type == "ActivityInSequence" %>
-		<% if activity.activity_sequence.activities.size < 10 %>
+		<% if activity.activity_sequence.activities.size < 50 %>
 		<BR><b>Activities in the sequence:</b><BR>
 			<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
-				<%= link_to activity_in_sequence.title, activity_in_sequence %>		
-				<% if activity.activity_sequence.current_activity != activity_in_sequence %>
-				<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
-				<% else %> << Current
+				<%= link_to activity_in_sequence.title, activity_in_sequence %>		&nbsp;<%= shorten(activity_in_sequence.description, 100) %>...<%= link_to 'see more', activity_in_sequence %>
+				<% if myp and activity.activity_sequence.current_activity != activity_in_sequence %>
+					<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
+				<% elsif myp %> << Current
 				<% end %><BR>
 			<% end %>
 		<% else %>
 		<%= link_to 'See all activities in this sequence', activity %>
 		<% end %>
 
-	<% end %>
 
 
 	<% activity.hals.each do |hal| %>

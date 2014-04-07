@@ -97,11 +97,11 @@ nav ul li a.course { background:url(/images/course.png) 0 2px no-repeat;}
 nav ul li a.edu { background:url(/images/edu.png) 0 0 no-repeat;}
 nav ul li a.active { color:#899d2c; }
 .user { float:right; margin-top:-5px;}
-.user .image { width:61px; height:55px; background:#a3c026; float:left; }
-.user .image2 { width:51px; height:45px; padding:5px; overflow:hidden; background:#a3c026; text-align:center;}
+.user .image { width:56px; height:50px; background:#a3c026; float:left; }
+.user .image2 { width:46px; height:40px; padding:5px; overflow:hidden; background:#a3c026; text-align:center;}
 .user .image img { width:100%; height:auto;}
-.user .name { float:left; position:relative;background:url(/images/button.jpg) 0 0 repeat-x; padding:3px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer; min-width:135px;}
-.user .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name.png) center right no-repeat; padding:0 30px 0 0; float:right;}
+.user .name { float:left; position:relative;background:url(/images/button.jpg) 0 0 repeat-x; padding:3px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer; min-width:70px;}
+.user .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name.png) center right no-repeat; padding:0 25px 0 0; float:right;}
 .user .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:10px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
 .user .name:hover ul{ display:block;}
 .user .name ul li { list-style:none; background:#88b452; border-top:1px solid #accb87; padding:5px; width:161px;}
@@ -317,6 +317,7 @@ h2.head { color: #555657; font-size: 19px; font-family: 'opensans'; padding-bott
 .box1 { margin-top:0px; }
 .title {color: #3798cf; font-size: 19px; font-family: 'opensans';}
 .space { height:10px; }
+.space1 { height:40px; }
 .box1 { border: 1px solid #AAA; padding: 20px; margin:15px 15px 15px 0px; overflow:hidden; }
 .edit4 { float:right; margin:25px 10px 0px 0px;}
 #tabs-3 .lft { width:75%; float:left; }
@@ -437,16 +438,33 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle ul li { list-style:none; }
 .toggle ul li.lft { list-style:none; width:440px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.rgt { list-style:none; width:410px; float:left; margin-left:10px; }
+.toggle ul li.lft1 { list-style:none; width:300px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
+.toggle ul li.lft1 .customization { width: 100% !important;}
+.toggle ul li.lft1 .nav-toggle { margin-right: 0px !important;}
+.toggle ul li.lft1 .width96 { width: 94.5% !important; }
+.toggle ul li.rgt1 form input[type="button"], .course_manage input[type="submit"], .edit a, .box_3 a.green, .customization a { padding: 1px 3px;margin-right:2px;}
+.toggle ul li.rgt1 .table dt { width: 30px; font-size:10px;}
+.toggle ul li.rgt1 .edit_box { margin-left:-220px; }
+.toggle ul li.rgt1 .edit2 a, .edit3a a, .edit4 a { padding: 2px 3px; margin-right:2px;}
+.toggle ul li.rgt1 .margin3 { margin-right: 0px!important;}
+.toggle ul li.rgt1 .edit3a { margin: 0px!important;}
+.toggle ul li.rgt1 { list-style:none; width:270px; float:left; margin-left:10px; }
+.toggle ul li.rgt1 .width97 { width: 95% !important;}
 .toggle ul li.rgt h2 { font-size:14px; padding:0px; margin:0px 0px 15px; }
 .toggle ul li.rgt h3 { font-size:12px; padding:0px; margin:0px 0px 15px; font-weight:normal; }
 .toggle li.column_b li:hover{background:#fafafa;}
 .toggle li.column_b li.active{background:#fafafa;}
 .toggle li.column_b li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
+.toggle li.column_b1 li:hover{background:#fafafa;}
+.toggle li.column_b1 li.active{background:#fafafa;}
+.toggle li.column_b1 li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
 .toggle ul li div {color: #666666; cursor: auto; font-size: 13px; text-decoration: none; }
 .toggle {width:95%; font-family: 'opensans'; margin:3%;}
 .toggle h4 { font-size:14px; margin-top:5px; margin-bottom:5px; font-family: 'opensans'; }
 .column_a { width:456px!important; float:left!important; margin:0px 7px!important; padding:0px!important; }
 .column_b { width:426px!important; float:left!important; margin:0px 7px!important; margin-top:3px; }
+.column_a1 { width:286px!important; float:left!important; margin:0px 7px!important; padding:0px!important; }
+.column_b1 { width:286px!important; float:left!important; margin:0px 7px!important; margin-top:3px; }
 
 
 
@@ -501,20 +519,31 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .content-full .left { display:table-cell; }
 .content-full .left .inn { width:100%; display:block; overflow:hidden;   }
 .content-full .right { width:100px; display:table-cell; text-align:right; vertical-align:top; }
-.people ul { margin:0px; padding:0px; }
-.people ul li { width:45%; float:left; margin-right:20px; list-style:none; margin-bottom:15px; }
+.people { width:100%; float:left; overflow:hidden; }
+.people dl { width:100%; float:left;  }
+.people dl p { float:left; clear:both;  }
+.people dl a { float:left; }
+.people dl .left { width:25%; float:left; }
+.people dl .right { width:65%; float:left; }
+.people dt { width:45%; margin-right:1%; float:left; }
+.people dd { width:45%; margin-right:1%; float:right; }
+.people dl img { border:1px solid #ccc; padding:2px;}
+/*.people ul { margin:0px; padding:0px; width:100%; border:1px solid #ff0000; }
+.people ul li { width:49%; float:left; margin-right:1%; list-style:none; margin-bottom:15px; }
 .people ul li img { border:1px solid #ccc; padding:2px;}
-.button_head {background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; margin:5px 20px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
-.date { text-align:right; margin-top:-10px; padding:0px;font-style:italic; font-size:13px; font-family:'opensans'; text-decoration:underline;}
+*/.button_head {background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; margin:5px 20px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
+.date { text-align:right; margin-top:-23px; padding:0px;font-style:italic; font-size:13px; font-family:'opensans'; text-decoration:underline;}
 form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; border-radius:5px;height:40px; width:auto; padding:5px;}
 
 .facebooklink {float:left; width:auto;}
 .facebooklink a { margin:0px; padding:0px; }
 
+.facebookloginlink { float:right!important; padding:0px 20px 0px 0px!important; width:auto!important;  }
+
 
 .getstart { float:right; clear:both; margin-top:-45px;}
-.getstart .name { float:left; position:relative;background:url(/images/getting_started.png) 0 0 no-repeat; padding:5px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer;}
-.getstart .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name1.png) center right no-repeat; padding:0 30px 0 0;}
+.getstart .name { float:left; position:relative;background:url(/images/getting_started.png) 0 0 repeat-x; padding:0px 8px 3px; margin-top:22px; border-radius:5px 5px 5px 5px; cursor:pointer; min-width:115px;}
+.getstart .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name1.png) center right no-repeat; padding:0 30px 0 5px;}
 .getstart .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:10px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
 .getstart .name:hover ul{ display:block;}
 .getstart .name ul li { list-style:none; background:#88b452; border-top:1px solid #accb87; padding:5px; width:161px;}

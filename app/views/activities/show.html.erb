@@ -19,8 +19,10 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 <strong>Goal: </strong><%= @activity.goal.title %>
 <% end %>
 <BR>
-<%= render :partial => 'strategies/timing', locals: {activity: @activity, labelled: true} %>
-<BR>
+	<% timing = timing_text(@activity); if !timing.empty? %>
+	<p><span class="bold">Timing:</span><%= timing %>
+	<BR></p>
+	<% end %>
 <div class='boxed'>
 <%= sanitize @activity.description %>
 </div>
@@ -41,10 +43,10 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 <% if @activity.type == "ActivityInSequence" %>
 	<BR><b>Activities in the sequence:</b><BR>
 		<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
-			<%= link_to activity_in_sequence.title, activity_in_sequence %>		
+			<%= link_to activity_in_sequence.title, activity_in_sequence %>&nbsp;<%= shorten(activity_in_sequence.description, 100) %>...<%= link_to 'see more', activity_in_sequence %>
 			<% if @activity.activity_sequence.current_activity != activity_in_sequence and activity_in_sequence.user == current_user %>
 			<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
-			<% else %> << Current
+			<% elsif activity_in_sequence.user == current_user %> << Current
 			<% end %><BR>
 		<% end %>
 

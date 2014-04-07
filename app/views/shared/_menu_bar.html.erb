@@ -4,17 +4,6 @@
 	<nav>
 		<ul>
 		<% if current_user  %>
-		<li id='link0'> <a href="javascript:void(0);" data-intro='Welcome to the quick tour.  You can click the right arrow to go to the next step.' data-step='0'>Getting Started</a>
-			<ul id="navmenu0">
-				<% if current_page?(myp_path) %>
-					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id if current_user.strategy.current_activities.first %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
-				<% else %>
-		            <li><%= link_to "Tutorial n/a", '#' %></li>
-				<% end %>
-	            <li><%= link_to "Creating a course", gettingstartedcreate_path %></li>
-			</ul>
-		</li>
-			
 			<li id='linkplan'><div data-intro="This is where you have your plan.  You'll be spending a lot of time here.  You can manage your plan, and view your commitment marks" data-step='1'> <%= link_to "my Plan", :myp, class: 'stra'  %>  </div>
 				<ul id="navmenuplan">
 					<li><%= link_to "My Plan", :myp  %></li>
@@ -80,6 +69,20 @@
 			</ul>
 		</div>
 	</div>
+
+
+	<div class="getstart">
+    <div class="name"><a href="javascript:void(0);" data-intro='Welcome to the quick tour.  You can click the right arrow to go to the next step.' data-step='0'>Getting Started</a>
+      <ul>
+			<% if current_page?(myp_path) %>
+				<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id if current_user.strategy.current_activities.first %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
+			<% else %>
+	            <li><%= link_to "Tutorial n/a", '#' %></li>
+			<% end %>
+          <li><%= link_to "Creating a course", gettingstartedcreate_path %></li>
+      </ul>
+    </div>
+	<div class="clear"></div>	
 	<% else %>
 	<div class="userlogin">
 		<%= link_to image_tag("/images/fb_login.png"), "/auth/facebook", :class => "fblogin", :alt=>"Facebook Login", id: "sign_in" %>

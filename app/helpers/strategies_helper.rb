@@ -1,7 +1,7 @@
 module StrategiesHelper
 
   def shorten(text, length)
-    strip_tags(text.split(" ").each_with_object("") {|x,ob| break ob unless (ob.length + " ".length + x.length <= length);ob << (" " + x)}.strip)
+    ret = strip_tags(text.split(" ").each_with_object("") {|x,ob| break ob unless (ob.length + " ".length + x.length <= length);ob << (" " + x)}.strip)
   end
   
   def myp_status

@@ -35,8 +35,7 @@
 						<div class="toggle">
 							<ul>
 								
-								
-								<li class="lft" data-intro='This is your plan.  All the activities in your plan organized by goal and course' data-step='4'>
+								<li class="lft<%= 'short' if !myp %>" data-intro='This is your plan.  All the activities in your plan organized by goal and course' data-step='4'>
 									<ul>
 
 <% activty_map = get_activity_by_goal_or_course(strategy.current_activities, myp) %>
@@ -84,7 +83,7 @@
 <% end %>
           				
 </li>
-<li class="rgt">
+<li class="rgt<%= 'short' if !myp %>">
 <% strategy.current_activities.each do |activity| %>
 	<% first = false
 	first = true if activity == strategy.current_activities.first %>

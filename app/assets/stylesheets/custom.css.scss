@@ -102,7 +102,7 @@ nav ul li a.active { color:#899d2c; }
 .user .image img { width:100%; height:auto;}
 .user .name { float:left; position:relative;background:url(/images/button.jpg) 0 0 repeat-x; padding:3px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer; min-width:70px;}
 .user .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name.png) center right no-repeat; padding:0 25px 0 0; float:right;}
-.user .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:10px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
+.user .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:5px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
 .user .name:hover ul{ display:block;}
 .user .name ul li { list-style:none; background:#88b452; border-top:1px solid #accb87; padding:5px; width:161px;}
 .user .name ul li:hover { background:#bdd84b; color:#000}
@@ -123,7 +123,7 @@ nav ul li a.active { color:#899d2c; }
 .page2 { width:100%; min-height:437px;float:left; background:url(/images/devider.png) center top repeat-y #fff; padding-bottom:20px;}
 .page3 {width:100%;float:left; background:#fff;}
 .page3 .tab_holder { width:auto; float:left; padding:10px 20px;}
-.page3 .tab_holder2 { width:auto; float:left; padding:10px 20px;}
+.page3 .tab_holder2 { width:90%; float:left; padding:10px 20px;}
 .side2 { width:27px;min-height:466px; float:left;background:url(/images/side2.png) 0 0 no-repeat;}
 .arrowbox { position:absolute; background:#e7e7e7; width:30px;height:30px;right:110px;top:75%;
  -moz-transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);
@@ -165,9 +165,9 @@ footer {padding:27px 27px; float:left;width:982px;}
 .nav2 ul li a { text-decoration:none; color:#000; font-size:12px;font-family: 'opensans'; font-weight:bold;}
 .nav2 ul li a:hover { color:#fff;}
 .copy { float:right;color:#000; font-size:12px;font-family: 'opensans';font-weight:bold;}
-section { width:640px; float:left; padding:0 10px 10px 30px;}
+section { width:90%; float:left; padding:0 10px 10px 30px;}
 .section2 { width:930px; float:left; padding:0 10px 10px 30px;}
-section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; position:relative; width:auto; margin-top:15px;}
+section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; position:relative; width:auto; margin-top:15px; width:90%;}
 section .box_holder .title, .section2 .box_holder .title, .left_bar .box_holder3 .title{ padding-left:25px; padding-right:23px; background:#dde9a5; position:absolute; width:70%; top:10px; left:-15px; border-radius:5px; z-index:1; min-width:37px;}
 .triangle, .triangle2 { background:url(/images/triangle.png) left top no-repeat; width:16px; height:24px; position:absolute; top: 46px; left:-15px;}
 .triangle2 {background:url(/images/triangle2.png) left top no-repeat; width:8px; height:15px; position:absolute;top: 42px;left:-12px;}
@@ -205,7 +205,7 @@ aside .box_holder2 p.left, aside .box_holder2 h2.left, .box_holder2 h3.left { te
 .box_holder2 h2.left, .box_holder2 h3.left { text-align:left; padding-left:10px;}
 aside .box_holder .read a { float:right; color:#9ab71f; font-size:12px;font-family: 'opensans'; padding:5px 5px; text-decoration:none;}
 /**********tab************/
-#tabs-1 .box, #tabs-2 .box, #tabs-3 .box, #tabs-4 .box, #tabs-5 .box { border-bottom:1px solid #333333; padding-bottom:20px;}
+#tabs-1 .box, #tabs-2 .box, #tabs-3 .box, #tabs-4 .box, #tabs-5 .box { width:90%; border-bottom:1px solid #333333; padding-bottom:20px;}
 #tabs-1 .box:last-child  { border-bottom:0;}
 #tabs-1 .box h1, #tabs-2 .box h1, #tabs-3 .box h1, #tabs-4 .box h1, #tabs-5 .box h1 {font-family: 'opensans'; margin:5px; padding-left:20px; font-size:14px; color:#2B3501;}
 .userlink { font-family: 'opensans'; font-size:14px!important; color:#000!important; text-decoration:none; }
@@ -404,7 +404,7 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .width99 { width:99.2%!important; }
 .padding10 { padding:10px 0!important; }
 
-#comments .lft, #tabs-1 .lft, #tabs-2 .lft, #tabs-3 .lft, #tabs-4 .lft, #tabs-5 .lft {float:left!important; width:15%!important;}
+#comments .lft, #tabs-1 .lft, #tabs-2 .lft, #tabs-3 .lft, #tabs-4 .lft, #tabs-5 .lft {float:left!important; width:51%!important;}
 #comments .rgt, #tabs-1 .rgt, #tabs-3 .rgt, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:84%!important; }
 #tabs-2 .rgt { float:right!important; width:56%!important; }
 #comments .rgtcourse, #tabs-1 .rgtcourse, #tabs-2 .rgtcourse, #tabs-3 .rgtcourse, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:60%!important; }
@@ -440,8 +440,10 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 /*Toggle div for myplan page*/
 .toggle ul { padding:0px; margin:0px; }
 .toggle ul li { list-style:none; }
+.toggle ul li.lftshort { list-style:none; width:300px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.lft { list-style:none; width:440px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.rgt { list-style:none; width:410px; float:left; margin-left:10px; }
+.toggle ul li.rgtshort { list-style:none; width:290px; float:right; margin-left:0px; }
 .toggle ul li.lft1 { list-style:none; width:300px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.lft1 .customization { width: 100% !important;}
 .toggle ul li.lft1 .nav-toggle { margin-right: 0px !important;}
@@ -548,7 +550,7 @@ form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px s
 .getstart { float:right; clear:both; margin-top:-45px;}
 .getstart .name { float:left; position:relative;background:url(/images/getting_started.png) 0 0 repeat-x; padding:0px 8px 3px; margin-top:22px; border-radius:5px 5px 5px 5px; cursor:pointer; min-width:115px;}
 .getstart .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name1.png) center right no-repeat; padding:0 30px 0 5px;}
-.getstart .name ul  { position:absolute; z-index:100; display:none; left: -67px; top:10px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
+.getstart .name ul  { position:absolute; z-index:100; display:none; left: -28px; top:3px; background:url(/images/ul_back.png) 0 top no-repeat; padding:22px 0 10px 0;}
 .getstart .name:hover ul{ display:block;}
 .getstart .name ul li { list-style:none; background:#88b452; border-top:1px solid #accb87; padding:5px; width:161px;}
 .getstart .name ul li:hover { background:#bdd84b; color:#000}

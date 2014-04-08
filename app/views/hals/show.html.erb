@@ -1,12 +1,5 @@
 <% @title = "View Blog Entry" %>
-
-
-<div class="page">
-   <h2>Blog entry<% if @hal.halable %> about: <%= link_to @hal.halable.title, @hal.halable %><% end %></h2>
-	<%= link_to 'Add an entry',new_hal_path, :class => 'search' %>
- </div>
- <div class="page3">
-	<section>
+<% if @hal.halable @title += "about: @hal.halable.title" %>
 
 				<div class="image_holder"><%= image_tag @hal.user.avatar.url(:small), :class => "img_lft" if (@hal.user.avatar.url(:small)) %></div>
 				<p class="general">
@@ -99,6 +92,3 @@
                  </ul>
                </div>
 
-	</section>
-	<%= render :partial => 'shared/aside' %>
-</div>

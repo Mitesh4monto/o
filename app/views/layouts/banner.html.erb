@@ -114,7 +114,7 @@
 	 <div></div>
  
          <!--   tab 1   -->
-	     <div class="fl tab_item current"> 
+	     <div id='first' class="fl tab_item current"> 
 	         <img src="/bannfiles/icon1.png" alt="">
 			 <h3> Create a Course </h3>
 			 <p data-skip="true"> Creating a course is easy and fun! </p>
@@ -143,28 +143,34 @@
 		  
 	 </div><!--   End of Tabs   -->
 	  
+	<script>
+	$(document).ready(function(){
+		// hackedy hack
+		TabbedContent.slideContent($('#first'));
+		$(window).scrollTop(0);		
+	}); 
+	
+	</script>
 	  <!--   Tabbed Content   -->
 	 <div class="slide_content">						
 			<div class="tabslider" style="margin-left: -920px;">
 			
-			<!--   Tabbed Content1   -->
-			<ul>
-				<li class="featured1">
-				<div class="banner" style="max-width:95%; "><img src="/bannfiles/courseov.png" alt="" style="max-width:95%;" data-score="0.000004949582607168078"></div>
-				<div class="banner-content">
-				<h1> Create a Course</h1>
+				<!--   Tabbed Content1   -->
+				<ul>
+					<li class="featured1">
+					<div class="banner" style="max-width:95%; "><img src="/bannfiles/courseov.png" alt="" style="max-width:95%;" data-score="0.000004949582607168078"></div>
+					<div class="banner-content">
+					<h1> Create a Course</h1>
 				
-				<ul class="features-2 ">		 
-		        <li data-meaningful="true" ct-id="6">meLearning makes it easy to distill your ideas in a format people can apply every day.</li>
-		        <li data-meaningful="true" ct-id="7">A course is a set of activities that can be modified by each participant.</li>
-		        <li data-meaningful="true" ct-id="5">Creating a course is easy and fun! </li>
-		   </ul>
-		   <!--   Buy it NOW - Button   -->
-		   <div class="buttons"> 
-		   <a class="large-buy-button" href="http://www.melearni.ng/users/sign_in">Create a Course Today</a> 
-		   
-		   
-		   </div>
+					<ul class="features-2 ">		 
+			        <li data-meaningful="true" ct-id="6">meLearning makes it easy to distill your ideas in a format people can apply every day.</li>
+			        <li data-meaningful="true" ct-id="7">A course is a set of activities that can be modified by each participant.</li>
+			        <li data-meaningful="true" ct-id="5">Creating a course is easy and fun! </li>
+			   </ul>
+			   <!--   Buy it NOW - Button   -->
+			   <div class="buttons"> 
+					<%= link_to 'Create A course Today!', signin_path, :class=>"large-buy-button"  %>
+			   </div>
 		   </div>
 		   </li>
 		   </ul>
@@ -520,10 +526,10 @@
 
  <!-- MODULE 7 - START    Footer Buy Button Section    -->
 <div class="buy-footer"> 
-<div class="wrapper container">
-<h1> <span>Easy and blah blah!</span>&nbsp;&nbsp;&nbsp;&nbsp;Create or follow a Course Now! </h1>
-<a class="large-buy-button">Join Now!</a>
-</div>
+	<div class="wrapper container">
+		<h1> <span>Easy and blah blah!</span>&nbsp;&nbsp;&nbsp;&nbsp;Create or follow a Course Now! </h1>
+		<%= link_to 'Join Now!', signin_path, :class=>"large-buy-button"  %>
+	</div>
 </div>
  <!-- MODULE 7 - END    Footer Buy Button Section    -->
 

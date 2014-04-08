@@ -8,9 +8,10 @@ $(function() {
 	<%= render :partial => 'new_course_edit' %>
 
 	<div class="clear"></div>
+	<div class='boxed'>
 	<h2>Instruction</h2>
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-
+	<p>The information in this form is the first thing people will see about your course.  Make sure the course name is descriptive enough and include keywords people might search.  You can add tags for keywords that don't fit in your description.</p>
+</div>
 
 	
 	<%= form_for @course, :url => "/courses/overview_update/#{@course.id}", :format => :js, :html => {:class => "course_manage"}, :remote => true do |f| %>
@@ -32,7 +33,7 @@ $(function() {
 				<div class="clear"></div>
 			</div>			
 			<div class="row">
-				<label>Site Url</label><%= f.text_field :external_site %>
+				<label>Site Url</label> <%= tipper("A web site that pertains to the course if you have one.") %> <%= f.text_field :external_site %>
 				<div class="clear"></div>
 			</div>			
 			<div class="row">

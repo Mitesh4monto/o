@@ -23,7 +23,9 @@
 		}
 	</script>
 
-<div class="left_bar width94">
+<!-- <div class="left_bar width94"> -->
+	<div class="left_barc width100">
+	
 	<div class="toggle">
 		<ul>
 			<li class="lft" data-intro='Your plan' data-step='4'>
@@ -31,11 +33,13 @@
 				<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
 				<% if activty_map.size > 0 %>
 					<% activty_map.each do |key, activities| %>
-						<li class="column_a"><h4><%= key.nil? ? "none" : "Goal: " + key.title %></h4></li>
-						<li class="column_b">
+						<li class="column_a1"><h4><%= key.nil? ? "none" : "Goal: " + key.title %></h4></li>
+						<li class="column_b1">
 						<% activities.each do |activity| %>
 							<ul>		
-								<li class="" onClick="showdiv('<%= activity.id %>');"><%= activity.id %><%= activity.title %> - <%= render :partial => 'strategies/timing', locals: {activity: activity} %>								
+								<li class="" onClick="showdiv('<%= activity.id %>');"> 
+									<%= 'Sequence starting with ' if activity.type == "ActivityInSequence" %>
+									 <%= activity.title %> <% timing = timing_text(activity); if !timing.empty?  %>- <%= timing %> <% end %>
 								</li>
 							</ul>
 						<% end %>
@@ -44,14 +48,11 @@
 					<% end %>
 				<% end %>
 				</ul>
+				<div class="edit2">
+				<%= link_to 'Add activity', add_activity_to_course_path(@course.id)  %>
+				</div>
 			</li>
 										
-			<div class="clear"></div>
-	        <div class="box_3">
-				<%= link_to 'Add activity', add_activity_to_course_path(@course.id) %>
-				<div class="clear"></div>
-	        </div>
-		
 			<li class="rgt">
 				<% @course.strategy.current_activities.each do |activity| %>
 					<div id="<%= activity.id %>" class="content" style="display:none;">

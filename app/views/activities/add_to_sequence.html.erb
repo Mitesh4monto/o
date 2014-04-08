@@ -1,9 +1,11 @@
 <% @title = "Add an Activity to Sequence" %>
 <% @show_aside = true %>
-
-<%= semantic_form_for @activity do |f| %>
+<%= semantic_form_for @activity, :html => {:class => "course_manage"}  do |f| %>
 	<%= hidden_field_tag 'seq_activity', @seq_activity.id %>
-	<%= f.inputs :title,  :customization %>
+	<div class="row">
+		<label>Title</label><%= f.text_field  :title%>
+		<div class="clear"></div>
+	</div>
 	<% select_goal = "Select a goal" %>	
 		<%= f.input :goal,  :as => :select, :collection => @seq_activity.strategy.goals, :prompt => "Select a Goal"  %>
 		Or create new:

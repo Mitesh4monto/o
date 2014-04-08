@@ -27,8 +27,10 @@ jQuery ->
     switch $('#activity_goal_id :selected').text()
       when "Create a New Goal"
         $('#activity_new_goal_text').show()
+        $('#goal_new_text').show()
       else
         $('#activity_new_goal_text').hide()
+        $('#goal_new_text').hide()
 
 jQuery ->
   $('#activity_until_radio_date').click -> 

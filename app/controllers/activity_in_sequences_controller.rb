@@ -14,8 +14,13 @@ class ActivityInSequencesController < ActivitiesController
   # create new activity_in_sequence and place it in activity sequence.  create goal if new one specified
   def create
     @activity = ActivityInSequence.new(params[:activity_in_sequence])
-    # if adding to a course, point act to course
     existing_act = Activity.find_by_id(params[:seq_activity])
+    if params[:cancel] 
+      # cancel => go back to course plan edit
+      redirect_to course_plan_edit_path(existing_act.course_id)
+      return
+    end
+    # if adding to a course, point act to course
     @activity.course_id = existing_act.course_id
     ActivitySequence.add_activity_to_sequence_with(@activity, existing_act)
     @activity.user_id = current_user.id

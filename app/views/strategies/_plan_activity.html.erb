@@ -80,7 +80,7 @@
 		<% if activity.activity_sequence.activities.size < 50 %>
 		<BR><b>Activities in the sequence:</b><BR>
 			<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
-				<%= link_to activity_in_sequence.title, activity_in_sequence %>		&nbsp;<%= shorten(activity_in_sequence.description, 100) %>...<%= link_to 'see more', activity_in_sequence %>
+				<%= link_to activity_in_sequence.title, activity_in_sequence %>		&nbsp;<%= shorten(activity_in_sequence.description, 70) %>...<%= link_to 'see more', activity_in_sequence %>
 				<% if myp and activity.activity_sequence.current_activity != activity_in_sequence %>
 					<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
 				<% elsif myp %> << Current

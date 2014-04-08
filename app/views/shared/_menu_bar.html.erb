@@ -72,16 +72,17 @@
 
 
 	<div class="getstart">
-    <div class="name"><a href="javascript:void(0);" data-intro='Welcome to the quick tour.  You can click the right arrow to go to the next step.' data-step='0'>Getting Started</a>
-      <ul>
-			<% if current_page?(myp_path) %>
-				<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id if current_user.strategy.current_activities.first %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
-			<% else %>
-	            <li><%= link_to "Tutorial n/a", '#' %></li>
-			<% end %>
-          <li><%= link_to "Creating a course", gettingstartedcreate_path %></li>
-      </ul>
-    </div>
+	    <div class="name"><a href="javascript:void(0);" data-intro='Welcome to the quick tour.  You can click the right arrow to go to the next step.' data-step='0'>Getting Started</a>
+	      <ul>
+				<% if current_page?(myp_path) %>
+					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id if current_user.strategy.current_activities.first %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
+				<% else %>
+		            <li><%= link_to "Tutorial n/a", '#' %></li>
+				<% end %>
+	          <li><%= link_to "Creating a course", gettingstartedcreate_path %></li>
+	      </ul>
+	    </div>
+	</div>
 	<div class="clear"></div>	
 	<% else %>
 	<div class="userlogin">

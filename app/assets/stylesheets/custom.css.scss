@@ -192,18 +192,18 @@ section .pagi ul { margin:20px 0; padding-left:0;}
 section .pagi ul li { float:left; list-style:none; padding:0 3px;}
 section .pagi ul li a { padding:5px 12px; border:1px solid #a5a5a5; border-radius:5px; text-decoration:none; color:#777777; font-size:12px;font-family: 'opensans'; background:#f4f4f4; box-shadow:0px 2px 2px 0px #ccc;}
 section .pagi ul li a:hover { background:#3d7fc9; color:#fff;}
-aside { width:100px; float:right; border:2px solid #c9c8c8;  margin-top:0px; padding:2px;  margin-right: 0px; margin-bottom:0px; background:#f4f4f4;}
+aside { width:150px; float:right; border:2px solid #c9c8c8;  margin-top:0px; padding:2px;  margin-right: 0px; margin-bottom:0px; background:#f4f4f4;}
 aside .box_holder { float:left; position:relative; width:100%;}
 aside .box_holder .title {padding-left:25px;background:#dde9a5; position:absolute; width:90%;top:10px; left:-15px;border-radius:5px; z-index:1;}
-aside .box_holder2 {float:left; width:100%; text-align:center;padding:10px 0 15px; border-bottom:1px solid #c9c8c8;}
+aside .box_holder2 {float:left; width:100%; text-align:center;padding:5px 0 5px; border-bottom:1px solid #c9c8c8;}
 aside .box_holder2 h2 { margin:30px 0 10px;}
 aside .box_holder2 h3 { margin:0 0 10px;}
 aside .box_holder2 h2 a, aside .box_holder2 h3 a { font-family: 'opensans'; color:#1f7397; font-size:13px;}
 aside .box_holder2 img { border:3px solid #bdd84b;}
-aside .box_holder2 p { padding:0 10px; margin:5px 0; color:#080000; font-size:13px;font-family: 'opensans';}
+aside .box_holder2 p { padding:0 5px; margin:5px 0; color:#080000; font-size:13px;font-family: 'opensans';}
 aside .box_holder2 p.left, aside .box_holder2 h2.left, .box_holder2 h3.left { text-align:left;}
 .box_holder2 h2.left, .box_holder2 h3.left { text-align:left; padding-left:10px;}
-aside .box_holder .read a { float:right; color:#9ab71f; font-size:12px;font-family: 'opensans'; padding:15px 5px; text-decoration:none;}
+aside .box_holder .read a { float:right; color:#9ab71f; font-size:12px;font-family: 'opensans'; padding:5px 5px; text-decoration:none;}
 /**********tab************/
 #tabs-1 .box, #tabs-2 .box, #tabs-3 .box, #tabs-4 .box, #tabs-5 .box { border-bottom:1px solid #333333; padding-bottom:20px;}
 #tabs-1 .box:last-child  { border-bottom:0;}
@@ -237,9 +237,11 @@ aside .box_holder .read a { float:right; color:#9ab71f; font-size:12px;font-fami
 .page3 .right_panel .squre, .show .squre { width:40px; height:28px; float:left;margin: 0 100px 0 0;}
 .page3 .right_panel .squre2, .show .squre2 { width:120px; height:83px; float:left;}
 .page3 .left_bar { float:left; width:470px; padding:0 10px 0 30px ;margin:0 0 20px 0;}
+.page3 .left_barc { float:left; width:470px; padding:0 10px 0 0px ;margin:0 0 20px 0;}
 .box_holder3 { width:445px;}
 .page3 .right_bar { float:left; width:450px; margin:0 0 20px 0;}
 .page3 .box_3 { width:432px; float:left;}
+.page3 .box_3c { width:286px; float:left;}
 .box_3 a.green { margin-top:0;}
 .box_4 p { font-size:13px; color:#000;font-family: 'opensans'; }
 .box_holder3 .image_holder { width:75px; height:75px; float:left; overflow:hidden; text-align:center;padding:0 10px 4px 10px;}
@@ -403,7 +405,9 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .padding10 { padding:10px 0!important; }
 
 #comments .lft, #tabs-1 .lft, #tabs-2 .lft, #tabs-3 .lft, #tabs-4 .lft, #tabs-5 .lft {float:left!important; width:15%!important;}
-#comments .rgt, #tabs-1 .rgt, #tabs-2 .rgt, #tabs-3 .rgt, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:84%!important; }
+#comments .rgt, #tabs-1 .rgt, #tabs-3 .rgt, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:84%!important; }
+#tabs-2 .rgt { float:right!important; width:56%!important; }
+#comments .rgtcourse, #tabs-1 .rgtcourse, #tabs-2 .rgtcourse, #tabs-3 .rgtcourse, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:60%!important; }
 .img2 { float:left; padding:0 12px 0 0; width:100px; height:80px; overflow:hidden; }
 #tabs-1, #tabs-2, #tabs-3, #tabs-4, #tabs-5 { overflow:hidden; }
 .strongwidth90 { float:left; width:90px; }
@@ -442,7 +446,7 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle ul li.lft1 .customization { width: 100% !important;}
 .toggle ul li.lft1 .nav-toggle { margin-right: 0px !important;}
 .toggle ul li.lft1 .width96 { width: 94.5% !important; }
-.toggle ul li.rgt1 form input[type="button"], .course_manage input[type="submit"], .edit a, .box_3 a.green, .customization a { padding: 1px 3px;margin-right:2px;}
+.toggle ul li.rgt1 form input[type="button"], .course_manage input[type="submit"], .edit a, .box_3 a.green, .customization a { padding: 3px 11px;margin-right:2px;}
 .toggle ul li.rgt1 .table dt { width: 30px; font-size:10px;}
 .toggle ul li.rgt1 .edit_box { margin-left:-220px; }
 .toggle ul li.rgt1 .edit2 a, .edit3a a, .edit4 a { padding: 2px 3px; margin-right:2px;}
@@ -459,7 +463,7 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle li.column_b1 li.active{background:#fafafa;}
 .toggle li.column_b1 li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
 .toggle ul li div {color: #666666; cursor: auto; font-size: 13px; text-decoration: none; }
-.toggle {width:95%; font-family: 'opensans'; margin:3%;}
+.toggle {width:95%; font-family: 'opensans'; margin:1%;}
 .toggle h4 { font-size:14px; margin-top:5px; margin-bottom:5px; font-family: 'opensans'; }
 .column_a { width:456px!important; float:left!important; margin:0px 7px!important; padding:0px!important; }
 .column_b { width:426px!important; float:left!important; margin:0px 7px!important; margin-top:3px; }

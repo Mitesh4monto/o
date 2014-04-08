@@ -9,7 +9,9 @@
 					<%= 
 					# update.id
 					 %> 
-					<%= link_to update.user.name, update.user %>&nbsp;<%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
+					<p>
+						<%= link_to update.user.name, update.user %>&nbsp; <%= render "update/#{update.loggable_type.downcase}/#{update.action.downcase}", update: update %>
+					</p>
 				</div>
 			<% end %>
 	</div>

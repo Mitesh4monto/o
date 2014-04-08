@@ -29,7 +29,8 @@
 			<%= f.input :goal,  :collection => 
 get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'Create a New Goal')]),
  :prompt => "Select a Goal", :label => false  %>
-			<div class="clear"></div>		
+			<div class="clear"></div><BR>		
+			<%= label :goal, "New goal text",:id => "goal_new_text", :style=>"display:none;" %>
 			<%= f.text_field :new_goal_text, :style=>"display:none;" %>
 		<% else %>
 		<%= f.text_field :new_goal_text %>

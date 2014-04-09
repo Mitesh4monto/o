@@ -5,10 +5,12 @@ class ActivitySequencesController < ApplicationController
   
   # sort list of actiities in strategy   => TODO optimize
   def sort
+    activity = nil
     params[:activity_in_sequence].each_with_index do |id, index|
       activity = Activity.find_by_id(id)
       Activity.update_all(['act_seq_order=?', index+1], ['id=?', id]) unless activity.user_id != current_user.id
     end
+    activity.activity_sequence.set_current(activity.activity_sequence.first)
     render :nothing => true
   end
   

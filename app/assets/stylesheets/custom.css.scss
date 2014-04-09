@@ -123,7 +123,7 @@ nav ul li a.active { color:#899d2c; }
 .page2 { width:100%; min-height:437px;float:left; background:url(/images/devider.png) center top repeat-y #fff; padding-bottom:20px;}
 .page3 {width:100%;float:left; background:#fff;}
 .page3 .tab_holder { width:auto; float:left; padding:10px 20px;}
-.page3 .tab_holder2 { width:90%; float:left; padding:10px 20px;}
+.page3 .tab_holder2 { width:96%; float:left; padding:1% 2%;}
 .side2 { width:27px;min-height:466px; float:left;background:url(/images/side2.png) 0 0 no-repeat;}
 .arrowbox { position:absolute; background:#e7e7e7; width:30px;height:30px;right:110px;top:75%;
  -moz-transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);
@@ -404,9 +404,9 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .width99 { width:99.2%!important; }
 .padding10 { padding:10px 0!important; }
 
-#comments .lft, #tabs-1 .lft, #tabs-2 .lft, #tabs-3 .lft, #tabs-4 .lft, #tabs-5 .lft {float:left!important; width:51%!important;}
+#comments .lft, #tabs-1 .lft, #tabs-2 .lft, #tabs-3 .lft, #tabs-4 .lft, #tabs-5 .lft {float:left!important; width:300px;}
 #comments .rgt, #tabs-1 .rgt, #tabs-3 .rgt, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:84%!important; }
-#tabs-2 .rgt { float:right!important; width:56%!important; }
+#tabs-2 .rgt { float:right!important; width:54%!important; }
 #comments .rgtcourse, #tabs-1 .rgtcourse, #tabs-2 .rgtcourse, #tabs-3 .rgtcourse, #tabs-4 .rgt, #tabs-5 .rgt { float:right!important; width:60%!important; }
 .img2 { float:left; padding:0 12px 0 0; width:100px; height:80px; overflow:hidden; }
 #tabs-1, #tabs-2, #tabs-3, #tabs-4, #tabs-5 { overflow:hidden; }
@@ -459,10 +459,10 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle ul li.rgt h2 { font-size:14px; padding:0px; margin:0px 0px 15px; }
 .toggle ul li.rgt h3 { font-size:12px; padding:0px; margin:0px 0px 15px; font-weight:normal; }
 .toggle li.column_b li:hover{background:#fafafa;}
-.toggle li.column_b li.active{background:#fafafa;}
+.toggle li.column_b li.active{background: linear-gradient(red, blue);}
 .toggle li.column_b li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
 .toggle li.column_b1 li:hover{background:#fafafa;}
-.toggle li.column_b1 li.active{background:#fafafa;}
+.toggle li.column_b1 li.active{background: linear-gradient(#94AD14, #C6DC55);}
 .toggle li.column_b1 li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
 .toggle ul li div {color: #666666; cursor: auto; font-size: 13px; text-decoration: none; }
 .toggle {width:95%; font-family: 'opensans'; margin:1%;}

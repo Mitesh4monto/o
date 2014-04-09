@@ -14,8 +14,8 @@ module Opp
 
     config.after_initialize do
        ActionView::Base.sanitized_allowed_tags.delete 'div'
-       ActionView::Base.sanitized_allowed_tags = 'table', 'tr', 'td'
-       ActionView::Base.sanitized_allowed_attributes = 'id', 'class', 'style'
+       ActionView::Base.sanitized_allowed_tags = 'table', 'tr', 'td', 'thead','th','tbody','caption','p'
+       ActionView::Base.sanitized_allowed_attributes = 'id', 'class', 'style', 'border','cellpadding','cellspacing'
      end
       
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)    

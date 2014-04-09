@@ -27,7 +27,7 @@ class ActivitySequence < ActiveRecord::Base
       existing_act.strategy_id = nil
       existing_act.save!
       activity.activity_sequence_id = as.id
-      as.current_activity = as.activity_in_sequences.first
+      as.current_activity = as.existing_act
       as.save
     end
   end

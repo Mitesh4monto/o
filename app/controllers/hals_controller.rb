@@ -42,6 +42,7 @@ class HalsController < ApplicationController
       @hal.halable_type = "Activity"
       @activity = @hal.halable
     	@hal.hal_about(@activity)
+    	redirect = params[:from] || myp_path(@hal.halable)
     end
     
     respond_to do |format|

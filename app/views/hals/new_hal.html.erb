@@ -1,4 +1,5 @@
 <% @title = "Add Blog Entry" %>
+<% @title += " about #{@activity.title}"  if @activity %>
 <% @show_aside = true %>
 
 <%= semantic_form_for @hal, :html => {:class => "course_manage"} do |f| %>

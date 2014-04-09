@@ -149,7 +149,8 @@ transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);}
 .page2 form input[type="text"], form input.top[type="text"] {background:#d2efff; border-left:3px solid #c7e3f2; border-top:4px solid #c7e3f2;}
 .page2 form input[type="checkbox"] { background:#d4d4d4; border-top:2px solid #a3a3a3;}
 .page2 form input[type="checkbox"] { background:#d4d4d4; border-top:2px solid #a3a3a3;}
-.page2 form input[type="button"], .course_manage input[type="submit"], .edit a, .box_3 a.green, .customization a { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
+.page2 form input[type="button"], .course_manage input[type="image"], .edit a, .box_3 a.green { margin:27px 20px 50px 0; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
+
 .creat input[type="submit"], .log_in input[type="submit"] { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
 .course_manage input[type="button"], .edit_form input[type="button"]{ background:url(/images/button.jpg)0 0 repeat-x;padding:5px 20px; margin:30px 20px 50px 0; border-radius:5px; font-size:13px; font-family: 'opensans'; float:left; color:#fff; border:none; cursor:pointer;}
 .course_manage input[type="submit"] {}
@@ -443,12 +444,12 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle ul li.lftshort { list-style:none; width:300px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.lft { list-style:none; width:440px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.rgt { list-style:none; width:410px; float:left; margin-left:10px; }
-.toggle ul li.rgtshort { list-style:none; width:290px; float:right; margin-left:0px; }
+.toggle ul li.rgtshort { list-style:none; width:400px; float:right; margin-left:0px; }
 .toggle ul li.lft1 { list-style:none; width:300px; float:left; padding:0px; border-left:1px solid #eae9e8; border-top:1px solid #eae9e8; border-right:1px solid #eae9e8; border-radius:0px; margin-top:5px; }
 .toggle ul li.lft1 .customization { width: 100% !important;}
 .toggle ul li.lft1 .nav-toggle { margin-right: 0px !important;}
 .toggle ul li.lft1 .width96 { width: 94.5% !important; }
-.toggle ul li.rgt1 form input[type="button"], .course_manage input[type="submit"], .edit a, .box_3 a.green, .customization a { padding: 3px 11px;margin-right:2px;}
+.toggle ul li.rgt1 form input[type="button"], .course_manage input[type="submit"],input[type="image"], .edit a, .box_3 a.green, .customization a { padding: 3px 11px;margin-right:2px;}
 .toggle ul li.rgt1 .table dt { width: 30px; font-size:10px;}
 .toggle ul li.rgt1 .edit_box { margin-left:-220px; }
 .toggle ul li.rgt1 .edit2 a, .edit3a a, .edit4 a { padding: 2px 3px; margin-right:2px;}
@@ -459,10 +460,10 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle ul li.rgt h2 { font-size:14px; padding:0px; margin:0px 0px 15px; }
 .toggle ul li.rgt h3 { font-size:12px; padding:0px; margin:0px 0px 15px; font-weight:normal; }
 .toggle li.column_b li:hover{background:#fafafa;}
-.toggle li.column_b li.active{background: linear-gradient(red, blue);}
+.toggle li.column_b li.active{background: linear-gradient(#007baa, #67E7FF);}
 .toggle li.column_b li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
 .toggle li.column_b1 li:hover{background:#fafafa;}
-.toggle li.column_b1 li.active{background: linear-gradient(#94AD14, #C6DC55);}
+.toggle li.column_b1 li.active{background: linear-gradient(#007baa, #67E7FF);}
 .toggle li.column_b1 li {list-style:none; cursor:pointer; border:1px solid #eae9e8; margin:7px 2px; padding:5px 10px; font-size:13px; display:block; background: #f0f0f0 url(/images/togglebg.jpg) repeat-x; border-radius:7px;}
 .toggle ul li div {color: #666666; cursor: auto; font-size: 13px; text-decoration: none; }
 .toggle {width:95%; font-family: 'opensans'; margin:1%;}
@@ -557,3 +558,5 @@ form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px s
 .getstart .name ul li:last-child { border-bottom:4px solid #bdd84b; border-radius:0 0 5px 5px;}
 .getstart .name ul li a { background:none; padding:2px 5px;font-family: 'opensans'; font-size:13px; color:#fff;}
 .getstart .name ul li a:hover { color:#000;}
+
+.page2 form input[type="button"], .course_manage input[type="submit"],.edit a, .box_3 a.green, .customization a { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}

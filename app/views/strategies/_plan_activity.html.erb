@@ -2,8 +2,8 @@
 
 <div class='titleboxed'><%= link_to activity.title, activity %></div>
 <div class="clear"></div><BR>
-<h3 class="float_lft"><% if activity.course and myp %> From course: <%= link_to activity.course.name, activity.course %> <% end %></h3>
-<div class="clear"></div><BR>
+<% if activity.course and myp %> <h3 class="float_lft">From course: <%= link_to activity.course.name, activity.course %> </h3>
+<div class="clear"></div><BR><% end %>
 <div class="show">
 	<!-- for my plan: edit, delete, move in AS -->
 	<% if myp %>	
@@ -60,7 +60,7 @@
 <BR>
 
 <% if myp %>	
-	<div class="edit margin5" style='float:left;background:#9DAAAA;' <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='8'<% end %>>		
+	<div class="edit margin5" <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='8'<% end %>>		
 			<%= link_to "Edit", edit_activity_path(activity), :class=>"linkTwo", :style => 'float:right;background:#9DAAAA;' %>
 		</div>				
 		&nbsp;&nbsp;&nbsp;
@@ -73,6 +73,8 @@
 		<% end %>
 		</div>
 <% end %>
+
+<div class="clear"></div>
 
 
 									
@@ -89,14 +91,13 @@
 		<% else %>
 		<%= link_to 'See all activities in this sequence', activity %>
 		<% end %>
+	<% end %>
 
-
-
+<% if activity.hals.size > 0 %><h2>Entries:</h2><% end %>
 	<% activity.hals.each do |hal| %>
 		<div class="box_holder3 width100">
 			<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
 		</div>
 		<div class="clear"></div>
 	<% end %>
-<% end %>
 </div>

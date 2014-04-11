@@ -16,12 +16,20 @@
 				showdiv('<%= @activity.id %>');
 			<% end %>
 		});
+		var current_div = null;
 		function showdiv(a) {
-		$('.content').hide();
-		$('#'+a).toggle('slow');
-		$(document.body).animate({
-		    'scrollTop':   $('#'+a).offset().top
-		}, 500);
+			$('#left'+current_div).removeClass('active');
+			current_div = a;
+			$('#left'+current_div).addClass('active');
+			inanimateshowdiv(a);
+			$(document.body).animate({
+			    'scrollTop':   $('#'+a).offset().top
+			}, 500);
+		}
+		
+		function inanimateshowdiv(a) {
+			$('.content').hide();
+			$('#'+a).toggle('slow');
 		}
 	</script>
 
@@ -39,7 +47,7 @@
 						<li class="column_b1">
 						<% activities.each do |activity| %>
 							<ul>		
-								<li class="" onClick="showdiv('<%= activity.id %>');"> 
+								<li class="" id='left<%= activity.id %>' onClick="showdiv('<%= activity.id %>');"> 
 									<%= 'Sequence starting with ' if activity.type == "ActivityInSequence" %>
 									 <%= activity.title %> <% timing = timing_text(activity); if !timing.empty?  %>- <%= timing %> <% end %>
 								</li>

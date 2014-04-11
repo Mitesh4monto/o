@@ -58,7 +58,7 @@ module ActivitiesHelper
     case activity.kind_of_timing
     	when "Frequency"
       		if activity.timing_expression 
-    			  return_text = activity.timing_expression.split.first +  "times per" + activity.timing_expression.split.last
+    			  return_text = activity.timing_expression.split.first +  " times per " + activity.timing_expression.split.last
       	  else 
       			return_text = "timing error"
     		 end

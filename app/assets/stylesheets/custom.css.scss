@@ -527,7 +527,7 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 
 
 .content-full { width:100%; display:table-row;}
-.content-full .left { display:table-cell; }
+.content-full .left { display:table-cell; width:100%; }
 .content-full .left .inn { width:100%; display:block; overflow:hidden;   }
 .content-full .right { width:100px; display:table-cell; text-align:right; vertical-align:top; }
 .people { width:100%; float:left; overflow:hidden; }
@@ -544,7 +544,7 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .people ul li img { border:1px solid #ccc; padding:2px;}
 */.button_head {background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; margin:5px 20px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
 .date { text-align:right; margin-top:-23px; padding:0px;font-style:italic; font-size:13px; font-family:'opensans'; text-decoration:underline;}
-form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; border-radius:5px;height:40px; width:auto; padding:5px;}
+form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; border-radius:5px;height:40px; width:300px; padding:5px;}
 
 .facebooklink {float:left; width:auto;}
 .facebooklink a { margin:0px; padding:0px; }

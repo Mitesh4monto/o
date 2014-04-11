@@ -332,7 +332,7 @@ input.subsc:hover { background-position:0 100%;}
 /* ---------------------------- 11. Buy Footer  Section  ------------------------- */
 /*--------------------------------------------------------------------------------*/
 .buy-footer { padding:25px 0; height:50px;	margin:10px 0 0;} 
-.buy-footer h1 { background:url(../img/footer-buy.png)no-repeat; float:left; line-height:26px; height:28px;  font-size:22px; color:#efefef; padding:0px 0px 0 36px; margin:10px 0; }
+.buy-footer h1 { float:left; line-height:26px; height:28px;  font-size:22px; color:#efefef; padding:0px 0px 0 0px; margin:10px 0; }
 .buy-footer h1 span { float:left;  font-size:20px; font-family: 'Doppio One', sans-serif; }
 .buy-footer a { float:right;}
 

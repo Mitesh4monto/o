@@ -1,19 +1,16 @@
 <div class="clear"></div>
 <div class="show">
-	<div class="edit margin5"><%= link_to 'Edit', edit_activity_in_course_path(activity) %>
+	<%= link_to 'Edit Activity', edit_activity_in_course_path(activity), :class => "bluebuttonpadded" %>
 		<div class="edit_box" id="rightbar2">
             <div class="close"><a href="#"><img class="linkTwo" src="/images/close.png" alt=""></a></div>
 		</div>
-	</div>				
-	<div class="edit3a">
 		<% if activity.type == "ActivityInSequence" %>
-	       <%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"linkThree" %>
+	       <%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class => "bluebuttonpadded" %>
 		<% else %>
-	       <%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"linkThree" %>
+	       <%= link_to "Delete Activity", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class => "bluebuttonpadded" %>
 		<% end %>
-		</div>
 	
-		<div class="clear"></div>
+		<div class="clear"></div><BR>
 	
 <h5><%= link_to activity.title, activity %></h5><BR>
 <div class='boxed'><%= sanitize activity.description %></div>

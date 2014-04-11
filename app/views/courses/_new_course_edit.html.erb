@@ -1,11 +1,15 @@
-<div class="edit">
-	<%= link_to "Preview", @course %>
-</div>
+<div class="row">
+		<%= link_to "Preview", @course, :class => 'greenbutton' %>
 <% if !@course.published? %>
-<div class="edit2">
-	<span>This course is unpublished </span>
-	<%= link_to "Publish", publish_course_path(@course) %>
-</div>
+	<% if @course.publishable?  %>
+		<div class="edit2">
+			<span>This course is unpublished </span>
+			<%= link_to "Publish", publish_course_path(@course) %>
+		</div>
+	<% end %>
 <% else %>
-	<%= link_to 'share on fb', share_course_on_fb_path(@course) if current_user.provider == "facebook"%> 
+	<div class="edit2">
+		<%= link_to 'share on fb', share_course_on_fb_path(@course) if current_user.provider == "facebook"%> 
+	</div>
 <% end %>
+</div>

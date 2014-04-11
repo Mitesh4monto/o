@@ -1,8 +1,10 @@
 <%= stylesheet_link_tag "activities" %>
 
 <%= render :partial => 'new_course_edit' %>
+<div class="clear"></div>
 
 <%= render :partial => 'plan_instructions' %>
+<div class="clear"></div>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -66,5 +68,4 @@
 <div class="clear"></div>
 
 <div class="clear"></div>
-<div class="edit2"><%= link_to "<< Overview", '#', :id => 'seeoverview' %></div>
-<div class="edit2"><%= link_to "Course Additional Information >>", '#', :id => 'seedetails' %></div>
+<div class="edit2"><%= link_to "Course Additional Information >>", '#', :id => 'seedetails', :class => 'greenbutton' %></div>

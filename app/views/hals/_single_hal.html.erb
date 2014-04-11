@@ -18,16 +18,15 @@
 		Anonymous
 	<% end  %>
 <% end %>
-<%= link_to image_tag("/images/help-wanted.jpg", :title=>title + hal.id.to_s, :class=>"collapselinkhals", :style => 'width:75px; float:right; padding-right:0px; padding-top:10px'), '#' if hal.help %> 
-               <p><%= hal.entry %></p>
+			<%= link_to image_tag("/images/help-wanted.jpg", :title=>title + hal.id.to_s, :class=>"collapselinkhals", :style => 'width:75px; float:right; padding-right:0px; padding-top:10px'), '#' if hal.help %> 
+            <p><%= hal.entry %></p>
                <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
-               <% if hal.help %><p><strong>Help requested</strong><span title='<%= title %><%= hal.id %>' class="collapselinkhals">  >> Respond</span></p><% end %>
 	               <ul>
 					<% if hal.halable %><li>Activity: <%= link_to hal.halable.title, hal.halable %></li><% end %>
 		           <% if hal.course %><p>in course: <%= link_to hal.course.name, hal.course %></p><% end %>
                </ul>
 				  <!-- <div class="dis"><div class="clear"></div></div> -->
-               <a href="javascript:void(0);"><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkmarginlft30"><% if hal.comments.size > 0  %><%=  pluralize(hal.comments.size, "comment") %>  </span></a> | <% end %> 
+               <% if hal.comments.size > 0  %><a href="javascript:void(0);"><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkmarginlft30"><%=  pluralize(hal.comments.size, "comment") %>  </span></a> | <% end %> 
 		<a href="javascript:void(0);"><span id="<%= title %><%= hal.id %>" title='<%= title %><%= hal.id %>' class="collapselinkhals">Add a Comment</span></a>
 	
 		<% if hal.user == current_user %> <%= link_to 'Edit', edit_hal_path(hal), :class => 'button_head' %> <% end %>

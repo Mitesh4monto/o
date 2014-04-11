@@ -77,7 +77,7 @@
 				<% if current_page?(myp_path) %>
 					<li><a href="javascript:void(0);" onclick="inanimateshowdiv('<%= current_user.strategy.current_activities.first.id if current_user.strategy.current_activities.first %>');$(window).scrollTop(0);introJs().start();">mini Tutorial</a></li>
 				<% else %>
-		            <li><%= link_to "Tutorial n/a", '#' %></li>
+		            <li><%= link_to "mini Tutorial", tut_path %></li>
 				<% end %>
 	          <li><%= link_to "Creating a course", gettingstartedcreate_path %></li>
 	      </ul>

@@ -1,3 +1,6 @@
+.box_3 a.green, .customization a { padding: 3px 11px;margin-right:2px;margin-top:0px;}
+
+
 .titleboxed {
   border: 1px solid black ; padding:2px; float: left;
 }
@@ -97,8 +100,8 @@ nav ul li a.course { background:url(/images/course.png) 0 2px no-repeat;}
 nav ul li a.edu { background:url(/images/edu.png) 0 0 no-repeat;}
 nav ul li a.active { color:#899d2c; }
 .user { float:right; margin-top:-5px;}
-.user .image { width:56px; height:50px; background:#a3c026; float:left; }
-.user .image2 { width:46px; height:40px; padding:5px; overflow:hidden; background:#a3c026; text-align:center;}
+.user .image { width:50px; height:50px; background:#a3c026; float:left; }
+.user .image2 { width:40px; height:40px; padding:5px; overflow:hidden; background:#a3c026; text-align:center;}
 .user .image img { width:100%; height:auto;}
 .user .name { float:left; position:relative;background:url(/images/button.jpg) 0 0 repeat-x; padding:3px 8px; margin-top:15px; border-radius:0 5px 5px 0; cursor:pointer; min-width:70px;}
 .user .name a { text-decoration:none;  font-family: 'opensans'; font-size:13px; color:#fff; background:url(/images/name.png) center right no-repeat; padding:0 25px 0 0; float:right;}
@@ -137,9 +140,10 @@ transform: scale(1) rotate(45deg) translateX(1px) skewX(1deg);}
 .page2 form label em { margin:0; color:#333333; font-size:12px; font-style:normal;font-family: 'opensans-light';}
 .row { margin:14px 0 0;}
 .page2 form span { color:#555657; font-size:14px;font-family: 'opensans'; margin-left:5px;}
-.log_in img { margin:30px 0 0; float:left;}
+.log_in img { margin:10px 0 0; float:left;}
 .log_in a { float:left; width:65%; font-size:13px; color:#555657;font-family: 'opensans'; padding-top:10px; }
-.page2 form input[type="text"], .page2 form input[type="password"], .course_manage input[type="text"], .edit_form input[type="text"] { width:232px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; height:32px; border-radius:5px; float:left;}
+.page2 form input[type="text"], .page2 form input[type="email"], .page2 form input[type="password"],
+ .course_manage input[type="text"], input[type="email"], .edit_form input[type="text"] { width:232px;background:#e7e7e7;border-left:3px solid #cecece; border-top:4px solid #cecece;border-bottom:none; border-right:none; height:32px; border-radius:5px; float:left;}
 .edit_form input[name="firstinput"] {width:25px;background:none; border:none; height:20px;border-radius:5px; float:left;}
 .edit_form input[type="checkbox"] { float:left; width:50px;}
 .edit_form select { float:left; width:120px;}
@@ -168,7 +172,7 @@ footer {padding:27px 27px; float:left;width:982px;}
 .copy { float:right;color:#000; font-size:12px;font-family: 'opensans';font-weight:bold;}
 section { width:90%; float:left; padding:0 10px 10px 30px;}
 .section2 { width:930px; float:left; padding:0 10px 10px 30px;}
-section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; position:relative; width:auto; margin-top:15px; width:90%;}
+section .box_holder, .section2 .box_holder,  .box_holder3 { float:left; padding:10px 0 15px; border-top:1px solid #cec6c6; border-left:1px solid #cfc7c7; border-right:1px solid #cfc7c7; border-bottom:1px solid #cfc7c7;  position:relative; width:auto; margin-top:15px; width:90%;}
 section .box_holder .title, .section2 .box_holder .title, .left_bar .box_holder3 .title{ padding-left:25px; padding-right:23px; background:#dde9a5; position:absolute; width:70%; top:10px; left:-15px; border-radius:5px; z-index:1; min-width:37px;}
 .triangle, .triangle2 { background:url(/images/triangle.png) left top no-repeat; width:16px; height:24px; position:absolute; top: 46px; left:-15px;}
 .triangle2 {background:url(/images/triangle2.png) left top no-repeat; width:8px; height:15px; position:absolute;top: 42px;left:-12px;}
@@ -182,8 +186,8 @@ section .box_holder .box p, .box p, p.general, .page3 p{ font-size:13px; color:#
 p.general { padding:0 10px; margin:0}
 .box_holder .box span.inn { float: right; margin: 10px 0px; color: #2B3501; font-size: 12px; font-family: 'opensans'; width:75%; display:block;  text-align:right;}
 .section2 .box_holder .box p { font-size:13px; color:#000;font-family: 'opensans'; margin-top:40px; padding:0 20px;}
-section .box_2 , .section2 .box_2, .page3 .box_3{ background:url(/images/box.jpg) 0 0 repeat-x; width:627px; padding:10px 8px 0;height:43px;}
-section .box_2 a, .section2 .box_2 a, .edit2 a, .edit3a a, .page3 .left_panel ul li a, .box_3 a, .edit4 a, .goal ul li a { background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
+section .box_2 , .section2 .box_2, .page3 .box_3{ background:url(/images/box.jpg) 0 0 repeat-x; width:90%; padding:10px 0;height:43px;}
+section .box_2 a, .section2 .box_2 a, .edit2 a, .edit3a a, .page3 .left_panel ul li a, .box_3 a, .edit4 a, .goal ul li a { background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; float:right; color:#fff;margin-right:10px; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
 section .box_2 a, .section2 .box_2 a, .edit2 a, .edit3 a, .page3 .left_panel ul li a, .box_3 a, .edit4 a, .goal ul li a { background:url(/images/button.jpg)0 0 repeat-x; padding:5px 8px; float:right; color:#fff; font-size:13px;font-family: 'opensans';text-decoration:none; border-radius:5px; border-left:1px solid #007baa;border-right:1px solid #007baa; cursor:pointer;}
 .section2 .box_holder .box ul { float:left; padding:20px 50px; margin:20px 30px;}
 .section2 .box_holder .box ul li { list-style:url(/images/list.png); padding:10px 10px;}
@@ -560,3 +564,17 @@ form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px s
 .getstart .name ul li a:hover { color:#000;}
 
 .page2 form input[type="button"], .course_manage input[type="submit"],.edit a, .box_3 a.green, .customization a { background:#bed84b;padding:5px 15px; margin:30px 20px 50px 0; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
+.box_3 a.green, .customization a { padding: 3px 11px;margin-right:2px;margin-top:0px;}
+.greenbutton { background:#bed84b;padding:5px 15px; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
+.bluebutton { background: linear-gradient(#007baa, #67E7FF);padding:5px 15px; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;}
+.bluebuttonpadded { background: linear-gradient(#007baa, #67E7FF); border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; 
+text-decoration:none; cursor:pointer; padding: 5px 5px 5px 5px}
+
+.box100 { width:100%; border-bottom:1px solid #333333; padding-bottom:20px;}
+
+
+#box100  img { float:left; padding-right:10px;}
+#box100 ul { margin:30px 0 0;}
+#box100 ul li { float:left; margin:0 20px; list-style:none;}
+#box100 ul li a { text-decoration:none; padding:0 5px; border:none; background:none;color:#990000; font-family: 'opensans';}
+#box100 ul li a:hover { color:#000;}

@@ -1,6 +1,17 @@
 <% @title = "My Plan" %>
 <% @show_aside = false %>
 
+<% if @tut %>
+<script>
+$(document).ready(function() {
+	<% if current_user.strategy.current_activities.first %>
+		inanimateshowdiv('<%= current_user.strategy.current_activities.first.id %>');
+	<% end %>
+	$(window).scrollTop(0);introJs().start();
+});
+</script>
+<% end %>
+
 	 <% if !myp_status.empty? %><div class='boxed'><p><%= raw myp_status %> </p></div> <% end %>
 	    	<% if !current_user.strategy.current_activities.empty? %>
 			<%= 
@@ -14,7 +25,7 @@
               </div>
             </div>
             <div class="clear"></div>
-            <div class="box_3"><%= link_to 'Add activity', add_activity_path, :class => 'green' %>
+            <div class="box_3"><%= link_to 'Add activity', add_activity_path, :class => 'green', :style => 'margin-top:0px;' %>
 			<%= link_to 'Look for courses', courses_path %>
               <div class="clear"></div>
             </div>

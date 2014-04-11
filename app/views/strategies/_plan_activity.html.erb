@@ -11,7 +11,9 @@
 		<div class="edit3a margin3" <% if first %>data-intro="You can blog about any activity.  Simply click here, enter your thoughts/feelings, or let your pet walk on the keyboard." data-step='10' <% end %>>
 			<%= link_to "Blog about", new_hal_path(activity.id)  %>
 		</div>
-		<div class="edit3a margin3" <% if first %>data-intro="If you've committed to activities, it's nice to keep track of when you do them, especially recurring ones.  Whenever you do an activity mark it here.  You can see the calendar of when you've done them later" data-step='11' <% end %>> 			<%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :remote => true %>
+		<div class="edit3a margin3" <% if first %>data-intro="If you've committed to activities, it's nice to keep track of when you do them, especially recurring ones.  Whenever you do an activity mark it here.  You can see the calendar of when you've done them later" data-step='11' <% end %>> 			<%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}
+			# , :remote => true 
+			%>
 		</div>
 		</div>
 	<div class="clear"></div>

@@ -11,28 +11,28 @@ class RegistrationsController < Devise::RegistrationsController
     puts '****************************************'    
   end
 
-  puts '****************************************[[[[[[[]]]]]]]'
+  puts '****************************************[[[[[[[]]]]]]]a'
 
 
   def after_sign_in_path_for(resource)
-    puts '****************************************[[[[[[[]]]]]]]'    
+    puts '****************************************[[[[[[[]]]]]]]b'    
   end
 
   def after_sign_out_path_for(resource)
-    puts '****************************************[[[[[[[]]]]]]]'
+    puts '****************************************[[[[[[[]]]]]]]e'
     '/courses'
   end
 
   def after_sign_up_path_for(resource)
-    puts '****************************************[[[[[[[]]]]]]]'
+    puts '****************************************[[[[[[[]]]]]]]fs'
       post_register(resource)    
-      root_path
+    '/courses'
   end
   
   def after_inactive_sign_up_path_for(resource)
-    puts '****************************************[[[[[[[]]]]]]]'
+    puts '****************************************[[[[[[[]]]]]]]wer'
     post_register(resource)    
-    root_path
+    '/courses'
   end
   
 end

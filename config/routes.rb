@@ -40,6 +40,7 @@ Opp::Application.routes.draw do
   get "strategies/copy_activity/:id", to: "strategies#copy_activity",  as: 'copy_activity'
 
   get "activities/mine", to: "strategies#mine",  as: 'user_strategy'
+  get "strategies/mine?tut=true", to: 'strategies#mine', as: 'tut'  
   get "strategies/mine(/:id)", to: 'strategies#mine', as: 'myp'
   get "strategies/mine_details/:id", to: 'strategies#mine_details', as: 'mypd'
 

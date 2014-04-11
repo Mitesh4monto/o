@@ -3,9 +3,16 @@
 <% @show_aside = true %>
 
 <% if (current_user && (@activity.user_id == current_user.id)) then %>
-	<div class="box_3"><%= link_to 'Edit', edit_activity_path(@activity), :class => 'green' %>
-	<%= link_to 'Blog about it', new_hal_path(@activity.id) %>
-	</div>
+<BR>
+ &nbsp;		<%= link_to 'Blog about it', new_hal_path(@activity.id), :class => 'bluebuttonpadded' %> &nbsp;
+		<%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => @activity.id}, :class => 'bluebuttonpadded' %> &nbsp;
+		<%= link_to 'Edit', edit_activity_path(@activity), :class => 'bluebuttonpadded' %> &nbsp;
+	    
+			<% if @activity.type == "ActivityInSequence" %>
+		       <%= link_to "Delete", @activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"bluebuttonpadded", :style => 'background:#9DAAAA;' %>
+			<% else %>
+		       <%= link_to "Delete", @activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"bluebuttonpadded" %>
+			<% end %>
 <% end %>
 
 <div class="clear"></div>
@@ -52,25 +59,27 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 
 <% end %>
 
-<div class="clear"></div>
+<div class="clear"></div><BR>
+<div class="clear"></div><BR>
 
 <% if @hals.size > 0 %>
-	<strong>hals</strong>:<BR>
+	<strong>Your Entries</strong>:<BR>
 <% end %>
 <% @hals.each do |hal| %>
-<div class="box_holder3 width100">
+<div class="box_holder3 width99">
 	<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
 </div>
-<hr>
 <% end %>
 
+<div class="clear"></div><BR>
 <% if @related_hals.size > 0 %>
 	<BR>
-	<b>Related Hals:</b>
+	<b>Related Entries:</b>
 	<BR>
 	<% @related_hals.each do |hal| %>
-		<%= render :partial => 'hals/view_one', locals: {hal: hal, show_user: true} %>
-		<hr>
+		<div class="box_holder3 width99">
+			<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
+		</div>
 	<% end %>
 <% end %>
 

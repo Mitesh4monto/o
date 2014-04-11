@@ -1,5 +1,9 @@
 <% @title = "Register"  %>
 
+<% session['reg'] = true
+# TODO remove hack
+ %>
+
 <div class="page2">
 	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'log_in'}) do |f| %>
 	    <h1>Login</h1>
@@ -61,10 +65,10 @@
 		  <%= f.password_field :password_confirmation %>
 		  <div class="clear"></div>
       </div>
-      <div class="clear"></div>
+      <div class="clear"></div><BR>
 
 
-	By clicking Sign up you agree to the <%= link_to "Terms of Service", eula_path %> and <%= link_to "Privacy policies", privacy_path %>.
+	<p>By clicking Sign up you agree to the <%= link_to "Terms of Service", eula_path %> and <%= link_to "Privacy policies", privacy_path %>.</p>
 
 	  <div><%= f.submit "Sign up" %></div>
 	<% end %>

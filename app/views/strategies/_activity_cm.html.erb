@@ -13,11 +13,15 @@ Commitment marks:<BR>
 	  <%= calendar_for activity.commitment_marks, :year => @date.year, :month => @date.month do |calendar| %>
 		<%= calendar.head('Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
 	    <% calendar.day(:day_method => :done_date) do |date, cmss| %>
-	      <%= date.day %>
+	      <%= date.day %>	<% for cm in cmss %>
+			<%= image_tag("/images/check1.png", :height => '20')  %>
+			<% break %>
+			<% end %>
+		
 	      <ul>
 			<table>
 				<% for cm in cmss %>
-				<tr bgcolor="aqua" height=2px><td>done</td></tr>
+				<!-- <tr bgcolor="aqua" height=2px><td>donex<%= image_tag("/images/check.png")  %></td></tr>				 -->
 				<% end %>
 			</table>
 	      </ul>

@@ -4,12 +4,11 @@
 
 <% hals.each do |hal| %>
 <div class="box">
-	<%= hal.id %> - <%= link_to hal.created_at.strftime("%m/%d/%Y"), hal %>
-	<p>	<% if !hal.insights.blank? %><strong>Insights</strong>: <%= hal.insights %><% end %>
+	<%= link_to hal.created_at.strftime("%m/%d/%Y"), hal %>
 	<% if hal.halable %>
 		- About Activity: <%= link_to hal.halable.title, hal.halable %>
-	<% end %>
+	<% end %>	
+	<p>	<% if !hal.insights.blank? %><strong>Insights</strong>: <%= hal.insights %><% end %>
 	</p>
-	<div class="clear"></div>
 </div>
 <% end %>

@@ -2,6 +2,12 @@
 <% @title += "from course" + @activity.course.name if @activity.course %>
 <% @show_aside = true %>
 
+
+<div class="tab_holder">
+  <div id="tabs">
+    <div id="tabs-1" style="overflow:hidden;">
+
+
 <% if (current_user && (@activity.user_id == current_user.id)) then %>
 <BR>
  &nbsp;		<%= link_to 'Blog about it', new_hal_path(@activity.id), :class => 'bluebuttonpadded' %> &nbsp;
@@ -63,13 +69,10 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 <div class="clear"></div><BR>
 
 <% if @hals.size > 0 %>
-	<strong>Your Entries</strong>:<BR>
+	<b>Your Entries:</b><BR>
 <% end %>
-<% @hals.each do |hal| %>
-<div class="box_holder3 width99">
-	<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
-</div>
-<% end %>
+<%= render :partial => 'hals/hal_list', locals: {hals: @hals, title: 'Your Entries', show_user: false} %>
+
 
 <div class="clear"></div><BR>
 <% if @related_hals.size > 0 %>
@@ -77,9 +80,12 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 	<b>Related Entries:</b>
 	<BR>
 	<% @related_hals.each do |hal| %>
-		<div class="box_holder3 width99">
+		<div class="box">
 			<%= render :partial => 'hals/single_hal', locals: {hal: hal} %>					
 		</div>
 	<% end %>
 <% end %>
 
+</div>
+</div>
+</div>

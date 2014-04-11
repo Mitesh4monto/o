@@ -1,6 +1,6 @@
-Commitment marks:<BR>
+<strong>Commitment marks:</strong><BR>
 	<div id="calendar" class='table'>
-	  <h2 id="month">
+	  <h3 id="month">
 		<% if nav_month %>
 			<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
 		    <%=h @date.strftime("%B %Y") %>
@@ -9,9 +9,9 @@ Commitment marks:<BR>
 			<% @date =  Date.today %>
 			<%=h @date.strftime("%B %Y") %>    
 		<% end %>
-	  </h2>
+	  </h3>
 	  <%= calendar_for activity.commitment_marks, :year => @date.year, :month => @date.month do |calendar| %>
-		<%= calendar.head('Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+		<%= calendar.head('Sun','Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat') %>
 	    <% calendar.day(:day_method => :done_date) do |date, cmss| %>
 	      <%= date.day %>	<% for cm in cmss %>
 			<%= image_tag("/images/check1.png", :height => '20')  %>

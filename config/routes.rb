@@ -76,6 +76,7 @@ Opp::Application.routes.draw do
   get "privacy", to: 'info#privacy', as: 'privacy'
   get "howitworks", to: 'info#howitworks', as: 'howitworks'
   get "gettingstartedcreate", to: 'info#gettingstartedcreate', as: 'gettingstartedcreate'
+  get "gettingstartedoverview", to: 'info#gettingstartedoverview', as: 'gettingstartedoverview'
 
   get "contact_us", to: 'messages#new', as: 'contact_us'
   match "newsletter", to: 'messages#news', as: 'newsletter'

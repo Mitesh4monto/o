@@ -110,7 +110,7 @@ class Activity < ActiveRecord::Base
       self.timing_expression = @reactive_expression
     end
     self.timing_duration = "" if @until_radio == "nodate"
-    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date" and self.timing_until.blank?
+    self.timing_duration = @duration_number + " " + @duration_unit if @until_radio == "date" and self.timing_until.blank? and @duration_number and @duration_unit
   end
   
   # ensure until date is 

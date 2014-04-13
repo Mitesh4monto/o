@@ -145,7 +145,6 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
-
     # add new goal if entered
     new_goal_text = params[:activity][:new_goal_text]
     if !new_goal_text.empty?

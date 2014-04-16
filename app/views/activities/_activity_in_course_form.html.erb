@@ -25,7 +25,7 @@
 
 	<div class="row">
 		<label>Goal<%= tipper("What are we trying to achieve by doing this activity?  This can be left blank.") %></label>
-		<% if get_goals_for_strategy(@course.strategy) %>
+		<% if get_goals_for_strategy(@course.strategy) != [] %>
 			<%= f.input :goal,  :collection => 
 get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'Create a New Goal')]),
  :prompt => "Select a Goal", :label => false  %>
@@ -55,7 +55,7 @@ get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'C
 
 		<div class="row">
 			<div id='freak'>
-				<label>Timing Frequency</label><%= f.text_field :freak_number, :style=>"width:50px; margin-right:10px;" %> times per <%= f.select :freak_interval, ["Day", "Week", "Month"] %>
+				<label>Timing Frequency</label><%= f.text_field :freak_number, :style=>"width:50px; margin-right:10px;" %>&npbs; Times per &npbs;&npbs;<%= f.select :freak_interval, ["Day", "Week", "Month"], {}, {:style => 'width:100px'}%>
 			</div>
 		</div>
 
@@ -87,7 +87,7 @@ get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'C
 			<BR>
 			<label>Duration <%= tipper("If this activity should have a duration, i.e. 'Do it for 3 weeks.'  If this activity is ongoing or at the discretion of the user, set to 'no end date'") %></label>	
 			<%= f.text_field :duration_number, :style => "width:40px" %> &nbsp;&nbsp;
-			<%= f.select :duration_unit, ["Days", "Weeks", "Months", "Years"] %> after start.
+			<%= f.select :duration_unit, ["Days", "Weeks", "Months", "Years"], {}, {:style => 'width:100px'} %> after start.
 		</div>
 		</div>
 		<div class="clear"></div>

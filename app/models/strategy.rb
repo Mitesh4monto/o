@@ -15,6 +15,7 @@ class Strategy < ActiveRecord::Base
   def current_activities
     ids = self.activities.pluck(:id) + ActivitySequence.where(strategy_id: self.id).pluck(:current_activity_id)
     if (ids.size > 0)
+      ids.delete(nil)  # hack for now
      Activity.where( "id in (#{ids.join(',')})")
    else 
      Activity.where("1=0")  # hack to return empty AR relation.  

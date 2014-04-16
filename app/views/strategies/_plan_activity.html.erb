@@ -27,13 +27,12 @@
 		<% end %>
 	<% end %>
 	<!-- end for my plan: edit, delete, move in AS -->
-	
 <% if !activity.description.empty? %>
 <div class='boxed'>
 	<%= sanitize activity.description %>
 </div>
 <% end %>
-<% if activity.customization and !activity.customization.empty? %> <p>Customization: <%= activity.customization %></p><% end %>
+<% if activity.customization and !activity.customization.empty? %> <p>How to customize in your plan: <%= activity.customization %></p><% end %>
 
 <% timing = timing_text(activity); if !timing.empty? %>
 <p><span class="bold">Timing:</span><%= timing %>
@@ -41,7 +40,7 @@
 <% end %>
 
 	<div class="clear"></div>
-	<% if activity.commitment_marks.size > 0 %>
+	<% if myp and activity.commitment_marks.size > 0 %>
 		<%= render :partial => 'strategies/activity_cm', locals: {activity: activity, nav_month: false} %>
 		<%= link_to 'View All marks', mycms_path if myp %>
 	<% else %>	
@@ -91,7 +90,7 @@
 				<% end %><BR>
 			<% end %>
 		<% else %>
-		<%= link_to 'See all activities in this sequence', activity %>
+			<%= link_to 'See all activities in this sequence', activity %>
 		<% end %>
 	<% end %>
 

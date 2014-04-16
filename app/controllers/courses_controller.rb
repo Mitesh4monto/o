@@ -46,7 +46,6 @@ class CoursesController < ApplicationController
   def edit_course
     @course = Course.find(params[:id])
     @tab = params[:tab] || 0
-    puts '{{{{{{{{{{{{{{{{{{{{{{-----}}}}}}}}}}}}}}}}}}}}}}'
     actid = params[:actvitiy_id] || nil
     @activity = Activity.find_by_id(actid) #|| @course.activities.first
     puts "tab: #{@tab}"

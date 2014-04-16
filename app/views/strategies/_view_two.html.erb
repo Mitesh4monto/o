@@ -46,12 +46,12 @@
 							<%= 'Sequence starting with ' if activity.type == "ActivityInSequence" %>							
 							<%= activity.title %> <% timing = timing_text(activity); if !timing.empty? and myp %>- <%= timing %> <% end %>
 								
-						<% if false	 %>		
+						<% if myp %>		
 							<div class="plus" id="ss<%= activity.id %>"  style="float:right; position:relative;"><a href="#"><img src="/images/plus1.png" alt=""></a>
 							   <div id="Detailsss<%= activity.id %>" class="plus_details" style="display: none;">
 							     <ul>
 							       <li><%= link_to "Blog about", new_hal_path(activity.id)  %></li>
-							       <li><%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :remote => true %></li>
+							       <li><%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id} %></li>
 								<li><%= link_to 'Edit', edit_activity_path(activity) %></li>
 								<% if activity.type == "ActivityInSequence" %>
 							       <li><%= link_to "Delete Activity", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete %></li>

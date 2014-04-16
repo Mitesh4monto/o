@@ -11,11 +11,15 @@ Opp::Application.routes.draw do
 
 
   # hals
-  get "following", to: 'hals#following', as: 'following'
-  get "my_insights", to: 'hals#my_insights', as: 'my_insights'
-  get "hals/help_wanted", to: 'hals#help_wanted', as: 'help_wanted'
-  get "my_blog_entries", to: 'hals#view_mine', as: 'my_hals'
-  get "hals/view", to: 'hals#view', as: 'view_hals'
+  get "hals/view(/:tab)", to: 'hals#view', as: 'view_hals'
+  get "hals/view/1", to: 'hals#view', as: 'hals_my_insights'
+  get "hals/view/2", to: 'hals#view', as: 'hals_following'
+  get "hals/view/3", to: 'hals#view', as: 'hals_my_courses'
+  get "hals/view/4", to: 'hals#view', as: 'hals_all_hals'
+  get "hals/view/5", to: 'hals#view', as: 'hals_help_wanted'
+  get "hals/view/0", to: 'hals#view', as: 'hals_mine'
+  
+  get "courses/:id/4", to: 'courses#show', as: 'course_people'
   get "hals/edit/:id", to: 'hals#edit', as: 'edit_hal'
   # get "hals/hal_about_activity/:id", to: 'hals#hal_about_activity', as: 'hal_about_activity'
   get "hals/new_hal(/:id)", to: 'hals#new_hal', as: 'new_hal'

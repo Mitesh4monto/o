@@ -1,5 +1,5 @@
 <% if current_user and @course.user_id == current_user.id %>
-	<div class="edit"><%= link_to "Edit", edit_course_path(@course, tab) %></div>
+	<%= link_to "Edit", edit_course_path(@course, tab), :class => "bluebutton" %>
 <% end %>
 
 <% if @course.published? %>

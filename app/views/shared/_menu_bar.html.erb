@@ -38,7 +38,7 @@
 				<li id="link2b"><a href="#" title="Courses Explanation">Courses I created</a>
 					<ul id="navmenu2b">
 						<% 	current_user.courses.each do |course| %>
-						<li><%= link_to course.name, course %></li>
+						<li><%= link_to course.name, edit_course_path(course) %></li>
 						<% end %>
 					</ul>
 				</li>
@@ -79,6 +79,7 @@
 				<% else %>
 		            <li><%= link_to "mini Tutorial", tut_path %></li>
 				<% end %>
+	          <li><%= link_to "Getting started", :gettingstartedoverview %></li>
 	          <li><%= link_to "How it works", howitworks_path %></li>
 	          <li><%= link_to "Creating a course", gettingstartedcreate_path %></li>
 	      </ul>

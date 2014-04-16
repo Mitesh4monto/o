@@ -10,7 +10,7 @@
 
 <% if (current_user && (@activity.user_id == current_user.id)) then %>
 <BR>
- &nbsp;		<%= link_to 'Blog about it', new_hal_path(@activity.id), :class => 'bluebuttonpadded' %> &nbsp;
+	<%= link_to 'Blog about it', new_hal_path(@activity.id), :class => 'bluebuttonpadded' %> &nbsp;
 		<%= link_to 'Did today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => @activity.id}, :class => 'bluebuttonpadded' %> &nbsp;
 		<%= link_to 'Edit', edit_activity_path(@activity), :class => 'bluebuttonpadded' %> &nbsp;
 	    
@@ -21,7 +21,7 @@
 			<% end %>
 <% end %>
 
-<div class="clear"></div>
+<div class="clear"></div><BR>
 <% if @activity.strategy and @activity.strategy.course %>
 Part of course <%= link_to @activity.strategy.course.name, @activity.strategy.course %><BR>
 <% elsif @activity.user and !@activity.activity_sequence_id and @activity.user != current_user %>
@@ -36,18 +36,21 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 	<p><span class="bold">Timing:</span><%= timing %>
 	<BR></p>
 	<% end %>
+	
+<% if !@activity.description.empty? %>
 <div class='boxed'>
 <%= sanitize @activity.description %>
 </div>
+<% end %>
 <BR>
 <%= render :partial => 'shared/tag_display', locals: {tags: @activity.tags} %>
 <BR>
 <% if @activity.from %> Copied from: <%= link_to @activity.from.title, @activity.from  %> <% end %>
 
 		<div class="clear"></div>
-		<% if @activity.commitment_marks.size > 0 %>
+		<% if @activity.myp_activity? and @activity.commitment_marks.size > 0 %>
 			<%= render :partial => 'strategies/activity_cm', locals: {activity: @activity, nav_month: true} %><BR>
-		<% else %>	
+		<% elsif @activity.myp_activity? %>	
 			You don't have any commitment marks for this activity.  
 			<% if @activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => @activity.id %><% end %>	
 		<% end %>
@@ -55,14 +58,17 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 
 <% if @activity.type == "ActivityInSequence" %>
 	<BR><b>Activities in the sequence:</b><BR>
+		<ul>
 		<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
-			<%= link_to activity_in_sequence.title, activity_in_sequence %>&nbsp;<%= shorten(activity_in_sequence.description, 100) %>...<%= link_to 'see more', activity_in_sequence %>
-			<% if @activity.activity_sequence.current_activity != activity_in_sequence and activity_in_sequence.user == current_user %>
+			<li><%= link_to activity_in_sequence.title, activity_in_sequence %>&nbsp;<%= shorten(activity_in_sequence.description, 50) %>...<%= link_to 'see more', activity_in_sequence %>
+			<% if @activity.activity_sequence.current_activity != activity_in_sequence and activity_in_sequence.user == current_user and @activity.myp_activity? %>
 			<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
-			<% elsif activity_in_sequence.user == current_user %> << Current
-			<% end %><BR>
+			<% elsif activity_in_sequence.user == current_user and @activity.myp_activity? %> << Current
+			<% end %>
+			</li>
 		<% end %>
-
+		</ul>
+		<%= link_to 'Manage Sequence', @activity.activity_sequence %>
 <% end %>
 
 <div class="clear"></div><BR>

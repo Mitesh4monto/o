@@ -9,6 +9,7 @@ class HalsController < ApplicationController
     @all = Hal.public.first(30)
     @help = Hal.help_wanted.public.first(10)
     @insighted = current_user.hals.where("insights <> ''").first(10)
+    @tab = params[:tab] || 0
   end
 
   def show

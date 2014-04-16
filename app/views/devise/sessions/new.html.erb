@@ -1,4 +1,4 @@
-<% @title = "Register"  %>
+<% @title = "Login or Register"  %>
 
 <% session['reg'] = true
 # TODO remove hack
@@ -28,7 +28,7 @@
 	  <% end -%>
 		<div class="clear"></div>
 		<label>&nbsp;</label>
-<div>    	<%= f.submit "Sign in" %></div>
+<div>    	<%= f.submit "Sign in", :style => 'margin-top:9px' %></div>
 <div class="facebooklink">
 	  <%= link_to image_tag("/images/fb.png"), "/auth/facebook" %>
 	</div>

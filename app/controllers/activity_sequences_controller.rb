@@ -1,4 +1,8 @@
 class ActivitySequencesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :require_owner
+
+
   def show    
     @activity_sequence = ActivitySequence.find(params[:id])
   end

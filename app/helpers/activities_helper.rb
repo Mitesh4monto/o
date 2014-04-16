@@ -44,7 +44,7 @@ module ActivitiesHelper
       Goal.find(keys)
     else 
       # no goals
-      nil
+      []
     end
   end
 

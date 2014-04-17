@@ -55,7 +55,7 @@ get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'C
 
 		<div class="row">
 			<div id='freak'>
-				<label>Timing Frequency</label><%= f.text_field :freak_number, :style=>"width:50px; margin-right:10px;" %>&npbs; Times per &npbs;&npbs;<%= f.select :freak_interval, ["Day", "Week", "Month"], {}, {:style => 'width:100px'}%>
+				<label>Timing Frequency</label><%= f.text_field :freak_number, :style=>"width:50px; margin-right:10px;" %>&nbsp; Times per &nbsp;&nbsp;<%= f.select :freak_interval, ["Day", "Week", "Month"], {}, {:style => 'width:100px'}%>
 			</div>
 		</div>
 

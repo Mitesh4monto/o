@@ -1,4 +1,4 @@
-<h2>Blog entries by followers</h2>
+<h2><%= 'No ' if @hals.size ==0 %>Blog entries by followers</h2>
 
 <% @hals.each do |hal| %>
 <div class="box">

@@ -10,7 +10,8 @@ module StrategiesHelper
   def myp_status
     status = ''
   	if current_user.sign_in_count == 1
-  	  status += "Welcome <strong>#{current_user.name}</strong>!<BR>A sample course was added to your plan to give you an idea of the functionality.<BR>You might also want to click mini tutorial in getting started.  It should take a couple minutes.<BR>"
+  	  status += "Welcome <strong>#{current_user.name}</strong>! <BR> We recommend you checkout the mini tutorial in the getting started menu.  It should take a couple minutes."
+      # status += "Welcome <strong>#{current_user.name}</strong>!<BR>A sample course was added to your plan to give you an idea of the functionality.<BR>You might also want to click mini tutorial in getting started.  It should take a couple minutes.<BR>"
   	end
   	if current_user.strategy.current_activities.empty?
   		status += "If you want to #{link_to 'create a course, click here.', create_course_path}<BR><BR>"

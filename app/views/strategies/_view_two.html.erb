@@ -38,8 +38,9 @@
 <% activty_map = get_activity_by_goal_or_course(strategy.current_activities, myp) %>
 <% if activty_map.size > 0 %>
 	<% activty_map.each do |key, activities| %>
+	
 		<li class="column_a<%= '1' if !myp %>"><% if !(key.nil?) %><h4><%= key %></h4></li><% end %>
-		<li class="column_b<%= '1' if !myp %>">
+		<li class="column_b<%= '1' if !myp %> tightboxed">
 		<% activities.each do |activity| %>
 					<ul>		
 						<li class="" id='left<%= activity.id %>' onClick="showdiv('<%= activity.id %>');"  <% if activity == strategy.current_activities.first %>data-intro='This is an activity in your plan.  You can click on it to view details' data-step='5' <% end %>>

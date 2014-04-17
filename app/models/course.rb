@@ -50,7 +50,8 @@ class Course < ActiveRecord::Base
                   :external_site,
                   :course_image, 
                   :tag_list
-     has_attached_file :course_image, :styles => { :medium => "200x200#", :thumb => "100x100#" }, :default_url => "https://s3-us-west-2.amazonaws.com/melearning/courses/course_images/000/000/078/medium/hawk.png"
+     has_attached_file :course_image, :styles => { :medium => "200x200#", :thumb => "100x100#" }
+     # , :default_url => "https://s3-us-west-2.amazonaws.com/melearning/courses/course_images/000/000/078/medium/hawk.png"
 
   acts_as_taggable
                   

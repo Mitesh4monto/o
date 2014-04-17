@@ -1,15 +1,12 @@
-<div class="page">
-  <h1>Login or registerrr</h1>
-  <div class="arrowbox"></div>
-</div>
+<% @title = "Login or Register"  %>
+
+<% session['reg'] = true
+# TODO remove hack
+ %>
 
 <div class="page2">
 	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'log_in'}) do |f| %>
 	    <h1>Login</h1>
-	    <div class="row">
-	    	<%= link_to image_tag("/images/fb.png"), "/auth/facebook" %>
-		  <div class="clear"></div>
-		</div>
 	    <div class="row">
 		  <%= f.label :email %>
 		  <%= f.email_field :email, :autofocus => true %>
@@ -22,18 +19,20 @@
 		</div>
 
 	  <% if devise_mapping.rememberable? -%>
-    	<div class="row">
+      	<div class="row">
 		    <%= f.check_box :remember_me %>
 	        <label class="disnone">&nbsp;</label>
 	        <span>Remember Me</span>
 	        <div class="clear"></div>
-    	</div>
+      	</div>
 	  <% end -%>
-    <div class="clear"></div>
-    <label>&nbsp;</label>
-
-	  <div><%= f.submit "Sign in" %></div>
-    <label>&nbsp;</label>
+		<div class="clear"></div>
+		<label>&nbsp;</label>
+<div>    	<%= f.submit "Sign in", :style => 'margin-top:9px' %></div>
+<div class="facebooklink">
+	  <%= link_to image_tag("/images/fb.png"), "/auth/facebook" %>
+	</div>
+      <label>&nbsp;</label>
 	  <%= render "devise/shared/links" %>
 	<% end %>
 	
@@ -41,35 +40,35 @@
 	
 
 	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'creat'}) do |f| %>
-
-    <h1>Create an account</h1>
 	  <%= devise_error_messages! %>
-    <div class="row">
+
+      <h1>Create an account</h1>
+      <div class="row">
 	      <label>Enter valid email</label>
 		  <%= f.email_field :email, :autofocus => true %>
-        <div class="clear"></div>
-    </div>
+          <div class="clear"></div>
+      </div>
 
-    <div class="row">
+      <div class="row">
 		<%= f.label :name %><br />
 		  <%= f.text_field :name %>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <div class="row">
+      <div class="row">
 		  <%= f.label :password %>
 		  <%= f.password_field :password %>
-      <div class="clear"></div>
-    </div>
-    <div class="row">
+        <div class="clear"></div>
+      </div>
+      <div class="row">
 		  <%= f.label :password_confirmation %>
 		  <%= f.password_field :password_confirmation %>
 		  <div class="clear"></div>
-    </div>
-    <div class="clear"></div>
+      </div>
+      <div class="clear"></div><BR>
 
 
-	By clicking Sign up you agree to the <%= link_to "Terms of Service", eula_path, :target => "_new" %> and <%= link_to "Privacy policies", privacy_path, :target => "_new" %>.
+	<p>By clicking Sign up you agree to the <%= link_to "Terms of Service", eula_path %> and <%= link_to "Privacy policies", privacy_path %>.</p>
 
 	  <div><%= f.submit "Sign up" %></div>
 	<% end %>

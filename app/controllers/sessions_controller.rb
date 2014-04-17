@@ -7,7 +7,7 @@ class SessionsController < ApplicationController #Devise::SessionsController
     em = env["omniauth.auth"].info.email
     logger.info("email: #{em}")
     if (em.blank?)
-      redirect_to root_path, notice: "FB not playing nice.  Try our auth"
+      redirect_to root_path, notice: "FB not playing nice.  Please register"
     else    
       user = User.from_omniauth(env["omniauth.auth"])
       post_register(user)

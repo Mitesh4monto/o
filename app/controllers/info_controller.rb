@@ -19,9 +19,11 @@ class InfoController < ApplicationController
   end
 
   def eula
+    
   end
   
   def privacy
+    
   end
 
 end

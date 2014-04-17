@@ -131,7 +131,7 @@ class ActivitiesController < ApplicationController
         if params[:seq_activity]
           format.html { redirect_to activity_sequence_path(@activity.activity_sequence_id), notice: 'Activity was successfully created.' }          
         else
-          format.html { redirect_to myp_path, notice: 'Activity was successfully created.' }
+          format.html { redirect_to myp_path(@activity), notice: 'You have a new activity in your plan.' }
         end
         format.json { render json: @activity, status: :created, location: @activity }
       else
@@ -196,7 +196,7 @@ class ActivitiesController < ApplicationController
     @activity.destroy
     
     respond_to do |format|
-      format.html { redirect_to :back, notice: "Activity was successfully deleted" }
+      format.html { redirect_to :back, notice: "The activity has been deleted" }
       format.json { head :no_content }
     end
   end

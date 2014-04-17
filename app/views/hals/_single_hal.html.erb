@@ -7,7 +7,7 @@
 	
 <% if show_user %>
 	<% if (hal.user) then %>
-       	<h1><%= link_to hal.user.name, hal.user, :class=> 'userlink', :title=>'User One', :style=>'float:left'%><% if !current_user.following.include?(hal.user) %> 
+       	<h1><%= link_to hal.user.name, hal.user, :class=> 'userlink', :title=>'User One', :style=>'float:left'%><% if current_user and !current_user.following.include?(hal.user) %> 
 			<%= link_to " (follow)", follow_path(hal.user), :class=>'userlink',:style=>'float:left' %>
 		<% end %>
 		</h1>

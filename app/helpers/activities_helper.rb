@@ -5,7 +5,8 @@ module ActivitiesHelper
     keys = activities.pluck('goal_id').uniq
     return_hash = Hash.new
     # if activities with no course, no goal
-    return_hash[nil] = activities.find_all {|a| a if a.goal_id== nil and a.course_id == nil}
+    return_hash[nil] = activities.find_all {|a| a if a.goal_id== nil and a.course_id == nil} if show_course
+    return_hash[nil] = activities.find_all {|a| a if a.goal_id== nil } if !show_course
     # if no courseless goalless activities were found, remove nil key
     return_hash.delete_if{|k,v| k==nil and v==[]}
     
@@ -19,7 +20,7 @@ module ActivitiesHelper
       else 
         # no goal, but course
         acts = activities.find_all {|a| a['goal_id'] == key}  # should be nil goal
-        return_hash.merge!(acts.group_by {|act| 'course: ' + act.course.name if act.course })        
+        return_hash.merge!(acts.group_by {|act| 'course: ' + act.course.name if act.course and show_course })        
       end
     end
     return_hash

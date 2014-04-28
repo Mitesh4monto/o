@@ -1,3 +1,14 @@
+.copy .fb_iframe_widget {
+float: right;
+margin-left: 5px;
+margin-top: 5px;
+}
+.copy iframe {
+float: right;
+margin-left: 5px;
+margin-top: 5px;
+}
+
 .box_3 a.green, .customization a { padding: 3px 11px;margin-right:2px;margin-top:0px;}
 
 .tightboxed {
@@ -331,7 +342,7 @@ h2.head { color: #555657; font-size: 19px; font-family: 'opensans'; padding-bott
 .space { height:10px; }
 .space1 { height:40px; }
 .box1 { border: 1px solid #AAA; padding: 20px; margin:15px 15px 15px 0px; overflow:hidden; }
-.edit4 { float:right; margin:25px 10px 0px 0px;}
+.edit4 { float:leftmyp_status; margin:25px 10px 0px 0px;}
 #tabs-3 .lft { width:75%; float:left; }
 #tabs-3 .rgt { width:25%; float:right; }
 #tabs-3 .rgt img { margin:0px 0px 30px 0px; }
@@ -497,7 +508,7 @@ ul#navmenu2b li a:hover { padding:10px; display:block; width:150px; background:#
 .toggle .customization button {
     margin: 0px; background:#bed84b;padding:5px 15px; border-radius:5px; border-top:1px solid #849a2d; border-bottom:1px solid #aeca41;border-left:1px solid #9ab238;border-right:1px solid #9ab238; cursor:pointer; color:#000; font-size:13px; font-family: 'opensans'; float:left; text-decoration:none; cursor:pointer;
 }
-.toggle .collapse { position:absolute; display:block; width:42%; border:1px solid #000; background:#fff; border-radius:5px; padding:3px 5px; z-index:99; margin-top:18px; }
+.toggle .collapse { position:absolute; display:block; width:31%; border:1px solid #000; background-color:rgb(176, 255, 169); border-radius:5px; padding:3px 5px; z-index:99; margin-top:18px; }
 .toggle .collapse p { font-size:13px!important; line-height:14px!important; margin:0!important; padding:0!important; }
 .toggle .show { padding:0px; }
 .overflowhidden { overflow:hidden; }
@@ -556,6 +567,9 @@ form select { background:#e7e7e7;border-left:3px solid #cecece; border-top:4px s
 
 .facebookloginlink { float:right!important; padding:0px 20px 0px 0px!important; width:auto!important;  }
 
+.footerlink { float:right; width:auto; display:block; }
+.facebooklink_footer { width:auto; float:left; margin-right:5px;}
+.twitterlink_footer { width:auto; float:left; margin-right:5px;}
 
 .getstart { float:right; clear:both; margin-top:-45px;}
 .getstart .name { float:left; position:relative;background:url(/images/getting_started.png) 0 0 repeat-x; padding:0px 8px 3px; margin-top:22px; border-radius:5px 5px 5px 5px; cursor:pointer; min-width:115px;}

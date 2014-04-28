@@ -43,7 +43,9 @@
 				<% activty_map = get_activity_by_map(@course.strategy.current_activities) %>
 				<% if activty_map.size > 0 %>
 					<% activty_map.each do |key, activities| %>
-						<li class="column_a1"><h4><%= key.nil? ? "none" : "Goal: " + key.title %></h4></li>
+					<% if !key.nil? %>
+						<li class="column_a1"><h4>"Goal: " <%= key.title %></h4></li>
+					<% end %>
 						<li class="column_b1">
 						<% activities.each do |activity| %>
 							<ul>		

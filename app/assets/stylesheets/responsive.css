@@ -366,7 +366,7 @@ section .box_holder .box, .box_holder3 .box { margin: 80px 10px 0px; }
 .toggle ul li.lft { width: 382px; }
 .toggle ul li.rgt { width: 375px; margin-left:-3px; }
 .width97 { width: 96.5% !important;}
-.toggle .collapse { width: 72%; }
+.toggle .collapse { width: 50%; }
 .content-full .left { display:block;}
 .content-full .right { display:block;}
 #tabs-1 .box ul, #tabs-2 .box ul, #tabs-3 .box ul, #tabs-4 .box ul, #tabs-5 .box ul { padding: 0px; overflow:hidden;}

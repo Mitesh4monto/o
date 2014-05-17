@@ -1,4 +1,9 @@
 ---
+OpenSans-Regular-webfont.eot: OpenSans-Regular-webfont-cd4e809c906cf8db7ad4d752ae649115.eot
+OpenSans-Regular-webfont.eot?: OpenSans-Regular-webfont.eot?
+OpenSans-Regular-webfont.svg: OpenSans-Regular-webfont-f78960f30d833f316ea5be89ab1b72cc.svg
+OpenSans-Regular-webfont.ttf: OpenSans-Regular-webfont-4bd6907e7c828e647736b45cbe52342d.ttf
+OpenSans-Regular-webfont.woff: OpenSans-Regular-webfont-a7d359dcc2a9ea189538476c0ee8e31d.woff
 opensansbold.eot: opensansbold-87bc2cedb7be12884c00aca76bd1fdd1.eot
 opensansbold.eot?: opensansbold.eot?
 opensansbold.svg: opensansbold-2935ef3e8ddbb4bf2d8f23cc63f86a51.svg
@@ -25,6 +30,7 @@ devider.png: devider-765ca630e1a21c0f525207140e270af8.png
 edu.png: edu-d5105897a725ee92907df38b6679cce6.png
 fb.png: fb-d3d35b6a018a1e224cd7fe7aa841952b.png
 footer.jpg: footer-fa9af06e08db908b53522c428f3122ab.jpg
+icons.png: icons-7b9803effba2e25db9f4da1d923f6e2e.png
 list.png: list-508d80505eef937c38b17ec0e6387d7b.png
 logo.png: logo-0e0299e5973108ea8db6e4938a4cc10a.png
 missing.png: missing-be8732dac73d845ac5b142c8fb5f9fb0.png
@@ -44,7 +50,7 @@ activities.js: activities-abbb6abc7518cf95af03acce9aa78236.js
 application.js: application-762aace938cfe124f0c45823e50ee3a7.js
 ckeditor/config.js: ckeditor/config-8169d7ab69f8659d2dafc4445a47c493.js
 activities.css: activities-4fce825408753a04b0b5094198f3ee7f.css
-application.css: application-1a426b67b010d07decf76438dcf03340.css
+application.css: application-5443cc10f539d17af627a7efd92d29a0.css
 jquery-ui/animated-overlay.gif: jquery-ui/animated-overlay-691b2d4343303de8d214ad5395fd895d.gif
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png

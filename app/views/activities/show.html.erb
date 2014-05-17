@@ -60,7 +60,7 @@ In <%= link_to @activity.user.name, @activity.user %>'s plan
 	<BR><b>Activities in the sequence:</b><BR>
 		<ul>
 		<% @activity.activity_sequence.activities.each do |activity_in_sequence| %>
-			<li><%= link_to activity_in_sequence.title, activity_in_sequence %>&nbsp;<%= shorten(activity_in_sequence.description, 50) %>...<%= link_to 'see more', activity_in_sequence %>
+			<li><%= link_to activity_in_sequence.title, activity_in_sequence %>&nbsp;<%= shorten(activity_in_sequence.description, 50) %>
 			<% if @activity.activity_sequence.current_activity != activity_in_sequence and activity_in_sequence.user == current_user and @activity.myp_activity? %>
 			<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
 			<% elsif activity_in_sequence.user == current_user and @activity.myp_activity? %> << Current

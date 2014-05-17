@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
-    @tab = params[:tab] || "overview"
+    @tab = params[:tab] || 0
     if @course.user != current_user and !@course.published?
       return redirect_to :root, notice: 'Nothing here'       
     end

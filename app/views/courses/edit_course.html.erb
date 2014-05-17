@@ -20,7 +20,12 @@ $('#tabs').tabs("option", 'active', <%= @tab %>)
 				<%= render :partial => 'overview_edit' %>
 			</div>
 			<div id="tabs-2">
-				<%= render :partial => 'plan_edit' %>
+				<%= stylesheet_link_tag "activities" %>
+				<%= render :partial => 'new_course_edit' %>
+				<div class="clear"></div>
+				<%= render :partial => 'plan_instructions' %>
+				<div class="clear"></div>
+				<%= render :partial => 'strategies/view_plan', locals: {strategy: @course.strategy, myp: false, course_edit: true} %>
 			</div>
 			<div id="tabs-3">
 				<%= render :partial => 'description_edit' %>

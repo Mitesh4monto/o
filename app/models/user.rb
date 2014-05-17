@@ -31,12 +31,13 @@ class User < ActiveRecord::Base
   attr_accessible :avatar
     has_attached_file :avatar, :styles => { :large => "200x200#", :medium => "150x150#", :small => "100x100#", :thumb => "50x50#", :mini => "30x30#" }, :default_url => "/images/:style/anonymousUser.jpg"
   
-  
+  # add user to list of following
   def follow(user)
     self.following << user
     ActionLog.log_other(self.id, "follow", user)     
   end
   
+  # removes user to list of following
   def unfollow(user)
     self.following.delete(user)
   end

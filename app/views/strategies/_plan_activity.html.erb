@@ -2,8 +2,14 @@
 
 <div class='titleboxed'><%= link_to activity.title, activity %></div>
 <div class="clear"></div><BR>
-<% if activity.course and myp %> <h3 class="float_lft">From course: <%= link_to activity.course.name, activity.course %> </h3>
-<div class="clear"></div><BR><% end %>
+<% if activity.course and myp %> 
+	<h3 class="float_lft">From course: <%= link_to activity.course.name, activity.course %> </h3>
+	<div class="clear"></div><BR>
+<% end %>
+<% if !myp %>
+	<%= link_to 'Add this activity to my plan', copy_activity_path(activity) %>
+	<!-- TODO -->
+<% end %>
 <div class="show">
 	<!-- for my plan: edit, delete, move in AS -->
 	<% if myp %>	
@@ -43,7 +49,7 @@
 	<% if myp and activity.commitment_marks.size > 0 %>
 		<%= render :partial => 'strategies/activity_cm', locals: {activity: activity, nav_month: false} %>
 		<%= link_to 'View All marks', mycms_path if myp %>
-	<% else %>	
+	<% elsif myp %>	
 		You don't have any commitment marks for this activity.  
 		<% if activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %><% end %>	
 	<% end %>

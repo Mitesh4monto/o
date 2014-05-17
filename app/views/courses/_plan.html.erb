@@ -1,6 +1,12 @@
 <h2>Activities in Course Plan</h2>
 
-<%=  render :partial => 'strategies/view_two', locals: {strategy: @course.strategy, myp: false} %>
+<div class="tabholdercourse">
+     <div class="tabcontainer">
+         <div class="myplane_area">
+<%=  render :partial => 'strategies/view_plan', locals: {strategy: @course.strategy, myp: false, course_edit: false} %>
+</div>
+</div>
+</div>
 
 <div class="clear"></div>
 

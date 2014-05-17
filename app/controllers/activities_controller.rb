@@ -26,6 +26,12 @@ class ActivitiesController < ApplicationController
     render :nothing => true
   end
   
+  def copy_activity
+    @activity = Activity.find_by_id(params[:id])
+    @activity.copy_to_user(current_user)
+    redirect_to :back, notice: 'Activity copied'      
+  end
+  
   def add_to_sequence
     @seq_activity = Activity.find_by_id(params[:id])
     @activity = Activity.new

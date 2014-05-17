@@ -1,4 +1,9 @@
 ---
+OpenSans-Regular-webfont.eot: cd4e809c906cf8db7ad4d752ae649115
+OpenSans-Regular-webfont.eot?: cd4e809c906cf8db7ad4d752ae649115
+OpenSans-Regular-webfont.svg: f78960f30d833f316ea5be89ab1b72cc
+OpenSans-Regular-webfont.ttf: 4bd6907e7c828e647736b45cbe52342d
+OpenSans-Regular-webfont.woff: a7d359dcc2a9ea189538476c0ee8e31d
 opensansbold.eot: 87bc2cedb7be12884c00aca76bd1fdd1
 opensansbold.eot?: 87bc2cedb7be12884c00aca76bd1fdd1
 opensansbold.svg: 2935ef3e8ddbb4bf2d8f23cc63f86a51
@@ -25,6 +30,7 @@ devider.png: 765ca630e1a21c0f525207140e270af8
 edu.png: d5105897a725ee92907df38b6679cce6
 fb.png: d3d35b6a018a1e224cd7fe7aa841952b
 footer.jpg: fa9af06e08db908b53522c428f3122ab
+icons.png: 7b9803effba2e25db9f4da1d923f6e2e
 list.png: 508d80505eef937c38b17ec0e6387d7b
 logo.png: 0e0299e5973108ea8db6e4938a4cc10a
 missing.png: be8732dac73d845ac5b142c8fb5f9fb0
@@ -44,7 +50,7 @@ activities.js: 7dc5d6fadb98eb872b72453c3d699d43
 application.js: e6274d560aa7cdbb02635ddc39a5d3fd
 ckeditor/config.js: 7f4ee6bab9357e2f62534b0cf18eb147
 activities.css: a377ed1db4832c4308af98dc8b4fe710
-application.css: 0d60193955a8158b402cd255ccfa7bbf
+application.css: f3c58ef86e923d4d7adca6c0ed2348f8
 jquery-ui/animated-overlay.gif: 691b2d4343303de8d214ad5395fd895d
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: a1eb3e0764573ed4b261ca742ed96ac3
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: 841636c8f8d33987bb8d2f31e8ef92ca

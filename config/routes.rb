@@ -31,6 +31,7 @@ Opp::Application.routes.draw do
   resources :activities, :collection => { :sort => :post }
   # resources :activity_in_sequences, :collection => { :sort => :post }
   get "activity_sequences/sort", to: "activity_sequences#sort", as: 'sort_activity_sequences'
+  get "activities/copy_activity/:id", to: "activities#copy_activity", as: 'copy_activity'
 
   get "activities/sort", to: "activities#sort", as: 'sort_activities'
   get "activities/show/:id", to: "activities#show", as: 'show_activity'

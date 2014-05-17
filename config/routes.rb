@@ -1,5 +1,8 @@
 Opp::Application.routes.draw do
    
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   # messages (contact us)
   get "messages_controller/new"
   get "messages_controller/create"
@@ -92,12 +95,16 @@ Opp::Application.routes.draw do
   match 'my_plan/:id',  :controller => "strategies", :action => "mine", :activity_id => :id
 
   devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
+  ActiveAdmin.routes(self)
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new", as: 'signin'
     get "sign_out", :to => "devise/sessions#destroy" #destroy_user_session"
   end  # devise_for :users
+  ActiveAdmin.routes(self)
   devise_for :users, :controllers => {:registrations => 'registrations'}
+  ActiveAdmin.routes(self)
   # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  ActiveAdmin.routes(self)
 
 
   match 'auth/:provider/callback', to: 'sessions#create'

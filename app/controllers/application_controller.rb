@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     else
       puts '************************************************************'
       course = Course.find(AppSetting.get('intro_course'))
-      course.add_user_to_course(user)       
+      # course.add_user_to_course(user)       
     end    
   end
     

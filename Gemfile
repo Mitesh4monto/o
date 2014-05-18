@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'activeadmin'
+# gem 'activeadmin'
+gem 'activeadmin', github: 'mjobin-mdsol/active_admin', :branch => '0.6.0-p1' # "~> 0.6.1"
 gem 'sass-rails'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'newrelic_rpm'

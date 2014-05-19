@@ -139,7 +139,8 @@ Opp::Application.routes.draw do
   match 'co',  :controller => "courses", :action => "index"
   root :to => "home#index"
  
-  ActiveAdmin.routes(self)
+  # ActiveAdmin.routes(self)
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

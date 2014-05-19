@@ -24,6 +24,7 @@ and (max-width : 1024px) {
 .wrapper { width:1000px;}
 header {  width:946px;}
 .main_con { width:946px; }
+.content-full { width:946px; }
 footer { width:946px;}
 .page3 .left_bar { width:452px; }
 .page3 .right_bar { width:432px; }

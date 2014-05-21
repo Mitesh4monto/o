@@ -201,9 +201,9 @@ jQuery(document).ready(function(){
 							<% if activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %><% end %>	
 						<% end %>
 
-						<% if myp %>						
+						<% if myp || course_edit %>						
                         <div class="ms-common-cont">
-                            <a class="button orange-pastel" href="#">Edit</a>
+							<%= link_to "Edit", edit_activity_path(activity), :class=>"button orange-pastel" %>
 							<% if activity.type == "ActivityInSequence" %>
 						       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"button orange-pastel" %>
 							<% else %>
@@ -211,6 +211,15 @@ jQuery(document).ready(function(){
 							<% end %>
                         </div>
 						<% end %>
+						
+						<%  if activity.type == "ActivityInSequence" and course_edit %>
+							<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(activity.activity_sequence.activity_in_sequences.first) %>	
+							<BR>	<%= link_to 'manage sequence', activity.activity_sequence %>
+						<% else %>
+							<BR>
+							<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>	
+						<% end %>
+						
 
 						<!-- previous/next for act seqs -->
                         <div class="ms-common-cont">

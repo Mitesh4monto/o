@@ -1,4 +1,3 @@
-<% @title = "My Plan" %>
 <% @show_aside = false %>
 
 <% if @tut %>
@@ -11,7 +10,10 @@ $(document).ready(function() {
 });
 </script>
 <% end %>
-
+<div class="left_bar width94">
+	<div class="box_holder3 width100">
+		<div class="title"><h3>My Plan</h3></div><br/>
+				
 	 <% if !myp_status.empty? %><div class='boxed'><p><%= raw myp_status %> </p></div> <% end %>
 	    	<% if !current_user.strategy.current_activities.empty? %>
 			<div class="tabholder">
@@ -38,3 +40,6 @@ $(document).ready(function() {
               <div class="clear"></div><BR>
             </div>
 			<% end %>
+		</div>
+	</div>
+</div>

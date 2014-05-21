@@ -60,9 +60,10 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 		 <div class="contain">
 		      <div class="side"></div>
 		      <div class="main_con">
-			  	<div class="content-full">
+				<% if defined?(@title) %><div class="content-full"><% end %>
 			  		<div class="left">
 			  			<div class="inn">
+							<% if defined?(@title) %>
 		        			<div class="page">
 		          				<h2><%= @title %></h2>
 								<% if defined?(@search_path) and @search_path %>
@@ -71,8 +72,8 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 									    <%= submit_tag "Go", name: nil %>
 									<% end %>
 								<% end %>
-		
 		        			</div>
+							<% end %>
 		        			<div class="page3">			
 			<!-- <div class="page"><h2></h2></div>
 				<div class="page3">			 -->
@@ -83,11 +84,10 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 
 	
 							</div>
-			<!-- <div class="side2"></div> -->
 						</div>
 					</div>
 					<%=  render :partial => 'shared/aside' if defined?(@show_aside) and @show_aside and current_user %>
-				</div>
+				<% if defined?(@title) %></div><% end %>
 			</div>
 			<div class='side2'></div>
 		</div>

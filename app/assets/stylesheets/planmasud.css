@@ -18,7 +18,7 @@
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .ts{-webkit-transition: all 1s;-moz-transition: all 1s;-ms-transition: all 1s;-o-transition: all 1s;transition: all 1s;}
-.tabholder{width: 750px; margin: 50px auto 0; font-family: 'open_sansregular';}
+.tabholder{width: 750px; margin: 25px; font-family: 'open_sansregular';}
 .tabcontainer{width: 100%;font-size: 14px; font-family: 'open_sansregular',opensans,sans-serif;}
 .tabcontainer a{text-decoration: none; color: #90b61e;}
 .tabcontainer h2{color: #1e8cc8;}
@@ -502,10 +502,10 @@ a.button.blue-pastel:active {
 /***********************************************
 * media query for mobile devices small devices
 ***********************************************/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 580px) {
     .tabholder,.tabcontainer{width: 100%; padding: 0;}
     .mas_left_cont{float: none; width: 300px;}
-    .mas_right_cont{float: none; width: 100%;margin: 0;padding: 10px;    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    .mas_right_cont{float: none; width: 300px;margin: 0;padding: 10px;    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
         -moz-box-sizing: border-box;    /* Firefox, other Gecko */
         box-sizing: border-box;}
     .mas-tab-content .ms-inner-tab-content{ -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */

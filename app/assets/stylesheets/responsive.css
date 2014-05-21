@@ -57,6 +57,9 @@ section .box_2 , .section2 .box_2, .page3 .box_3 { width:609px; }
 
 @media only screen
 and (max-width : 768px) {
+
+	.tabholder{width: 600px; margin: 25px; font-family: 'open_sansregular';}
+
 .wrapper { width:744px;}
 header {  width:690px;}
 .main_con { width:690px; margin-top:13px; }

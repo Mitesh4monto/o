@@ -43,7 +43,7 @@
 /*
 .mas-plusbtn-holder:hover .mas-plusbtn{display: block;}
 */
-.mas-plusbtn>a{height: 22px; border-bottom: 1px solid #1e8cc8; line-height: 22px; text-decoration: none;display: block;font-size: 10px;padding: 0 10px;color: #1e8cc8;}
+.mas-plusbtn>a{height: 22px; border-bottom: 1px solid #1e8cc8; line-height: 22px; text-decoration: none;display: block;font-size: 12px;padding: 0 10px;color: #1e8cc8;}
 .mas-plusbtn>a:last-child{border-bottom: none;}
 .mas-plusbtn-holder .mas-plusbtn>a:hover{color: #ffffff; background-color: #1e8cc8;}
 .mas-list-txt{display: block;margin: -5px 45px -5px -9px;padding: 5px 5px 5px 6px;}
@@ -77,10 +77,13 @@
 .ms-user-ul>li .pic_img_cont{padding-left: 60px;font-size: 11px;}
 .ms-user-ul>li p{    font-size: 12px; margin-top: 2px;}
 .ms-inner-tab-content ul li{background: url("/images/icons.png") no-repeat left -113px; list-style: none;margin-bottom: 5px;padding-left: 25px;text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+.ms-inner-tab-content ul li:hover{white-space: normal;}
 .ms-inner-tab-content ul.tim li{background: url("/images/icons.png") no-repeat left -145px;}
 .ms-inner-tab-content ul li a{max-width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 .ms-inner-tab-content a,.ms-user-ul>li a{color: #B8D546; text-decoration: none;}
 .editbox{background: #F4F4F4; border: 1px solid #1E8CC8; padding-left: 20px !important;}
+.editbox4{background: #F4F4F4; border-bottom: 1px solid #4F8A10; border-top: 1px solid #4F8A10; padding: 8px 0 4px 20px !important;}
+
 
 /*** Tools***/
 .mrgn-fix{margin-top: 10px;}
@@ -445,6 +448,31 @@ a.button.blue-pastel:active {
     background-image: -moz-linear-gradient(top, #88bdd0, #92c7da);
     background-image: -moz-gradient(top, #88bdd0, #92c7da);
 }
+
+
+a.button4, input.button4 {
+    font-size: 1em !important;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: .4em 1.25em;
+    color: #4F8A10;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    background: none;
+    border: 1px solid #4F8A10;
+}
+
+a.button4:hover, input.button4:hover {
+    background: #4F8A10;
+    color: #ffffff;
+}
+
+.del{padding: 0 10px; background: url("/images/del.png") no-repeat left center; }
+.edt{padding: 0 10px; background: url("/images/edt.png") no-repeat left center; }
 
 
 .ms-btn2 {

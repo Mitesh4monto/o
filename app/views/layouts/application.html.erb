@@ -64,15 +64,15 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 			  		<div class="left">
 			  			<div class="inn">
 							<% if defined?(@title) %>
-		        			<div class="page">
-		          				<h2><%= @title %></h2>
-								<% if defined?(@search_path) and @search_path %>
-									<%= form_tag @search_path, :class => 'search', method: :get do %>
-									    <%= text_field_tag :query, params[:query] %>
-									    <%= submit_tag "Go", name: nil %>
+			        			<div class="page">
+			          				<h2><%= @title %></h2>
+									<% if defined?(@search_path) and @search_path %>
+										<%= form_tag @search_path, :class => 'search', method: :get do %>
+										    <%= text_field_tag :query, params[:query] %>
+										    <%= submit_tag "Go", name: nil %>
+										<% end %>
 									<% end %>
-								<% end %>
-		        			</div>
+			        			</div>
 							<% end %>
 		        			<div class="page3">			
 			<!-- <div class="page"><h2></h2></div>
@@ -87,8 +87,8 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 						</div>
 					</div>
 					<%=  render :partial => 'shared/aside' if defined?(@show_aside) and @show_aside and current_user %>
-				<% if defined?(@title) %></div><% end %>
-			</div>
+				<% if defined?(@title) %></div></div><% end %>
+			
 			<div class='side2'></div>
 		</div>
 		<div class="clear"></div>

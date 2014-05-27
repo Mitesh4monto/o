@@ -148,7 +148,7 @@ jQuery(document).ready(function(){
 
 				<% if myp %>
                 <div class="mas_activity bs ms-noborder ms-row">				
-                    <a href="#" class="button blue-pastel">Add Activity</a>
+					<%= link_to 'Add activity', add_activity_path, :class=>"button blue-pastel" %>
                 </div>
 				<% elsif course_edit %>
                 <div class="mas_activity bs ms-noborder ms-row">				
@@ -171,9 +171,9 @@ jQuery(document).ready(function(){
 							<% end %>
                         </div>
 						<% if myp %>							
-                        <div class="ms-common-cont">
-							<%= link_to "Blog about", new_hal_path(activity.id), :class => "button green-pastel"  %>
-							<%= link_to 'Did Today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :class => "button green-pastel" %>
+                        <div class="ms-common-cont bs editbox4">
+							<%= link_to "Blog about", new_hal_path(activity.id), :class => "button"  %>
+							<%= link_to 'Did Today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :class => "button" %>
                         </div>
 						<% end %>
                         <div class="ms-common-cont">
@@ -202,12 +202,12 @@ jQuery(document).ready(function(){
 						<% end %>
 
 						<% if myp || course_edit %>						
-                        <div class="ms-common-cont">
-							<%= link_to "Edit", edit_activity_path(activity), :class=>"button orange-pastel" %>
+                        <div class="ms-common-cont bs editbox4">
+							<%= link_to "Edit", edit_activity_path(activity), :class=>"button4" %>
 							<% if activity.type == "ActivityInSequence" %>
-						       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"button orange-pastel" %>
+						       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"button4" %>
 							<% else %>
-						       <%= link_to "Delete", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"button orange-pastel" %>
+						       <%= link_to "Delete", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"button4" %>
 							<% end %>
                         </div>
 						<% end %>

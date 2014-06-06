@@ -226,12 +226,12 @@ aside .box_holder2 p.left, aside .box_holder2 h2.left, .box_holder2 h3.left { te
 .box_holder2 h2.left, .box_holder2 h3.left { text-align:left; padding-left:10px;}
 aside .box_holder .read a { float:right; color:#9ab71f; font-size:12px;font-family: 'opensans'; padding:5px 5px; text-decoration:none;}
 /**********tab************/
-#tabs-1 .box, #tabs-2 .box, #tabs-3 .box, #tabs-4 .box, #tabs-5 .box { width:90%; border-bottom:1px solid #333333; padding-bottom:20px;}
+#tabs-1 .box, #tabs-2 .box, #tabs-3 .box, #tabs-4 .box, #tabs-5 .box { width:90%; border-bottom:1px solid #1e8cc8; padding-bottom:10px;}
 #tabs-1 .box:last-child  { border-bottom:0;}
-#tabs-1 .box h1, #tabs-2 .box h1, #tabs-3 .box h1, #tabs-4 .box h1, #tabs-5 .box h1 {font-family: 'opensans'; margin:5px; padding-left:20px; font-size:14px; color:#2B3501;}
+#tabs-1 .box h1, #tabs-2 .box h1, #tabs-3 .box h1, #tabs-4 .box h1, #tabs-5 .box h1 {font-family: 'opensans'; margin:5px; font-size:14px; color:#2B3501;}
 .userlink { font-family: 'opensans'; font-size:14px!important; color:#000!important; text-decoration:none; }
 .userlink:hover { text-decoration:underline; }
-#tabs-1 .box img, #tabs-2 .box img, #tabs-3 .box img, #tabs-4 .box img, #tabs-5 .box img { float:left; padding-right:10px;}
+#tabs-1 .box img, #tabs-2 .box img, #tabs-3 .box img, #tabs-4 .box img, #tabs-5 .box img { float:left; padding-right:10px;padding-top:10px;}
 #tabs-1 .box ul, #tabs-2 .box ul, #tabs-3 .box ul, #tabs-4 .box ul, #tabs-5 .box ul { margin:30px 0 0;}
 #tabs-1 .box ul li, #tabs-2 .box ul li, #tabs-3 .box ul li, #tabs-4 .box ul li, #tabs-5 .box ul li { float:left; margin:0 20px; list-style:none;}
 #tabs-1 .box ul li a, #tabs-2 .box ul li a, #tabs-3 .box ul li a, #tabs-4 .box ul li a, #tabs-5 .box ul li a { text-decoration:none; padding:0 5px; border:none; background:none;color:#990000; font-family: 'opensans';}
@@ -596,3 +596,7 @@ text-decoration:none; cursor:pointer; padding: 5px 5px 5px 5px}
 #box100 ul li { float:left; margin:0 20px; list-style:none;}
 #box100 ul li a { text-decoration:none; padding:0 5px; border:none; background:none;color:#990000; font-family: 'opensans';}
 #box100 ul li a:hover { color:#000;}
+
+.box {
+  border: 1px solid #1e8cc8 ; padding: 10px; margin-bottom: 10px;
+}

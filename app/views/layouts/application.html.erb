@@ -60,7 +60,7 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 		 <div class="contain">
 		      <div class="side"></div>
 		      <div class="main_con">
-				<% if defined?(@title) %><div class="content-full"><% end %>
+				<% if true %><div class="content-full"><% end %>
 			  		<div class="left">
 			  			<div class="inn">
 							<% if defined?(@title) %>
@@ -87,7 +87,7 @@ players: ['img', 'html', 'iframe', 'qt', 'wmp', 'swf', 'flv']
 						</div>
 					</div>
 					<%=  render :partial => 'shared/aside' if defined?(@show_aside) and @show_aside and current_user %>
-				<% if defined?(@title) %></div></div><% end %>
+				<% if true %></div></div><% end %>
 			
 			<div class='side2'></div>
 		</div>

@@ -171,8 +171,9 @@ class Activity < ActiveRecord::Base
   end
   
   # returns all hals that have the same from template
-  def related_hals
-    Hal.get_related_hals(self)
+  def related_hals(limit = nil)
+    Hal.get_related_and_self_hals(self, limit)
+    # Hal.get_related_hals(self, limit)
     # if (self.from_id)
     #   Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.id = ? or (activities.from_id = ? and activities.id != ?)", self.from_id, self.from_id, self.id])
     # else  

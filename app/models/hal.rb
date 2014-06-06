@@ -56,13 +56,26 @@ class Hal < ActiveRecord::Base
   end
   
   # get all hals related to an item (hals about items that have the same "from")
-  def self.get_related_hals(halable)
+  def self.get_related_hals(halable, limit = 0)
     if (halable.from_id)
       # Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
       Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)) and user_id <> ?", halable.from_id, halable.class.name, halable.from_id, halable.class.name, halable.user_id)
        # self.where(:halable_type => halable.class.name, :) halable.from.
     else#   TODO
       Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?)) and user_id <> ?", halable.id, halable.class.name, halable.id, halable.class.name, halable.user_id)
+      # halable.hals
+    end    
+    
+  end
+
+  # get all hals related to an item (hals about items that have the same "from")
+  def self.get_related_and_self_hals(halable, limit = 0)
+    if (halable.from_id)
+      # Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
+      Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?))", halable.from_id, halable.class.name, halable.from_id, halable.class.name).limit(limit)
+       # self.where(:halable_type => halable.class.name, :) halable.from.
+    else#   TODO
+      Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?))", halable.id, halable.class.name, halable.id, halable.class.name).limit(limit)
       # halable.hals
     end    
     

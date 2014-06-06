@@ -8,7 +8,7 @@
 	<% if hal.halable %>
 		- About Activity: <%= link_to hal.halable.title, hal.halable %>
 	<% end %>	
-	<p>	<% if !hal.insights.blank? %><strong>Insights</strong>: <%= hal.insights %><% end %>
+	<p>	<% if !hal.insights.blank? %><%= hal.insights %><% end %>
 	</p>
 </div>
 <% end %>

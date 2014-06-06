@@ -1,5 +1,5 @@
 <% @title = "View Blog Entry" %>
-<% if @hal.halable @title += "about: @hal.halable.title" %>
+<% @title += " about #{@hal.halable.title}" if @hal.halable  %>
 
 				<div class="image_holder"><%= image_tag @hal.user.avatar.url(:small), :class => "img_lft" if (@hal.user.avatar.url(:small)) %></div>
 				<p class="general">

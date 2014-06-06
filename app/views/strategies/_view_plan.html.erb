@@ -7,22 +7,25 @@ function showActivity(act){
 	$('#act' + act).addClass('active').parent().addClass('active');    
     $('html, body').animate({scrollTop:$('#right_cont_tar').position().top}, 1500);
     $('.mas-tab-content .ms-inner-tab-content#content'+act).slideDown(1000);
-    
+	$('#hal'+act).slideDown(500);    
 }
 
 function hideActivity(){
     var act_list_li = $('.mas_activity_list>div.mas-activity-link');
     var act_list = $('.mas_activity_list>div.mas-activity-link>span.mas-list-txt');
+	var hal_list = $('.minihal');
 	act_list.removeClass('active');
     act_list_li.removeClass('active');    
+	hal_list.hide();
 }
 
 var active = null;
 //Trigger the animation when all images load
 jQuery(document).ready(function(){
-    $('.ms-user-ul>li:odd').addClass('ms-odd');
+    // $('.ms-user-ul>li:odd').addClass('ms-odd');
     var act_list_li = $('.mas_activity_list>div.mas-activity-link');
     var act_list = $('.mas_activity_list>div.mas-activity-link>span.mas-list-txt');
+	var hal_list = $('.minihal');
     act_list.click(function(){
 		active = $(this)
         if($(this).hasClass('active')){
@@ -31,12 +34,14 @@ jQuery(document).ready(function(){
         else{
             act_list.removeClass('active');
             act_list_li.removeClass('active');
+			hal_list.hide();
             $(this).addClass('active').parent().addClass('active');
             var datatarget = $(this).parent().data('mas-target');
-            //salert(datatarget);
+            // alert(datatarget);
             $('.mas-tab-content .ms-inner-tab-content').hide();
             $('html, body').animate({scrollTop:$('#right_cont_tar').position().top}, 1500);
-            $('.mas-tab-content .ms-inner-tab-content'+datatarget).slideDown(1000);
+            $('.mas-tab-content .ms-inner-tab-content#content'+datatarget).slideDown(1000);
+            $('#hal'+datatarget).slideDown(500);
         }
     });	
 
@@ -71,27 +76,6 @@ jQuery(document).ready(function(){
 
 
 
-        <div class="ms-customization">
-            <div class="mas_left_cont">
-                <div class="mas_activity bs ms-noborder ms-row">
-                    <div class="ms-row inliner">
-                        <!-- <div class="ms-col ms-col-6">
-                            <span class="ms-fl" style="font-size: 11px;margin-top: 5px;">View by : &nbsp; </span>
-                            <select class="ms-dropdown">
-                                <option>Chapter</option>
-                                <option>Chapter 1</option>
-                                <option>Chapter 3</option>
-                                <option>Chapter 4</option>
-                            </select>
-                        </div> -->
-                        <!-- <div class="ms-col ms-col-6">
-                            <a href="#" id="MS_Customization_btn" class="button blue-pastel">Show Customization</a>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ms-clear"></div>
         <div id="MS_Customization">
             <div class="mas_left_cont">
 	
@@ -113,7 +97,7 @@ jQuery(document).ready(function(){
                     <div class="mas_activity_body">
                         <div class="mas_activity_list">
 							<% activities.each do |activity| %>	
-                            <div class="mas-activity-link" id='act<%= activity.id %>' data-mas-target="#content<%= activity.id %>"><span class="mas-list-txt"><%= activity.title %></span>
+                            <div class="mas-activity-link" id='act<%= activity.id %>' data-mas-target="<%= activity.id %>"><span class="mas-list-txt"><%= activity.title %></span>
 							<% if myp %>
                                 <div class="mas-plusbtn-holder">
                                 <a href="#" class="mas_view_details">&nbsp;</a>
@@ -215,9 +199,10 @@ jQuery(document).ready(function(){
 						<%  if activity.type == "ActivityInSequence" and course_edit %>
 							<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(activity.activity_sequence.activity_in_sequences.first) %>	
 							<BR>	<%= link_to 'manage sequence', activity.activity_sequence %>
-						<% else %>
-							<BR>
-							<%= link_to 'Add activity to sequence', add_activity_to_sequence_path(activity) %>	
+							<!-- <BR> -->
+							<%= 
+							# link_to 'Add activity to sequence', add_activity_to_sequence_path(activity)
+							 %>	 						
 						<% end %>
 						
 
@@ -247,17 +232,69 @@ jQuery(document).ready(function(){
 										<% end %>
 									</li>
 								<% end %>
+								</ul>
 	                        </div>
 							<% else %>
 								<%= link_to 'See all activities in this sequence', activity %>
 							<% end %>
 						<% end %>
 	
-
                     </div>
+					
+					
 					<% end %>
 
                 </div>
 
+
+
             </div>
+
+			<% strategy.current_activities.each do |activity| %>
+
+			<div class='minihal' style='display:none' id='hal<%= activity.id %>'>
+				<ul class="ms-user-ul">
+					<% activity.related_hals(5).each do |hal| %>
+			         <li style='position:relative'><div>
+						<% if hal.entry.size > 100 %>
+							<span class='buttonmore' style='background:white;position:absolute;bottom:0px;right:0px'> <%= link_to "more", hal %> </span>
+						<% end %>
+			              <div class="ms-common-cont">
+			                  <img src="<%= hal.user.avatar.url(:thumb) %>" class="pic_img">
+			                  <div class="pic_img_cont">
+								<%= link_to hal.user.name, hal.user %> <br>
+			                      <!-- <%= link_to shorten(activity.title, 20), activity, :style => 'color: #1e8cc8' %><br>			                       -->
+			                      <%= hal.created_at.strftime("%m/%d/%Y") %> <br>
+			                  </div>
+			              </div>
+			              <p><%= shorten(hal.entry, 100) %><%= hal.entry %></p>
+						</div>
+			          </li>
+					<% end %>
+			    </ul>
+
+
+				</div>
+
+				<% end %>
+			<!-- <div class='minihal'>
+				<ul class="ms-user-ul">
+			         <li style='position:relative'><div>
+						<span class='greenbutton' style='background:white;position:absolute;bottom:0px;right:0px'>more</span>
+			              <div class="ms-common-cont">
+			                  <img src="<%= current_user.avatar.url(:thumb) %>" class="pic_img">
+			                  <div class="pic_img_cont">
+								<%= link_to current_user.name, current_user %> <br>
+			                      <%= link_to 'Eat more', '/', :style => 'color: #1e8cc8' %><br>			                      
+			                      7/7/2011 <br>
+			                  </div>
+			              </div>
+			              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br> <a href="#">Show More</a>
+			              </p>
+						</div>
+			          </li>
+			    </ul>
+
+
+				</div> -->
         </div>

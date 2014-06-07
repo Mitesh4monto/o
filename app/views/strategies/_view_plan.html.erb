@@ -1,6 +1,13 @@
 <script>
 
 
+function inanimateshowdiv(act) {
+	$('.mas-tab-content .ms-inner-tab-content').hide();
+	$('#act' + act).addClass('active').parent().addClass('active');    
+    // $('html, body').animate({scrollTop:$('#right_cont_tar').position().top}, 1500);
+    $('.mas-tab-content .ms-inner-tab-content#content'+act).show();
+	$('#hal'+act).show();    
+}
 
 function showActivity(act){
 	$('.mas-tab-content .ms-inner-tab-content').hide();
@@ -77,7 +84,7 @@ jQuery(document).ready(function(){
 
 
         <div id="MS_Customization">
-            <div class="mas_left_cont">
+            <div class="mas_left_cont" data-intro='This is your plan.  All the activities in your plan organized by goal and course' data-step='4'>
 	
 					<% activty_map = get_activity_by_goal_or_course(strategy.current_activities, myp) %>
 					<% if activty_map.size > 0 %>
@@ -97,7 +104,7 @@ jQuery(document).ready(function(){
                     <div class="mas_activity_body">
                         <div class="mas_activity_list">
 							<% activities.each do |activity| %>	
-                            <div class="mas-activity-link" id='act<%= activity.id %>' data-mas-target="<%= activity.id %>"><span class="mas-list-txt"><%= activity.title %></span>
+                            <div class="mas-activity-link" id='act<%= activity.id %>' data-mas-target="<%= activity.id %>"  <% if activity == strategy.current_activities.first %>data-intro='This is an activity in your plan.  You can click on it to view details' data-step='5' <% end %>><span class="mas-list-txt"><%= activity.title %></span>
 							<% if myp %>
                                 <div class="mas-plusbtn-holder">
                                 <a href="#" class="mas_view_details">&nbsp;</a>
@@ -131,7 +138,7 @@ jQuery(document).ready(function(){
 
 
 				<% if myp %>
-                <div class="mas_activity bs ms-noborder ms-row">				
+                <div class="mas_activity bs ms-noborder ms-row" data-intro='If you wish to add activities, you can add one from scratch or look for a course you could join' data-step='6'>				
 					<%= link_to 'Add activity', add_activity_path, :class=>"button blue-pastel" %>
                 </div>
 				<% elsif course_edit %>
@@ -146,8 +153,9 @@ jQuery(document).ready(function(){
                 <div class="mas-tab-content">
 	
 					<% strategy.current_activities.each do |activity| %>
-	
-                    <div class="ms-inner-tab-content bs" id="content<%= activity.id %>">
+					<% first = false
+					first = true if activity == strategy.current_activities.first %>					
+                    <div class="ms-inner-tab-content bs" id="content<%= activity.id %>" <% if first %> data-intro='Activity details are here.  View and manage them here.  You can click on the activity name to see more details if there are any.' data-step='7'<% end %>>
                         <div class="ms-cont-title">
                             <h3 class="ms-fl"><%= link_to activity.title, activity %></h3>
 							<% if activity.course and myp %> 
@@ -156,8 +164,8 @@ jQuery(document).ready(function(){
                         </div>
 						<% if myp %>							
                         <div class="ms-common-cont bs editbox4">
-							<%= link_to "Blog about", new_hal_path(activity.id), :class => "button"  %>
-							<%= link_to 'Did Today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :class => "button" %>
+							<span <% if first %>data-intro="You can blog about any activity.  Simply click here, enter your thoughts/feelings, or let your pet walk on the keyboard." data-step='8' <% end %>><%= link_to "Blog about", new_hal_path(activity.id), :class => "button"  %></span>
+							<span <% if first %>data-intro="If you've committed to activities, it's nice to keep track of when you do them, especially recurring ones.  Whenever you do an activity mark it here.  You can see the calendar of when you've done them later" data-step='9' <% end %>> <%= link_to 'Did Today', {:controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id}, :class => "button" %></span>
                         </div>
 						<% end %>
                         <div class="ms-common-cont">
@@ -187,12 +195,14 @@ jQuery(document).ready(function(){
 
 						<% if myp || course_edit %>						
                         <div class="ms-common-cont bs editbox4">
-							<%= link_to "Edit", edit_activity_path(activity), :class=>"button4" %>
+							<span <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='10'<% end %>><%= link_to "Edit", edit_activity_path(activity), :class=>"button4" %></span>
+							<span <% if first %>data-intro="Another way to customize your plan is deleting activities, whether you created them or they're part of a course." data-step='11' <% end %>>
 							<% if activity.type == "ActivityInSequence" %>
 						       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"button4" %>
 							<% else %>
 						       <%= link_to "Delete", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"button4" %>
 							<% end %>
+							</span>
                         </div>
 						<% end %>
 						
@@ -267,7 +277,7 @@ jQuery(document).ready(function(){
 			                      <%= hal.created_at.strftime("%m/%d/%Y") %> <br>
 			                  </div>
 			              </div>
-			              <p><%= shorten(hal.entry, 100) %><%= hal.entry %></p>
+			              <p><%= shorten(hal.entry, 80) %><%= hal.entry %></p>
 						</div>
 			          </li>
 					<% end %>
@@ -277,24 +287,4 @@ jQuery(document).ready(function(){
 				</div>
 
 				<% end %>
-			<!-- <div class='minihal'>
-				<ul class="ms-user-ul">
-			         <li style='position:relative'><div>
-						<span class='greenbutton' style='background:white;position:absolute;bottom:0px;right:0px'>more</span>
-			              <div class="ms-common-cont">
-			                  <img src="<%= current_user.avatar.url(:thumb) %>" class="pic_img">
-			                  <div class="pic_img_cont">
-								<%= link_to current_user.name, current_user %> <br>
-			                      <%= link_to 'Eat more', '/', :style => 'color: #1e8cc8' %><br>			                      
-			                      7/7/2011 <br>
-			                  </div>
-			              </div>
-			              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br> <a href="#">Show More</a>
-			              </p>
-						</div>
-			          </li>
-			    </ul>
-
-
-				</div> -->
         </div>

@@ -3,6 +3,7 @@ module StrategiesHelper
   def shorten(text, length)
     stripped = ''
     stripped = strip_tags(text) if text
+    return stripped if stripped.length < length
     ret = stripped.split(" ").each_with_object("") {|x,ob| break ob unless (ob.length + " ".length + x.length <= length);ob << (" " + x)}.strip
     ret += '...' if stripped.length > ret.length
   end

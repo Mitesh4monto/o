@@ -25,6 +25,7 @@
 .tabcontainer a{text-decoration: none; color: #90b61e;}
 .tabcontainer h2{color: #1e8cc8;}
 /*#MS_Customization{display: none;}*/
+#MS_Customization{padding-top: 20px}
 .ms-notice{display: none;}
 .ms-course-list{background: #FBFBFB; border-bottom: 1px solid #c0c0c0;}
 .ms-course-list-top{border: 1px solid #c0c0c0;border-radius: 5px;}

@@ -132,7 +132,6 @@ class Course < ActiveRecord::Base
   end
 
 
-
   # true for now
   def self.get_number_people_following_published_courses
     # results = ActiveRecord::Base.connection.execute("select count(distinct(a.user_id)), 
@@ -148,6 +147,16 @@ class Course < ActiveRecord::Base
   def post_print
     post = "New course on miaou I wrote. Everyone join!:\n #{name}"
     post += "\ndescription: #{ ActionController::Base.helpers.strip_tags(description)}" 
+  end
+  
+  # used for command line adding activities in a course
+  def add_activities_strings(acts, goal_text = nil)
+    descr = 'Highlight 1.<br>Highlight 2.<br>Details/Exercise.<br>  For more information refer to book.'
+    goal_id = nil
+    goal_id = self.strategy.create_or_use_goal(goal_text).id if goal_text
+    acts.each do |act| 
+      self.add_activity(Activity.create!(:user_id => self.user_id, :title => act, :description => descr, :kind_of_timing => 'Other', :goal_id => goal_id))
+    end
   end
 
 end

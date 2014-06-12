@@ -42,11 +42,11 @@
 .mas_activity_list div.mas-activity-link .mas-plusbtn-holder>a{position: absolute;right: 9px;top: 5px;float: right; font-size: 11px;background: url("/images/icons.png") no-repeat left -80px #F4F4F4;height: 18px;    margin-right: -4px;padding-right: 17px; color: #B8D546;text-decoration: none;}
 /*.mas_activity_list>div.mas-activity-link:hover,*/.mas_activity_list>.mas-activity-link.active{ background: #1e8cc8; color: #ffffff;}
 
-.mas-plusbtn{background-color: #F4F4F4;position: absolute;right: 4px;top: 22px;/*width: 100px;*/z-index: 100;border: 1px solid #1e8cc8;display: none;}
+.mas-plusbtn{background-color: #FFFFFF;position: absolute;right: 4px;top: 22px;/*width: 100px;*/z-index: 100;border: 2px solid #a3c026;display: none;}
 /*
 .mas-plusbtn-holder:hover .mas-plusbtn{display: block;}
 */
-.mas-plusbtn>a{height: 22px; border-bottom: 1px solid #1e8cc8; line-height: 22px; text-decoration: none;display: block;font-size: 12px;padding: 0 10px;color: #1e8cc8;}
+.mas-plusbtn>a{height: 22px; border-bottom: 1px solid #a3c026; line-height: 22px; text-decoration: none;display: block;font-size: 12px;padding: 0 10px;color: #1e8cc8;}
 .mas-plusbtn>a:last-child{border-bottom: none;}
 .mas-plusbtn-holder .mas-plusbtn>a:hover{color: #ffffff; background-color: #1e8cc8;}
 .mas-list-txt{display: block;margin: -5px 45px -5px -9px;padding: 5px 5px 5px 6px;}

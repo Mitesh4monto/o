@@ -131,6 +131,8 @@ nav ul li { list-style:none; float:left; background:none!important; padding:0px!
 /* Smartphones (landscape) ----------- */
 @media only screen
 and (max-width : 580px) {
+
+
 .wrapper { width:545px;}
 header {  width:492px;}
 .main_con { width: 482px; margin-top: 13px; }

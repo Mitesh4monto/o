@@ -151,7 +151,7 @@ class Course < ActiveRecord::Base
   
   # used for command line adding activities in a course
   def add_activities_strings(acts, goal_text = nil)
-    descr = 'Highlight 1.<br>Highlight 2.<br>Details/Exercise.<br>  For more information refer to book.'
+    descr = '<strong>Highlight 1</strong>.<br><strong>Highlight 2</strong>.<br>Details/Exercise.<br><BR>  For more information refer to book.'
     goal_id = nil
     goal_id = self.strategy.create_or_use_goal(goal_text).id if goal_text
     acts.each do |act| 

@@ -20,7 +20,9 @@
 				<p>
 				<span class="inn">
 					<%- followers = @followers[course.id.to_s] || 0  %>
-					<%- if followers.to_i > 0 %>
+					<%- if false 
+						# followers.to_i > 0 
+					%>
 						People following: <%= link_to followers.to_s, course_people_path(course)  %>
 					<%- end %>
 					<%- if course.hals.where("privacy != 0").size > 0 %>

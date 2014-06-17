@@ -270,9 +270,9 @@ jQuery(document).ready(function(){
 							<span class='buttonmore' style='background:white;position:absolute;bottom:0px;right:0px'> <%= link_to "more", hal %> </span>
 						<% end %>
 			              <div class="ms-common-cont">
-			                  <img src="<%= hal.user.avatar.url(:thumb) %>" class="pic_img">
+			                  <img src="<%= hal.user.avatar.url(:thumb) if hal.user %>" class="pic_img">
 			                  <div class="pic_img_cont">
-								<%= link_to hal.user.name, hal.user %> <br>
+								<%= link_to hal.user.name, hal.user if hal.user %> <br>
 			                      <!-- <%= link_to shorten(activity.title, 20), activity, :style => 'color: #1e8cc8' %><br>			                       -->
 			                      <%= hal.created_at.strftime("%m/%d/%Y") %> <br>
 			                  </div>

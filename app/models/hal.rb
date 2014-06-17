@@ -71,9 +71,9 @@ class Hal < ActiveRecord::Base
   # get all hals related to an item (hals about items that have the same "from")
   def self.get_related_and_self_hals(halable, limit = 0)
     if (halable.from_id)
-      #  TODO HACK remote hardcoded ActivityInSequence
+      #  TODO HACK remote hardcoded Activity
       # Hal.find(:all, :joins => "left join activities on activities.id=hals.halable_id", :conditions => ["activities.from_id = ? ", 3])
-      Hal.where("((fromable_id = ? and (fromable_type = ? or fromable_type = 'ActivityInSequence')) or (halable_id = ? and halable_type = ?))", halable.from_id, halable.class.name, halable.from_id, halable.class.name).limit(limit)
+      Hal.where("((fromable_id = ? and (fromable_type = ? or fromable_type = 'Activity')) or (halable_id = ? and halable_type = ?))", halable.from_id, halable.class.name, halable.from_id, halable.class.name).limit(limit)
        # self.where(:halable_type => halable.class.name, :) halable.from.
     else#   TODO
       Hal.where("((fromable_id = ? and fromable_type = ?) or (halable_id = ? and halable_type = ?))", halable.id, halable.class.name, halable.id, halable.class.name).limit(limit)

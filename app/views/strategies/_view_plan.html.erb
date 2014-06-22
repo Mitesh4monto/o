@@ -83,7 +83,7 @@ jQuery(document).ready(function(){
 
 
 
-        <div id="MS_Customization">
+        <div class='o' id="MS_Customization">
             <div class="mas_left_cont" data-intro='This is your plan.  All the activities in your plan organized by goal and course' data-step='4'>
 	
 					<% activty_map = get_activity_by_goal_or_course(strategy.current_activities, myp) %>
@@ -235,7 +235,7 @@ jQuery(document).ready(function(){
 		                        <ul>
 								<% activity.activity_sequence.activities.each do |activity_in_sequence| %>
 									<li>
-										<%= link_to activity_in_sequence.title, activity_in_sequence %>		&nbsp;<%= shorten(activity_in_sequence.description, 50) %>
+										<%= link_to activity_in_sequence.title, activity_in_sequence %>		&nbsp;<%= shorten(activity_in_sequence.description, 300) %>
 										<% if myp and activity.activity_sequence.current_activity != activity_in_sequence %>
 											<%= link_to "set as active", :controller => "ActivitySequences", :action => "make_current", :id => activity_in_sequence.activity_sequence.id, :activity_id => activity_in_sequence.id %>
 										<% elsif myp %> << Current
@@ -260,6 +260,7 @@ jQuery(document).ready(function(){
 
             </div>
 
+			<% if myp %>
 			<% strategy.current_activities.each do |activity| %>
 
 			<div class='minihal' style='display:none' id='hal<%= activity.id %>'>
@@ -287,4 +288,5 @@ jQuery(document).ready(function(){
 				</div>
 
 				<% end %>
+			<% end %>
         </div>

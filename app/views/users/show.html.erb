@@ -44,9 +44,13 @@
 	
  <h2 class="title">Plan:</h2>
 
-	<%= render :partial => 'strategies/view_two', locals: {strategy: @user.strategy, myp: false} %>
+<div class='tab_holder2'>				
+	<%= render :partial => 'strategies/view_plan', locals: {strategy: @user.strategy, myp: false, course_edit: false} %>
+	
+</div>
+	<BR><BR>
 
-
+ <h2 class="title">Entries:</h2>
 
 
 		<div class="space"></div>

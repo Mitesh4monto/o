@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def post_register(user)
-    puts '************************************************************'
+    puts '****************************234********************************'
     if session[:course_join] != nil      
       course = Course.find(session[:course_join])
       course.add_user_to_course(user)       
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     else
       puts '************************************************************'
       course = Course.find(AppSetting.get('intro_course'))
-      # course.add_user_to_course(user)       
+      course.add_user_to_course(user)       
     end    
   end
     
@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_inactive_sign_up_path_for(resource)
-    puts '****************************************[[[[[[[[[[[[]]]]]]]]]]]]'
+    puts '*asdf***************************************[[[[[[[[[[[[]]]]]]]]]]]]'
     post_register(resource)    
     courses_path
   end

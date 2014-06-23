@@ -15,8 +15,8 @@ class StrategiesController < ApplicationController
 
   def copy_activity
     @activity = Activity.find(params[:id])
-    @activity.copy_to_user(current_user)
-    redirect_to root_path, notice: 'activity was successfully added.'
+    copy = @activity.copy_to_user(current_user)
+    redirect_to myp_path(copy), notice: 'activity was successfully added.'
   end
   
 

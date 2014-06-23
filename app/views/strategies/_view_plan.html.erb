@@ -119,6 +119,13 @@ jQuery(document).ready(function(){
 									<% end %>
                                 </div>
                                 </div>
+							<% else %>
+	                            <div class="mas-plusbtn-holder">
+		                            <a href="#" class="mas_view_details">&nbsp;</a>
+		                            <div class="mas-plusbtn">
+										<%= link_to "Add to My Plan", copy_activity_path(activity.id)  %>
+		                            </div>
+	                            </div>
 							<% end %>
                             </div>
                             <% if activity.customization and !activity.customization.empty? %>

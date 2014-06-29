@@ -15,7 +15,7 @@ module ActivitiesHelper
       g = Goal.find_by_id key
       if (g)
         index = g.title
-        index +=' - course: ' + g.course.name if g.course and show_course
+        index +=' - Course: ' + g.course.name if g.course and show_course
         return_hash[index] = activities.find_all {|a| a['goal_id'] == key}
       else 
         # no goal, but course

@@ -7,8 +7,9 @@ Feature: Create a course
       Given I am logged in
 
     Scenario: User creates course with all fields filled out
-      Given I click link create course
-	  And I fill in "Name" with "course name"
+      Given I am on the newcourse page
+      # Given I click link create a course
+	  And I fill in "course_name" with "course name"
 	  And I fill in "Overview" with "my overview"
 	  And I fill in "About the author" with "ab auth non"	
 	  And I fill in "course_description" with "my course descri"
@@ -17,7 +18,8 @@ Feature: Create a course
       And page should have course named "course name"
       
     Scenario: User creates course with no field filled out
-    Given I click link create course
+    # Given I click link create a course
+    Given I am on the newcourse page
 	  When I press "Create Course"
       Then I should see an error message
 	  And I should see on page "Name can't be blank"

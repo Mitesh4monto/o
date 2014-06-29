@@ -21,8 +21,13 @@ Given(/^I have a created published course$/) do
   click_button "Create Course"
 end
 
-When /^I click link create course$/ do
-  click_link "create course"
+Given /^I am on the newcourse page$/ do
+  visit '/courses/new'
+end
+
+
+When /^I click link create a course$/ do
+  click_link "create a course"
 end
 
 When(/^I check "(.*?)"$/) do |arg1|

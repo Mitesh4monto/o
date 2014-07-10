@@ -2,6 +2,7 @@
   <tr>
     <th>User</th>
     <th>id</th>
+    <th>date</th>
     <th>entry</th>
     <th>insights</th>
     <th>About</th>
@@ -11,6 +12,7 @@
   <tr>
     <td> <%= link_to hal.user.name, hal.user if hal.user %></td>
     <td><%= link_to hal.id, hal %></td>
+    <td><%= hal.created_at %></td>
     <td><%= hal.entry %></td>
     <td><%= hal.insights %></td>
 	<td>

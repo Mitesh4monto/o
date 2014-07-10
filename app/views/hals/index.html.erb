@@ -3,19 +3,19 @@
     <th>User</th>
     <th>id</th>
     <th>entry</th>
-    <th></th>
-    <th></th>
+    <th>About</th>
   </tr>
 
 <% @hals.each do |hal| %>
   <tr>
-    <td><%= link_to hal.user.name, hal.user %></td>
+    <td> <%= link_to hal.user.name, hal.user if hal.user %></td>
     <td><%= link_to hal.id, hal %></td>
     <td><%= hal.entry %></td>
-	<% if @hal.halable %>
-		<h3>About:<%= link_to hal.halable.title, hal.halable %></h3>
+	<td>
+	<% if hal.halable %>
+		<%= link_to hal.halable.title, hal.halable %>
 	<% end %>
-    <td><%= link_to 'Show', user %></td>
+	</td>
   </tr>
 <% end %>
 </table>

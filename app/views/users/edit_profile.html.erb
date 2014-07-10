@@ -27,6 +27,13 @@
 			  </dl>
 
               <dl>
+                <dt>About me:</dt>
+                <dd>
+			    <%= f.text_area :about_me %>
+				</dd>
+			  </dl>
+
+              <dl>
                 <dt>New picture:</dt>
                 <dd>
 				  <%= f.file_field :avatar, :html => {:title => 'Delete'} %>

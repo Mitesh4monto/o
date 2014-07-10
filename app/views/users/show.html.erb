@@ -9,6 +9,7 @@
 							<div class="lft"> 
 								<%= image_tag @user.avatar.url(:small), :class => "img_lft" if (@user.avatar.url(:thumb)) %> 
 								<p> <h4><%= @user.name %></h4> <br> <span class="info"></span> </p> 
+								<% if @user.about_me %><p><strong>About Me</strong>: <%= @user.about_me %></p><% end %>
              						</div> 
 							<div class="rgt"> <!--<a href="#" class="button" style=" margin-top:30px;">Follow</a>--></div> 
 							<div class="clear"></div>

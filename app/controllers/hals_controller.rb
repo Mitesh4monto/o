@@ -2,6 +2,10 @@ class HalsController < ApplicationController
   before_filter :require_owner, :only =>[:edit, :update, :destroy]
   before_filter :authenticate_user!, :except =>[:show, :help_wanted]
 
+  def index
+    @hals = Hal.first(50)
+  end
+
   def view
     @mine = current_user.hals.first(10)
     @following = current_user.find_following_hals.public.first(10)

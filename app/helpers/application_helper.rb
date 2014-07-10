@@ -14,6 +14,10 @@ module ApplicationHelper
     image_tag("/images/question_mark_blue.png", :class => 'button tipped', 'data-title' => text, 'data-tipper-options' => '{"direction":"' + direction + '"}', :height => '25')     
   end
 
+  def tipper_text(text)
+    "&nbsp(<span title='#{text}'>" + link_to('?', '#',:onclick=>"return false;") + "</span>)"
+  end
+
 protected
 
   def after_sign_in_path_for(resource)

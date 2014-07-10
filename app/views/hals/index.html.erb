@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>User</th>
+    <th>id</th>
+    <th>entry</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hals.each do |hal| %>
+  <tr>
+    <td><%= link_to hal.user.name, hal.user %></td>
+    <td><%= link_to hal.id, hal %></td>
+    <td><%= hal.entry %></td>
+	<% if @hal.halable %>
+		<h3>About:<%= link_to hal.halable.title, hal.halable %></h3>
+	<% end %>
+    <td><%= link_to 'Show', user %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

@@ -56,13 +56,13 @@ class User < ActiveRecord::Base
    
    # if user doesn't exist, fetch info from fb and create user
    def self.from_omniauth(auth)
+     logger.info("from omni")          
      # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
      # logger.info("received from Facebook: #{auth.to_yaml}")
      @graph = Koala::Facebook::API.new(auth.credentials.token)
      friends = @graph.get_connections("me", "friends")
      # logger.info("friends: #{friends.to_yaml}")
      profile = @graph.get_object("me")
-     logger.info("from omni")          
      
        user = User.where(:provider => auth.provider, :uid => auth.uid).first       
        

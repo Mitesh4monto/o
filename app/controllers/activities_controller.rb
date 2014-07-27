@@ -156,7 +156,8 @@ class ActivitiesController < ApplicationController
     if !new_goal_text.empty?
       goal = @activity.strategy.create_or_use_goal(new_goal_text)
       @activity.goal_id = goal.id
-    end    
+      params[:activity][:goal_id] = @activity.goal_id  # hack for the update_attributes later
+    end
     
     # log update activity
     if (@activity.strategy and @activity.strategy.class.name == "CourseStrategy")

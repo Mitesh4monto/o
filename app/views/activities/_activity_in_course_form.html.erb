@@ -41,12 +41,11 @@ get_goals_for_strategy(@course.strategy).concat([Goal.new(:id => 0, :title => 'C
 	<BR>
 		
 	<div class="boxed">
-		<label>Timing <%= tipper("Enter how people should tackle this activity.  Is it 
+		<label>Timing <%= raw tipper_text("Enter how people should tackle this activity:
 		- a one time thing
 		- an activity to do in reaction to something (e.g. when I feel hunger strike; when I'm irrate)
 		- an activity to do repeatedly at a set frequency (e.g. 3 times per week)
-		- an activity to be done whenever (user discretion)
-		") %></label>
+		- an activity to be done whenever (user discretion)") %></label>
 		<div class="clear"></div>
 		<div class="row">
 		<%=   f.input :kind_of_timing,  :as => :select,      :collection => ["Other", "One time", "Reactive", "Frequency"], :default => "Other" %>

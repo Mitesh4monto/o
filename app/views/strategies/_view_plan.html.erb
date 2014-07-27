@@ -119,6 +119,18 @@ jQuery(document).ready(function(){
 									<% end %>
                                 </div>
                                 </div>
+							<% elsif course_edit %>
+	                            <div class="mas-plusbtn-holder">
+		                            <a href="#" class="mas_view_details">&nbsp;</a>
+		                            <div class="mas-plusbtn">
+			                            <%= link_to "Edit", edit_activity_in_course_path(activity) %>
+										<% if activity.type == "ActivityInSequence" %>
+									       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete %>
+										<% else %>
+									       <%= link_to "Delete", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete %>
+										<% end %>
+	                            	</div>
+	                            </div>
 							<% else %>
 	                            <div class="mas-plusbtn-holder">
 		                            <a href="#" class="mas_view_details">&nbsp;</a>
@@ -200,7 +212,7 @@ jQuery(document).ready(function(){
 							<% if activity.kind_of_timing != "Reactive" %>Do it and <%= link_to 'log it!', :controller => "commitment_marks", :action => "add_commitment_mark_to_activity", :activity_id => activity.id %><% end %>	
 						<% end %>
 
-						<% if myp || course_edit %>						
+						<% if myp  %>
                         <div class="ms-common-cont bs editbox4">
 							<span <% if first %>data-intro="You can modify all activities, whether you created them of they're from a course you joined.  This allows your plan to truly be yours." data-step='10'<% end %>><%= link_to "Edit", edit_activity_path(activity), :class=>"button4" %></span>
 							<span <% if first %>data-intro="Another way to customize your plan is deleting activities, whether you created them or they're part of a course." data-step='11' <% end %>>
@@ -211,7 +223,19 @@ jQuery(document).ready(function(){
 							<% end %>
 							</span>
                         </div>
+						<% elsif course_edit %>
+                        <div class="ms-common-cont bs editbox4">
+							<span><%= link_to "Edit", edit_activity_in_course_path(activity), :class=>"button4" %></span>
+							<span>
+							<% if activity.type == "ActivityInSequence" %>
+						       <%= link_to "Delete", activity.activity_sequence, confirm: 'This will delete all the activities in the sequence.  Are you sure?', method: :delete, :class=>"button4" %>
+							<% else %>
+						       <%= link_to "Delete", activity, confirm: 'This will delete the activity.  Are you sure?', method: :delete, :class=>"button4" %>
+							<% end %>
+							</span>
+                        </div>
 						<% end %>
+						
 						
 						<%  if activity.type == "ActivityInSequence" and course_edit %>
 							<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(activity.activity_sequence.activity_in_sequences.first) %>	

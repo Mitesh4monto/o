@@ -82,7 +82,12 @@ class User < ActiveRecord::Base
                             )
         user.skip_confirmation!
         user.save
-        user.avatar = open(auth.info.image)
+        begin
+          user.avatar = open(auth.info.image)
+        rescue Exception => e  
+          logger.info("deescalated quickly... #{e.message}  #{e.backtrace.inspect}")
+        end
+          
         logger.info("adding avatar from #{auth.info.image}")
         user.save
       end

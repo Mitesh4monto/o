@@ -10,7 +10,7 @@ class SessionsController < ApplicationController #Devise::SessionsController
       redirect_to root_path, notice: "FB not playing nice.  Please register"
     else    
       user = User.from_omniauth(env["omniauth.auth"])
-      logger.info("user: #{user.id}")                
+      puts "user: #{user.id}"
       post_register(user)
       sign_in_and_redirect user, :event => :authentication #this will throw if @user is not activated
       # redirect_to root_url

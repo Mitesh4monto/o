@@ -84,12 +84,12 @@ class User < ActiveRecord::Base
         user.save
         begin
           user.avatar = open(auth.info.image)
+          logger.info("adding avatar from #{auth.info.image}")
+          user.save
         rescue Exception => e  
           logger.info("deescalated quickly... #{e.message}  #{e.backtrace.inspect}")
         end
           
-        logger.info("adding avatar from #{auth.info.image}")
-        user.save
       end
       user
    end 

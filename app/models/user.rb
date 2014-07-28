@@ -65,7 +65,8 @@ class User < ActiveRecord::Base
      profile = @graph.get_object("me")
      
        user = User.where(:provider => auth.provider, :uid => auth.uid).first       
-       puts user
+       puts user.to_yaml if user
+       puts 'no user' unless user
        unless user         
          @graph = Koala::Facebook::API.new(auth.credentials.token)
          profile = @graph.get_object("me")

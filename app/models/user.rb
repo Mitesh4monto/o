@@ -90,8 +90,8 @@ class User < ActiveRecord::Base
           user.save!
           puts "user saved id #{user.id}"
           image_url = auth.info.image
-          avatar_url = image_url.gsub("­http","htt­ps")
-          user.avatar = open(image_url)
+          avatar_url = image_url.gsub("http","https")
+          user.avatar = open(avatar_url)
           puts("adding avatar from #{auth.info.image}")
           user.save
         rescue Exception => e  

@@ -87,9 +87,9 @@ class User < ActiveRecord::Base
         user.skip_confirmation!
         
         begin
-          user.avatar = open(auth.info.image)
           user.save!
           puts "user saved id #{user.id}"
+          user.avatar = open(auth.info.image)
           logger.info("adding avatar from #{auth.info.image}")
           user.save
         rescue Exception => e  

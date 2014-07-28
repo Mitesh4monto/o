@@ -69,10 +69,10 @@ class User < ActiveRecord::Base
        unless user         
          @graph = Koala::Facebook::API.new(auth.credentials.token)
          profile = @graph.get_object("me")
-         # logger.info("me: #{profile.to_yaml}")
+         puts "me: #{profile.to_yaml}"
          # logger.info("user: #{user.to_yaml}")
 
-         # logger.info("received from Facebook: #{auth.to_yaml}")
+         puts "received from Facebook: #{auth.to_yaml}"
          # logger.info("received from Facebook: #{auth.info.image}")
          user = User.new(name:auth.info.name,
                             provider:auth.provider,
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
                             )
         user.skip_confirmation!
         user.save
-        logger.info("user saved id #{user.id}")          
+        puts "user saved id #{user.id}"
         
         begin
           user.avatar = open(auth.info.image)

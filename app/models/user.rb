@@ -128,6 +128,8 @@ class User < ActiveRecord::Base
   # TODO add rspec
   # add all the activities from a course strategy into user's strategy
   def add_to_my_strategy(strategy)
+    puts self.to_yaml
+    puts 'add to my strat'
     # copy all activities
     strategy.activities.each do |activity|
       if (!self.strategy.contains_activity(activity))

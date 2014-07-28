@@ -89,8 +89,10 @@ class User < ActiveRecord::Base
         begin
           user.save!
           puts "user saved id #{user.id}"
-          user.avatar = open(auth.info.image)
-          logger.info("adding avatar from #{auth.info.image}")
+          image_url = auth.info.image
+          avatar_url = image_url.gsub("­http","htt­ps")
+          user.avatar = open(image_url)
+          puts("adding avatar from #{auth.info.image}")
           user.save
         rescue Exception => e  
           puts("deescalated quickly... #{e.message}  ")

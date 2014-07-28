@@ -56,7 +56,6 @@ class User < ActiveRecord::Base
    
    # if user doesn't exist, fetch info from fb and create user
    def self.from_omniauth(auth)
-     puts("from omni")          
      # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
      # logger.info("received from Facebook: #{auth.to_yaml}")
      @graph = Koala::Facebook::API.new(auth.credentials.token)
@@ -65,8 +64,6 @@ class User < ActiveRecord::Base
      profile = @graph.get_object("me")
      
        user = User.where(:provider => auth.provider, :uid => auth.uid).first       
-       puts user.to_yaml if user
-       puts 'no user' unless user
        unless user         
          @graph = Koala::Facebook::API.new(auth.credentials.token)
          profile = @graph.get_object("me")
@@ -87,17 +84,16 @@ class User < ActiveRecord::Base
         user.skip_confirmation!
         
         begin
+          # validate and save user
           user.save!
-          puts "user saved id #{user.id}"
           image_url = auth.info.image
-          avatar_url = image_url.gsub("http","https")
+          avatar_url = image_url.gsub("http","https")  # hack because otherwise redirection error
           user.avatar = open(avatar_url)
           puts("adding avatar from #{auth.info.image}")
           user.save
         rescue Exception => e  
-          puts("deescalated quickly... #{e.message}  ")
+          puts("eggshepshin... #{e.message}  ")
         end
-          puts("post exception")          
       end
       user
    end 
@@ -120,7 +116,7 @@ class User < ActiveRecord::Base
   
   # get all hals users followed by user
   def find_following_hals
-      Hal.where("user_id in (?)", self.following.collect(&:id)).public.order("created_at desc")
+    Hal.where("user_id in (?)", self.following.collect(&:id)).public.order("created_at desc")
   end
     
   def find_course_hals
@@ -130,7 +126,6 @@ class User < ActiveRecord::Base
   # TODO add rspec
   # add all the activities from a course strategy into user's strategy
   def add_to_my_strategy(strategy)
-    puts 'add to my strat'
     puts self.to_yaml
     # copy all activities
     strategy.activities.each do |activity|

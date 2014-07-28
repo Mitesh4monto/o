@@ -85,11 +85,11 @@ class User < ActiveRecord::Base
                             password:Devise.friendly_token[0,20]
                             )
         user.skip_confirmation!
-        user.save
-        puts "user saved id #{user.id}"
         
         begin
           user.avatar = open(auth.info.image)
+          user.save!
+          puts "user saved id #{user.id}"
           logger.info("adding avatar from #{auth.info.image}")
           user.save
         rescue Exception => e  

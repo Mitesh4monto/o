@@ -19,7 +19,7 @@
 	<% end  %>
 <% end %>
 			<%= link_to image_tag("/images/help-wanted.jpg", :title=>title + hal.id.to_s, :class=>"collapselinkhals", :style => 'width:75px; float:right; padding-right:0px; padding-top:10px'), '#' if hal.help %> 
-            <p><%= hal.entry %></p>
+            <p><%= raw hal.entry %></p>
                <% if !hal.insights.blank? %><p><strong>Insights</strong>: <%= hal.insights %></p><% end %>
 	               <ul>
 					<% if hal.halable %><li>Activity: <%= link_to hal.halable.title, hal.halable %></li><% end %>

@@ -27,7 +27,11 @@
 <div class="clear"></div>
 <% end %>
 
-<div class="row"><label>Entry<%= raw tipper_text("The main content of your blog entry") %></label><%= f.text_area  :entry %></div>
+<div class="row">
+	<label>Entry<%= raw tipper_text("The main content of your blog entry") %></label>
+	<div class="clear"></div>
+	<%= f.text_area :entry, :class => 'ckeditor' %></div>
+	
 <div class="clear"></div>
 <div class="clear"></div>
 <BR><BR><BR>

@@ -1,7 +1,11 @@
 <% @title = "Edit Entry" %>
 
 <%= semantic_form_for @hal, :html => {:class => "course_manage"}  do |f| %>
-<div class="row"><label>Entry<%= tipper("The main content of your blog entry") %></label><%= f.text_area  :entry %></div>
+<div class="row">
+	<label>Entry<%= tipper("The main content of your blog entry") %></label>
+	<div class="clear"></div>
+	<%= f.text_area :entry, :class => 'ckeditor' %>
+</div>
 <div class="clear"></div>
 <div class="row"><label>Insights <%= tipper("Any insights that might have come from this activity") %></label><%= f.text_area  :insights %></div>
 <div class="clear"></div>

@@ -2,7 +2,7 @@ class Ckeditor::Picture < Ckeditor::Asset
   has_attached_file :data,
                     :url  => "/ckeditor_assets/pictures/:id/:style_:basename.:extension",
                     :path => ":rails_root/public/ckeditor_assets/pictures/:id/:style_:basename.:extension",
-                    :styles => { :content => '800>', :thumb => '118x100#'},
+                    :styles => { :content => '700>', :thumb => '118x100#'},
                     :storage => :s3,
                     :url => ":s3_domain_url",
                     :s3_credentials => {

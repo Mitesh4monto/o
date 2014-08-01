@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
           puts("adding avatar from #{auth.info.image}")
           user.save
         rescue Exception => e  
-          puts("eggshepshin... #{e.message}  ")
+          puts("eggshepshin... #{e.backtrace}  ")
         end
       end
       user

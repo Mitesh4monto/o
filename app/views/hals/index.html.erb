@@ -13,7 +13,7 @@
     <td> <%= link_to hal.user.name, hal.user if hal.user %></td>
     <td><%= link_to hal.id, hal %></td>
     <td><%= hal.created_at %></td>
-    <td><%= hal.entry %></td>
+    <td><%= raw hal.entry %></td>
     <td><%= hal.insights %></td>
 	<td>
 	<% if hal.halable %>

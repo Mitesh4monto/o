@@ -20,6 +20,7 @@ class ActivitySequence < ActiveRecord::Base
       activity.type = "ActivityInSequence"
       activity.activity_sequence_id = existing_act.activity_sequence_id
     else
+      # creeat an activity sequence with the same user and strategy as activity
       as = ActivitySequence.create(:user_id => existing_act.user_id, :strategy_id => existing_act.strategy_id)
       existing_act.activity_sequence_id = as.id
       activity.type = "ActivityInSequence"
@@ -27,7 +28,7 @@ class ActivitySequence < ActiveRecord::Base
       existing_act.strategy_id = nil
       existing_act.save!
       activity.activity_sequence_id = as.id
-      as.current_activity = as.existing_act
+      as.current_activity = ActivityInSequence.find existing_act.id
       as.save
     end
   end

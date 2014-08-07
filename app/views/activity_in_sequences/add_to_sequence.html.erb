@@ -1,7 +1,6 @@
 <% @show_aside = true %>
 <% @title = "Add activity to sequence with #{@seq_activity.title}" %>
 
-
 <%= semantic_form_for @activity, :html => {:class => "course_manage"}  do |f| %>
 	<%= hidden_field_tag 'seq_activity', @seq_activity.id %>
 	<div class="row">

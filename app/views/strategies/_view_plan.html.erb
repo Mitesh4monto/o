@@ -241,9 +241,8 @@ jQuery(document).ready(function(){
 							<%= link_to 'Add a sequential chapter', 	add_activity_to_sequence_path(activity.activity_sequence.activity_in_sequences.first) %>	
 							<BR>	<%= link_to 'manage sequence', activity.activity_sequence %>
 							<!-- <BR> -->
-							<%= 
-							# link_to 'Add activity to sequence', add_activity_to_sequence_path(activity)
-							 %>	 						
+						<% elsif course_edit %>
+							<%= link_to 'Create a sequence starting with this activity', add_activity_to_sequence_path(activity) %>	 						
 						<% end %>
 						
 
